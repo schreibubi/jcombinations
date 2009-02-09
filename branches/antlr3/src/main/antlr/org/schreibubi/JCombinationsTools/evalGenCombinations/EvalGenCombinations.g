@@ -38,6 +38,7 @@ tokens {
     KEY;
     VALUE;
     VALUEBLOCK;
+    OPTION;
 }
 
 @header {
@@ -46,12 +47,23 @@ package org.schreibubi.JCombinationsTools.evalGenCombinations;
 	import java.io.File;
 	import java.io.FileReader;
 	import java.util.HashMap;
+    import org.schreibubi.JCombinationsTools.FileNameLookup.FileNameLookupSingleton;
 }
 @lexer::header {
 package org.schreibubi.JCombinationsTools.evalGenCombinations;
+	import java.io.BufferedReader;
+	import java.io.File;
+	import java.io.FileReader;
+	import java.util.HashMap;
+    import org.schreibubi.JCombinationsTools.FileNameLookup.FileNameLookupSingleton;
 }
 
 @lexer::members {
+File includeDir=new File(".");
+public void setIncludeDir(File dir) {
+  includeDir=dir;
+}
+
     class SaveStruct {
       SaveStruct(CharStream input){
         this.input = input;
@@ -86,8 +98,12 @@ package org.schreibubi.JCombinationsTools.evalGenCombinations;
 
 blocks
     :
-        (block)+ EOF!
+        (option)* (block)+ EOF!
     ;
+
+option
+	: 'option' STR_CONST STR_CONST -> ^(OPTION STR_CONST+)
+	;
 
 block
     : LCURLY line RCURLY -> ^(BLOCK line)
@@ -265,7 +281,7 @@ INT_CONST: DECIMAL_DIGIT+ UNIT?;
 
 FLT_CONST: DECIMAL_DIGIT+ '.' DECIMAL_DIGIT+ EXPONENT? UNIT?;
 
-HEX_CONST: '#' HEX_DIGIT+ ;
+HEX_CONST: '0x' HEX_DIGIT+ ;
 
 BIN_CONST: '%' BINARY_DIGIT+ ;
 
@@ -318,7 +334,7 @@ EXPONENT
 fragment
 UNIT
 	:
-		('N' | 'U' | 'M' )? ( 'V' | 'A' | 'S' )
+		('n' | 'u' | 'm' | 'k' | 'M' )? ( 'V' | 'A' | 's' | 'Hz' )
 	;
   
 INCLUDE
@@ -332,7 +348,7 @@ INCLUDE
          includes.push(ss);
 
         // switch on new input stream
-         setCharStream(new ANTLRFileStream(name));
+         setCharStream(new ANTLRFileStream(FileNameLookupSingleton.getInstance().lookup( includeDir, name ).getAbsolutePath() ));
          reset();
 
        } catch(Exception fnf) { throw new Error("Cannot open file " + name); }

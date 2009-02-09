@@ -299,7 +299,7 @@ public class EvalGenCombinations {
 				outfile = line.getOptionValue("o");
 			}
 			VHashMap<String> optionsFromEvalGenWalker = null;
-			exec(new FileReader(infile), new File("."),
+			execAndWriteToFile(new File(infile),new File(outfile), new File("."),
 					optionsFromEvalGenWalker);
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
