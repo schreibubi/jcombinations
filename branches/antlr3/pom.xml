@@ -50,6 +50,21 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr3-maven-plugin</artifactId>
+				<version>3.1.1.2</version>
+				<configuration>
+					<libDirectory>target/generated-sources/antlr/org/schreibubi/JCombinationsTools/evalGenCombinations/</libDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+<!-- 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>antlr-maven-plugin</artifactId>
 				<version>2.1</version>
@@ -59,8 +74,10 @@
 						org/schreibubi/JCombinations/evalVariables/EvalVariablesTreeWalker.g,
 						org/schreibubi/JCombinationsTools/assignWalker/AssignParser.g,
 						org/schreibubi/JCombinationsTools/assignWalker/AssignTreeWalker.g,
-						org/schreibubi/JCombinationsTools/evalGenCombinations/EvalGenCombinationsParser.g,
-						org/schreibubi/JCombinationsTools/evalGenCombinations/EvalGenCombinationsTreeWalker.g,
+						org/schreibubi/JCombinationsTools/evalGenCombinations/EvalGenCombinations.g,
+						org/schreibubi/JCombinationsTools/evalGenCombinations/AnnotateTreeWalker.g,
+						org/schreibubi/JCombinationsTools/evalGenCombinations/CheckTreeWalker.g,
+						org/schreibubi/JCombinationsTools/evalGenCombinations/GetCombinationTreeWalker.g,
 						org/schreibubi/JCombinationsTools/mergeResults/DclogParser.g,
 						org/schreibubi/JCombinationsTools/patchWalker/PatchParser.g,
 						org/schreibubi/JCombinationsTools/patchWalker/PatchTreeWalker.g,
@@ -76,7 +93,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>  -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -162,6 +179,11 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr-runtime</artifactId>
+			<version>3.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>jfree</groupId>
 			<artifactId>jfreechart</artifactId>
