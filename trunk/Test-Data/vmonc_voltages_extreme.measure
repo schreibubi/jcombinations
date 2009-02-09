@@ -1,0 +1,48 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ MEASURE_SETI, MEASURE_CBMNAME, MEASURE, CHANNEL , EXTRA_TESTMODE1 ] =
+[ "TM_VMONC_sel=%1000", "CA" ,"VNWLL_VMONC std" , VMONC_CHANNEL, "TM_NOTMRSLOCK=ON"  ],
+[ "TM_VMONC_sel=%1000", "CB" ,"VNWLL_VMONC VNWLL=-0.9V (max)" , VMONC_CHANNEL, "TM_VNWLLTRIM=%011" ],
+[ "TM_VMONC_sel=%1000", "CC" ,"VNWLL_VMONC VNWLL=-0.0V (min)" , VMONC_CHANNEL, "TM_VNWLLTRIM=%100" ],
+[ "TM_VMONC_sel=%0001", "CD" ,"VPP_VMONC   std" , VMONC_CHANNEL, "TM_NOTMRSLOCK=ON"  ],
+[ "TM_VMONC_sel=%0001", "CE" ,"VPP_VMONC   VPP=2.37V (min)" , VMONC_CHANNEL, "TM_VPPmargin=%0111" ],
+[ "TM_VMONC_sel=%0001", "CF" ,"VPP_VMONC   VPP=2.97V (max)" , VMONC_CHANNEL, "TM_VPPmargin=%1000" ],
+[ "TM_VMONC_sel=%0011", "CG" ,"VEQL_VMONC  std" , VMONC_CHANNEL , "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONC_sel=%0011", "CH", "VEQL_VMONC VEQL=1.508V (min)" , VMONC_CHANNEL, "TM_VEQL=%01" ],
+[ "TM_VMONC_sel=%0011", "CI", "VEQL_VMONC VEQL=1.706V (max)" , VMONC_CHANNEL, "TM_VEQL=%11" ],
+[ "TM_VMONC_sel=%0100", "CJ" ,"VINT_VMONC  std" , VMONC_CHANNEL , "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONC_sel=%0100", "CK", "VINT_VMONC VINT=1.053V (min)" , VMONC_CHANNEL, "TM_VINTTRIM=%011" ],
+[ "TM_VMONC_sel=%0100", "CL", "VINT_VMONC VINT=1.402V (max)" , VMONC_CHANNEL, "TM_VINTTRIM=%100" ],
+[ "TM_VMONC_sel=%0101", "CM" ,"VBLH_VMONC  std" , VMONC_CHANNEL , "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONC_sel=%0101", "CN", "VBLH_VMONC VBLH=1.412V (max)" , VMONC_CHANNEL, "TM_VBLHTRIM=%0111" ],
+[ "TM_VMONC_sel=%0101", "CO", "VBLH_VMONC VBLH=0.9636 (min)" , VMONC_CHANNEL, "TM_VBLHTRIM=%1000" ],
+[ "TM_VMONC_sel=%0110", "CP" ,"VBLEQ_VMONC std" , VMONC_CHANNEL , "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONC_sel=%0110", "CQ", "VBLEQ_VMONC VBLEQ=0.047V (min)", VMONC_CHANNEL, "TM_VBLEQTRIM=%0111" ],
+[ "TM_VMONC_sel=%0110", "CR", "VBLEQ_VMONC VBLEQ=1.2V   (max)", VMONC_CHANNEL, "TM_VBLEQTRIM=%1111" ],
+[ "TM_VMONC_sel=%1001", "CS" ,"VBB_VMONC std" , VMONC_CHANNEL , "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONC_sel=%1010", "CT", "VPL_VMONC VPL=0.009V (min)"  , VMONC_CHANNEL, "TM_VPLTRIM=%0111" ],
+[ "TM_VMONC_sel=%1010", "CU", "VPL_VMONC VPL=1.200V (max)"  , VMONC_CHANNEL, "TM_VPLTRIM=%1111" ],
+[ "TM_VMONC_sel=%1010", "CV" ,"VPL_VMONC   std" , VMONC_CHANNEL, "TM_NOTMRSLOCK=ON"  ],
+[ "TM_VMONC_sel=%0111", "CW" ,"GND_VMONC" , VMONC_CHANNEL, "TM_NOTMRSLOCK=ON"  ],
+[ "TM_VMONC_sel=%0001", "CX" ,"GND_VMONC" , VMONC_CHANNEL, "TM_NOTMRSLOCK=ON"  ]
+
+COM_MEASURE=MEASURE
+

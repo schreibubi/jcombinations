@@ -1,0 +1,27 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ CHANNEL, MEASURE ] = [ "ESD", "CAS\\RAS\\CLK\\CKE0\\CKE1\\WE\\CS0\\CS1\\ODT0\\ODT1\\ZQ0\\ZQ1\\A0\\A1\\A2\\A3\\A4\\A5\\A6\\A7\\A8\\A9\\A10\\A11\\A12\\A13\\A14\\BA0\\BA1\\BA2\\OTPN\\LDQM\\UDQM\\VREFCA\\VREFDQ\\UDQSB\\LDQSB" ]
+
+MEASURE_CBMNAME="ES"
+
+COM_MEASURE="I/V V_"+MEASURE
+
+CFLG=CFLG|NO_MEAS

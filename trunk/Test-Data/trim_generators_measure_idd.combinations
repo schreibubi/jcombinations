@@ -1,0 +1,143 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; TODO: IDD0 and idd1 should use AIDDB testengine, but we do not care right now
+; Trim VREF measure IDD current
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON,ENGARG]=["idd0a","h1i0a","H1",4,"IDDN"],["idd1","h1i1","H2",3,"IDDB"],
+                                                ["idd2p0","h1i2p0b","H3",4,"IDDN"],["idd2p1","h1i2p1","H4",4,"IDDN"],
+                                                ["idd2n","h1i2n","H5",4,"IDDN"],["idd2q","h1i2q","H6",4,"IDDN"],
+                                                ["idd3p","h1i3p","H7",3,"IDDB"],["idd3n_dummy","h1i3ndu","G8",3,"IDDB"],
+                                                ["idd3n","h1i3n","H8",3,"IDDB"],["idd4r","h1i4r","H9",3,"IDDB"],
+                                                ["idd4w","h1i4w","HA",3,"IDDB"],["idd5b_128","h1i5ba","HH",3,"IDDB"],
+                                                ["idd6a","h1i6a","HC",3,"IDDB"],["idd7","h1i7","HE",3,"IDDB"]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+include "vdd_spec_range.value"
+
+include "idd.measure"
+
+include "vref_global.trimming"
+
+include "footer.const"
+
+}
+
+; Trim VREF measure IDD current in BI
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON,ENGARG]=["idd0a","h1i0a","H1",4,"IDDN"],["idd1","h1i1","H2",3,"IDDB"],["idd2p0","h1i2p0b","H3",4,"IDDN"],["idd2p1","h1i2p1","H4",4,"IDDN"],["idd2n","h1i2n","H5",4,"IDDN"],["idd2q","h1i2q","H6",4,"IDDN"],["idd3p","h1i3p","H7",3,"IDDB"],["idd3n_dummy","h1i3ndu","G8",3,"IDDB"],["idd3n","h1i3n","H8",3,"IDDB"],["idd4r","h1i4r","H9",3,"IDDB"],["idd4w","h1i4w","HA",3,"IDDB"],["idd5b_128","h1i5ba","HH",3,"IDDB"],["idd6a","h1i6a","HC",3,"IDDB"],["idd7","h1i7","HE",3,"IDDB"]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "idd.measure"
+
+include "vref_global.trimming"
+
+include "footer.const"
+
+}
+; Measure IDD current with different voltage nets switched off
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON,ENGARG]=["idd0a","h1i0a","H1",4,"IDDN"],["idd1","h1i1","H2",3,"IDDB"],["idd2p0","h1i2p0b","H3",4,"IDDN"],["idd2p1","h1i2p1","H4",4,"IDDN"],["idd2n","h1i2n","H5",4,"IDDN"],["idd2q","h1i2q","H6",4,"IDDN"],["idd3p","h1i3p","H7",3,"IDDB"],["idd3n_dummy","h1i3ndu","G8",3,"IDDB"],["idd3n","h1i3n","H8",3,"IDDB"],["idd4r","h1i4r","H9",3,"IDDB"],["idd4w","h1i4w","HA",3,"IDDB"],["idd5b_128","h1i5ba","HH",3,"IDDB"],["idd6a","h1i6a","HC",3,"IDDB"],["idd7","h1i7","HE",3,"IDDB"]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+include "burnin.const"
+
+include "vdd_spec.value"
+
+include "idd.measure"
+
+include "disable_nets.trimming"
+
+include "footer.const"
+
+}
+; Measure IDD current with different voltage nets switched off in BI
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON,ENGARG]=["idd0a","h1i0a","H1",4,"IDDN"],["idd1","h1i1","H2",3,"IDDB"],["idd2p0","h1i2p0b","H3",4,"IDDN"],["idd2p1","h1i2p1","H4",4,"IDDN"],["idd2n","h1i2n","H5",4,"IDDN"],["idd2q","h1i2q","H6",4,"IDDN"],["idd3p","h1i3p","H7",3,"IDDB"],["idd3n_dummy","h1i3ndu","G8",3,"IDDB"],["idd3n","h1i3n","H8",3,"IDDB"],["idd4r","h1i4r","H9",3,"IDDB"],["idd4w","h1i4w","HA",3,"IDDB"],["idd5b_128","h1i5ba","HH",3,"IDDB"],["idd6a","h1i6a","HC",3,"IDDB"],["idd7","h1i7","HE",3,"IDDB"]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "idd.measure"
+
+include "disable_nets.trimming"
+
+include "footer.const"
+
+}
+; Measure IDD current for ACTM and with testmode-Block off
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON,ENGARG,SCRAMBLER,CBMFPT]=["idd2p0_actm","h1i2p0a","T4",2,"IDDN","NOSCR",1],
+                                                          ["idd2p0_normal_seti","h1i2p0s","HS",4,"IDDN","SCR1STD",1],
+                                                          ["idd2p0_actm_off","h1i2p0m","T2",2,"IDDN","NOSCR",1],
+                                                          ["idd2p0_normal","h1i2p0n","HN",4,"IDDN","SCR1STD",0]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",NO_TRIM]
+
+include "vdd_spec.value"
+
+include "idd.measure"
+
+TRIM_CBMNAME=""
+TRIM_ABS=1
+TRIM_RELATIVE=1
+TRIM="NOT TRIMMED"
+COM_TRIM="NOT TRIMMED"
+
+include "footer.const"
+
+}
+
+

@@ -1,0 +1,2958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!-- DOCTYPE seti SYSTEM 'file:///X:\seti_rel211\dtd\seti.dtd' -->
+<seti product="SETI_2G_H46" design_step="01" revision="1.13" date="2008-11-04" format="seti_rel211">
+<client shortname="ocdcal" index="CLT001">
+<description>Groups the variables in OCD calibration</description>
+</client>
+<client shortname="quad" index="CLT002">
+<description>Groups the both ribcorner chains</description>
+</client>
+<client shortname="srf_ts" index="CLT003">
+<description>Groups temperature sensor and self refresh</description>
+</client>
+<client shortname="genblk" index="CLT004">
+<description>Vref, iref, vint, vblh, vburn</description>
+</client>
+<client shortname="actm" index="CLT005">
+<description>Groups ACTM chains</description>
+</client>
+<client shortname="redpad" index="CLT006">
+<description>Groups REDPAD chains</description>
+</client>
+<client shortname="byte_l" index="CLT007">
+<description>Groups lower byte chains</description>
+</client>
+<client shortname="dll" index="CLT009">
+<description>All about DLL and it's config</description>
+</client>
+<client shortname="dcc" index="CLT010">
+<description>All about DLL core and it's config</description>
+</client>
+<client shortname="efsbr" index="CLT012">
+<description>Control of SBR</description>
+</client>
+<client shortname="gc" index="CLT013">
+<description>Global control plus trasref</description>
+</client>
+<client shortname="ef1" index="CLT014">
+<description>Control of efuse block 1</description>
+</client>
+<client shortname="ef2" index="CLT015">
+<description>Control of efuse block 2</description>
+</client>
+<chain shortname="ACTM1" index="CHN001" client="CLT005">
+<name>ACTM1</name>
+<address base="hex">01</address>
+<length base="dec">24</length>
+<description>ACTM topo - YA, YB, XWR, XRD</description>
+</chain>
+<chain shortname="ACTM2" index="CHN002" client="CLT005">
+<name>ACTM2</name>
+<address base="hex">02</address>
+<length base="dec">23</length>
+<description>ACTM topo - YC, YD; ACTM control modes</description>
+</chain>
+<chain shortname="RP_CFG_FE" index="CHN003" client="CLT006">
+<name>RedpadCfgFE</name>
+<address base="hex">03</address>
+<length base="dec">19</length>
+<description>REDPAD config FE</description>
+</chain>
+<chain shortname="RP_CFG_BI" index="CHN004" client="CLT006">
+<name>RedpadCfgBI</name>
+<address base="hex">04</address>
+<length base="dec">10</length>
+<description>REDPAD config BI</description>
+</chain>
+<chain shortname="RP_ROW" index="CHN005" client="CLT006" bits_external="true">
+<name>RedpadRow</name>
+<address base="hex">05</address>
+<length base="dec">29</length>
+<description>REDPAD scan row counter</description>
+</chain>
+<chain shortname="RP_COL" index="CHN006" client="CLT006" bits_external="true">
+<name>RedpadCol</name>
+<address base="hex">06</address>
+<length base="dec">21</length>
+<description>REDPAD scan column counter</description>
+</chain>
+<chain shortname="QUAD_GC" index="CHN007" client="CLT002">
+<name>Quad_GlobalControl</name>
+<address base="hex">07</address>
+<length base="dec">8</length>
+<description>Contains TMs needed in global control as well as for the quads (e.g. WRBANKS, 2BANKPAR), should be preferably short to speed up testing</description>
+</chain>
+<chain shortname="RIBCORNER_ROW" index="CHN008" client="CLT002">
+<name>RibCorner_Row</name>
+<address base="hex">08</address>
+<length base="dec">18</length>
+<description>Rib test modes, partial good options</description>
+</chain>
+<chain shortname="RIBCORNER_COL" index="CHN009" client="CLT002">
+<name>RibCorner_Col</name>
+<address base="hex">09</address>
+<length base="dec">32</length>
+<description>Column test modes</description>
+</chain>
+<chain shortname="VREF" index="CHN010" client="CLT004">
+<name>VrefTrimming</name>
+<address base="hex">0a</address>
+<length base="dec">32</length>
+<description>VREFGLBL, VREFBGR, VINT, VBURN, pump frequency</description>
+</chain>
+<chain shortname="IREF" index="CHN011" client="CLT004">
+<name>IrefTrimming</name>
+<address base="hex">0b</address>
+<length base="dec">6</length>
+<description>Iref Trimming</description>
+</chain>
+<chain shortname="VINTACT1" index="CHN012">
+<name>vintact1</name>
+<address base="hex">0c</address>
+<length base="dec">7</length>
+<description>Vint active generator configuration (spine left)</description>
+</chain>
+<chain shortname="VINTACT2" index="CHN013">
+<name>vintact2</name>
+<address base="hex">0d</address>
+<length base="dec">7</length>
+<description>Vint active generator configuration (spine center/left)</description>
+</chain>
+<chain shortname="VINTACT3" index="CHN014">
+<name>vintact3</name>
+<address base="hex">0e</address>
+<length base="dec">7</length>
+<description>Vint active generator configuration (spine center/right)</description>
+</chain>
+<chain shortname="VINTACT4" index="CHN015">
+<name>vintact4</name>
+<address base="hex">0f</address>
+<length base="dec">7</length>
+<description>Vint active generator configuration (spine right)</description>
+</chain>
+<chain shortname="VPPVNWLLVEQL" index="CHN016" client="CLT004">
+<name>vppvnwllveql</name>
+<address base="hex">10</address>
+<length base="dec">33</length>
+<description>VNWLL, VPP, VEQL</description>
+</chain>
+<chain shortname="VPWLL" index="CHN017">
+<name>vpwll</name>
+<address base="hex">11</address>
+<length base="dec">15</length>
+<description>VPWLL</description>
+</chain>
+<chain shortname="VINTVBLH" index="CHN018" client="CLT004">
+<name>vintvblh</name>
+<address base="hex">12</address>
+<length base="dec">35</length>
+<description>VINT, VINT overclock, VBLH</description>
+</chain>
+<chain shortname="VPLVBLEQ" index="CHN019">
+<name>vplvbleq</name>
+<address base="hex">13</address>
+<length base="dec">17</length>
+<description>VPL, VBLEQ</description>
+</chain>
+<chain shortname="VBB" index="CHN020" client="CLT004">
+<name>vbb</name>
+<address base="hex">14</address>
+<length base="dec">16</length>
+<description>VBB</description>
+</chain>
+<chain shortname="OCD_CAL" index="CHN021" client="CLT001">
+<name>OcdCalib</name>
+<address base="hex">15</address>
+<length base="dec">16</length>
+<description></description>
+</chain>
+<chain shortname="OCD_READONLY" index="CHN022" client="CLT001" bits_external="true">
+<name>OcdReadOnly</name>
+<address base="hex">16</address>
+<length base="dec">14</length>
+<description>Only read-out of (self- ?)calibrated values. No load command required. Chain is updated whenever tb_clk is running and se == 0.</description>
+</chain>
+<chain shortname="VMON" index="CHN023">
+<name>VoltMon_x4_x8</name>
+<address base="hex">17</address>
+<length base="dec">13</length>
+<description>Select monitor voltages, REDSWP, x4, x8, efuse disable, etc.</description>
+</chain>
+<chain shortname="SRF" index="CHN024" client="CLT003">
+<name>Selfrefresh</name>
+<address base="hex">18</address>
+<length base="dec">12</length>
+<description></description>
+</chain>
+<chain shortname="TEMP_SENSOR" index="CHN025" client="CLT003">
+<name>TemperatureSensor</name>
+<address base="hex">19</address>
+<length base="dec">21</length>
+<description>Pass/fail bit needs an extra capture client to keep the info stable for multiple readout, no automatic capture</description>
+</chain>
+<chain shortname="BURNIN" index="CHN026" client="CLT002">
+<name>BurnIn</name>
+<address base="hex">1a</address>
+<length base="dec">3</length>
+<description>Only the two burnin modes, for BI requirements this chain must not be longer</description>
+</chain>
+<chain shortname="CMDRCV" index="CHN027">
+<name>CommandReceiverControl</name>
+<address base="hex">1b</address>
+<length base="dec">8</length>
+<description>Bias currents, setup/hold adjustment delay</description>
+</chain>
+<chain shortname="ADDRCV" index="CHN028">
+<name>AddressReceiverControl</name>
+<address base="hex">1c</address>
+<length base="dec">8</length>
+<description>Bias currents, setup/hold adjustment delay</description>
+</chain>
+<chain shortname="CLKRCV" index="CHN029">
+<name>ClockReceiverControl</name>
+<address base="hex">1d</address>
+<length base="dec">22</length>
+<description>Bias currents, setup/hold adjustment delay, intensive CKE counter, latency counter trim</description>
+</chain>
+<chain shortname="BYTE_L_1" index="CHN030" client="CLT007">
+<name>LowerByteLane1</name>
+<address base="hex">1e</address>
+<length base="dec">31</length>
+<description>Testmodes for lower byte lane</description>
+</chain>
+<chain shortname="BYTE_L_2" index="CHN031" client="CLT007">
+<name>LowerByteLane2</name>
+<address base="hex">1f</address>
+<length base="dec">9</length>
+<description>Testmodes for lower byte lane</description>
+</chain>
+<chain shortname="BYTE_U" index="CHN032">
+<name>UpperByteLane</name>
+<address base="hex">20</address>
+<length base="dec">32</length>
+<description>Testmodes for upper byte lane; fredpulse</description>
+</chain>
+<chain shortname="EFBLK1_CTRL" index="CHN036" client="CLT014">
+<name>EFblk1_ctrl</name>
+<address base="hex">24</address>
+<length base="dec">10</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFBLK1_DATA" index="CHN037" client="CLT014" bits_external="true">
+<name>EFblk1_data</name>
+<address base="hex">25</address>
+<length base="dec">36</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFBLK2_CTRL" index="CHN038" client="CLT015">
+<name>EFblk2_ctrl</name>
+<address base="hex">26</address>
+<length base="dec">10</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFBLK2_DATA" index="CHN039" client="CLT015" bits_external="true">
+<name>EFblk2_data</name>
+<address base="hex">27</address>
+<length base="dec">36</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFBLKSBR_CTRL" index="CHN048" client="CLT012">
+<name>EFblksbr_ctrl</name>
+<address base="hex">30</address>
+<length base="dec">10</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFBLKSBR_DATA1" index="CHN049" client="CLT012" bits_external="true">
+<name>EFblksbr_data1</name>
+<address base="hex">31</address>
+<length base="dec">58</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFBLKSBR_DATA2" index="CHN050" client="CLT012" bits_external="true">
+<name>EFblksbr_data2</name>
+<address base="hex">32</address>
+<length base="dec">75</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="SBR_CONTROL" index="CHN051">
+<name>SBR_Control</name>
+<address base="hex">33</address>
+<length base="dec">14</length>
+<description>Single Bit Repair Control in Global Control</description>
+</chain>
+<chain shortname="DLL_CFG" index="CHN052" client="CLT009">
+<name>DLL_Configuration</name>
+<address base="hex">34</address>
+<length base="dec">16</length>
+<description>DLL configuration</description>
+</chain>
+<chain shortname="DLL_TM" index="CHN053" client="CLT009" bits_external="true">
+<name>DLL_Testmodes</name>
+<address base="hex">35</address>
+<length base="dec">10</length>
+<description>DLL testmodes</description>
+</chain>
+<chain shortname="DLL_RW" index="CHN054" client="CLT009" bits_external="true">
+<name>DLL_Readout</name>
+<address base="hex">36</address>
+<length base="dec">50</length>
+<description>DLL RW chain for status readout</description>
+</chain>
+<chain shortname="DLLDCC" index="CHN055">
+<name>DLLDCC</name>
+<address base="hex">37</address>
+<length base="dec">22</length>
+<description>Miscellaneous testmodes for analog part of dll and dcc</description>
+</chain>
+<chain shortname="DCC_CFG" index="CHN056" client="CLT010">
+<name>DCC_Configuration</name>
+<address base="hex">38</address>
+<length base="dec">16</length>
+<description>DCC configuration</description>
+</chain>
+<chain shortname="DCC_TM" index="CHN057" client="CLT010" bits_external="true">
+<name>DCC_Testmodes</name>
+<address base="hex">39</address>
+<length base="dec">10</length>
+<description>DCC testmodes</description>
+</chain>
+<chain shortname="DCC_RW" index="CHN058" client="CLT010" bits_external="true">
+<name>DCC_Readout</name>
+<address base="hex">3a</address>
+<length base="dec">38</length>
+<description>DCC RW chain for status readout</description>
+</chain>
+<chain shortname="DLLGOV" index="CHN059">
+<name>DLLGOV</name>
+<address base="hex">3b</address>
+<length base="dec">11</length>
+<description>Control for DLLGOV</description>
+</chain>
+<chain shortname="GLOBAL_CONTROL" index="CHN060" client="CLT013">
+<name>GlobalControl</name>
+<address base="hex">3c</address>
+<length base="dec">22</length>
+<description>Global Control: WRT banks, array timings</description>
+</chain>
+<chain shortname="TRAS_REFRESH" index="CHN061" client="CLT013">
+<name>TrasRefresh</name>
+<address base="hex">3d</address>
+<length base="dec">9</length>
+<description>TRAS Refresh</description>
+</chain>
+<chain shortname="CHIPID" index="CHN063" bits_external="true">
+<name>ChipID</name>
+<address base="hex">3f</address>
+<length base="dec">106</length>
+<description>Only read-out, 90 laser fuse bits, 22 mask bits</description>
+</chain>
+<variable shortname="TM_YA" index="VAR001" chain="CHN001" io="W" fuse="none">
+<position base="dec">23</position>
+<length base="dec">8</length>
+<signal_name>ya[7:0]</signal_name>
+<description>ACTM YA register</description>
+</variable>
+<variable shortname="TM_YB" index="VAR002" chain="CHN001" io="W" fuse="none">
+<position base="dec">15</position>
+<length base="dec">8</length>
+<signal_name>yb[7:0]</signal_name>
+<description>ACTM YB register</description>
+</variable>
+<variable shortname="TM_XWR" index="VAR003" chain="CHN001" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">4</length>
+<signal_name>xwr[3:0]</signal_name>
+<description>ACTM XWR register</description>
+</variable>
+<variable shortname="TM_XRD" index="VAR004" chain="CHN001" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">4</length>
+<signal_name>xrd[3:0]</signal_name>
+<description>ACTM XRD register</description>
+</variable>
+<variable shortname="TM_ACTMHALF" index="VAR005" chain="CHN002" io="W" fuse="none">
+<position base="dec">22</position>
+<length base="dec">1</length>
+<signal_name>tm_actmhalf</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_YC" index="VAR006" chain="CHN002" io="W" fuse="none">
+<position base="dec">21</position>
+<length base="dec">8</length>
+<signal_name>yc[7:0]</signal_name>
+<description>ACTM YC register</description>
+</variable>
+<variable shortname="TM_YD" index="VAR008" chain="CHN002" io="W" fuse="none">
+<position base="dec">13</position>
+<length base="dec">8</length>
+<signal_name>yd[7:0]</signal_name>
+<description>ACTM YD register</description>
+</variable>
+<variable shortname="TM_ACTM" index="VAR009" chain="CHN002" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_actm</signal_name>
+<description>Enable ACTM, dctl2=A12(ext).</description>
+</variable>
+<variable shortname="TM_ACTMSCRAMBLER" index="VAR010" chain="CHN002" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_actm_scrambler</signal_name>
+<description>Takes row address into account for bitline twist</description>
+</variable>
+<variable shortname="TM_BLEEDER" index="VAR011" chain="CHN002" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_bleeder</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_BC" index="VAR012" chain="CHN002" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_bc</signal_name>
+<description>Burst compression</description>
+</variable>
+<variable shortname="TM_BCRDIS" index="VAR013" chain="CHN002" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_bcrdis</signal_name>
+<description>Auto reset of pass/fail bit at burst end in burst compression mode. Restore pass/fail bit with dummy read after TMBCRDIS off.</description>
+</variable>
+<variable shortname="TM_DCTL" index="VAR014" chain="CHN002" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dctl1</signal_name>
+<description>Switch CKE to DCTL functionality</description>
+</variable>
+<variable shortname="TM_REDPADC" index="VAR015" chain="CHN003" io="W" fuse="none" sticky="true">
+<position base="dec">18</position>
+<length base="dec">1</length>
+<signal_name>tm_redpadc</signal_name>
+<description>Enable REDPAD interface on component level</description>
+</variable>
+<variable shortname="TM_BORD_SEG_MODE" index="VAR016" chain="CHN003" io="W" fuse="none">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>bord_seg_mode</signal_name>
+<description>Restrict to counting border segments only</description>
+</variable>
+<variable shortname="TM_RP_N_NOPROW" index="VAR017" chain="CHN003" io="W" fuse="none">
+<position base="dec">16</position>
+<length base="dec">3</length>
+<signal_name>n_nop_row[2:0]</signal_name>
+<description>Number of nops between cmd's in a row sequence</description>
+</variable>
+<variable shortname="TM_RP_N_NOPCOL" index="VAR018" chain="CHN003" io="W" fuse="none">
+<position base="dec">13</position>
+<length base="dec">3</length>
+<signal_name>n_nop_col[2:0]</signal_name>
+<description>Number of nops between cmd's in a col sequence</description>
+</variable>
+<variable shortname="TM_RP_SEQHALFBANK" index="VAR019" chain="CHN003" io="W" fuse="none">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>seq_half_bank</signal_name>
+<description>Enable half bank sequence. =0: all sequences over all banks, bank addr from sequencer. =1: all sequences over half number of banks, bank addr 1:0 from sequencer</description>
+</variable>
+<variable shortname="TM_RP_SBA" index="VAR020" chain="CHN003" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">3</length>
+<signal_name>sba[2:0]</signal_name>
+<description>Bank addr for single bank mode</description>
+</variable>
+<variable shortname="TM_RP_SEQ_ACT" index="VAR021" chain="CHN003" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>seq_act</signal_name>
+<description>Enable activate sequence</description>
+</variable>
+<variable shortname="TM_RP_SEQ_PRE" index="VAR022" chain="CHN003" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>seq_pre</signal_name>
+<description>Enable precharge sequence</description>
+</variable>
+<variable shortname="TM_RP_SEQ_RD" index="VAR023" chain="CHN003" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>seq_rd</signal_name>
+<description>Enable read sequence</description>
+</variable>
+<variable shortname="TM_RP_SEQ_WR" index="VAR024" chain="CHN003" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>seq_wr</signal_name>
+<description>Enable write sequence</description>
+</variable>
+<variable shortname="TM_RP_COL_DOWN" index="VAR025" chain="CHN003" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>col_down</signal_name>
+<description>Col addr counter. 0= increment, step size 8 (burst length). 1= decrement, when red_incl=1 then countdown will start with redundant elements</description>
+</variable>
+<variable shortname="TM_RP_ROW_DOWN" index="VAR026" chain="CHN003" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>row_down</signal_name>
+<description>Dto for row</description>
+</variable>
+<variable shortname="TM_RP_RED_INCL" index="VAR027" chain="CHN003" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>red_incl</signal_name>
+<description>Include redundancy counting</description>
+</variable>
+<variable shortname="TM_RP_MOD_COL_SEL" index="VAR028" chain="CHN004" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>mod_col_sel</signal_name>
+<description>Column counter modulo select on/off. 1 = modulo 64 (8xBL8)</description>
+</variable>
+<variable shortname="TM_RP_MOD_ROW_SEL" index="VAR029" chain="CHN004" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">3</length>
+<signal_name>mod_row_sel[2:0]</signal_name>
+<description>Row counter modulo select: off, 8, 32, 64, 128</description>
+</variable>
+<variable shortname="TM_RP_SCR_SEL" index="VAR030" chain="CHN004" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">3</length>
+<signal_name>scr_sel[2:0]</signal_name>
+<description>BI scrambler select: off, step 4 / 64 / 1024, rest reserved</description>
+</variable>
+<variable shortname="TM_RP_COL_BA_DOWN" index="VAR031" chain="CHN004" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>col_ba_down</signal_name>
+<description>Column bank address counter: 0=increment, 1=decrement, stepsize always 1.</description>
+</variable>
+<variable shortname="TM_RP_ROW_BA_DOWN" index="VAR032" chain="CHN004" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>row_ba_down</signal_name>
+<description>Row bank address counter: 0=increment, 1=decrement, stepsize always 1.</description>
+</variable>
+<variable shortname="TM_RP_BURN_IN" index="VAR033" chain="CHN004" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>burnin</signal_name>
+<description>Enable burnin functionality</description>
+</variable>
+<variable shortname="TM_ROW_BANK" index="VAR034" chain="CHN005" io="RW" fuse="none">
+<position base="dec">28</position>
+<length base="dec">3</length>
+<signal_name>row_ba[2:0]</signal_name>
+<description>RP Row Bank</description>
+</variable>
+<variable shortname="TM_ROW_STATE" index="VAR035" chain="CHN005" io="RW" fuse="none">
+<position base="dec">25</position>
+<length base="dec">3</length>
+<signal_name>row_state[2:0]</signal_name>
+<description>RP Row State</description>
+</variable>
+<variable shortname="TM_REDUNDANT_ROW_H" index="VAR036" chain="CHN005" io="RW" fuse="none">
+<position base="dec">22</position>
+<length base="dec">7</length>
+<signal_name>redundant_row_h[13:7]</signal_name>
+<description>RP Red.Row High Addr.</description>
+</variable>
+<variable shortname="TM_REDUNDANT_ROW_L" index="VAR037" chain="CHN005" io="RW" fuse="none">
+<position base="dec">15</position>
+<length base="dec">2</length>
+<signal_name>redundant_row_l[1:0]</signal_name>
+<description>RP Red.Row Low Addr.</description>
+</variable>
+<variable shortname="TM_MAIN_ROW" index="VAR038" chain="CHN005" io="RW" fuse="none">
+<position base="dec">13</position>
+<length base="dec">14</length>
+<signal_name>main_row[13:0]</signal_name>
+<description>RP Main Row</description>
+</variable>
+<variable shortname="TM_COL_BANK" index="VAR039" chain="CHN006" io="RW" fuse="none">
+<position base="dec">20</position>
+<length base="dec">3</length>
+<signal_name>col_ba[2:0]</signal_name>
+<description>RP Col Bank</description>
+</variable>
+<variable shortname="TM_COL_STATE" index="VAR040" chain="CHN006" io="RW" fuse="none">
+<position base="dec">17</position>
+<length base="dec">2</length>
+<signal_name>col_state[1:0]</signal_name>
+<description>RP Col State</description>
+</variable>
+<variable shortname="TM_REDUNDANT_COL" index="VAR041" chain="CHN006" io="RW" fuse="none">
+<position base="dec">15</position>
+<length base="dec">6</length>
+<signal_name>redundant_col[5:0]</signal_name>
+<description>RP Red.Col.</description>
+</variable>
+<variable shortname="TM_MAIN_COL" index="VAR042" chain="CHN006" io="RW" fuse="none">
+<position base="dec">9</position>
+<length base="dec">10</length>
+<signal_name>main_col[9:0]</signal_name>
+<description>RP Main Col.</description>
+</variable>
+<variable shortname="TM_EXTADREN" index="VAR043" chain="CHN007" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_extadr</signal_name>
+<description>Activate extended address mode (redundancy addr.) (AX=1) / disable fused redundancy (AX=0), TM_EXTADREN  enable test mode </description>
+</variable>
+<variable shortname="TM_8BANKSTAGG" index="VAR044" chain="CHN007" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<signal_name>tm_8bankstagg[1:0]</signal_name>
+<description>Staggered 8-bank commands (ACT/WR/PRE)</description>
+</variable>
+<variable shortname="TM_ACTALL" index="VAR045" chain="CHN007" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">2</length>
+<signal_name>tm_actall[1:0]</signal_name>
+<description>Set all banks by ignoring the bank address (used in redpad) - or use CBRALLBANKS instead?</description>
+</variable>
+<variable shortname="TM_WRALL" index="VAR046" chain="CHN007" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<signal_name>tm_wrbanks[1:0]</signal_name>
+<description>Simultaneous 8-bank or 4-bank WR</description>
+</variable>
+<variable shortname="TM_2BANKPAR" index="VAR047" chain="CHN007" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_2bankpar</signal_name>
+<description>2-bank commands (ACT/WR/RD/PRE) for ACTM256:1</description>
+</variable>
+<variable shortname="TM_ARRAY_OFF" index="VAR048" chain="CHN008" io="W" fuse="none">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>tm_array_off</signal_name>
+<description>Switch array off (Note: TM only valid for 2GH45, not effective on 2GH46)</description>
+</variable>
+<variable shortname="TM_RIBLATCH" index="VAR049" chain="CHN008" io="W" fuse="none">
+<position base="dec">16</position>
+<length base="dec">1</length>
+<signal_name>tm_riblatch</signal_name>
+<description>Activate rib TMs by using local latches inside rib</description>
+</variable>
+<variable shortname="TM_TRASAP" index="VAR050" chain="CHN008" io="W" fuse="laser_fuse" fuse_disable_bit="VAR051">
+<position base="dec">15</position>
+<length base="dec">5</length>
+<default base="bin">01001</default>
+<signal_name>cfg_trasap[4:0]</signal_name>
+<description>RAS autoprecharge time</description>
+</variable>
+<variable shortname="TM_TRASAP_FUSE_DISABLE" index="VAR051" chain="CHN008" io="W" fuse="disable">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_trasap_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_RAVLD" index="VAR052" chain="CHN008" io="W" fuse="laser_fuse" fuse_disable_bit="VAR053">
+<position base="dec">9</position>
+<length base="dec">6</length>
+<default base="bin">100111</default>
+<signal_name>cfg_ravld[5:0]</signal_name>
+<description>Shifting of RowAddressVaLiD edges</description>
+</variable>
+<variable shortname="TM_RAVLD_FUSE_DISABLE" index="VAR053" chain="CHN008" io="W" fuse="disable">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_ravld_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_SATOGGLE" index="VAR054" chain="CHN008" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_satoggle</signal_name>
+<description>SAs also toggle (activate, sense, equalize), along with the WLs. SAE is brought up high each time the ACT command is issued until PRE command is applied</description>
+</variable>
+<variable shortname="TM_SALTC" index="VAR055" chain="CHN008" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_saltc</signal_name>
+<description>This testmode allows to simultaneously activate several wordlines that can be individually addressed. The number of activated wordlines is increased by 1 with every ACT command.</description>
+</variable>
+<variable shortname="TM_WLLTC" index="VAR056" chain="CHN008" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_wlltc</signal_name>
+<description>Switch to non-toggle mode for the multi-wordline test. In non-toggle mode, the precharge command does not release selected Wordlines.</description>
+</variable>
+<variable shortname="TM_SAOFFSET" index="VAR057" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR058">
+<position base="dec">31</position>
+<length base="dec">5</length>
+<default base="bin">11011</default>
+<signal_name>cfg_sa[4:0]</signal_name>
+<description>Modify equalize timing (set SA OFF time if TM_SAOFFSET is active)</description>
+</variable>
+<variable shortname="TM_SAOFFSET_FUSE_DISABLE" index="VAR058" chain="CHN009" io="W" fuse="disable">
+<position base="dec">26</position>
+<length base="dec">1</length>
+<signal_name>tm_saoffset_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_PWLTMR" index="VAR059" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR061">
+<position base="dec">25</position>
+<length base="dec">3</length>
+<default base="bin">111</default>
+<signal_name>cfg_pwltmr[2:0]</signal_name>
+<description>Trim timer for sensing delay n- to p-sense</description>
+</variable>
+<variable shortname="TM_SDTSET" index="VAR060" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR061">
+<position base="dec">22</position>
+<length base="dec">5</length>
+<default base="bin">10111</default>
+<signal_name>cfg_wltmr[4:0]</signal_name>
+<description>Word line timer trimming</description>
+</variable>
+<variable shortname="TM_SDTSET_FUSE_DISABLE" index="VAR061" chain="CHN009" io="W" fuse="disable">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>tm_wltmr_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_IBSSA" index="VAR062" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR063">
+<position base="dec">16</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">1</wait_time>
+<signal_name>cfg_ibssa[1:0]</signal_name>
+<description>Trimming of Ibssa (Irefssa) (bias current of SSA) independently from Iref. It allows for changing the SSA strength without affecting other circuits on the chip (test and analysis). Trim steps: default,  50%, 100%</description>
+</variable>
+<variable shortname="TM_IBSSA_FUSE_DISABLE" index="VAR063" chain="CHN009" io="W" fuse="disable">
+<position base="dec">14</position>
+<length base="dec">1</length>
+<signal_name>tm_ib_ssa_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_UCTRLDLY" index="VAR064" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR067">
+<position base="dec">13</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_uctrldly[1:0]</signal_name>
+<description>Modifies SSA timing: Signal uctrl controls (coupled) end of equalize and start sensing. TM_UCTRLDLY shifts both timings together.</description>
+</variable>
+<variable shortname="TM_CASDLY" index="VAR065" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR067">
+<position base="dec">11</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_casdly[1:0]</signal_name>
+<description>Adjust delay for internal column access timing</description>
+</variable>
+<variable shortname="TM_CMADLY" index="VAR066" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR067">
+<position base="dec">9</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_cmadly[1:0]</signal_name>
+<description>Delay CMA signal (SSA timing, starts sensing later). End of equalize not affected. Delay of the rising edge of the CMA signal gives MDQs some more time to split before sensing is started.</description>
+</variable>
+<variable shortname="TM_JDCDLY_FUSE_DISABLE" index="VAR067" chain="CHN009" io="W" fuse="disable">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_jdcdly_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_WRCASDEL" index="VAR068" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR070">
+<position base="dec">6</position>
+<length base="dec">3</length>
+<signal_name>cfg_wrcasdel[2:0]</signal_name>
+<description>Delay trimming for write CAS</description>
+</variable>
+<variable shortname="TM_RDCASDEL" index="VAR069" chain="CHN009" io="W" fuse="laser_fuse" fuse_disable_bit="VAR070">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<signal_name>cfg_rdcasdel[2:0]</signal_name>
+<description>Delay trimming for read CAS</description>
+</variable>
+<variable shortname="TM_RDWRCASDEL_FUSE_DISABLE" index="VAR070" chain="CHN009" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_rdwrcasdel_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VBURN_FORCE" index="VAR071" chain="CHN010" io="W" fuse="none">
+<position base="dec">31</position>
+<length base="dec">1</length>
+<signal_name>tm_vburn_force</signal_name>
+<description>Disable pump and gnd-clamping for external forcing of vburn</description>
+</variable>
+<variable shortname="TM_PUMPOSCON" index="VAR072" chain="CHN010" io="W" fuse="none">
+<position base="dec">30</position>
+<length base="dec">1</length>
+<signal_name>tm_pumposcon</signal_name>
+<description>Activate the pump oscillator (for monitoring fck)</description>
+</variable>
+<variable shortname="TM_VBURNMARGIN" index="VAR073" chain="CHN010" io="W" fuse="none">
+<position base="dec">29</position>
+<length base="dec">3</length>
+<wait_time base="dec" unit="us">20</wait_time>
+<signal_name>tm_vburntrim[2:0]</signal_name>
+<description>Trim the vburn voltage (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VINT_VBLH_CLAMP" index="VAR074" chain="CHN010" io="W" fuse="none">
+<position base="dec">26</position>
+<length base="dec">1</length>
+<signal_name>tm_vint_vblh_clamp</signal_name>
+<description>Vint=Vblh=Vdd, classical BI clamp</description>
+</variable>
+<variable shortname="TM_VTRACK_BI" index="VAR075" chain="CHN010" io="W" fuse="none">
+<position base="dec">25</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">5</wait_time>
+<signal_name>tm_vtrack_bi</signal_name>
+<description>Vint/vblh in tracking mode (0.8*vext) for BI</description>
+</variable>
+<variable shortname="TM_VINTTRACK" index="VAR076" chain="CHN010" io="W" fuse="none">
+<position base="dec">24</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">5</wait_time>
+<signal_name>tm_vinttrack</signal_name>
+<description>Vint in analysis mode (0.66*vext)</description>
+</variable>
+<variable shortname="TM_PUMPFCKTRIM" index="VAR077" chain="CHN010" io="W" fuse="laser_fuse" fuse_disable_bit="VAR078">
+<position base="dec">23</position>
+<length base="dec">4</length>
+<wait_time base="dec" unit="us">1</wait_time>
+<signal_name>cfg_pumpfcktrim[3:0]</signal_name>
+<description>Frequency of the pump oscillators</description>
+</variable>
+<variable shortname="TM_PUMPFCKTRIM_FUSE_DISABLE" index="VAR078" chain="CHN010" io="W" fuse="disable">
+<position base="dec">19</position>
+<length base="dec">1</length>
+<signal_name>tm_pumpfcktrim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VREFGLBMARGIN" index="VAR079" chain="CHN010" io="W" fuse="none">
+<position base="dec">18</position>
+<length base="dec">4</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_vrefglbmargin[3:0]</signal_name>
+<description>Globale reference voltage</description>
+</variable>
+<variable shortname="TM_VBGR_TRIM" index="VAR080" chain="CHN010" io="W" fuse="both" fuse_disable_bit="VAR081" sticky="true">
+<position base="dec">14</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vbgr_trim[4:0]</signal_name>
+<description>Bandgap voltage  (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VBGR_TRIM_FUSE_DISABLE" index="VAR081" chain="CHN010" io="W" fuse="disable" sticky="true">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_vbgr_trim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VBGR_TEMP_TRIM_EN" index="VAR082" chain="CHN010" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_vbgr_temp_trim_en</signal_name>
+<description>Sets the bandgap to trimming mode, internal currents will be delivered to vmon_pad</description>
+</variable>
+<variable shortname="TM_VBGR_TEMP_TRIM_PT_CT" index="VAR083" chain="CHN010" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_vbgr_temp_trim_pt_ct</signal_name>
+<description>Selects the delivered current (ptat or ctat)</description>
+</variable>
+<variable shortname="TM_VBGR_TEMP_TRIM" index="VAR084" chain="CHN010" io="W" fuse="laser_fuse" fuse_disable_bit="VAR085" sticky="true">
+<position base="dec">6</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vbgr_temp_trim[4:0]</signal_name>
+<description>Bandgap temperature/voltage dependancy</description>
+</variable>
+<variable shortname="TM_VBGR_TEMP_TRIM_FUSE_DISABLE" index="VAR085" chain="CHN010" io="W" fuse="disable" sticky="true">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_vbgr_temp_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VBURN_ON" index="VAR086" chain="CHN010" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">1</wait_time>
+<signal_name>tm_vburn_on</signal_name>
+<description>Switch on the vburn pump for the fusing of the efuses</description>
+</variable>
+<variable shortname="TM_IBGR_TRIM" index="VAR087" chain="CHN011" io="W" fuse="both" fuse_disable_bit="VAR088" sticky="true">
+<position base="dec">5</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_ibgr_trim[4:0]</signal_name>
+<description>Bandgap reference current trimming (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_IBGR_TRIM_FUSE_DISABLE" index="VAR088" chain="CHN011" io="W" fuse="disable" sticky="true">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_ibgr_trim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTACT_1" index="VAR089" chain="CHN012" io="W" fuse="laser_fuse" fuse_disable_bit="VAR092">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<default base="bin">10</default>
+<signal_name>cfg_vintact_1[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_2" index="VAR090" chain="CHN012" io="W" fuse="laser_fuse" fuse_disable_bit="VAR092">
+<position base="dec">4</position>
+<length base="dec">2</length>
+<signal_name>cfg_vintact_2[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_3" index="VAR091" chain="CHN012" io="W" fuse="laser_fuse" fuse_disable_bit="VAR092">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_vintact_3[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_1_3_FUSE_DISABLE" index="VAR092" chain="CHN012" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vintact_1_3_fusedisable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTACT_4" index="VAR093" chain="CHN013" io="W" fuse="laser_fuse" fuse_disable_bit="VAR096">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<signal_name>cfg_vintact_4[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_5" index="VAR094" chain="CHN013" io="W" fuse="laser_fuse" fuse_disable_bit="VAR096">
+<position base="dec">4</position>
+<length base="dec">2</length>
+<default base="bin">10</default>
+<signal_name>cfg_vintact_5[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_6" index="VAR095" chain="CHN013" io="W" fuse="laser_fuse" fuse_disable_bit="VAR096">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<default base="bin">11</default>
+<signal_name>cfg_vintact_6[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_4_6_FUSE_DISABLE" index="VAR096" chain="CHN013" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vintact_4_6_fusedisable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTACT_7" index="VAR097" chain="CHN014" io="W" fuse="laser_fuse" fuse_disable_bit="VAR100">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<signal_name>cfg_vintact_7[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_8" index="VAR098" chain="CHN014" io="W" fuse="laser_fuse" fuse_disable_bit="VAR100">
+<position base="dec">4</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_vintact_8[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_9" index="VAR099" chain="CHN014" io="W" fuse="laser_fuse" fuse_disable_bit="VAR100">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<default base="bin">10</default>
+<signal_name>cfg_vintact_9[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_7_9_FUSE_DISABLE" index="VAR100" chain="CHN014" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vintact_7_9_fusedisable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTACT_10" index="VAR101" chain="CHN015" io="W" fuse="laser_fuse" fuse_disable_bit="VAR104">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<default base="bin">11</default>
+<signal_name>cfg_vintact_10[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_11" index="VAR102" chain="CHN015" io="W" fuse="laser_fuse" fuse_disable_bit="VAR104">
+<position base="dec">4</position>
+<length base="dec">2</length>
+<signal_name>cfg_vintact_11[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_12" index="VAR103" chain="CHN015" io="W" fuse="laser_fuse" fuse_disable_bit="VAR104">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<default base="bin">10</default>
+<signal_name>cfg_vintact_12[1:0]</signal_name>
+<description>Group selection for vintact generator (off/25%/50%/on)</description>
+</variable>
+<variable shortname="TM_VINTACT_10_12_FUSE_DISABLE" index="VAR104" chain="CHN015" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vintact_10_12_fusedisable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VPPCONFIG" index="VAR105" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR106">
+<position base="dec">32</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_vppconfig[1:0]</signal_name>
+<description>Configurations for VPP pumps (2-stage, 3-stage, automatic)</description>
+</variable>
+<variable shortname="TM_VPPCONFIG_FUSE_DISABLE" index="VAR106" chain="CHN016" io="W" fuse="disable">
+<position base="dec">30</position>
+<length base="dec">1</length>
+<signal_name>tm_vppconfig_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VPPTEMP" index="VAR107" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR108">
+<position base="dec">29</position>
+<length base="dec">3</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_vpptemp[2:0]</signal_name>
+<description>Activation of temperature dependent VPP regulation</description>
+</variable>
+<variable shortname="TM_VPPTEMP_FUSE_DISABLE" index="VAR108" chain="CHN016" io="W" fuse="disable">
+<position base="dec">26</position>
+<length base="dec">1</length>
+<signal_name>tm_vpptemp_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VEQL_CLAMP" index="VAR109" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR111">
+<position base="dec">25</position>
+<length base="dec">1</length>
+<signal_name>cfg_veql_clamp</signal_name>
+<description>Activates clamping between veql to vdd</description>
+</variable>
+<variable shortname="TM_VEQLTRIM" index="VAR110" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR111">
+<position base="dec">24</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_veqltrim[1:0]</signal_name>
+<description>(Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VEQL_FUSE_DISABLE" index="VAR111" chain="CHN016" io="W" fuse="disable">
+<position base="dec">22</position>
+<length base="dec">1</length>
+<signal_name>tm_veql_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VEQLDIS" index="VAR112" chain="CHN016" io="W" fuse="none">
+<position base="dec">21</position>
+<length base="dec">1</length>
+<signal_name>tm_veqldis</signal_name>
+<description>Disable the selective generator</description>
+</variable>
+<variable shortname="TM_VPPTRIM" index="VAR113" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR114" sticky="true">
+<position base="dec">20</position>
+<length base="dec">6</length>
+<default base="bin">100000</default>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_vpptarget[5:0]</signal_name>
+<description>Wordline supply voltage trimming</description>
+</variable>
+<variable shortname="TM_VPPTRIM_FUSE_DISABLE" index="VAR114" chain="CHN016" io="W" fuse="disable" sticky="true">
+<position base="dec">14</position>
+<length base="dec">1</length>
+<signal_name>tm_vpptarget_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VNWLLTRIM" index="VAR115" chain="CHN016" io="W" fuse="laser_fuse" fuse_disable_bit="VAR116">
+<position base="dec">13</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_vnwlltrim[4:0]</signal_name>
+<description>Negative word line voltage trimming  (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VNWLLTRIM_FUSE_DISABLE" index="VAR116" chain="CHN016" io="W" fuse="disable">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_vnwll_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VNWLLDIS" index="VAR117" chain="CHN016" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_vnwll_dis</signal_name>
+<description>Disable the selective generator</description>
+</variable>
+<variable shortname="TM_VPPMARGIN" index="VAR118" chain="CHN016" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">6</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>tm_vppmargin[5:0]</signal_name>
+<description>Wordline supply voltage trimming (margin test)</description>
+</variable>
+<variable shortname="TM_VPPDIS" index="VAR119" chain="CHN016" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vppdis</signal_name>
+<description>Disable the selective generator</description>
+</variable>
+<variable shortname="TM_VISO_BULK_CTRL" index="VAR120" chain="CHN017" io="W" fuse="none">
+<position base="dec">14</position>
+<length base="dec">1</length>
+<signal_name>tm_viso_bulk_ctrl</signal_name>
+<description>Switch the bulk supply between viso / vnwll</description>
+</variable>
+<variable shortname="TM_VISOTRIM" index="VAR121" chain="CHN017" io="W" fuse="laser_fuse" fuse_disable_bit="VAR122">
+<position base="dec">13</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_visotrim[4:0]</signal_name>
+<description>Trimming for viso  (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VISOTRIM_FUSE_DISABLE" index="VAR122" chain="CHN017" io="W" fuse="disable">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_visotrim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VISOCONFIG" index="VAR123" chain="CHN017" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">2</length>
+<signal_name>cfg_visoconfig[1:0]</signal_name>
+<description>Configurations for VISO generator (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VPWELLFORCE" index="VAR124" chain="CHN017" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_vpwellext</signal_name>
+<description>Disables generator for external forcing</description>
+</variable>
+<variable shortname="TM_VPWELLOFF" index="VAR125" chain="CHN017" io="W" fuse="laser_fuse" fuse_disable_bit="VAR127">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_vpwelldis</signal_name>
+<description>Disables the vpwell generator and clamps to gnd</description>
+</variable>
+<variable shortname="TM_VPWELLTRIM" index="VAR126" chain="CHN017" io="W" fuse="laser_fuse" fuse_disable_bit="VAR127">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vpwelltrim[2:0]</signal_name>
+<description>Vpwell voltage trimming (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VPWELL_FUSE_DISABLE" index="VAR127" chain="CHN017" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vpwell_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINT_CAS_ONLY" index="VAR128" chain="CHN018" io="W" fuse="laser_fuse" fuse_disable_bit="VAR132">
+<position base="dec">34</position>
+<length base="dec">1</length>
+<signal_name>cfg_vint_cas_only</signal_name>
+<description>Enables the vint active generators only for RD/WR</description>
+</variable>
+<variable shortname="TM_VBLH_RAS_ONLY" index="VAR129" chain="CHN018" io="W" fuse="laser_fuse" fuse_disable_bit="VAR132">
+<position base="dec">33</position>
+<length base="dec">1</length>
+<signal_name>cfg_vblh_ras_only</signal_name>
+<description>Enables the vblh active generators only for ACT, disabled during RD/WR</description>
+</variable>
+<variable shortname="TM_VINT_NO_SRF" index="VAR130" chain="CHN018" io="W" fuse="laser_fuse" fuse_disable_bit="VAR132">
+<position base="dec">32</position>
+<length base="dec">1</length>
+<signal_name>cfg_vint_no_srf</signal_name>
+<description>Disable the vint active generators in SRF mode</description>
+</variable>
+<variable shortname="TM_VBLH_NO_SRF" index="VAR131" chain="CHN018" io="W" fuse="laser_fuse" fuse_disable_bit="VAR132">
+<position base="dec">31</position>
+<length base="dec">1</length>
+<signal_name>cfg_vblh_no_srf</signal_name>
+<description>Disable the vblh active generators in SRF mode</description>
+</variable>
+<variable shortname="TM_VINT_VBLH_MODE_FUSE_DISABLE" index="VAR132" chain="CHN018" io="W" fuse="disable">
+<position base="dec">30</position>
+<length base="dec">1</length>
+<signal_name>tm_vint_vblh_mode_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_GENACTIVE" index="VAR133" chain="CHN018" io="W" fuse="none">
+<position base="dec">29</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">20</wait_time>
+<signal_name>tm_genactive</signal_name>
+<description>All generators to active mode, all pumps enabled to maximum strength</description>
+</variable>
+<variable shortname="TM_VINTOVERCLOCKSLOPE" index="VAR134" chain="CHN018" io="W" fuse="both" fuse_disable_bit="VAR135">
+<position base="dec">28</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_ocslope[1:0]</signal_name>
+<description>Vint overclock mode: slope of vint following vext</description>
+</variable>
+<variable shortname="TM_VINTOVERCLOCKSLOPE_FUSE_DISABLE" index="VAR135" chain="CHN018" io="W" fuse="disable">
+<position base="dec">26</position>
+<length base="dec">1</length>
+<signal_name>tm_vintoc_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTCLAMP_ACTIVE" index="VAR136" chain="CHN018" io="W" fuse="none">
+<position base="dec">25</position>
+<length base="dec">2</length>
+<signal_name>tm_vintclamp_active[1:0]</signal_name>
+<description>Limits the number of vint active generators in 100% mode (for limiting currents in BI)</description>
+</variable>
+<variable shortname="TM_VBLH_CONNECT" index="VAR137" chain="CHN018" io="W" fuse="none">
+<position base="dec">23</position>
+<length base="dec">1</length>
+<signal_name>tm_vblh_connect</signal_name>
+<description>Connects all VBLH nets</description>
+</variable>
+<variable shortname="TM_VBLHSUPRESS_ACTIVE" index="VAR138" chain="CHN018" io="W" fuse="none">
+<position base="dec">22</position>
+<length base="dec">1</length>
+<signal_name>tm_vblhsupressactive</signal_name>
+<description>0: standard VBLH generator control; 1: active generator always disabled (standby stays on) - combine with TMGENACTIVE, VINT_ACT_OPL?</description>
+</variable>
+<variable shortname="TM_VINTMARGIN" index="VAR139" chain="CHN018" io="W" fuse="none">
+<position base="dec">21</position>
+<length base="dec">6</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_vintmargin[5:0]</signal_name>
+<description>Vint voltage trimming (margin test)</description>
+</variable>
+<variable shortname="TM_VINTTRIM" index="VAR140" chain="CHN018" io="W" fuse="both" fuse_disable_bit="VAR141">
+<position base="dec">15</position>
+<length base="dec">6</length>
+<default base="bin">011011</default>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vinttarget[5:0]</signal_name>
+<description>Vint voltage trimming</description>
+</variable>
+<variable shortname="TM_VINTTRIM_FUSE_DISABLE" index="VAR141" chain="CHN018" io="W" fuse="disable">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_vinttrim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VINTDIS" index="VAR142" chain="CHN018" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_vintdis</signal_name>
+<description>Disable vint generators</description>
+</variable>
+<variable shortname="TM_VBLHTRIM" index="VAR143" chain="CHN018" io="W" fuse="laser_fuse" fuse_disable_bit="VAR144">
+<position base="dec">7</position>
+<length base="dec">6</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vblhtrim[5:0]</signal_name>
+<description>Vblh voltage trimming</description>
+</variable>
+<variable shortname="TM_VBLHTRIM_FUSE_DISABLE" index="VAR144" chain="CHN018" io="W" fuse="disable">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_vblhtrim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VBLHDIS" index="VAR145" chain="CHN018" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vblhdis</signal_name>
+<description>Disable the selective generator</description>
+</variable>
+<variable shortname="TM_VBLEQMARGIN" index="VAR146" chain="CHN019" io="W" fuse="none">
+<position base="dec">16</position>
+<length base="dec">6</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_vbleqmargin[5:0]</signal_name>
+<description>Vbleq voltage trimming (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VBLEQDIS" index="VAR147" chain="CHN019" io="W" fuse="none">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_vbleqdis</signal_name>
+<description>Disable vbleq generator</description>
+</variable>
+<variable shortname="TM_VPL2CONFIG" index="VAR148" chain="CHN019" io="W" fuse="laser_fuse" fuse_disable_bit="VAR149">
+<position base="dec">9</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vpl2config[1:0]</signal_name>
+<description>Configuration for VPL2 generators</description>
+</variable>
+<variable shortname="TM_VPL2CONFIG_FUSE_DISABLE" index="VAR149" chain="CHN019" io="W" fuse="disable">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_vpl2config_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VPLMARGIN" index="VAR150" chain="CHN019" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">6</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_vplmargin[5:0]</signal_name>
+<description>Vpl voltage trimming (Note: Default scrambling is not done in SETI, but in generator block)</description>
+</variable>
+<variable shortname="TM_VPLDIS" index="VAR151" chain="CHN019" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vpldis</signal_name>
+<description>Disable vpl generator</description>
+</variable>
+<variable shortname="TM_SPARE_L_2" index="VAR152" chain="CHN020" io="W" fuse="laser_fuse" fuse_disable_bit="VAR153">
+<position base="dec">15</position>
+<length base="dec">2</length>
+<signal_name>tm_spare_l_2[1:0]</signal_name>
+<description>Spare TM (with laser fuses only)</description>
+</variable>
+<variable shortname="TM_SPARE_L_2_FUSE_DISABLE" index="VAR153" chain="CHN020" io="W" fuse="disable">
+<position base="dec">13</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_l_2_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_SPARE_L_1" index="VAR154" chain="CHN020" io="W" fuse="both" fuse_disable_bit="VAR155">
+<position base="dec">12</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_l_1</signal_name>
+<description>Spare TM (with efuse)</description>
+</variable>
+<variable shortname="TM_SPARE_L_1_FUSE_DISABLE" index="VAR155" chain="CHN020" io="W" fuse="disable">
+<position base="dec">11</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_l_1_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VSET_VBLH_CONFIG" index="VAR156" chain="CHN020" io="W" fuse="laser_fuse" fuse_disable_bit="VAR158">
+<position base="dec">10</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vset_vblh_config[1:0]</signal_name>
+<description>Configuration of VBLH reference generators</description>
+</variable>
+<variable shortname="TM_VSET_VINT_CONFIG" index="VAR157" chain="CHN020" io="W" fuse="laser_fuse" fuse_disable_bit="VAR158">
+<position base="dec">8</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vset_vint_config[1:0]</signal_name>
+<description>Configuration of VINT reference generators</description>
+</variable>
+<variable shortname="TM_VSET_CONFIG_FUSE_DISABLE" index="VAR158" chain="CHN020" io="W" fuse="disable">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_vset_config_fuse_disable</signal_name>
+<description>Forcing of internal vblh reference voltage of the vblhact generators (for vblh ~300 mV)</description>
+</variable>
+<variable shortname="TM_VBBDIS" index="VAR159" chain="CHN020" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_vbbdis</signal_name>
+<description>Disable vbb generator</description>
+</variable>
+<variable shortname="TM_VBBTRIM" index="VAR160" chain="CHN020" io="W" fuse="laser_fuse" fuse_disable_bit="VAR161">
+<position base="dec">4</position>
+<length base="dec">4</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>cfg_vbbtrim[3:0]</signal_name>
+<description>Vbb voltage trimming</description>
+</variable>
+<variable shortname="TM_VBBTRIM_FUSE_DISABLE" index="VAR161" chain="CHN020" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_vbbtrim_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_OCDSLEW" index="VAR162" chain="CHN021" io="W" fuse="both" fuse_disable_bit="VAR163">
+<position base="dec">15</position>
+<length base="dec">2</length>
+<signal_name>cfg_ocdslew[1:0]</signal_name>
+<description>Trim slew rate</description>
+</variable>
+<variable shortname="TM_OCDSLEW_FUSE_DISABLE" index="VAR163" chain="CHN021" io="W" fuse="disable">
+<position base="dec">13</position>
+<length base="dec">1</length>
+<signal_name>tm_ocdslew_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_RONTRIM" index="VAR164" chain="CHN021" io="W" fuse="laser_fuse" fuse_disable_bit="VAR166">
+<position base="dec">12</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">1</wait_time>
+<signal_name>cfg_ron_trim[1:0]</signal_name>
+<description>Trim offset for Ron and Rtt</description>
+</variable>
+<variable shortname="TM_OCDPF_DEFAULT" index="VAR165" chain="CHN021" io="W" fuse="laser_fuse" fuse_disable_bit="VAR166">
+<position base="dec">10</position>
+<length base="dec">5</length>
+<default base="bin">10000</default>
+<signal_name>cfg_ocdpf[4:0]</signal_name>
+<description>Strength pfet as default, if no ZQCx command is issued. Nfet will be calibrated against Pfet automatically. Only Pfet necessary.</description>
+</variable>
+<variable shortname="TM_OCDPF_DEFAULT_FUSE_DISABLE" index="VAR166" chain="CHN021" io="W" fuse="disable">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_ocdpf_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_OCDCAL_CTRL" index="VAR167" chain="CHN021" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">3</length>
+<signal_name>tm_ocdcal_ctrl[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_OCDCAL_SEL" index="VAR168" chain="CHN021" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">2</length>
+<signal_name>tm_ocdcal_sel[1:0]</signal_name>
+<description>Select N/P for test mode</description>
+</variable>
+<variable shortname="TM_VREF_COMP" index="VAR169" chain="CHN022" io="R" fuse="none">
+<position base="dec">13</position>
+<length base="dec">3</length>
+<signal_name>tm_vref_comp[2:0]</signal_name>
+<description>Signed Result of Vref compensation</description>
+</variable>
+<variable shortname="TM_ZQPRESENT" index="VAR170" chain="CHN022" io="R" fuse="none">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_zqpresent</signal_name>
+<description>Result of ZQ presence detection</description>
+</variable>
+<variable shortname="TM_OCDPF" index="VAR171" chain="CHN022" io="RW" fuse="none">
+<position base="dec">9</position>
+<length base="dec">5</length>
+<signal_name>tm_odcpf[4:0]</signal_name>
+<description>Pfet drive strength (0=weak, 31=strong)</description>
+</variable>
+<variable shortname="TM_OCDNF" index="VAR172" chain="CHN022" io="RW" fuse="none">
+<position base="dec">4</position>
+<length base="dec">5</length>
+<signal_name>tm_ocdnf[4:0]</signal_name>
+<description>Nfet drive strength (0=weak, 31=strong)</description>
+</variable>
+<variable shortname="TM_X4" index="VAR173" chain="CHN023" io="W" fuse="both" fuse_disable_bit="VAR175">
+<position base="dec">12</position>
+<length base="dec">1</length>
+<signal_name>cfg_x4</signal_name>
+<description>Chip organization as x4</description>
+</variable>
+<variable shortname="TM_X8" index="VAR174" chain="CHN023" io="W" fuse="both" fuse_disable_bit="VAR175">
+<position base="dec">11</position>
+<length base="dec">1</length>
+<signal_name>cfg_x8</signal_name>
+<description>Chip organization as x8</description>
+</variable>
+<variable shortname="TM_X4X8_FUSE_DISABLE" index="VAR175" chain="CHN023" io="W" fuse="disable">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_x4x8_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_EN_EFUSE" index="VAR176" chain="CHN023" io="W" fuse="laser_fuse" fuse_disable_bit="VAR177">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<default base="bin">1</default>
+<signal_name>dis_efuse</signal_name>
+<description>Enable efuse outputs</description>
+</variable>
+<variable shortname="TM_EN_EFUSE_FUSE_DISABLE" index="VAR177" chain="CHN023" io="W" fuse="disable">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_dis_efuse_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_REFSWP" index="VAR178" chain="CHN023" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_refswp</signal_name>
+<description>Connect bandgap testpad with bandgap voltage</description>
+</variable>
+<variable shortname="TM_VMON_SEL" index="VAR179" chain="CHN023" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">5</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>tm_vmon_sel[4:0]</signal_name>
+<description>Selector for output voltages of VMONC/W</description>
+</variable>
+<variable shortname="TM_VMONC" index="VAR180" chain="CHN023" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>tm_vmonc</signal_name>
+<description>Activation of VMONC</description>
+</variable>
+<variable shortname="TM_VMONW" index="VAR181" chain="CHN023" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>tm_vmonw</signal_name>
+<description>Activation of VMONW pad</description>
+</variable>
+<variable shortname="TM_SRF_SLOPE" index="VAR182" chain="CHN024" io="W" fuse="laser_fuse" fuse_disable_bit="VAR183">
+<position base="dec">11</position>
+<length base="dec">4</length>
+<signal_name>cfg_srf_slope[3:0]</signal_name>
+<description>Set retention slope (table implemented in hardware)</description>
+</variable>
+<variable shortname="TM_SRF_SLOPE_FUSE_DISABLE" index="VAR183" chain="CHN024" io="W" fuse="disable">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_srf_slope_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_SRFLFO_FINE" index="VAR184" chain="CHN024" io="W" fuse="laser_fuse" fuse_disable_bit="VAR186">
+<position base="dec">6</position>
+<length base="dec">3</length>
+<default base="bin">000</default>
+<signal_name>cfg_srf_lfo_trim_fine[2:0]</signal_name>
+<description>Trim analog low frequency oscillator for self refresh, fine</description>
+</variable>
+<variable shortname="TM_SRFLFO_FRACT" index="VAR185" chain="CHN024" io="W" fuse="laser_fuse" fuse_disable_bit="VAR186">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<default base="bin">000</default>
+<signal_name>cfg_srf_lfo_trim_fract[2:0]</signal_name>
+<description>Trim analog low frequency oscillator for self refresh, fractal</description>
+</variable>
+<variable shortname="TM_SRF_FUSE_DISABLE" index="VAR186" chain="CHN024" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_srf_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_TS_OFFSET" index="VAR187" chain="CHN025" io="W" fuse="both" fuse_disable_bit="VAR188" sticky="true">
+<position base="dec">20</position>
+<length base="dec">7</length>
+<signal_name>cfg_ts_offset[6:0]</signal_name>
+<description>TS offset trimming</description>
+</variable>
+<variable shortname="TM_TS_OFFSET_FUSE_DISABLE" index="VAR188" chain="CHN025" io="W" fuse="disable" sticky="true">
+<position base="dec">13</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_offset_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_TS_SLOPE" index="VAR189" chain="CHN025" io="W" fuse="laser_fuse" fuse_disable_bit="VAR190">
+<position base="dec">12</position>
+<length base="dec">4</length>
+<signal_name>cfg_ts_slope[3:0]</signal_name>
+<description>TS slope trimming</description>
+</variable>
+<variable shortname="TM_TS_SLOPE_FUSE_DISABLE" index="VAR190" chain="CHN025" io="W" fuse="disable">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_slope_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_TS_OCTRL" index="VAR191" chain="CHN025" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_octrl</signal_name>
+<description>Redirect temp code from register</description>
+</variable>
+<variable shortname="TM_TSFAST" index="VAR192" chain="CHN025" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_fast</signal_name>
+<description>Faster sensor cycles, clock period 5us</description>
+</variable>
+<variable shortname="TM_TSSLOW" index="VAR193" chain="CHN025" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_slow</signal_name>
+<description>Slower sensor cycles, period 160us</description>
+</variable>
+<variable shortname="TM_TSCLKMUX" index="VAR194" chain="CHN025" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_tsstdclkmux</signal_name>
+<description>Switches mux b/w test clock and self refresh clock for T.S. offset trimming. Default: Self refresh clock.</description>
+</variable>
+<variable shortname="TM_TSSETICLK" index="VAR195" chain="CHN025" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_tsadcclk</signal_name>
+<description>Generate a clock for the TS, if tsclkmux=1</description>
+</variable>
+<variable shortname="TM_TSADC" index="VAR196" chain="CHN025" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_tsadc</signal_name>
+<description>Enable self-test of AD converter (ADC) of the temperature sensor, Disable sensor diode, Connect both comparator inputs to two connectors of the resistor divider.</description>
+</variable>
+<variable shortname="TM_TSADCPASS" index="VAR197" chain="CHN025" io="R" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_adc_pass</signal_name>
+<description>PASS bit for ADC BIST, functionality of pass and fail assessment now into pass only - fail info for TM_TSADCFAIL</description>
+</variable>
+<variable shortname="TM_TSADCFAIL" index="VAR198" chain="CHN025" io="R" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_adc_fail</signal_name>
+<description>Fail bit for ADC BIST, Read-only</description>
+</variable>
+<variable shortname="TM_BITRIM_VEQL" index="VAR199" chain="CHN026" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_bitrim_veql</signal_name>
+<description>Change range of VEQL trimming for BI</description>
+</variable>
+<variable shortname="TM_BITRIM_VPP" index="VAR200" chain="CHN026" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">50</wait_time>
+<signal_name>tm_bitrim_vpp</signal_name>
+<description>Change range of VPP trimming for BI</description>
+</variable>
+<variable shortname="TM_BIDC" index="VAR201" chain="CHN026" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_bidc</signal_name>
+<description>Wordline behaviour</description>
+</variable>
+<variable shortname="TM_CMD_BIASRCV1" index="VAR202" chain="CHN027" io="W" fuse="laser_fuse" fuse_disable_bit="VAR205">
+<position base="dec">7</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_cmd_biasrcv1[1:0]</signal_name>
+<description>Delay for stage 1 Default + trim values</description>
+</variable>
+<variable shortname="TM_CMD_BIASRCV2" index="VAR203" chain="CHN027" io="W" fuse="laser_fuse" fuse_disable_bit="VAR205">
+<position base="dec">5</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_cmd_biasrcv2[1:0]</signal_name>
+<description>Delay for stage 2 Default + trim values</description>
+</variable>
+<variable shortname="TM_CMD_TSHADJ" index="VAR204" chain="CHN027" io="W" fuse="laser_fuse" fuse_disable_bit="VAR205">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_cmd_tshadj[2:0]</signal_name>
+<description>Adjust setup/hold for commandsDefault + trim values</description>
+</variable>
+<variable shortname="TM_CMDRCV_FUSE_DISABLE" index="VAR205" chain="CHN027" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_cmdrcv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_ADD_BIASRCV1" index="VAR206" chain="CHN028" io="W" fuse="laser_fuse" fuse_disable_bit="VAR209">
+<position base="dec">7</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_add_biasrcv1[1:0]</signal_name>
+<description>Delay for stage 1 Default + trim values</description>
+</variable>
+<variable shortname="TM_ADD_BIASRCV2" index="VAR207" chain="CHN028" io="W" fuse="laser_fuse" fuse_disable_bit="VAR209">
+<position base="dec">5</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_add_biasrcv2[1:0]</signal_name>
+<description>Delay for stage 2 Default + trim values</description>
+</variable>
+<variable shortname="TM_ADD_TSHADJ" index="VAR208" chain="CHN028" io="W" fuse="laser_fuse" fuse_disable_bit="VAR209">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_add_tshadj[2:0]</signal_name>
+<description>Adjust setup/hold for commandsDefault + trim values</description>
+</variable>
+<variable shortname="TM_ADDRCV_FUSE_DISABLE" index="VAR209" chain="CHN028" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_addrcv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_SPARE_C" index="VAR210" chain="CHN029" io="W" fuse="laser_fuse" fuse_disable_bit="VAR211">
+<position base="dec">21</position>
+<length base="dec">4</length>
+<signal_name>tm_spare_c[3:0]</signal_name>
+<description>Spare TM in chip center</description>
+</variable>
+<variable shortname="TM_SPARE_C_FUSE_DISABLE" index="VAR211" chain="CHN029" io="W" fuse="disable">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_c_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_LCCLKGATE_DIS" index="VAR212" chain="CHN029" io="W" fuse="laser_fuse" fuse_disable_bit="VAR214">
+<position base="dec">16</position>
+<length base="dec">1</length>
+<signal_name>cfg_lcclkgate_dis</signal_name>
+<description>Disable clock gating in latency counter</description>
+</variable>
+<variable shortname="TM_LCPARTRIM" index="VAR213" chain="CHN029" io="W" fuse="both" fuse_disable_bit="VAR214">
+<position base="dec">15</position>
+<length base="dec">6</length>
+<default base="bin">011011</default>
+<signal_name>cfg_lcpartrim[5:0]</signal_name>
+<description>Latency cntr PAR signal timing position</description>
+</variable>
+<variable shortname="TM_LCPARTRIM_FUSE_DISABLE" index="VAR214" chain="CHN029" io="W" fuse="disable">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_lc_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_PWRDN" index="VAR215" chain="CHN029" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_pwrdn</signal_name>
+<description>Turn off internal cke signal to enter power down. Turns off all but CKE receiver.</description>
+</variable>
+<variable shortname="TM_CKE_BIASRCV1" index="VAR216" chain="CHN029" io="W" fuse="laser_fuse" fuse_disable_bit="VAR219">
+<position base="dec">7</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_cke_biasrcv1[1:0]</signal_name>
+<description>Bias current for first rcv stage</description>
+</variable>
+<variable shortname="TM_CKE_BIASRCV2" index="VAR217" chain="CHN029" io="W" fuse="laser_fuse" fuse_disable_bit="VAR219">
+<position base="dec">5</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_cke_biasrcv2[1:0]</signal_name>
+<description>Bias current for second rcv stage</description>
+</variable>
+<variable shortname="TM_CKE_TSHADJ" index="VAR218" chain="CHN029" io="W" fuse="laser_fuse" fuse_disable_bit="VAR219">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_cke_tshadj[2:0]</signal_name>
+<description>Delay adjust for setup/hold timing</description>
+</variable>
+<variable shortname="TM_CKERCV_FUSE_DISABLE" index="VAR219" chain="CHN029" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_ckercv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DQL_BIASRCV1" index="VAR220" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR223">
+<position base="dec">30</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dqrcv_bias1_l[1:0]</signal_name>
+<description>Bias current for first rcv stage</description>
+</variable>
+<variable shortname="TM_DQL_BIASRCV2" index="VAR221" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR223">
+<position base="dec">28</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dqrcv_bias2_l[1:0]</signal_name>
+<description>Bias current for second rcv stage</description>
+</variable>
+<variable shortname="TM_DQL_TSHADJ" index="VAR222" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR223">
+<position base="dec">26</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_dqrcv_shadj_l[2:0]</signal_name>
+<description>Delay adjust for setup/hold timing</description>
+</variable>
+<variable shortname="TM_DQL_FUSE_DISABLE" index="VAR223" chain="CHN030" io="W" fuse="disable">
+<position base="dec">23</position>
+<length base="dec">1</length>
+<signal_name>tm_dql_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DQSSL_BASE" index="VAR224" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR228">
+<position base="dec">22</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_dqss_base_l[2:0]</signal_name>
+<description>Trim tdqss plus write leveling together</description>
+</variable>
+<variable shortname="TM_DQSSL_OFFSET" index="VAR225" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR228">
+<position base="dec">19</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_dqss_offset_l[2:0]</signal_name>
+<description>Trim tdqss only</description>
+</variable>
+<variable shortname="TM_WRLVLL_BASE" index="VAR226" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR228">
+<position base="dec">16</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_wrlvl_base_l[2:0]</signal_name>
+<description>Trim write leveling</description>
+</variable>
+<variable shortname="TM_WRLVLL_OFFSET" index="VAR227" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR228">
+<position base="dec">13</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_wrlvl_offset_l[2:0]</signal_name>
+<description>Trim write leveling only</description>
+</variable>
+<variable shortname="TM_DQSSL_FUSE_DISABLE" index="VAR228" chain="CHN030" io="W" fuse="disable">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_dqssl_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_MPR_WRITE_L" index="VAR229" chain="CHN030" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_mpr_write_l</signal_name>
+<description>Write into the MPR, needed for the SETI personalization bit</description>
+</variable>
+<variable shortname="TM_SETI_MPR_OUT_L" index="VAR230" chain="CHN030" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_seti_mpr_out_l</signal_name>
+<description>Switch from MPR read to SETI read (only MRS2SETI mode)</description>
+</variable>
+<variable shortname="TM_RINGO_SEL" index="VAR231" chain="CHN030" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_ringo_sel</signal_name>
+<description>Select between normal / low vt ringo</description>
+</variable>
+<variable shortname="TM_SRFOSCME" index="VAR232" chain="CHN030" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_srf_osc_me</signal_name>
+<description>Srfras and ringo signals switched to DQ0 and DQ1 (srf) and DQ2 and DQ3 (ringo) as outputs</description>
+</variable>
+<variable shortname="TM_TSREADOUT" index="VAR233" chain="CHN030" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_ts_readout</signal_name>
+<description>TM reconnects all SETI bits to output for trimming, in functional mode the TM is off</description>
+</variable>
+<variable shortname="TM_TDQSQ_L" index="VAR234" chain="CHN030" io="W" fuse="laser_fuse" fuse_disable_bit="VAR235">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>cfg_tdqsq_l</signal_name>
+<description>TDQSQ trimming for lower byte</description>
+</variable>
+<variable shortname="TM_TDQSQ_L_FUSE_DISABLE" index="VAR235" chain="CHN030" io="W" fuse="disable">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_tdqsq_l_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLLCLKMONL" index="VAR236" chain="CHN030" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_dllclkmon_l</signal_name>
+<description>Switch DLL CLK to output DQS</description>
+</variable>
+<variable shortname="TM_DQRCVONL" index="VAR237" chain="CHN030" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_dqrcvon_l</signal_name>
+<description>Switch all DQ and DQS receiver permanently on. Not needed by PT.</description>
+</variable>
+<variable shortname="TM_NADQ1L" index="VAR238" chain="CHN030" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_nadq1_l</signal_name>
+<description>Non ACTM DQ drive 1. 0: non ACTM DQ's(4..7) on tri-state, 1: non ACTM DQ's on "1". Only for lower byte lane necessary.</description>
+</variable>
+<variable shortname="TM_SPARE_R0" index="VAR239" chain="CHN031" io="W" fuse="laser_fuse" fuse_disable_bit="VAR240">
+<position base="dec">8</position>
+<length base="dec">4</length>
+<signal_name>tm_spare_r0[3:0]</signal_name>
+<description>Spare TM on right side</description>
+</variable>
+<variable shortname="TM_SPARE_R0_FUSE_DISABLE" index="VAR240" chain="CHN031" io="W" fuse="disable">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_r0_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_FREDPULS_INIT" index="VAR241" chain="CHN031" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_fredpulse_init</signal_name>
+<description>Init a pulse for the redundancy laser fuses</description>
+</variable>
+<variable shortname="TM_FREDPULS_SET" index="VAR242" chain="CHN031" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_fredpulse_set</signal_name>
+<description>Set this pulse, both modes needed for new fuse readout</description>
+</variable>
+<variable shortname="TM_PUMPFCKMON" index="VAR243" chain="CHN031" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_pumpfckmon</signal_name>
+<description>Monitor for pump oscillator frequency</description>
+</variable>
+<variable shortname="TM_REMAP_DQ" index="VAR244" chain="CHN031" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_remap_dq</signal_name>
+<description>Map upper to lower byte for ACTM in x4/x8</description>
+</variable>
+<variable shortname="TM_SPARE_R1" index="VAR245" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR246">
+<position base="dec">31</position>
+<length base="dec">4</length>
+<signal_name>tm_spare_r1[3:0]</signal_name>
+<description>Spare TM on right side</description>
+</variable>
+<variable shortname="TM_SPARE_R1_FUSE_DISABLE" index="VAR246" chain="CHN032" io="W" fuse="disable">
+<position base="dec">27</position>
+<length base="dec">1</length>
+<signal_name>tm_spare_r1_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DQU_BIASRCV1" index="VAR247" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR250">
+<position base="dec">26</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dqrcv_bias1_u[1:0]</signal_name>
+<description>Bias current for first rcv stage</description>
+</variable>
+<variable shortname="TM_DQU_BIASRCV2" index="VAR248" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR250">
+<position base="dec">24</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dqrcv_bias2_u[1:0]</signal_name>
+<description>Bias current for second rcv stage</description>
+</variable>
+<variable shortname="TM_DQU_TSHADJ" index="VAR249" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR250">
+<position base="dec">22</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_dqrcv_shadj_u[2:0]</signal_name>
+<description>Delay adjust for setup/hold timing</description>
+</variable>
+<variable shortname="TM_DQU_FUSE_DISABLE" index="VAR250" chain="CHN032" io="W" fuse="disable">
+<position base="dec">19</position>
+<length base="dec">1</length>
+<signal_name>tm_dqu_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DQSSU_BASE" index="VAR251" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR255">
+<position base="dec">18</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_dqss_base_u[2:0]</signal_name>
+<description>Trim tdqss plus write leveling together</description>
+</variable>
+<variable shortname="TM_DQSSU_OFFSET" index="VAR252" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR255">
+<position base="dec">15</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_dqss_offset_u[2:0]</signal_name>
+<description>Trim tdqss only</description>
+</variable>
+<variable shortname="TM_WRLVLU_BASE" index="VAR253" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR255">
+<position base="dec">12</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_wrlvl_base_u[2:0]</signal_name>
+<description>Trim write leveling</description>
+</variable>
+<variable shortname="TM_WRLVLU_OFFSET" index="VAR254" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR255">
+<position base="dec">9</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_wrlvl_offset_u[2:0]</signal_name>
+<description>Trim write leveling only</description>
+</variable>
+<variable shortname="TM_DQSSU_FUSE_DISABLE" index="VAR255" chain="CHN032" io="W" fuse="disable">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_dqssu_fuse_disable</signal_name>
+<description>Typo in signal name, should be tmdqssu</description>
+</variable>
+<variable shortname="TM_DLLCLKMONU" index="VAR256" chain="CHN032" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_dllclkmon_u</signal_name>
+<description>Switch DLL CLK to output DQS</description>
+</variable>
+<variable shortname="TM_TDQSQ_U" index="VAR257" chain="CHN032" io="W" fuse="laser_fuse" fuse_disable_bit="VAR258">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>cfg_tdqsq_u</signal_name>
+<description>TDQSQ trimming for upper byte</description>
+</variable>
+<variable shortname="TM_TDQSQ_U_FUSE_DISABLE" index="VAR258" chain="CHN032" io="W" fuse="disable">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_tdqsq_u_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DPU" index="VAR259" chain="CHN032" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<signal_name>tm_dpu[1:0]</signal_name>
+<description>Datapath monitoring for upper byte</description>
+</variable>
+<variable shortname="TM_DQRCVONU" index="VAR260" chain="CHN032" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dqrcvon_u</signal_name>
+<description>Switch all DQ and DQS receiver permanently on</description>
+</variable>
+<variable shortname="TM_EF1_RD" index="VAR261" chain="CHN036" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_rd</signal_name>
+<description>Transfer fuselatch content into shiftregisters</description>
+</variable>
+<variable shortname="TM_EF1_WR" index="VAR262" chain="CHN036" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_wr</signal_name>
+<description>Transfer shift register content into fuselatch</description>
+</variable>
+<variable shortname="TM_EF1_RESET_SHIFTREG" index="VAR263" chain="CHN036" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_reset_shiftreg</signal_name>
+<description>Reset shift register</description>
+</variable>
+<variable shortname="TM_EF1_BURN" index="VAR264" chain="CHN036" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_burn</signal_name>
+<description>Switch between normal SETI clock and "clk_burn" clock</description>
+</variable>
+<variable shortname="TM_EF1_CLK_BURN" index="VAR265" chain="CHN036" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_clk_burn</signal_name>
+<description>Generate slow clock for burn (switch on-off etc.)</description>
+</variable>
+<variable shortname="TM_EF1_SENSE" index="VAR266" chain="CHN036" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_ef1_sense</signal_name>
+<description>Sense the fuses (to be combined with "normal" sense event)</description>
+</variable>
+<variable shortname="TM_EF1_MARGUP" index="VAR267" chain="CHN036" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef1_margup</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF1_MARGDOWN" index="VAR268" chain="CHN036" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef1_margdown</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF1_REFTAP" index="VAR269" chain="CHN036" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef1_reftap</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF1_REFTAP2" index="VAR270" chain="CHN036" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef1_reftap2</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF1_FUSE_STRING" index="VAR271" chain="CHN037" io="RW" fuse="none">
+<position base="dec">35</position>
+<length base="dec">36</length>
+<signal_name>ef1_fuse_string[35:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="TM_EF2_RD" index="VAR272" chain="CHN038" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_rd</signal_name>
+<description>Transfer fuselatch content into shiftregisters</description>
+</variable>
+<variable shortname="TM_EF2_WR" index="VAR273" chain="CHN038" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_wr</signal_name>
+<description>Transfer shift register content into fuselatch</description>
+</variable>
+<variable shortname="TM_EF2_RESET_SHIFTREG" index="VAR274" chain="CHN038" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_reset_shiftreg</signal_name>
+<description>Reset shift register</description>
+</variable>
+<variable shortname="TM_EF2_BURN" index="VAR275" chain="CHN038" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_burn</signal_name>
+<description>Switch between normal SETI clock and "clk_burn" clock</description>
+</variable>
+<variable shortname="TM_EF2_CLK_BURN" index="VAR276" chain="CHN038" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_clk_burn</signal_name>
+<description>Generate slow clock for burn (switch on-off etc.)</description>
+</variable>
+<variable shortname="TM_EF2_SENSE" index="VAR277" chain="CHN038" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_ef2_sense</signal_name>
+<description>Sense the fuses (to be combined with "normal" sense event)</description>
+</variable>
+<variable shortname="TM_EF2_MARGUP" index="VAR278" chain="CHN038" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef2_margup</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF2_MARGDOWN" index="VAR279" chain="CHN038" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef2_margdown</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF2_REFTAP" index="VAR280" chain="CHN038" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef2_reftap</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF2_REFTAP2" index="VAR281" chain="CHN038" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_ef2_reftap2</signal_name>
+<description>Change sense conditions</description>
+</variable>
+<variable shortname="TM_EF2_FUSE_STRING" index="VAR282" chain="CHN039" io="RW" fuse="none">
+<position base="dec">35</position>
+<length base="dec">36</length>
+<signal_name>ef2_fuse_string[35:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="TM_EFSBR_RD" index="VAR283" chain="CHN048" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_efsbr_rd</signal_name>
+<description>Transfer fuselatch content into shiftregisters</description>
+</variable>
+<variable shortname="TM_EFSBR_WR" index="VAR284" chain="CHN048" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_efsbr_wr</signal_name>
+<description>Transfer shift register content into fuselatch</description>
+</variable>
+<variable shortname="TM_EFSBR_RESET_SHIFTREG" index="VAR285" chain="CHN048" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_efsbr_reset_shiftreg</signal_name>
+<description>Reset shift register</description>
+</variable>
+<variable shortname="TM_EFSBR_BURN" index="VAR286" chain="CHN048" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_efsbr_burn</signal_name>
+<description>Switch between normal SETI clock and "clk_burn" clock</description>
+</variable>
+<variable shortname="TM_EFSBR_CLK_BURN" index="VAR287" chain="CHN048" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_efsbr_clk_burn</signal_name>
+<description>Generate slow clock for burn (switch on-off etc.)</description>
+</variable>
+<variable shortname="TM_EFSBR_SENSE" index="VAR288" chain="CHN048" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_efsbr_sense</signal_name>
+<description>Sense the fuses (to be combined with "normal" sense event)</description>
+</variable>
+<variable shortname="TM_EFSBR_MARGUP" index="VAR289" chain="CHN048" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_efsbr_margup</signal_name>
+<description>Change sense conditions. margin[1] is marginup. margin[0] is margindown</description>
+</variable>
+<variable shortname="TM_EFSBR_MARGDOWN" index="VAR290" chain="CHN048" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_efsbr_margdown</signal_name>
+<description>Change sense conditions. margin[1] is marginup. margin[0] is margindown</description>
+</variable>
+<variable shortname="TM_EFSBR_REFTAP" index="VAR291" chain="CHN048" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">2</length>
+<wait_time base="dec" unit="us">2</wait_time>
+<signal_name>tm_efsbr_reftap[1:0]</signal_name>
+<description>Change sense conditions. reftap[1] is reftap in schematic, reftap[0] is reftap2 in schematic</description>
+</variable>
+<variable shortname="TM_EFSBR_HLVB_2M" index="VAR292" chain="CHN049" io="RW" fuse="none">
+<position base="dec">57</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_hlvb_2m</signal_name>
+<description>Chip not repairable due to too many fails</description>
+</variable>
+<variable shortname="TM_EFSBR_BI" index="VAR293" chain="CHN049" io="RW" fuse="none">
+<position base="dec">56</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_bi</signal_name>
+<description>Chip repaired after BI</description>
+</variable>
+<variable shortname="TM_EFSBR_P4" index="VAR294" chain="CHN049" io="RW" fuse="none">
+<position base="dec">55</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_p4</signal_name>
+<description>Chip repaired after P4</description>
+</variable>
+<variable shortname="TM_EFSBR_P2" index="VAR295" chain="CHN049" io="RW" fuse="none">
+<position base="dec">54</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_p2</signal_name>
+<description>Chip repaired after P2</description>
+</variable>
+<variable shortname="TM_EFSBR_GLOBDIS" index="VAR296" chain="CHN049" io="RW" fuse="none">
+<position base="dec">53</position>
+<length base="dec">4</length>
+<signal_name>efsbr_fuse_globdis[3:0]</signal_name>
+<description>Global disable</description>
+</variable>
+<variable shortname="TM_EFSBR_COL0" index="VAR297" chain="CHN049" io="RW" fuse="none">
+<position base="dec">49</position>
+<length base="dec">7</length>
+<signal_name>efsbr_fuse_col0[6:0]</signal_name>
+<description>Column address [3:9] of 1st sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_COL1" index="VAR298" chain="CHN049" io="RW" fuse="none">
+<position base="dec">42</position>
+<length base="dec">7</length>
+<signal_name>efsbr_fuse_col1[6:0]</signal_name>
+<description>Column address [3:9] of 2nd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_COL2" index="VAR299" chain="CHN049" io="RW" fuse="none">
+<position base="dec">35</position>
+<length base="dec">7</length>
+<signal_name>efsbr_fuse_col2[6:0]</signal_name>
+<description>Column address [3:9] of 3rd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_COL3" index="VAR300" chain="CHN049" io="RW" fuse="none">
+<position base="dec">28</position>
+<length base="dec">7</length>
+<signal_name>efsbr_fuse_col3[6:0]</signal_name>
+<description>Column address [3:9] of 4th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_COL4" index="VAR301" chain="CHN049" io="RW" fuse="none">
+<position base="dec">21</position>
+<length base="dec">7</length>
+<signal_name>efsbr_fuse_col4[6:0]</signal_name>
+<description>Column address [3:9] of 5th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_BA0" index="VAR302" chain="CHN049" io="RW" fuse="none">
+<position base="dec">14</position>
+<length base="dec">2</length>
+<signal_name>efsbr_fuse_ba0[1:0]</signal_name>
+<description>Bank Address [0:1] of 1st sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_BA1" index="VAR303" chain="CHN049" io="RW" fuse="none">
+<position base="dec">12</position>
+<length base="dec">2</length>
+<signal_name>efsbr_fuse_ba1[1:0]</signal_name>
+<description>Bank Address [0:1] of 2nd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_BA2" index="VAR304" chain="CHN049" io="RW" fuse="none">
+<position base="dec">10</position>
+<length base="dec">2</length>
+<signal_name>efsbr_fuse_ba2[1:0]</signal_name>
+<description>Bank Address [0:1] of 3rd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_BA3" index="VAR305" chain="CHN049" io="RW" fuse="none">
+<position base="dec">8</position>
+<length base="dec">2</length>
+<signal_name>efsbr_fuse_ba3[1:0]</signal_name>
+<description>Bank Address [0:1] of 4th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_BA4" index="VAR306" chain="CHN049" io="RW" fuse="none">
+<position base="dec">6</position>
+<length base="dec">2</length>
+<signal_name>efsbr_fuse_ba4[1:0]</signal_name>
+<description>Bank Address [0:1] of 5th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_EN0" index="VAR307" chain="CHN049" io="RW" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_en0</signal_name>
+<description>Enable 1st sbr repair</description>
+</variable>
+<variable shortname="TM_EFSBR_EN1" index="VAR308" chain="CHN049" io="RW" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_en1</signal_name>
+<description>Enable 2nd sbr repair</description>
+</variable>
+<variable shortname="TM_EFSBR_EN2" index="VAR309" chain="CHN049" io="RW" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_en2</signal_name>
+<description>Enable 3rd sbr repair</description>
+</variable>
+<variable shortname="TM_EFSBR_EN3" index="VAR310" chain="CHN049" io="RW" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_en3</signal_name>
+<description>Enable 4th sbr repair</description>
+</variable>
+<variable shortname="TM_EFSBR_EN4" index="VAR311" chain="CHN049" io="RW" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>efsbr_fuse_en4</signal_name>
+<description>Enable 5th sbr repair</description>
+</variable>
+<variable shortname="TM_EFSBR_ROW0" index="VAR312" chain="CHN050" io="RW" fuse="none">
+<position base="dec">74</position>
+<length base="dec">15</length>
+<signal_name>efsbr_fuse_row0[14:0]</signal_name>
+<description>Row Address of 1st sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_ROW1" index="VAR313" chain="CHN050" io="RW" fuse="none">
+<position base="dec">59</position>
+<length base="dec">15</length>
+<signal_name>efsbr_fuse_row1[14:0]</signal_name>
+<description>Row Address of 2nd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_ROW2" index="VAR314" chain="CHN050" io="RW" fuse="none">
+<position base="dec">44</position>
+<length base="dec">15</length>
+<signal_name>efsbr_fuse_row2[14:0]</signal_name>
+<description>Row Address of 3rd sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_ROW3" index="VAR315" chain="CHN050" io="RW" fuse="none">
+<position base="dec">29</position>
+<length base="dec">15</length>
+<signal_name>efsbr_fuse_row3[14:0]</signal_name>
+<description>Row Address of 4th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_EFSBR_ROW4" index="VAR316" chain="CHN050" io="RW" fuse="none">
+<position base="dec">14</position>
+<length base="dec">15</length>
+<signal_name>efsbr_fuse_row4[14:0]</signal_name>
+<description>Row Address of 5th sbr repair (reversed order!)</description>
+</variable>
+<variable shortname="TM_SBR_SORP" index="VAR317" chain="CHN051" io="W" fuse="none">
+<position base="dec">13</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_sorp</signal_name>
+<description>Switch on sorp "soft repair" mode</description>
+</variable>
+<variable shortname="TM_SBR_EN" index="VAR318" chain="CHN051" io="W" fuse="none">
+<position base="dec">12</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_en</signal_name>
+<description>Enable sbr functionality ny testmode</description>
+</variable>
+<variable shortname="TM_SBR_RESETFUSEINFO" index="VAR319" chain="CHN051" io="W" fuse="none">
+<position base="dec">11</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_resetfuseinfo</signal_name>
+<description>Reset enable fuse information captured during sorp entry (needed for selective sram off)</description>
+</variable>
+<variable shortname="TM_SBR_RESETFAIL" index="VAR320" chain="CHN051" io="W" fuse="none">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_resetfail</signal_name>
+<description>Reset fail flag in the sbr_logic</description>
+</variable>
+<variable shortname="TM_SBR_WCB" index="VAR321" chain="CHN051" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_wcb</signal_name>
+<description>Write to the sram even if the banks in the array is closed</description>
+</variable>
+<variable shortname="TM_SBR_SRAMON" index="VAR322" chain="CHN051" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_sramon</signal_name>
+<description>All accesses are redirected to the sram</description>
+</variable>
+<variable shortname="TM_SBR_SRAMOFF" index="VAR323" chain="CHN051" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_sramoff</signal_name>
+<description>Sram (and therefore sbr) is switched off, all accesses are going to the array</description>
+</variable>
+<variable shortname="TM_SBR_SELSRAMOFF" index="VAR324" chain="CHN051" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_selsramoff</signal_name>
+<description>Selective sram off, new captured fails are not regarded as repaired, but are not captured again</description>
+</variable>
+<variable shortname="TM_SBR_BIREP" index="VAR325" chain="CHN051" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_birep</signal_name>
+<description>Bi repair status register, sets bi rep efuse when fail is detected during sorp mode</description>
+</variable>
+<variable shortname="TM_SBR_P2REP" index="VAR326" chain="CHN051" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_p2rep</signal_name>
+<description>P2 repair status register, sets bi rep efuse when fail is detected during sorp mode</description>
+</variable>
+<variable shortname="TM_SBR_P4REP" index="VAR327" chain="CHN051" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_p4rep</signal_name>
+<description>P4 repair status register, sets bi rep efuse when fail is detected during sorp mode</description>
+</variable>
+<variable shortname="TM_SBR_NOFAIL_NOBURN" index="VAR328" chain="CHN051" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_nofail_noburn</signal_name>
+<description>If no fail is captured, the burn sequence will not start (to be combined with clk_burn)</description>
+</variable>
+<variable shortname="TM_SBR_HLVB_NOBURN" index="VAR329" chain="CHN051" io="W" fuse="none">
+<position base="dec">1</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_hlvb_noburn</signal_name>
+<description>If hlvb bit is set, the burn sequence will not start (to be combined with clk_burn)</description>
+</variable>
+<variable shortname="TM_SBR_DOUBCAP" index="VAR330" chain="CHN051" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_sbr_doubcap</signal_name>
+<description>Allows double capture of already captured fails if they are again regarded as fail (e.g. in sramoff mode)</description>
+</variable>
+<variable shortname="TM_DLL_DELINIT" index="VAR331" chain="CHN052" io="W" fuse="laser_fuse" fuse_disable_bit="VAR334">
+<position base="dec">15</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_dll_delinit[2:0]</signal_name>
+<description>Number of initial coarse delay steps</description>
+</variable>
+<variable shortname="TM_DLL_BOOTCLK2" index="VAR332" chain="CHN052" io="W" fuse="both" fuse_disable_bit="VAR334">
+<position base="dec">12</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dll_bootclk2[1:0]</signal_name>
+<description>Number of clock cycles between coarse delay updates in second boot phase.</description>
+</variable>
+<variable shortname="TM_DLL_FUTDEL" index="VAR333" chain="CHN052" io="W" fuse="laser_fuse" fuse_disable_bit="VAR334">
+<position base="dec">10</position>
+<length base="dec">3</length>
+<default base="bin">001</default>
+<signal_name>cfg_dll_futdel[2:0]</signal_name>
+<description>Future delay to stop dll locking search in time</description>
+</variable>
+<variable shortname="TM_DLL_FUSE_DISABLE" index="VAR334" chain="CHN052" io="W" fuse="disable">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_TACMI" index="VAR335" chain="CHN052" io="W" fuse="both" fuse_disable_bit="VAR337">
+<position base="dec">6</position>
+<length base="dec">3</length>
+<signal_name>cfg_dll_tacmi[2:0]</signal_name>
+<description>Minus offset phase for dll</description>
+</variable>
+<variable shortname="TM_DLL_TACPL" index="VAR336" chain="CHN052" io="W" fuse="both" fuse_disable_bit="VAR337">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<signal_name>cfg_dll_tacpl[2:0]</signal_name>
+<description>Plus offset phase for dll</description>
+</variable>
+<variable shortname="TM_DLL_TAC_FUSE_DISABLE" index="VAR337" chain="CHN052" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_offset_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_FREEZE" index="VAR338" chain="CHN053" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_freeze</signal_name>
+<description>Freeze DLL controller (immediately, and after reset, see below)</description>
+</variable>
+<variable shortname="TM_DLL_FREEZECNT" index="VAR339" chain="CHN053" io="RW" fuse="none">
+<position base="dec">8</position>
+<length base="dec">8</length>
+<signal_name>tm_dll_freezecnt[7:0]</signal_name>
+<description>If tm_freeze is set, DLL controller will freeze after this amount of clock cycles after reset</description>
+</variable>
+<variable shortname="TM_DLL_RAMP" index="VAR340" chain="CHN053" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_ramp</signal_name>
+<description>If this is set, the delay will vary continuously between maximum and minimum</description>
+</variable>
+<variable shortname="TM_DLL_CDEN" index="VAR341" chain="CHN054" io="RW" fuse="none">
+<position base="dec">49</position>
+<length base="dec">27</length>
+<signal_name>tm_dll_cden[26:0]</signal_name>
+<description>Coarse delay</description>
+</variable>
+<variable shortname="TM_DLL_MUXF" index="VAR342" chain="CHN054" io="RW" fuse="none">
+<position base="dec">22</position>
+<length base="dec">15</length>
+<signal_name>tm_dll_muxf[14:0]</signal_name>
+<description>Fine delay</description>
+</variable>
+<variable shortname="TM_DLL_UNDERFLOW" index="VAR343" chain="CHN054" io="RW" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_underflow</signal_name>
+<description>Counter underflow registrated</description>
+</variable>
+<variable shortname="TM_DLL_OVERFLOW" index="VAR344" chain="CHN054" io="RW" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_overflow</signal_name>
+<description>Counter overflow registrated</description>
+</variable>
+<variable shortname="TM_DLL_LSB" index="VAR345" chain="CHN054" io="RW" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_lsb</signal_name>
+<description>Coarse delay decoding bit</description>
+</variable>
+<variable shortname="TM_DLL_TRUELATE" index="VAR346" chain="CHN054" io="RW" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_truelate</signal_name>
+<description>Leap frog algorithm needs info that late bit is really late</description>
+</variable>
+<variable shortname="TM_DLL_STATE" index="VAR347" chain="CHN054" io="RW" fuse="none">
+<position base="dec">3</position>
+<length base="dec">4</length>
+<signal_name>tm_dll_state[3:0]</signal_name>
+<description>DLL controller state</description>
+</variable>
+<variable shortname="TM_DLL_DCC_VDD" index="VAR348" chain="CHN055" io="W" fuse="both" fuse_disable_bit="VAR349">
+<position base="dec">21</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>tm_dll_dcc_vdd[1:0]</signal_name>
+<description>Trimming for vdd (process compensation)</description>
+</variable>
+<variable shortname="TM_DLL_DCC_VDD_FUSE_DISABLE" index="VAR349" chain="CHN055" io="W" fuse="disable">
+<position base="dec">19</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_dcc_vdd_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_DCC_BIAS_DIS" index="VAR350" chain="CHN055" io="W" fuse="none">
+<position base="dec">18</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_dcc_bias_dis</signal_name>
+<description>Completely disable DLL/DCC bias generator for CMOS DLL. Used for leakage measurement etc.</description>
+</variable>
+<variable shortname="TM_DCC_OFF" index="VAR351" chain="CHN055" io="W" fuse="laser_fuse" fuse_disable_bit="VAR352">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>cfg_dcc_off</signal_name>
+<description>Bypass DCC completely</description>
+</variable>
+<variable shortname="TM_DCC_OFF_FUSE_DISABLE" index="VAR352" chain="CHN055" io="W" fuse="disable">
+<position base="dec">16</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_off_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_DCC_VOLTAGE" index="VAR353" chain="CHN055" io="W" fuse="laser_fuse" fuse_disable_bit="VAR354">
+<position base="dec">15</position>
+<length base="dec">4</length>
+<wait_time base="dec" unit="us">10</wait_time>
+<signal_name>cfg_dll_dcc_voltage[3:0]</signal_name>
+<description>Vary the local supply voltage of the CMOS delay elements. Reducing the voltage will increase the coarse unit delay. Default value is 1.2V resulting in 130ps nominal value.</description>
+</variable>
+<variable shortname="TM_DLL_DCC_VOLTAGE_FUSE_DISABLE" index="VAR354" chain="CHN055" io="W" fuse="disable">
+<position base="dec">11</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_dcc_voltage_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_DCC_BIAS" index="VAR355" chain="CHN055" io="W" fuse="laser_fuse" fuse_disable_bit="VAR356">
+<position base="dec">10</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<wait_time base="dec" unit="us">1</wait_time>
+<signal_name>cfg_dll_dcc_bias[1:0]</signal_name>
+<description>Options for DLL&amp;DCC Generator bias trimming (corresponds to vind_dll of H90)</description>
+</variable>
+<variable shortname="TM_DLL_DCC_BIAS_FUSE_DISABLE" index="VAR356" chain="CHN055" io="W" fuse="disable">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_dll_dcc_bias_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_FB_VEXT" index="VAR357" chain="CHN055" io="W" fuse="laser_fuse" fuse_disable_bit="VAR359">
+<position base="dec">7</position>
+<length base="dec">3</length>
+<signal_name>cfg_fb_vext[2:0]</signal_name>
+<description>Trim option of a clk receiver copy (second stage) in the DLL feedback line for finetuning</description>
+</variable>
+<variable shortname="TM_FB_VINT" index="VAR358" chain="CHN055" io="W" fuse="laser_fuse" fuse_disable_bit="VAR359">
+<position base="dec">4</position>
+<length base="dec">4</length>
+<signal_name>cfg_fb_vint[3:0]</signal_name>
+<description>Vint trimming for feedback</description>
+</variable>
+<variable shortname="TM_FB_FUSE_DISABLE" index="VAR359" chain="CHN055" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_fb_rcv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_RESDEL" index="VAR360" chain="CHN056" io="W" fuse="laser_fuse" fuse_disable_bit="VAR363">
+<position base="dec">15</position>
+<length base="dec">3</length>
+<default base="bin">100</default>
+<signal_name>cfg_dcc_resdel[2:0]</signal_name>
+<description>Number of initial coarse delay steps</description>
+</variable>
+<variable shortname="TM_DCC_BOOTCLK2" index="VAR361" chain="CHN056" io="W" fuse="laser_fuse" fuse_disable_bit="VAR363">
+<position base="dec">12</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>cfg_dcc_bootclk2[1:0]</signal_name>
+<description>Number of clock cycles between coarse delay updates in second boot phase.</description>
+</variable>
+<variable shortname="TM_DCC_FUTDEL" index="VAR362" chain="CHN056" io="W" fuse="laser_fuse" fuse_disable_bit="VAR363">
+<position base="dec">10</position>
+<length base="dec">3</length>
+<default base="bin">011</default>
+<signal_name>cfg_dcc_futdel[2:0]</signal_name>
+<description>Future delay to stop dll locking search in time</description>
+</variable>
+<variable shortname="TM_DCC_FUSE_DISABLE" index="VAR363" chain="CHN056" io="W" fuse="disable">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_OFFSETMI" index="VAR364" chain="CHN056" io="W" fuse="laser_fuse" fuse_disable_bit="VAR366">
+<position base="dec">6</position>
+<length base="dec">3</length>
+<signal_name>cfg_dcc_tacmi[2:0]</signal_name>
+<description>Minus offset phase for dcc</description>
+</variable>
+<variable shortname="TM_DCC_OFFSETPL" index="VAR365" chain="CHN056" io="W" fuse="laser_fuse" fuse_disable_bit="VAR366">
+<position base="dec">3</position>
+<length base="dec">3</length>
+<signal_name>cfg_dcc_tacpl[2:0]</signal_name>
+<description>Plus offset phase for dcc</description>
+</variable>
+<variable shortname="TM_DCC_OFFSET_FUSE_DISABLE" index="VAR366" chain="CHN056" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_offset_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_FREEZE" index="VAR367" chain="CHN057" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_freeze</signal_name>
+<description>Freeze DLL controller (immediately, and after reset, see below)</description>
+</variable>
+<variable shortname="TM_DCC_FREEZECNT" index="VAR368" chain="CHN057" io="RW" fuse="none">
+<position base="dec">8</position>
+<length base="dec">8</length>
+<signal_name>tm_dcc_freezecnt[7:0]</signal_name>
+<description>If tm_freeze is set, DLL controller will freeze after this amount of clock cycles after reset</description>
+</variable>
+<variable shortname="TM_DCC_RAMP" index="VAR369" chain="CHN057" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_ramp</signal_name>
+<description>If this is set, the delay will vary continuously between maximum and minimum</description>
+</variable>
+<variable shortname="TM_DCC_CDEN" index="VAR370" chain="CHN058" io="RW" fuse="none">
+<position base="dec">37</position>
+<length base="dec">15</length>
+<signal_name>tm_dcc_cden[14:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_MUXF" index="VAR371" chain="CHN058" io="RW" fuse="none">
+<position base="dec">22</position>
+<length base="dec">15</length>
+<signal_name>tm_dcc_muxf[14:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_UNDERFLOW" index="VAR372" chain="CHN058" io="RW" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_underflow</signal_name>
+<description>Counter underflow registrated</description>
+</variable>
+<variable shortname="TM_DCC_OVERFLOW" index="VAR373" chain="CHN058" io="RW" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_overflow</signal_name>
+<description>Counter overflow registrated</description>
+</variable>
+<variable shortname="TM_DCC_LSB" index="VAR374" chain="CHN058" io="RW" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_lsb</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_TRUELATE" index="VAR375" chain="CHN058" io="RW" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_dcc_truelate</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_STATE" index="VAR376" chain="CHN058" io="RW" fuse="none">
+<position base="dec">3</position>
+<length base="dec">4</length>
+<signal_name>tm_dcc_state[3:0]</signal_name>
+<description>DCC controller state</description>
+</variable>
+<variable shortname="TM_DPL" index="VAR377" chain="CHN059" io="W" fuse="none">
+<position base="dec">10</position>
+<length base="dec">3</length>
+<signal_name>tm_dpl[2:0]</signal_name>
+<description>Monitor internal latency counter signals on lower byte</description>
+</variable>
+<variable shortname="TM_DLLGOV" index="VAR378" chain="CHN059" io="W" fuse="both" fuse_disable_bit="VAR379">
+<position base="dec">7</position>
+<length base="dec">7</length>
+<default base="bin">1000000</default>
+<signal_name>cfg_dllgov[6:0]</signal_name>
+<description>DLLGOV configurations (power saving modes, selection of latency counter)</description>
+</variable>
+<variable shortname="TM_DLLGOV_FUSE_DISABLE" index="VAR379" chain="CHN059" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_dllgov_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_EN_TOGGLE" index="VAR380" chain="CHN060" io="W" fuse="laser_fuse" fuse_disable_bit="VAR381">
+<position base="dec">21</position>
+<length base="dec">1</length>
+<signal_name>cfg_rpt_en</signal_name>
+<description>Enabling use of toggling read preamble by MRS1[8]</description>
+</variable>
+<variable shortname="TM_EN_TOGGLE_FUSE_DISABLE" index="VAR381" chain="CHN060" io="W" fuse="disable">
+<position base="dec">20</position>
+<length base="dec">1</length>
+<signal_name>tm_rpt_en_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_CSLPWRGATINGDIS" index="VAR382" chain="CHN060" io="W" fuse="laser_fuse" fuse_disable_bit="VAR383">
+<position base="dec">19</position>
+<length base="dec">2</length>
+<signal_name>tm_cslpwrgatingdis[1:0]</signal_name>
+<description>Disable bit for CSL Power Gating</description>
+</variable>
+<variable shortname="TM_CSLPWRGATINGDIS_FUSE_DISABLE" index="VAR383" chain="CHN060" io="W" fuse="disable">
+<position base="dec">17</position>
+<length base="dec">1</length>
+<signal_name>tm_cslpwrgatingdis_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_RASET" index="VAR384" chain="CHN060" io="W" fuse="none">
+<position base="dec">16</position>
+<length base="dec">2</length>
+<signal_name>tm_raset[1:0]</signal_name>
+<description>Disables receiver of A13 pin and allows internal value to be driven high or low. Needed in BI due to limited number of address channels available on burn-in systems.</description>
+</variable>
+<variable shortname="TM_HALFGOOD" index="VAR385" chain="CHN060" io="W" fuse="laser_fuse" fuse_disable_bit="VAR387">
+<position base="dec">14</position>
+<length base="dec">1</length>
+<signal_name>tm_halfgood_en</signal_name>
+<description>Enables half-good option (Master fuse)</description>
+</variable>
+<variable shortname="TM_RAHALFGOOD" index="VAR386" chain="CHN060" io="W" fuse="laser_fuse" fuse_disable_bit="VAR387">
+<position base="dec">13</position>
+<length base="dec">1</length>
+<signal_name>tm_halfgood_adr</signal_name>
+<description>Selection for RA13 in halfgood mode</description>
+</variable>
+<variable shortname="TM_PARTIAL_FUSE_DISABLE" index="VAR387" chain="CHN060" io="W" fuse="disable">
+<position base="dec">12</position>
+<length base="dec">1</length>
+<signal_name>tm_partial_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_NOTMRSLOCK" index="VAR388" chain="CHN060" io="W" fuse="none">
+<position base="dec">11</position>
+<length base="dec">1</length>
+<signal_name>tm_notmrslock</signal_name>
+<description>Enables TMRS commands (i.e. setting of TMs) with any bank active (covers this function of old TMRSTDIS)</description>
+</variable>
+<variable shortname="TM_TWRSHORT" index="VAR389" chain="CHN060" io="W" fuse="none">
+<position base="dec">10</position>
+<length base="dec">1</length>
+<signal_name>tm_twrshort</signal_name>
+<description>Reduce write window for AP-timing (compared to normal operation: minimum 5 cycles) by 4 cycles</description>
+</variable>
+<variable shortname="TM_CSLSHORT" index="VAR390" chain="CHN060" io="W" fuse="none">
+<position base="dec">9</position>
+<length base="dec">1</length>
+<signal_name>tm_cslshort</signal_name>
+<description>Generate short CAS pulse. </description>
+</variable>
+<variable shortname="TM_EXTADRAPT" index="VAR391" chain="CHN060" io="W" fuse="none">
+<position base="dec">8</position>
+<length base="dec">1</length>
+<signal_name>tm_extadrapt</signal_name>
+<description>Activate extended address mode (redundancy addr.) (AX=1) / disable fused redundancy (AX=0), TM_EXTADRAPT  select b/w APT and non-APT mode</description>
+</variable>
+<variable shortname="TM_EXTADRAPTX" index="VAR392" chain="CHN060" io="W" fuse="none">
+<position base="dec">7</position>
+<length base="dec">1</length>
+<signal_name>tm_extadr_aptx</signal_name>
+<description>Activate extended address mode (redundancy addr.) (AX=1) / disable fused redundancy (AX=0), TM_EXTADRAPTX  register for Ax in APT mode</description>
+</variable>
+<variable shortname="TM_CBRADR" index="VAR393" chain="CHN060" io="W" fuse="none">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_cbradr</signal_name>
+<description>Use external addr. for CBR commands</description>
+</variable>
+<variable shortname="TM_CBRWLUP" index="VAR394" chain="CHN060" io="W" fuse="none">
+<position base="dec">5</position>
+<length base="dec">1</length>
+<signal_name>tm_cbrwlup</signal_name>
+<description>Extend tRAS during CBR, Forces the automatic precharge which is following a CBR to occur at the falling clock edge following the CBR command. For low frequencies the result is a prolongation of tRAS</description>
+</variable>
+<variable shortname="TM_RAC" index="VAR395" chain="CHN060" io="W" fuse="none">
+<position base="dec">4</position>
+<length base="dec">1</length>
+<signal_name>tm_rac</signal_name>
+<description>Inhibit automatic precharge during CBR, allow write during CBR</description>
+</variable>
+<variable shortname="TM_RACRESET" index="VAR396" chain="CHN060" io="W" fuse="none">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_racreset</signal_name>
+<description>RAC reset, As long as TM is active, the row address counter is reset to 000h</description>
+</variable>
+<variable shortname="TM_CBRALLBANKS" index="VAR397" chain="CHN060" io="W" fuse="none">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<signal_name>tm_cbrallbanks[1:0]</signal_name>
+<description>Activates all banks or a group of banks simultaneously.</description>
+</variable>
+<variable shortname="TM_WBW" index="VAR398" chain="CHN060" io="W" fuse="none">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_wbw</signal_name>
+<description>Modify write-back window , new command NACT is used to control the timing (similar to TM_SDTSETEN and TM_ISOOFF)</description>
+</variable>
+<variable shortname="TM_REFWIDTH" index="VAR399" chain="CHN061" io="W" fuse="laser_fuse" fuse_disable_bit="VAR400">
+<position base="dec">8</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>tm_refwidth[1:0]</signal_name>
+<description>Trimming for bnksel delay in autorefresh</description>
+</variable>
+<variable shortname="TM_REFWIDTH_FUSE_DISABLE" index="VAR400" chain="CHN061" io="W" fuse="disable">
+<position base="dec">6</position>
+<length base="dec">1</length>
+<signal_name>tm_refwidth_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_STAGWIDTH" index="VAR401" chain="CHN061" io="W" fuse="laser_fuse" fuse_disable_bit="VAR402">
+<position base="dec">5</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>tm_stagwidth[1:0]</signal_name>
+<description>Trimming for staggering in autorefresh</description>
+</variable>
+<variable shortname="TM_STAGWIDTH_FUSE_DISABLE" index="VAR402" chain="CHN061" io="W" fuse="disable">
+<position base="dec">3</position>
+<length base="dec">1</length>
+<signal_name>tm_stagwidth_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_RASREFR" index="VAR403" chain="CHN061" io="W" fuse="laser_fuse" fuse_disable_bit="VAR404">
+<position base="dec">2</position>
+<length base="dec">2</length>
+<default base="bin">01</default>
+<signal_name>tm_rasrefr[1:0]</signal_name>
+<description>Trimming for autorefresh</description>
+</variable>
+<variable shortname="TM_RASREFR_FUSE_DISABLE" index="VAR404" chain="CHN061" io="W" fuse="disable">
+<position base="dec">0</position>
+<length base="dec">1</length>
+<signal_name>tm_rasrefr_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_CHIP_ID" index="VAR405" chain="CHN063" io="R" fuse="none">
+<position base="dec">105</position>
+<length base="dec">106</length>
+<signal_name>chip_id[105:0]</signal_name>
+<description>Read-only</description>
+</variable>
+<command shortname="TM_RESET" index="CMD001">
+<signal_name>tm_seti_reset</signal_name>
+<code base="hex">01</code>
+<location>Affects all chains</location>
+<description>Resets all SETI chains</description>
+</command>
+<command shortname="TM_SETIOFF" index="CMD002">
+<signal_name>tm_seti_off</signal_name>
+<code base="hex">02</code>
+<location>SETI Master</location>
+<description>Turns SETI off</description>
+</command>
+<command shortname="TM_REDPADRESET" index="CMD003" client="CLT006">
+<signal_name>tm_rp_reset</signal_name>
+<code base="hex">03</code>
+<location>Redpad</location>
+<description>Resets REDPAD</description>
+</command>
+<command shortname="TM_DLL_RESET" index="CMD005" client="CLT009">
+<signal_name>tm_dll_reset</signal_name>
+<code base="hex">68</code>
+<location>DLL</location>
+<description>Reset DLL w/o MRS</description>
+</command>
+<command shortname="TM_DCC_RESET" index="CMD006" client="CLT010">
+<signal_name>tm_dcc_reset</signal_name>
+<code base="hex">70</code>
+<location>DCC</location>
+<description>Reset DCC w/o MRS</description>
+</command>
+<pinassignment mode="MRS2SETI">
+<bitgroup type="command"><pin bit="3" index="PIN001">ADD3</pin>
+<pin bit="2" index="PIN002">ADD2</pin>
+<pin bit="1" index="PIN003">ADD1</pin>
+<pin bit="0" index="PIN004">ADD0</pin>
+</bitgroup>
+<bitgroup type="constant_high"><pin bit="0" index="PIN005">ADD7</pin>
+</bitgroup>
+<bitgroup type="mask"><pin bit="3" index="PIN006">ADD12</pin>
+<pin bit="2" index="PIN007">ADD11</pin>
+<pin bit="1" index="PIN008">ADD10</pin>
+<pin bit="0" index="PIN009">ADD9</pin>
+</bitgroup>
+<bitgroup type="data"><pin bit="3" index="PIN010">ADD8</pin>
+<pin bit="2" index="PIN011">ADD6</pin>
+<pin bit="1" index="PIN012">ADD5</pin>
+<pin bit="0" index="PIN013">ADD4</pin>
+</bitgroup>
+</pinassignment>
+<pinassignment mode="direct">
+<bitgroup type="clock"><pin bit="0" index="PIN014">CLK</pin>
+</bitgroup>
+<bitgroup type="command"><pin bit="0" index="PIN015">ADD10</pin>
+</bitgroup>
+<bitgroup type="data"><pin bit="0" index="PIN016">DQL1</pin>
+</bitgroup>
+<bitgroup type="mask"><pin bit="0" index="PIN017">ADD7</pin>
+</bitgroup>
+</pinassignment>
+</seti>

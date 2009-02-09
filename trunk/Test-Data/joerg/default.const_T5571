@@ -1,0 +1,8 @@
+
+
+
+
+include "defaultall.const"
+
+MRS0=0x528	; 428 DLL off
+WIRINGLEVEL="Probecard"

@@ -1,0 +1,55 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "F0", "TM_VREFTRIM=%01111", 0.675V, 0.841 ],
+[ "F1", "TM_VREFTRIM=%01110", 0.683V, 0.851 ],
+[ "F2", "TM_VREFTRIM=%01101", 0.692V, 0.862 ],
+[ "F3", "TM_VREFTRIM=%01100", 0.700V, 0.872 ],
+[ "F4", "TM_VREFTRIM=%01011", 0.709V, 0.884 ],
+[ "F5", "TM_VREFTRIM=%01010", 0.717V, 0.894 ],
+[ "F6", "TM_VREFTRIM=%01001", 0.726V, 0.905 ],
+[ "F7", "TM_VREFTRIM=%01000", 0.734V, 0.915 ],
+[ "F8", "TM_VREFTRIM=%00111", 0.743V, 0.926 ],
+[ "F9", "TM_VREFTRIM=%00110", 0.751V, 0.936 ],
+[ "FA", "TM_VREFTRIM=%00101", 0.760V, 0.947 ],
+[ "FB", "TM_VREFTRIM=%00100", 0.768V, 0.957 ],
+[ "FC", "TM_VREFTRIM=%00011", 0.777V, 0.968 ],
+[ "FD", "TM_VREFTRIM=%00010", 0.785V, 0.978 ],
+[ "FE", "TM_VREFTRIM=%00001", 0.793V, 0.988 ],
+[ "FF", "TM_VREFTRIM=%00000", 0.802V, 1.000 ],
+[ "FG", "TM_VREFTRIM=%11111", 0.811V, 1.011 ],
+[ "FH", "TM_VREFTRIM=%11110", 0.819V, 1.021 ],
+[ "FI", "TM_VREFTRIM=%11101", 0.827V, 1.031 ],
+[ "FJ", "TM_VREFTRIM=%11100", 0.836V, 1.042 ],
+[ "FK", "TM_VREFTRIM=%11011", 0.844V, 1.052 ],
+[ "FL", "TM_VREFTRIM=%11010", 0.853V, 1.063 ],
+[ "FM", "TM_VREFTRIM=%11001", 0.861V, 1.073 ],
+[ "FN", "TM_VREFTRIM=%11000", 0.869V, 1.083 ],
+[ "FO", "TM_VREFTRIM=%10111", 0.878V, 1.094 ],
+[ "FP", "TM_VREFTRIM=%10110", 0.886V, 1.104 ],
+[ "FQ", "TM_VREFTRIM=%10101", 0.895V, 1.115 ],
+[ "FR", "TM_VREFTRIM=%10100", 0.903V, 1.125 ],
+[ "FS", "TM_VREFTRIM=%10011", 0.912V, 1.137 ],
+[ "FT", "TM_VREFTRIM=%10010", 0.920V, 1.147 ],
+[ "FU", "TM_VREFTRIM=%10000", 0.928V, 1.157 ]
+
+TRIM="VREF"
+COM_TRIM="VREF"

@@ -1,0 +1,42 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "H0", "TM_VBLHTRIM=%0111", 1.412V, 1.1737 ],
+[ "H1", "TM_VBLHTRIM=%0110", 1.382V, 1.1487 ],
+[ "H2", "TM_VBLHTRIM=%0101", 1.352V, 1.1238 ],
+[ "H3", "TM_VBLHTRIM=%0100", 1.323V, 1.0997 ],
+[ "H4", "TM_VBLHTRIM=%0011", 1.292V, 1.0739 ],
+[ "H5", "TM_VBLHTRIM=%0010", 1.262V, 1.0490 ],
+[ "H6", "TM_VBLHTRIM=%0001", 1.232V, 1.0241 ],
+[ "H7", "TM_VBLHTRIM=%0000", 1.203V, 1.0000 ],
+[ "H8", "TM_VBLHTRIM=%1111", 1.172V, 0.9742 ],
+[ "H9", "TM_VBLHTRIM=%1110", 1.142V, 0.9492 ],
+[ "HA", "TM_VBLHTRIM=%1101", 1.112V, 0.9243 ],
+[ "HB", "TM_VBLHTRIM=%1100", 1.083V, 0.9002 ],
+[ "HC", "TM_VBLHTRIM=%1011", 1.052V, 0.8744 ],
+[ "HD", "TM_VBLHTRIM=%1010", 1.023V, 0.8503 ],
+[ "HE", "TM_VBLHTRIM=%1001", 0.993V, 0.8254 ],
+[ "HF", "TM_VBLHTRIM=%1000", 0.963V, 0.8004 ]
+
+
+TRIM="VBLH"
+COM_TRIM="VBLH"

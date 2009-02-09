@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+
+[ CBMNAM_YB,  ACTM_YB]=
+[ "B0", "TM_YB=#0" ],
+[ "B1", "TM_YB=#1" ],
+[ "B2", "TM_YB=#2" ],
+[ "B3", "TM_YB=#3" ],
+[ "B4", "TM_YB=#4" ],
+[ "B5", "TM_YB=#5" ],
+[ "B6", "TM_YB=#6" ],
+[ "B7", "TM_YB=#7" ],
+[ "B8", "TM_YB=#8" ],
+[ "B9", "TM_YB=#9" ],
+[ "BA", "TM_YB=#A" ],
+[ "BB", "TM_YB=#B" ],
+[ "BC", "TM_YB=#C" ],
+[ "BD", "TM_YB=#D" ],
+[ "BE", "TM_YB=#E" ],
+[ "BF", "TM_YB=#F" ]

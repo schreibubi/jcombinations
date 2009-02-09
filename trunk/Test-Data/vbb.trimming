@@ -1,0 +1,33 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "U0", "TM_VBBTRIM=%011", -0.200V , -0.200 ],
+[ "U1", "TM_VBBTRIM=%010", -0.132V , -0.132 ],
+[ "U2", "TM_VBBTRIM=%001", -0.066V , -0.066 ],
+[ "U3", "TM_VBBTRIM=%000",  0.000V ,  0.000 ],
+[ "U4", "TM_VBBTRIM=%111", +0.060V , +0.060 ],
+[ "U5", "TM_VBBTRIM=%110", -0.400 , -0.400 ],
+[ "U6", "TM_VBBTRIM=%101", -0.332 , -0.332 ],
+[ "U7", "TM_VBBTRIM=%100", -0.266V , -0.266 ]
+
+TRIM="VBB"
+COM_TRIM="VBB"
+

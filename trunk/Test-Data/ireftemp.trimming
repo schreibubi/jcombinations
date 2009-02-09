@@ -1,0 +1,34 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "N0", "TM_IREFTEMPTRIM=%110",   0.0uA,   0.0 ],
+[ "N1", "TM_IREFTEMPTRIM=%111", -20.0uA, -20.0 ],
+[ "N2", "TM_IREFTEMPTRIM=%101",  20.0uA,  20.0 ],
+[ "N3", "TM_IREFTEMPTRIM=%100",  40.0uA,  40.0 ],
+[ "N4", "TM_IREFTEMPTRIM=%000",  60.0uA,  60.0 ],
+[ "N5", "TM_IREFTEMPTRIM=%001",  80.0uA,  80.0 ],
+[ "N6", "TM_IREFTEMPTRIM=%010", 100.0uA, 100.0 ],
+[ "N7", "TM_IREFTEMPTRIM=%011", 120.0uA, 120.0 ]
+
+TRIM="IREFTEMP"
+COM_TRIM="IREFTEMP"
+
+

@@ -1,0 +1,40 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_RELATIVE, TRIM_ABS ]=
+[ "P0", "TM_VPPtarget=%1000", 1.060, 2.810V ], 
+[ "P1", "TM_VPPtarget=%1001", 1.052, 2.790V ],
+[ "P2", "TM_VPPtarget=%1010", 1.045, 2.770V ],
+[ "P3", "TM_VPPtarget=%1011", 1.037, 2.750V ],
+[ "P4", "TM_VPPtarget=%1100", 1.030, 2.730V ],
+[ "P5", "TM_VPPtarget=%1101", 1.022, 2.710V ],
+[ "P6", "TM_VPPtarget=%1110", 1.015, 2.690V ],
+[ "P7", "TM_VPPtarget=%1111", 1.007, 2.670V ],
+[ "P8", "TM_VPPtarget=%0000", 1.000, 2.650V ],
+[ "P9", "TM_VPPtarget=%0001", 0.992, 2.630V ],
+[ "PA", "TM_VPPtarget=%0010", 0.984, 2.610V ],
+[ "PB", "TM_VPPtarget=%0011", 0.977, 2.590V ],
+[ "PC", "TM_VPPtarget=%0100", 0.969, 2.570V ],
+[ "PD", "TM_VPPtarget=%0101", 0.962, 2.550V ],
+[ "PE", "TM_VPPtarget=%0110", 0.954, 2.530V ],
+[ "PF", "TM_VPPtarget=%0111", 0.947, 2.510V ]
+
+TRIM="VPP"
+COM_TRIM="VPP fine"

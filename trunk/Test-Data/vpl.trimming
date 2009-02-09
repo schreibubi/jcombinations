@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "L0", "TM_VPLTRIM=%0111", 0.009V, 0.0150 ],
+[ "L1", "TM_VPLTRIM=%0110", 0.068V, 0.1135 ],
+[ "L2", "TM_VPLTRIM=%0101", 0.157V, 0.2621 ],
+[ "L3", "TM_VPLTRIM=%0100", 0.246V, 0.4106 ],
+[ "L4", "TM_VPLTRIM=%0011", 0.335V, 0.5592 ],
+[ "L5", "TM_VPLTRIM=%0010", 0.423V, 0.7061 ],
+[ "L6", "TM_VPLTRIM=%0001", 0.511V, 0.8530 ],
+[ "L7", "TM_VPLTRIM=%0000", 0.599V, 1.0000 ],
+[ "L8", "TM_VPLTRIM=%1001", 0.689V, 1.1502 ],
+[ "L9", "TM_VPLTRIM=%1010", 0.779V, 1.3005 ],
+[ "LA", "TM_VPLTRIM=%1011", 0.869V, 1.4507 ],
+[ "LB", "TM_VPLTRIM=%1100", 0.960V, 1.6026 ],
+[ "LC", "TM_VPLTRIM=%1101", 1.050V, 1.7529 ],
+[ "LD", "TM_VPLTRIM=%1110", 1.140V, 1.9031 ],
+[ "LE", "TM_VPLTRIM=%1111", 1.200V, 2.0033 ]
+
+TRIM="VPL"
+COM_TRIM="VPL"

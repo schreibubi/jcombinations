@@ -1,0 +1,40 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; Force/Draw an additional current on each voltage net and check impact on IDD
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0],["DISABL","IDDNOM",0]
+
+include "vdd_spec_range.value"
+
+include "direct.measure"
+
+include "support.trimming"
+
+include "footer.const"
+
+}

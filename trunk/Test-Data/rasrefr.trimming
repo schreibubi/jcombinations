@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[TRIM_SETI, TRIM_CBMNAME]=["TM_RASREFR=%1001","MA"],
+                          ["TM_RASREFR=%1000","MB"],
+                          ["TM_RASREFR=%1011","MC"],
+                          ["TM_RASREFR=%1010","MD"],
+                          ["TM_RASREFR=%1101","ME"],
+                          ["TM_RASREFR=%1100","MF"],
+                          ["TM_RASREFR=%1111","MG"],
+                          ["TM_RASREFR=%1110","MH"],
+                          ["TM_RASREFR=%0001","MI"],
+                          ["TM_RASREFR=%0000","MJ"],
+                          ["TM_RASREFR=%0011","MK"],
+                          ["TM_RASREFR=%0010","ML"],
+                          ["TM_RASREFR=%0101","MM"],
+                          ["TM_RASREFR=%0100","MN"],
+                          ["TM_RASREFR=%0111","MO"],
+                          ["TM_RASREFR=%0110","MP"]
+
+TRIM="RASREFR"
+COM_TRIM="RASREFR"

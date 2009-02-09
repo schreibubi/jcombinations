@@ -1,0 +1,40 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ CHANNEL, EXTRA_TESTMODE1 , MEASURE, MEASURE_CBMNAME ] = 	
+						[  VINT_CHANNEL , "TM_VINTTRIM=%100",   "DIRECT VINT=1.402V  (max)", "XA" ], 
+        				[  VNWLL_CHANNEL, "TM_VNWLLTRIM=%011",  "DIRECT VNWLL=-0.9V  (max)", "XB" ],
+        				[  VBLEQ_CHANNEL, "TM_VBLEQTRIM=%1111", "DIRECT VBLEQ=1.2V   (max)", "XC" ],
+       				[  VPP_CHANNEL  , "TM_VPPmargin=%1000", "DIRECT VPP=2.97V    (max)", "XD" ],
+        				[  VBB_CHANNEL  , "TM_VBBTRIM=%110",    "DIRECT VBB=-0.4V  (max)", "XE" ], 
+						[  VINT_CHANNEL , "TM_VINTTRIM=%011",   "DIRECT VINT=1.053V  (min)", "XF" ], 
+						[  VNWLL_CHANNEL, "TM_VNWLLTRIM=%100",  "DIRECT VNWLL=0.0V   (min)", "XG" ],
+						[  VBLEQ_CHANNEL, "TM_VBLEQTRIM=%0111", "DIRECT VBLEQ=0.047V (min)", "XH" ],
+						[  VPP_CHANNEL  , "TM_VPPmargin=%0111", "DIRECT VPP=2.37V    (min)", "XI" ],
+						[  VBB_CHANNEL  , "TM_VBBTRIM=%111",    "DIRECT VBB=+0.06V    (min)", "XJ" ], 
+						[  VINT_CHANNEL , "TM_NOTMRSLOCK=ON",   "DIRECT VINT=1.202V   (std)", "XK" ], 
+						[  VNWLL_CHANNEL, "TM_NOTMRSLOCK=ON",   "DIRECT VNWLL=-0.6V   (std)", "XK" ],
+						[  VBLEQ_CHANNEL, "TM_NOTMRSLOCK=ON",   "DIRECT VBLEQ=0.619V  (std)", "XK" ],
+						[  VPP_CHANNEL  , "TM_NOTMRSLOCK=ON",   "DIRECT VPP=2.65V     (std)", "XK" ],
+						[  VBB_CHANNEL  , "TM_NOTMRSLOCK=ON",   "DIRECT VBB=0V        (std)", "XK" ]
+
+COM_MEASURE=MEASURE
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
