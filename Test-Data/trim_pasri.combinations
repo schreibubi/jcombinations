@@ -1,0 +1,91 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; partial self refresh 
+; ================================================================================
+{
+
+include "default.const"
+
+POWRES=8mA
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd6a","h1i6a","HC",4]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+CLOCK=16ns
+include "normal_mode.timings"
+
+include "vdd_spec.value"
+
+include "idd.measure"
+
+COM_TRIM="Banks"
+TRIM="banks"
+TRIM_CBMNAME="DM"
+
+[ MRS2, TRIM_ABS, TRIM_REL ]  = 
+[ 0,  8,  8 ],
+[ 1, -4,  4 ],
+[ 2, -2,  2 ],
+[ 3, -1,  1 ],
+[ 4,  6,  6 ],
+[ 5,  4,  4 ],
+[ 6,  2,  2 ],
+[ 7,  1,  1 ]
+
+CFLG=CFLG|NO_TRIM
+
+include "footer.const"
+
+}
+; ================================================================================
+; IDD6 vs srffreq
+; ================================================================================
+{
+
+include "default.const"
+
+POWRES=8mA
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd6a","h1i6a","HC",4]
+
+include "dclidd.const"
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["AIDD","",0]
+
+CLOCK=16ns
+
+include "normal_mode.timings"
+
+include "vdd_spec.value"
+
+include "idd.measure"
+
+include "srf.trimming"
+
+include "footer.const"
+
+}
+
+

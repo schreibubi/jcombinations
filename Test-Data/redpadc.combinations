@@ -1,0 +1,115 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; Redpad test
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+[ CBMNAME_PREFIX , PATNAME] = [ "RP", "t1redpc" ]
+
+PINCON=2
+
+include "actm.timings"
+
+TRIM_SETI="TM_RP_BURN_IN=%1"
+
+CHANNEL=""
+
+IDX1=8190
+IDX2=cols/8-2
+
+[  EXTRA_TESTMODE1          , IDX3        ,CBMNAM_EXTRA1 ] = 
+[ "TM_RP_MOD_ROW_SEL=%000"  , 8190        ,"R0" ],
+[ "TM_RP_MOD_ROW_SEL=%001"  , 6           ,"R1" ],
+[ "TM_RP_MOD_ROW_SEL=%010"  , 30          ,"R2" ],
+[ "TM_RP_MOD_ROW_SEL=%011"  , 62          ,"R3" ],
+[ "TM_RP_MOD_ROW_SEL=%100"  , 126         ,"R4" ]
+
+[  EXTRA_TESTMODE2        ,    IDX4       ,CBMNAM_EXTRA2 ] = 
+["TM_RP_MOD_COL_SEL=%0"   ,    cols/8-2   , "C0" ],
+["TM_RP_MOD_COL_SEL=%1"   ,    6          , "C1" ]
+
+[  EXTRA_TESTMODE3   ,SCRAMBLER,CBMNAM_EXTRA3 ] = 
+["TM_RP_SCR_SEL=%000","NOSCR"    , "S0" ],
+["TM_RP_SCR_SEL=%001","SCR1RP1"  , "S1" ],
+["TM_RP_SCR_SEL=%010","SCR1RP2"  , "S2" ],
+["TM_RP_SCR_SEL=%011","SCR1RP3"  , "S3" ]
+
+CFLG=NO_MEAS|EXTRA_TRIM_3TM
+
+ENGINE="FCN"
+
+TRIM=""
+MEASURE=""
+
+CBMNAME=CBMNAME_PREFIX+CBMNAM_EXTRA1+CBMNAM_EXTRA2+CBMNAM_EXTRA3
+
+TESTNUMBER=count++
+
+}
+; ================================================================================
+; scrambler test
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+[ CBMNAME_PREFIX , PATNAME] = [ "RQ", "t1redpc" ]
+
+PINCON=2
+
+include "actm.timings"
+
+TRIM_SETI="TM_RP_BURN_IN=%1"
+
+CHANNEL=""
+
+IDX1=8190
+IDX2=cols/8-2
+IDX4=cols/8-2
+
+IDX3  =  0, 2, 6, 14, 30, 62, 126, 254, 510, 1022, 2046, 4094, 8190
+
+[EXTRA_TESTMODE1   ,SCRAMBLER,CBMNAM_EXTRA1 ] = 
+["TM_RP_SCR_SEL=%000","NOSCR"    , "S0" ],
+["TM_RP_SCR_SEL=%001","SCR1RP1"  , "S1" ],
+["TM_RP_SCR_SEL=%010","SCR1RP2"  , "S2" ],
+["TM_RP_SCR_SEL=%011","SCR1RP3"  , "S3" ]
+
+CFLG=NO_MEAS|EXTRA_TRIM_1TM
+
+ENGINE="FCN"
+
+TRIM=""
+MEASURE=""
+
+CBMNAME=CBMNAME_PREFIX+CBMNAM_EXTRA1
+ 
+TESTNUMBER=count++
+
+}
+

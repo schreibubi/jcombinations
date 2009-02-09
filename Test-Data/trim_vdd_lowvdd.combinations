@@ -1,0 +1,76 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Trim VDD, measure VREF
+; (only possible in frontend)
+
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd0a","h1i0a","H1",4],["idd1","h1i1","H2",3],["idd2p0","h1i2p0b","H3",4],["idd2p1","h1i2p1","H4",4],["idd2n","h1i2n","H5",4],["idd2q","h1i2q","H6",4],["idd3p","h1i3p","H7",3],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd4r","h1i4r","H9",3],["idd4w","h1i4w","HA",3],["idd5b_128","h1i5ba","HH",3],["idd6a","h1i6a","HC",3],["idd7","h1i7","HE",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG,DCLMIN, DCLMAX]=["VM","",0,0.85V,0.95V],["AIDD","",0,0mA,50mA]
+
+include "vref_direct.measure"
+
+include "vdd_lowvdd_range.trimming"
+
+include "footer.const"
+
+}
+
+; Trim VDD, measure depending voltages which are accessible through VMON pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd0a","h1i0a","H1",4],["idd1","h1i1","H2",3],["idd2p0","h1i2p0b","H3",4],["idd2p1","h1i2p1","H4",4],["idd2n","h1i2n","H5",4],["idd2q","h1i2q","H6",4],["idd3p","h1i3p","H7",3],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd4r","h1i4r","H9",3],["idd4w","h1i4w","HA",3],["idd5b_128","h1i5ba","HH",3],["idd6a","h1i6a","HC",3],["idd7","h1i7","HE",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG,DCLMIN, DCLMAX]=["VM","",EXTRA_TRIM_1TM,0.85V,0.95V]
+
+include "vmon_voltages_extreme.measure"
+; include "vmon_voltages_extreme.measure" 	; use this in BE instead
+
+include "vdd_lowvdd_range.trimming"
+
+include "footer.const"
+
+}
+
+
+; Trim VDD, measure depending voltages which are accessible directly
+; (only possible in frontend)
+
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd0a","h1i0a","H1",4],["idd1","h1i1","H2",3],["idd2p0","h1i2p0b","H3",4],["idd2p1","h1i2p1","H4",4],["idd2n","h1i2n","H5",4],["idd2q","h1i2q","H6",4],["idd3p","h1i3p","H7",3],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd4r","h1i4r","H9",3],["idd4w","h1i4w","HA",3],["idd5b_128","h1i5ba","HH",3],["idd6a","h1i6a","HC",3],["idd7","h1i7","HE",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG,DCLMIN, DCLMAX]=["VM","",0,0.85V,0.95V]
+
+include "direct_extreme.measure"
+
+include "vdd_lowvdd_range.trimming"
+
+include "footer.const"
+
+}

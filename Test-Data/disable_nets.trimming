@@ -1,0 +1,38 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_SETI, TRIM_RELATIVE, TRIM_ABS, COM, TRIM_CBMNAME ]=
+[ "TM_NOTMRSLOCK=ON"  , 0.0, 0.0, "NOTH"  , "PN0" ],
+[ "TM_VPPDIS=ON"  , 1.0, 1.0, "VPP"  , "PPD" ],
+[ "TM_VBBDIS=ON"  , 2.0, 2.0, "VBB"  , "BBD" ],
+[ "TM_VNWLLDIS=ON", 3.0, 3.0, "VNWLL", "NWD" ],
+[ "TM_VINTDIS=ON" , 4.0, 4.0, "VINT" , "IND" ],
+[ "TM_VBLEQDIS=ON", 5.0, 5.0, "VBLEQ", "BQD" ],
+[ "TM_VBLHDIS=ON" , 7.0, 7.0, "VBLH" , "BHD" ],
+[ "TM_VEQLDIS=ON" , 9.0, 9.0, "VEQL" , "EQD" ],
+[ "TM_VPLDIS=ON"  ,10.0,10.0, "VPL"  , "PLD" ]
+
+; not in H70
+
+; [ "VASDIS=ON"  , 6.0, 6.0, "VAS"  , "VSD" ],
+; [ "VDLLDIS=ON" , 8.0, 8.0, "VDLL" , "DLD" ],
+
+TRIM="DISABLE"
+COM_TRIM="DISABLE"

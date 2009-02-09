@@ -1,0 +1,27 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+[ CBMNAM_XWR,  XWR_SETTINGS,  XRD_SETTINGS, TPH, TPH2 , XMASK ]=
+[ "X0", "TM_XWR=#0", "TM_XRD=#0", TP_NORM, TP_NORM, 0xFFFF ],
+[ "X3", "TM_XWR=#3", "TM_XRD=#3", TP_INV,  TP_INV , 0xFFFD ],
+[ "X5", "TM_XWR=#5", "TM_XRD=#5", TP_INV,  TP_INV , 0xFFFE ],
+[ "X6", "TM_XWR=#6", "TM_XRD=#6", TP_NORM, TP_NORM, 0xFFFC ],
+[ "X9", "TM_XWR=#9", "TM_XRD=#9", TP_INV,  TP_INV , 0xFFFC ],
+[ "XA", "TM_XWR=#A", "TM_XRD=#A", TP_NORM, TP_NORM, 0xFFFE ],
+[ "XC", "TM_XWR=#C", "TM_XRD=#C", TP_NORM, TP_NORM, 0xFFFD ],
+[ "XF", "TM_XWR=#F", "TM_XRD=#F", TP_INV,  TP_INV , 0xFFFF ]
+

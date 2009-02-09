@@ -1,0 +1,37 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_SETI, TRIM_RELATIVE, TRIM_ABS, COM, TRIM_CBMNAME, CHANNEL, MEASURE, FORCE_VALUE, DCLMIN, DCLMAX ]=
+[ "TM_VPPDIS=ON"  , 1, 1, "VPP"  , "PPD", VPP_CHANNEL , "VPP",   2.65V,  -8.0mA, 8.0mA  ],
+[ "TM_VBBDIS=ON"  , 4, 4, "VBB"  , "BBD", VBB_CHANNEL , "VBB",   -0.2V,  -8.0mA, 8.0mA  ],
+[ "TM_VNWLLDIS=ON", 5, 5, "VNWLL", "NWD", VNWLL_CHANNEL , "VNWLL", -0.6V,  -8.0mA, 8.0mA  ],
+[ "TM_VINTDIS=ON" , 6, 6, "VINT" , "VID", VINT_CHANNEL , "VINT",   1.2V, -80.0mA, 80.0mA ],
+[ "TM_VBLEQDIS=ON", 8, 8, "VBLEQ", "BQD", VBLEQ_CHANNEL , "VBLEQ", 0.62V,  -8.0mA, 8.0mA  ]
+
+TRIM="DISABLE"+COM
+COM_TRIM="DISABLE "+COM
+
+MEASURE_CBMNAME="DF"
+COM_MEASURE=MEASURE+" DIRECT, forced "+FORCE_VALUE
+
+CFLG=CFLG|NO_MEAS
+
+IDX4=0xFFFF
+IDX5=0x14

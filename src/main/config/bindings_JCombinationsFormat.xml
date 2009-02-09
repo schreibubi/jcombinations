@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<binding>
+	<namespace uri="http://schreibubi.org/JCombinationsSchema"
+		default="elements" />
+	<mapping name="asdap"
+		class="org.schreibubi.JCombinations.FileFormat.Asdap">
+		<value name="version" style="attribute" field="version" />
+		<collection field="childs" set-method="setChilds"
+			get-method="getChilds"
+			item-type="org.schreibubi.JCombinations.FileFormat.OurTreeNode" />
+	</mapping>
+	<mapping name="alternative"
+		class="org.schreibubi.JCombinations.FileFormat.Alternative">
+		<value name="name" style="attribute" field="name" />
+		<value name="description" field="description" />
+		<collection field="childs" set-method="setChilds"
+			get-method="getChilds"
+			item-type="org.schreibubi.JCombinations.FileFormat.OurTreeNode" />
+	</mapping>
+	<mapping name="shmoo"
+		class="org.schreibubi.JCombinations.FileFormat.Shmoo">
+		<value name="name" style="attribute" field="name" />
+		<value name="description" field="description" />
+		<value name="subtitle" field="subtitle" />
+		<value name="trim" field="trim" />
+		<value name="measure" field="measure" />
+		<value name="defaultXdata" field="defaultXdata" />
+		<value name="relativeXdata" field="relativeXdata" />
+		<collection name="xdata" field="xdata">
+			<structure name="xdataset"
+				type="org.schreibubi.JCombinations.FileFormat.Xdata">
+				<value name="name" style="attribute" field="name" />
+				<value name="description" field="description" />
+				<value name="unit" field="unit" />
+				<structure name="label" field="labels"
+					marshaller="org.schreibubi.JCombinations.FileFormat.VArrayListSymbolSerializer"
+					unmarshaller="org.schreibubi.JCombinations.FileFormat.VArrayListSymbolSerializer" />
+				<collection field="xPositions"
+					item-type="java.lang.Double">
+					<value name="xpos" />
+				</collection>
+			</structure>
+		</collection>
+		<collection name="ydata" field="ydata" set-method="setYdata"
+			get-method="getYdata"
+			item-type="org.schreibubi.JCombinations.FileFormat.OurTreeNode" />
+		<structure name="constants" field="constants"
+			marshaller="org.schreibubi.JCombinations.FileFormat.VHashMapSymbolSerializer"
+			unmarshaller="org.schreibubi.JCombinations.FileFormat.VHashMapSymbolSerializer" />
+	</mapping>
+	<mapping name="yset"
+		class="org.schreibubi.JCombinations.FileFormat.Ydata">
+		<value name="name" style="attribute" field="name" />
+		<value name="description" field="description" />
+		<value name="unit" field="unit" />
+		<structure name="values" field="values"
+			marshaller="org.schreibubi.JCombinations.FileFormat.VArrayListSymbolSerializer"
+			unmarshaller="org.schreibubi.JCombinations.FileFormat.VArrayListSymbolSerializer" />
+	</mapping>
+</binding>

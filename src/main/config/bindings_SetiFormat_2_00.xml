@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<binding>
+   <mapping name="seti"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Seti">
+      <value name="product" style="attribute" field="product"
+         set-method="setProduct" />
+      <value name="design_step" style="attribute" field="design_step"
+         set-method="setDesign_step" />
+      <value name="revision" style="attribute" field="revision"
+         set-method="setRevision" />
+      <value name="date" style="attribute" field="date"
+         set-method="setDate" />
+      <value name="format" style="attribute" field="format"
+         set-method="setFormat" />
+      <collection field="clients"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.Client" />
+      <collection field="chains"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.Chain" />
+      <collection field="variables"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.Variable" />
+      <collection field="commands"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.Command" />
+      <collection field="contents"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.Content" />
+      <collection field="pinassignments"
+         item-type="org.schreibubi.JCombinationsTools.SetiFormat.PinAssignment" />
+   </mapping>
+
+   <mapping name="client"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Client">
+      <value name="shortname" style="attribute" field="shortname"
+         set-method="setShortname" />
+      <value name="index" style="attribute" field="index" ident="def"
+         set-method="setIndex" />
+      <value name="description" field="description" usage="optional"
+         set-method="setDescription" />
+   </mapping>
+
+   <mapping name="chain"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Chain">
+      <value name="shortname" style="attribute" field="shortname"
+         set-method="setShortname" />
+      <value name="index" style="attribute" field="index" ident="def"
+         set-method="setIndex" />
+      <value name="client" style="attribute" field="client"
+         set-method="setClient" usage="optional" />
+      <value name="name" field="name" set-method="setName" />
+      <structure name="address">
+         <value style="text" field="address" set-method="setAddress" />
+         <value name="base" style="attribute" field="address_base"
+            set-method="setAddress_base" />
+      </structure>
+      <structure name="length">
+         <value style="text" field="length" set-method="setLength" />
+         <value name="base" style="attribute" field="length_base"
+            set-method="setLength_base" />
+      </structure>
+      <value name="description" field="description" usage="optional"
+         set-method="setDescription" />
+   </mapping>
+   <mapping name="variable"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Variable">
+      <value name="shortname" style="attribute" field="shortname"
+         set-method="setShortname" />
+      <value name="io" style="attribute" field="io" set-method="setIo" />
+      <value name="index" style="attribute" field="index" ident="def"
+         set-method="setIndex" />
+
+      <structure field="position"
+         class="org.schreibubi.JCombinationsTools.SetiFormat.Position">
+         <value name="chain" style="attribute" field="chain" ident="ref"
+            set-method="setChain" />
+         <value name="fuse" style="attribute" field="fuse"
+            set-method="setFuse" />
+         <value name="fuse_disable_bit" style="attribute"
+            field="fuse_disable_bit" ident="ref"
+            set-method="setFuse_disable_bit" usage="optional" />
+         <structure name="position">
+            <value style="text" field="position"
+               set-method="setPosition" />
+            <value name="base" style="attribute" field="position_base"
+               set-method="setPosition_base" />
+         </structure>
+         <structure name="length">
+            <value style="text" field="length" set-method="setLength" />
+            <value name="base" style="attribute" field="length_base"
+               set-method="setLength_base" />
+         </structure>
+         <structure name="default" usage="optional">
+            <value style="text" field="defaultValue"
+               set-method="setDefaultValue" />
+            <value name="base" style="attribute"
+               field="defaultValue_base"
+               set-method="setDefaultValue_base" />
+         </structure>
+      </structure>
+
+      <value name="signal_name" field="signal_name"
+         set-method="setSignal_name" />
+      <value name="description" field="description" usage="optional"
+         set-method="setDescription" />
+   </mapping>
+   <mapping name="command"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Command">
+      <value name="shortname" style="attribute" field="shortname"
+         set-method="setShortname" />
+      <value name="index" style="attribute" field="index" ident="def"
+         set-method="setIndex" />
+      <value name="client" style="attribute" field="client"
+         set-method="setClient" usage="optional" />
+      <value name="signal_name" field="signal_name"
+         set-method="setSignal_name" />
+      <structure name="code">
+         <value style="text" field="code" set-method="setCode" />
+         <value name="base" style="attribute" field="code_base"
+            set-method="setCode_base" />
+      </structure>
+      <value name="location" field="location" set-method="setLocation" />
+      <value name="description" field="description" usage="optional"
+         set-method="setDescription" />
+   </mapping>
+   <mapping name="content"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Content">
+      <value name="shortname" style="attribute" field="shortname"
+         set-method="setShortname" />
+      <value name="index" style="attribute" field="index" ident="def"
+         set-method="setIndex" />
+      <value name="defaultvalue" field="defaultvalue" usage="optional"
+         set-method="setDefaultvalue" />
+      <collection field="trimmings">
+         <structure name="trim"
+            type="org.schreibubi.JCombinationsTools.SetiFormat.Trim">
+            <value name="base" style="attribute" field="trimvalue_base"
+               set-method="setTrimvalue_base" />
+            <value name="value" style="attribute" field="trimvalue"
+               set-method="setTrimvalue" />
+            <value style="text" field="trimstring"
+               set-method="setTrimstring" />
+         </structure>
+      </collection>
+      <value name="description" field="description" usage="optional"
+         set-method="setDescription" />
+   </mapping>
+   <mapping name="pinassignment"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.PinAssignment">
+      <value name="mode" style="attribute" field="mode"
+         set-method="setMode" />
+      <collection field="bitgroups">
+         <structure name="bitgroup"
+            type="org.schreibubi.JCombinationsTools.SetiFormat.Bitgroup">
+            <value name="type" style="attribute" field="type"
+               set-method="setType" />
+            <collection field="pins"
+               item-type="org.schreibubi.JCombinationsTools.SetiFormat.Pin" />
+         </structure>
+      </collection>
+   </mapping>
+   <mapping name="pin"
+      class="org.schreibubi.JCombinationsTools.SetiFormat.Pin">
+      <value name="bit" style="attribute" field="bit"
+         set-method="setBit" />
+      <value style="text" field="pinname" set-method="setPinname" />
+   </mapping>
+
+</binding>

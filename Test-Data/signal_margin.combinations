@@ -1,0 +1,175 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; signal margin zero, vbleq
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm0bl","h1sm0bl","S0",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x18E
+IDX5=rows-2
+IDX8=0x1A0A
+
+ENGINE="FCN"
+
+include "vdd_spec.value"
+
+include "fc.measure"
+
+include "vbleq.trimming"
+
+include "footer.const"
+
+}
+; ================================================================================
+; signal margin zero and tmeqon, vbleq
+; ================================================================================
+{
+include "default.const"
+
+include "vdd_spec.value"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm0eq","h1sm0eq","S1",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x18E
+IDX5=0x26F
+IDX8=0x1A0A
+
+ENGINE="FCN"
+
+include "fc.measure"
+
+include "vbleq.trimming"
+
+include "footer.const"
+
+}
+; ================================================================================
+; signal margin 0 vpl
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+ENGINE="FCN"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm0pl","h1sm0pl","S2",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x3E
+IDX5=rows-2
+IDX8=0x1A0A
+
+include "fc.measure"
+
+include "vpl.trimming"
+
+include "footer.const"
+
+}
+; ================================================================================
+; signal margin one, vbleq
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+ENGINE="FCN"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm1bl","h1sm1bl","S3",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x18E
+IDX5=rows-2
+IDX8=0x1A0A
+
+include "fc.measure"
+
+include "vbleq.trimming"
+
+include "footer.const"
+
+}
+; ================================================================================
+; signal margin one and tmeq on, vbleq
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+ENGINE="FCN"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm1eq","h1sm1eq","S4",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x3E
+IDX5=0x26F
+IDX8=0x1A0A
+
+include "fc.measure"
+
+include "vbleq.trimming"
+
+include "footer.const"
+
+}
+; ================================================================================
+; signal margin 1, vpl
+; ================================================================================
+{
+
+include "default.const"
+
+include "vdd_spec.value"
+
+ENGINE="FCN"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1sm1pl","h1sm1pl","S5",2]
+
+CFLG=CFLG|NO_TRIM|NO_MEAS
+
+IDX3=0x3E
+IDX5=rows-2
+IDX8=0x1A0A
+
+include "fc.measure"
+
+include "vpl.trimming"
+
+include "footer.const"
+
+}

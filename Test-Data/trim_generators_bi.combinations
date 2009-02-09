@@ -1,0 +1,45 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Trim Vpp, measure Vpp under BI
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_96","h1i5bf","HG",3],["iddb","h1ib","HP",3],["iddc","h1ic","HY",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["VM","",BI+NO_MEAS]
+
+CLOCK=200ns
+include "normal_mode.timings"
+
+VDD=1.8V,1.85V
+
+include "vpp_direct.measure"
+
+include "vppcoarse.trimming"
+
+include "footer.const"
+
+
+
+
+
+}

@@ -1,0 +1,800 @@
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<?xml version="1.0" ?>
+
+<Transformation>
+   <!-- In the tag Format, we can change not only comma by semicolon, we also can change the type of characters and any format change that we would like to do -->
+   <Format>
+      <Delimiter source="," target=";" />
+      <Comment source="*" target="//" /> <!-- change the format of the comments -->
+   </Format>
+
+   <Add>
+      <Column id="Blockname" value="   " />
+      <Column id="oCNO" value="1" />
+      <Column id="ACTIVE" value="1" />
+      <Column id="oPS" value="1" />
+      <Column id="oFS" value="8" />
+      <Column id="IMT" value="0" />
+      <Column id="oIMT" value="0" />
+      <Column id="oMRUN" value="" />
+      <Column id="TTT" value="0" />
+      <Column id="oCharacterizationTest" value="0" />
+      <Column id="SPEEDT" value="0" />
+      <Column id="JDGBIN" value="0" />
+      <Column id="oTestClassNameRef" value="oTestClass1" />
+      <Column id="oSortingTest" value="yes" />
+      <Column id="oTestJobType" value="" />
+      <Column id="oRating" value="" />
+      <Column id="oDependency" value="" />
+      <Column id="oTesterType" value="ATL" />
+      <Column id="oDeduceAlgo" value="" />
+      <Column id="oChipIdSpareFusesTable" value="" />
+      <Column id="oChipIdProdDesignTable" value="" />
+      <Column id="oWiringLookupTable" value="" />
+      <Column id="EngArg" value="" />
+      <Column id="Levelset" value="" />
+      <Column id="PowerSet" value="" />
+      <Column id="PwrSet(1)" value="-1" />
+      <Column id="PwrSet(2)" value="-2" />
+      <!--Column id="PwrSet(3)" value="-3" />
+      <Column id="PwrSet(4)" value="-4" />
+      <Column id="PwrSet(5)" value="-5" />
+      <Column id="PwrSet(6)" value="-6" />
+      <Column id="PwrSet(7)" value="-7" />
+      <Column id="PwrSet(8)" value="-8" />
+      <Column id="PwrSet(9)" value="-9" />
+      <Column id="PwrSet(10)" value="-10" />
+      <Column id="PwrSet(11)" value="-11" />
+      <Column id="PwrSet(12)" value="-12" />
+      <Column id="PwrSet(13)" value="-13" />
+      <Column id="PwrSet(14)" value="-14" />
+      <Column id="PwrSet(15)" value="-15" />
+      <Column id="PwrSet(16)" value="-16" /-->
+      <Column id="Timing" value="" />
+      <Column id="TimingSet(1)" value="0" />
+      <Column id="TimingSet(2)" value="0" />
+      <Column id="TimingSet(3)" value="0" />
+      <!--Column id="TimingSet(4)" value="0" />
+      <Column id="TimingSet(5)" value="0" />
+      <Column id="TimingSet(6)" value="0" /-->
+      <Column id="Retention" value="" />
+      <Column id="JET_Wait" value="" />
+      <Column id="IDX_Wait" value="" />
+      <Column id="CBMFPT" value="0x1" />
+      <Column id="C_FLAG" value="" />
+      <Column id="ILMDPT" value="" />
+      <Column id="Pincondition" value="" />
+      <Column id="oWiringLevel" value="" />
+      <Column id="oWiringVariant" value="" />
+      <Column id="IDD_Range" value="" />
+      <Column id="DCAdapt" value="" />
+      <Column id="DCOffset" value="" />
+      <Column id="oDCtype" value="" />
+      <Column id="piACTIVE" value="yes" />
+      <Column id="octACTIVE" value="yes" />
+      <Column id="TDF_CalibMagic" value="0" />
+      <Column id="TDF_CalMagStrg" value="0" />
+   </Add>
+
+   <Remove>
+      <Column id="TNAME" />
+      <Column id="MODE" />
+      <Column id="FEATURE" />
+      <Column id="ORG" />
+      <Column id="PREFLG" />
+      <Column id="ARIFLG" />
+      <Column id="LOAD" />
+      <Column id="WAVE" />
+      <Column id="WAITTIME_CURRENTS" />
+      <Column id="POWRES" />
+      <Column id="RLMAX" />
+      <Column id="YT" />
+      <Column id="DCMR" />
+      <Column id="DCMR2" />
+      <Column id="CFLG" />
+      <Column id="TAH-TS1-4" />
+      <Column id="TCMH-TS1-4" />
+      <Column id="TCKH-TS1-4" />
+      <Column id="TCLK-TS9" />
+      <Column id="TAH-TS9" />
+      <Column id="TCMH-TS9" />
+      <Column id="TCKH-TS9" />
+      <Column id="TCLK-TS13" />
+      <Column id="TAH-TS13" />
+      <Column id="TCMH-TS13" />
+      <Column id="TCKH-TS13" />
+      <Column id="TCLK-TS14" />
+      <Column id="TAH-TS14" />
+      <Column id="TCMH-TS14" />
+      <Column id="TCKH-TS14" />
+      <Column id="TCLK-TS15" />
+      <Column id="TAH-TS15" />
+      <Column id="TCMH-TS15" />
+      <Column id="TCKH-TS15" />
+      <Column id="TCLK-TS16" />
+      <Column id="TAH-TS16" />
+      <Column id="TCMH-TS16" />
+      <Column id="TCKH-TS16" />
+      <Column id="FRT_ON" />
+      <Column id="BANK_I" />
+      <Column id="CALFILE" />
+      <Column id="B_NUMBER" />
+      <Column id="MAXFAILS" type="optional"/>
+      <Column id="MAXREADOUT" type="optional"/>
+      <Column id="XCOMP" type="optional"/>
+      <Column id="YCOMP" type="optional"/>
+      <Column id="DUT1-32" type="optional"/>
+      <Column id="B_MEAS_RANGE" />
+      <Column id="B_WAITTIME" />
+      <Column id="BUMP_5" />
+      <Column id="BUMP_6" />
+      <Column id="BUMP_7" />
+      <Column id="BUMP_8" />
+      <Column id="BUMP_9" />
+      <Column id="BUMP_10" />
+      <Column id="BUMP_11" />
+      <Column id="BUMP_12" />
+      <Column id="BUMP_13" />
+      <Column id="BUMP_14" />
+      <Column id="BUMP_15" />
+      <Column id="BUMP_16" />
+      <Column id="BUMP_17" />
+      <Column id="BUMP_18" />
+      <Column id="BUMP_19" />
+      <Column id="BUMP_20" />
+      <Column id="BUMP_21" />
+      <Column id="BUMP_22" />
+      <Column id="BUMP_23" />
+      <Column id="BUMP_24" />
+      <Column id="BUMP_25" />
+      <Column id="BUMP_26" />
+      <Column id="BUMP_27" />
+      <Column id="BUMP_28" />
+      <Column id="BUMP_29" />
+      <Column id="BUMP_30" />
+      <Column id="BUMP_31" />
+      <Column id="BUMP_32" />
+      <Column id="BUMP_33" />
+      <Column id="TRISE-TS14" />
+      <Column id="TFALL-TS14" />
+      <Column id="TDS-TS14"   />
+      <Column id="TQSS-TS14"  />
+      <Column id="TAS-TS14"   />
+      <Column id="TCMS-TS14"  />
+      <Column id="TCKS-TS14"  />
+      <Column id="TAQS-TS14"  />
+      <Column id="TADQ-TS14"  />
+      <Column id="TPRA-TS14"  />
+      <Column id="TPOA-TS14"  />
+      <Column id="TRISE-TS15" />
+      <Column id="TFALL-TS15" />
+      <Column id="TDS-TS15"   />
+      <Column id="TQSS-TS15"  />
+      <Column id="TAS-TS15"   />
+      <Column id="TCMS-TS15"  />
+      <Column id="TCKS-TS15"  />
+      <Column id="TAQS-TS15"  />
+      <Column id="TADQ-TS15"  />
+      <Column id="TPRA-TS15"  />
+      <Column id="TPOA-TS15"  />
+      <Column id="TRISE-TS16" />
+      <Column id="TFALL-TS16" />
+      <Column id="TDS-TS16"   />
+      <Column id="TQSS-TS16"  />
+      <Column id="TAS-TS16"   />
+      <Column id="TCMS-TS16"  />
+      <Column id="TCKS-TS16"  />
+      <Column id="TAQS-TS16"  />
+      <Column id="TADQ-TS16"  />
+      <Column id="TPRA-TS16"  />
+      <Column id="TPOA-TS16"  />
+   </Remove>
+
+   <Rename>
+      <Column source="STNAME" target="Test" />
+      <Column source="TESTTYPE" target="Engine" />
+      <Column source="BUMP_1" target="PwrTim(1)" />
+      <Column source="BUMP_2" target="PwrLvt(1)" />
+      <Column source="BUMP_3" target="PwrTim(2)" />
+      <Column source="BUMP_4" target="PwrLvt(2)" />
+      <!--Column source="BUMP_5" target="PwrTim(3)" />
+      <Column source="BUMP_6" target="PwrLvt(3)" />
+      <Column source="BUMP_7" target="PwrTim(4)" />
+      <Column source="BUMP_8" target="PwrLvt(4)" />
+      <Column source="BUMP_9" target="PwrTim(5)" />
+      <Column source="BUMP_10" target="PwrLvt(5)" />
+      <Column source="BUMP_11" target="PwrTim(6)" />
+      <Column source="BUMP_12" target="PwrLvt(6)" />
+      <Column source="BUMP_13" target="PwrTim(7)" />
+      <Column source="BUMP_14" target="PwrLvt(7)" />
+      <Column source="BUMP_15" target="PwrTim(8)" />
+      <Column source="BUMP_16" target="PwrLvt(8)" />
+      <Column source="BUMP_17" target="PwrTim(9)" />
+      <Column source="BUMP_18" target="PwrLvt(9)" />
+      <Column source="BUMP_19" target="PwrTim(10)" />
+      <Column source="BUMP_20" target="PwrLvt(10)" />
+      <Column source="BUMP_21" target="PwrTim(11)" />
+      <Column source="BUMP_22" target="PwrLvt(11)" />
+      <Column source="BUMP_23" target="PwrTim(12)" />
+      <Column source="BUMP_24" target="PwrLvt(12)" />
+      <Column source="BUMP_25" target="PwrTim(13)" />
+      <Column source="BUMP_26" target="PwrLvt(13)" />
+      <Column source="BUMP_27" target="PwrTim(14)" />
+      <Column source="BUMP_28" target="PwrLvt(14)" />
+      <Column source="BUMP_29" target="PwrTim(15)" />
+      <Column source="BUMP_30" target="PwrLvt(15)" />
+      <Column source="BUMP_31" target="PwrTim(16)" />
+      <Column source="BUMP_32" target="PwrLvt(16)" /-->
+      <Column source="TCLK-TS1-4" target="Rate" />
+      <Column source="CASLAT" target="CAS_Latency" />
+      <Column source="PATNAM" target="Pattern" />
+      <Column source="PGTIME" target="TIMER" />
+      <Column source="PINCON" target="Pincon" />
+      <Column source="SCRNAM" target="Scrambler" />
+      <Column source="INHCMD" target="INHCM" />
+      <Column source="INLCMD" target="INLCM" />
+      <Column source="INHDQM" target="INHDM" />
+      <Column source="INLDQM" target="INLDM" />
+      <Column source="DCLMIN" target="oDCMin" />
+      <Column source="DCLMAX" target="oDCMax" />
+
+      <Column source="TRISE-TS1-4" target="TRISE(1)" />
+      <Column source="TFALL-TS1-4" target="TFALL(1)" />
+      <Column source="TDS-TS1-4" target="TDS(1)" />
+      <Column source="TQSS-TS1-4" target="TQSS(1)" />
+      <Column source="TAS-TS1-4" target="TAS(1)" />
+      <!--Column source="TAH-TS1-4" target="TAH(1)" /-->
+      <Column source="TCMS-TS1-4" target="TCMS(1)" />
+      <!--Column source="TCMH-TS1-4" target="TCMH(1)" /-->
+      <Column source="TCKS-TS1-4" target="TCKS(1)" />
+      <!--Column source="TCKH-TS1-4" target="TCKH(1)" /-->
+      <Column source="TAQS-TS1-4" target="TAQS(1)" />
+      <Column source="TADQ-TS1-4" target="TADQ(1)" />
+      <Column source="TPRA-TS1-4" target="TPRA(1)" />
+      <Column source="TPOA-TS1-4" target="TPOA(1)" />
+      <Column source="TRISE-TS9" target="TRISE(2)" />
+      <Column source="TFALL-TS9" target="TFALL(2)" />
+      <Column source="TDS-TS9" target="TDS(2)" />
+      <Column source="TQSS-TS9" target="TQSS(2)" />
+      <Column source="TAS-TS9" target="TAS(2)" />
+      <!--Column source="TAH-TS9" target="TAH(2)" /-->
+      <Column source="TCMS-TS9" target="TCMS(2)" />
+      <!--Column source="TCMH-TS9" target="TCMH(2)" /-->
+      <Column source="TCKS-TS9" target="TCKS(2)" />
+      <!--Column source="TCKH-TS9" target="TCKH(2)" /-->
+      <Column source="TAQS-TS9" target="TAQS(2)" />
+      <Column source="TADQ-TS9" target="TADQ(2)" />
+      <Column source="TPRA-TS9" target="TPRA(2)" />
+      <Column source="TPOA-TS9" target="TPOA(2)" />
+      <Column source="TRISE-TS13" target="TRISE(3)" />
+      <Column source="TFALL-TS13" target="TFALL(3)" />
+      <Column source="TDS-TS13" target="TDS(3)" />
+      <Column source="TQSS-TS13" target="TQSS(3)" />
+      <Column source="TAS-TS13" target="TAS(3)" />
+      <!--Column source="TAH-TS13" target="TAH(3)" /-->
+      <Column source="TCMS-TS13" target="TCMS(3)" />
+      <!--Column source="TCMH-TS13" target="TCMH(3)" /-->
+      <Column source="TCKS-TS13" target="TCKS(3)" />
+      <!--Column source="TCKH-TS13" target="TCKH(3)" /-->
+      <Column source="TAQS-TS13" target="TAQS(3)" />
+      <Column source="TADQ-TS13" target="TADQ(3)" />
+      <Column source="TPRA-TS13" target="TPRA(3)" />
+      <Column source="TPOA-TS13" target="TPOA(3)" />
+
+      <!--Column source="TRISE-TS14" target="TRISE(4)" />
+      <Column source="TFALL-TS14" target="TFALL(4)" />
+      <Column source="TDS-TS14" target="TDS(4)" />
+      <Column source="TQSS-TS14" target="TQSS(4)" />
+      <Column source="TAS-TS14" target="TAS(4)" />
+      <!--Column source="TAH-TS14" target="TAH(4)" /-->
+      <!--Column source="TCMS-TS14" target="TCMS(4)" />
+      <!--Column source="TCMH-TS14" target="TCMH(4)" /-->
+      <!--Column source="TCKS-TS14" target="TCKS(4)" />
+      <!--Column source="TCKH-TS14" target="TCKH(4)" /-->
+      <!--Column source="TAQS-TS14" target="TAQS(4)" />
+      <Column source="TADQ-TS14" target="TADQ(4)" />
+      <Column source="TPRA-TS14" target="TPRA(4)" />
+      <Column source="TPOA-TS14" target="TPOA(4)" />
+      <Column source="TRISE-TS15" target="TRISE(5)" />
+      <Column source="TFALL-TS15" target="TFALL(5)" />
+      <Column source="TDS-TS15" target="TDS(5)" />
+      <Column source="TQSS-TS15" target="TQSS(5)" />
+      <Column source="TAS-TS15" target="TAS(5)" />
+      <!--Column source="TAH-TS15" target="TAH(5)" /-->
+      <!--Column source="TCMS-TS15" target="TCMS(5)" />
+      <!--Column source="TCMH-TS15" target="TCMH(5)" /-->
+      <!--Column source="TCKS-TS15" target="TCKS(5)" />
+      <!--Column source="TCKH-TS15" target="TCKH(5)" /-->
+      <!--Column source="TAQS-TS15" target="TAQS(5)" />
+      <Column source="TADQ-TS15" target="TADQ(5)" />
+      <Column source="TPRA-TS15" target="TPRA(5)" />
+      <Column source="TPOA-TS15" target="TPOA(5)" />
+      <Column source="TRISE-TS16" target="TRISE(6)" />
+      <Column source="TFALL-TS16" target="TFALL(6)" />
+      <Column source="TDS-TS16" target="TDS(6)" />
+      <Column source="TQSS-TS16" target="TQSS(6)" />
+      <Column source="TAS-TS16" target="TAS(6)" />
+      <!--Column source="TAH-TS16" target="TAH(6)" /-->
+      <!--Column source="TCMS-TS16" target="TCMS(6)" />
+      <!--Column source="TCMH-TS16" target="TCMH(6)" /-->
+      <!--Column source="TCKS-TS16" target="TCKS(6)" />
+      <!--Column source="TCKH-TS16" target="TCKH(6)" /-->
+      <!--Column source="TAQS-TS16" target="TAQS(6)" />
+      <Column source="TADQ-TS16" target="TADQ(6)" />
+      <Column source="TPRA-TS16" target="TPRA(6)" />
+      <Column source="TPOA-TS16" target="TPOA(6)" /-->
+   </Rename>
+   
+   <Copy>
+      <Column source="CAS_Latency" target="Write_Latency" />
+      <Column source="Engine" target="oEngStrg" />
+      <Column source="Engine" target="oEngine" />
+      <Column source="Engine" target="oJudgeAlgo" />
+      <Column source="Engine" target="oDeriveAlgo" />
+      <Column source="Pattern" target="oPinGroup" />
+   </Copy>
+  
+   <Set>
+      <Column id="TimingSet(1)" string="1">
+         <Column id="TRISE(1)" />
+         <Column id="TFALL(1)" />
+         <Column id="TDS(1)"   />
+         <Column id="TQSS(1)"  />
+         <Column id="TAS(1)"   />
+         <!--Column id="TAH(1)"   /-->
+         <Column id="TCMS(1)"  />
+         <!--Column id="TCMH(1)"  /-->
+         <Column id="TCKS(1)"  />
+         <!--Column id="TCKH(1)"  /-->
+         <Column id="TAQS(1)"  />
+         <Column id="TADQ(1)"  />
+         <Column id="TPRA(1)"  />
+         <Column id="TPOA(1)"  />
+      </Column>
+      <Column id="TimingSet(2)" string="9">
+         <Column id="TRISE(2)" empty="0ns"/>
+         <Column id="TFALL(2)" empty="0ns"/>
+         <Column id="TDS(2)"   empty="0ns"/>
+         <Column id="TQSS(2)"  empty="0ns"/>
+         <Column id="TAS(2)"   empty="0ns"/>
+         <!--Column id="TAH(2)" empty="0ns"/-->
+         <Column id="TCMS(2)"  empty="0ns"/>
+         <!--Column id="TCMH(2)" empty="0ns"/-->
+         <Column id="TCKS(2)"  empty="0ns"/>
+         <!--Column id="TCKH(2)" empty="0ns"/-->
+         <Column id="TAQS(2)"  empty="0ns"/>
+         <Column id="TADQ(2)"  empty="0ns"/>
+         <Column id="TPRA(2)"  empty="0ns"/>
+         <Column id="TPOA(2)"  empty="0ns"/>
+      </Column>
+      <Column id="TimingSet(3)" string="13">
+         <Column id="TRISE(3)" empty="0ns"/>
+         <Column id="TFALL(3)" empty="0ns"/>
+         <Column id="TDS(3)"   empty="0ns"/>
+         <Column id="TQSS(3)"  empty="0ns"/>
+         <Column id="TAS(3)"   empty="0ns"/>
+         <!--Column id="TAH(3)"  empty="0ns"/-->
+         <Column id="TCMS(3)"  empty="0ns"/>
+         <!--Column id="TCMH(3)" empty="0ns"/-->
+         <Column id="TCKS(3)"  empty="0ns"/>
+         <!--Column id="TCKH(3)" empty="0ns"/-->
+         <Column id="TAQS(3)"  empty="0ns"/>
+         <Column id="TADQ(3)"  empty="0ns"/>
+         <Column id="TPRA(3)"  empty="0ns"/>
+         <Column id="TPOA(3)"  empty="0ns"/>
+      </Column>
+
+      <!--Column id="TimingSet(4)" string="14">
+         <Column id="TRISE(4)" empty="0ns/>
+         <Column id="TFALL(4)" empty="0ns/>
+         <Column id="TDS(4)"   empty="0ns/>
+         <Column id="TQSS(4)"  empty="0ns/>
+         <Column id="TAS(4)"   empty="0ns/>
+         <!--Column id="TAH(4)"  empty="0ns/-->
+         <!--Column id="TCMS(4)"  empty="0ns/>
+         <!--Column id="TCMH(4)"  empty="0ns/-->
+         <!--Column id="TCKS(4)"  empty="0ns/>
+         <!--Column id="TCKH(4)"  empty="0ns/-->
+         <!--Column id="TAQS(4)"  empty="0ns/>
+         <Column id="TADQ(4)"  empty="0ns/>
+         <Column id="TPRA(4)"  empty="0ns/>
+         <Column id="TPOA(4)"  empty="0ns/>
+      </Column>
+
+      <Column id="TimingSet(4)" string="15">
+         <Column id="TRISE(4)" empty="0ns/>
+         <Column id="TFALL(4)" empty="0ns/>
+         <Column id="TDS(4)"   empty="0ns/>
+         <Column id="TQSS(4)"  empty="0ns/>
+         <Column id="TAS(4)"   empty="0ns/>
+         <!--Column id="TAH(4)"   empty="0ns/-->
+         <!--Column id="TCMS(4)"  empty="0ns/>
+         <!--Column id="TCMH(4)"  empty="0ns/-->
+         <!--Column id="TCKS(4)"  empty="0ns/>
+         <!--Column id="TCKH(4)"  empty="0ns/-->
+         <!--Column id="TAQS(4)"  empty="0ns/>
+         <Column id="TADQ(4)"  empty="0ns/>
+         <Column id="TPRA(4)"  empty="0ns/>
+         <Column id="TPOA(4)"  empty="0ns/>
+      </Column>
+      <Column id="TimingSet(5)" string="16">
+         <Column id="TRISE(5)" empty="0ns/>
+         <Column id="TFALL(5)" empty="0ns/>
+         <Column id="TDS(5)"   empty="0ns/>
+         <Column id="TQSS(5)"  empty="0ns/>
+         <Column id="TAS(5)"   empty="0ns/>
+         <!--Column id="TAH(5)"   empty="0ns/-->
+         <!--Column id="TCMS(5)"  empty="0ns/>
+         <!--Column id="TCMH(5)"  empty="0ns/-->
+         <!--Column id="TCKS(5)"  empty="0ns/>
+         <!--Column id="TCKH(5)"  empty="0ns/-->
+         <!--Column id="TAQS(5)"  empty="0ns/>
+         <Column id="TADQ(5)"  empty="0ns/>
+         <Column id="TPRA(5)"  empty="0ns/>
+         <Column id="TPOA(5)"  empty="0ns/>
+      </Column-->
+    </Set>
+
+    <Replace>
+       <Column id="CAS_Latency">
+          <Replace rex=".?...(..)" by="\1" />
+       </Column>
+
+       <Column id="Write_Latency">
+          <Replace rex=".?(.)...." by="\1" />
+       </Column>
+    
+       <Column id="Engine">
+          <Replace string="FUNCTEST" by="FCN" />
+          <Replace string="PWRUPTST" by="FCN" />
+       </Column>
+
+       <Column id="oEngStrg">
+          <Replace string="FUNCTEST" by="FCN" />
+          <Replace string="PWRUPTST" by="FCN" />
+       </Column>
+       <Column id="oEngine">
+          <Replace string="FUNCTEST" by="FCN" />
+          <Replace string="PWRUPTST" by="FCN" />
+       </Column>
+
+       <Column id="oJudgeAlgo">
+          <Replace string="FUNCTEST" by="FUNC" />
+          <Replace string="PWRUPTST" by="FUNC" />
+       </Column>
+       <Column id="oDeriveAlgo">
+          <Replace string="FUNCTEST" by="PASSIF0" />
+          <Replace string="PWRUPTST" by="PASSIF0" />
+       </Column>
+
+       <Column id="oPinGroup">
+          <Replace rex="^H.*" by="OTPN" />
+          <Replace rex="^T.*" by="ACTM1" />
+          <Replace rex="^V.*" by="TMX4" />
+       </Column>
+
+       <Column id="Pincon">
+          <Replace rex="^5$" by="1" />
+          <Replace rex="^6$" by="2" />
+       </Column>
+
+       <!--Column id="D1">
+          <Replace value="1312" by="0x9999" />   <!-- Bei value numerischer Vergleich -->
+          <!--ToUpper/>
+       </Column-->
+
+       <Column id="PwrTim(1)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(2)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <!--Column id="PwrTim(3)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(4)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(5)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(6)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(7)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(8)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(9)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(10)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(11)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(12)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(13)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(14)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(15)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column>
+       <Column id="PwrTim(16)">
+          <Replace rex="V" by="s" />
+          <Replace rex="mV" by="s" />
+       </Column-->
+   </Replace>
+
+   <Sequence>
+      <Column id="Blockname" />
+      <Column id="oCNO" />
+      <Column id="ACTIVE" />
+      <Column id="oPS" />
+      <Column id="oFS" />
+      <Column id="IMT" />
+      <Column id="oIMT" />
+      <Column id="oMRUN" />
+      <Column id="TTT" />
+      <Column id="oCharacterizationTest" />
+      <Column id="SPEEDT" />
+      <Column id="JDGBIN" />
+      <Column id="oTestClassNameRef" />
+      <Column id="oSortingTest" />
+      <Column id="oTestJobType" />
+      <Column id="oRating" />
+      <Column id="Test" />
+      <Column id="oDependency" />
+      <Column id="Engine" />
+      <Column id="oEngStrg" />
+      <Column id="oEngine" />
+      <Column id="oTesterType" />
+      <Column id="oJudgeAlgo" />
+      <Column id="oDeriveAlgo" />
+      <Column id="oDeduceAlgo" />
+      <Column id="oChipIdSpareFusesTable" />
+      <Column id="oChipIdProdDesignTable" />
+      <Column id="oWiringLookupTable" />
+      <Column id="EngArg" />
+      <Column id="Levelset" />
+      <Column id="INHD" />
+      <Column id="INLD" />
+      <Column id="INHA" />
+      <Column id="INLA" />
+      <Column id="INHC" />
+      <Column id="INLC" />
+      <Column id="INHCK" />
+      <Column id="INLCK"/>
+      <Column id="INHCM"/>
+      <Column id="INLCM"/>
+      <Column id="INHDM"/>
+      <Column id="INLDM"/>
+      <Column id="VOH"/>
+      <Column id="VRF"/>
+      <Column id="VT"/>
+      <Column id="VOL"/>
+      <Column id="PowerSet"/>
+      <Column id="PwrSet(1)"/>
+      <Column id="PwrTim(1)"/>
+      <Column id="PwrLvt(1)"/>
+      <Column id="PwrSet(2)"/>
+      <Column id="PwrTim(2)"/>
+      <Column id="PwrLvt(2)"/>
+      <!--Column id="PwrSet(3)"/>
+      <Column id="PwrTim(3)"/>
+      <Column id="PwrLvt(3)"/>
+      <Column id="PwrSet(4)"/>
+      <Column id="PwrTim(4)"/>
+      <Column id="PwrLvt(4)"/>
+      <Column id="PwrSet(5)"/>
+      <Column id="PwrTim(5)"/>
+      <Column id="PwrLvt(5)"/>
+      <Column id="PwrSet(6)"/>
+      <Column id="PwrTim(6)"/>
+      <Column id="PwrLvt(6)"/>
+      <Column id="PwrSet(7)"/>
+      <Column id="PwrTim(7)"/>
+      <Column id="PwrLvt(7)"/>
+      <Column id="PwrSet(8)"/>
+      <Column id="PwrTim(8)"/>
+      <Column id="PwrLvt(8)"/>
+      <Column id="PwrSet(9)"/>
+      <Column id="PwrTim(9)"/>
+      <Column id="PwrLvt(9)"/>
+      <Column id="PwrSet(10)"/>
+      <Column id="PwrTim(10)"/>
+      <Column id="PwrLvt(10)"/>
+      <Column id="PwrSet(11)"/>
+      <Column id="PwrTim(11)"/>
+      <Column id="PwrLvt(11)"/>
+      <Column id="PwrSet(12)"/>
+      <Column id="PwrTim(12)"/>
+      <Column id="PwrLvt(12)"/>
+      <Column id="PwrSet(13)"/>
+      <Column id="PwrTim(13)"/>
+      <Column id="PwrLvt(13)"/>
+      <Column id="PwrSet(14)"/>
+      <Column id="PwrTim(14)"/>
+      <Column id="PwrLvt(14)"/>
+      <Column id="PwrSet(15)"/>
+      <Column id="PwrTim(15)"/>
+      <Column id="PwrLvt(15)"/>
+      <Column id="PwrSet(16)"/>
+      <Column id="PwrTim(16)"/>
+      <Column id="PwrLvt(16)"/-->
+      <Column id="Rate"/>
+      <Column id="Timing"/>
+      <Column id="TimingSet(1)"/>
+      <Column id="TRISE(1)"/>
+      <Column id="TFALL(1)"/>
+      <Column id="TDS(1)"/>
+      <Column id="TQSS(1)"/>
+      <Column id="TAS(1)"/>
+      <Column id="TCMS(1)"/>
+      <Column id="TCKS(1)"/>
+      <Column id="TAQS(1)"/>
+      <Column id="TADQ(1)"/>
+      <Column id="TPRA(1)"/>
+      <Column id="TPOA(1)"/>
+      <Column id="TimingSet(2)"/>
+      <Column id="TRISE(2)"/>
+      <Column id="TFALL(2)"/>
+      <Column id="TDS(2)"/>
+      <Column id="TQSS(2)"/>
+      <Column id="TAS(2)"/>
+      <Column id="TCMS(2)"/>
+      <Column id="TCKS(2)"/>
+      <Column id="TAQS(2)"/>
+      <Column id="TADQ(2)"/>
+      <Column id="TPRA(2)"/>
+      <Column id="TPOA(2)"/>
+      <Column id="TimingSet(3)"/>
+      <Column id="TRISE(3)"/>
+      <Column id="TFALL(3)"/>
+      <Column id="TDS(3)"/>
+      <Column id="TQSS(3)"/>
+      <Column id="TAS(3)"/>
+      <Column id="TCMS(3)"/>
+      <Column id="TCKS(3)"/>
+      <Column id="TAQS(3)"/>
+      <Column id="TADQ(3)"/>
+      <Column id="TPRA(3)"/>
+      <Column id="TPOA(3)"/>
+      <!--Column id="TimingSet(4)"/>
+      <Column id="TRISE(4)"/>
+      <Column id="TFALL(4)"/>
+      <Column id="TDS(4)"/>
+      <Column id="TQSS(4)"/>
+      <Column id="TAS(4)"/>
+      <Column id="TCMS(4)"/>
+      <Column id="TCKS(4)"/>
+      <Column id="TAQS(4)"/>
+      <Column id="TADQ(4)"/>
+      <Column id="TPRA(4)"/>
+      <Column id="TPOA(4)"/>
+      <Column id="TimingSet(5)"/>
+      <Column id="TRISE(5)"/>
+      <Column id="TFALL(5)"/>
+      <Column id="TDS(5)"/>
+      <Column id="TQSS(5)"/>
+      <Column id="TAS(5)"/>
+      <Column id="TCMS(5)"/>
+      <Column id="TCKS(5)"/>
+      <Column id="TAQS(5)"/>
+      <Column id="TADQ(5)"/>
+      <Column id="TPRA(5)"/>
+      <Column id="TPOA(5)"/>
+      <Column id="TimingSet(6)"/>
+      <Column id="TRISE(6)"/>
+      <Column id="TFALL(6)"/>
+      <Column id="TDS(6)"/>
+      <Column id="TQSS(6)"/>
+      <Column id="TAS(6)"/>
+      <Column id="TCMS(6)"/>
+      <Column id="TCKS(6)"/>
+      <Column id="TAQS(6)"/>
+      <Column id="TADQ(6)"/>
+      <Column id="TPRA(6)"/>
+      <Column id="TPOA(6)"/-->
+      <Column id="CAS_Latency"/>
+      <Column id="Write_Latency"/>
+      <Column id="Retention"/>
+      <Column id="JET_Wait"/>
+      <Column id="IDX_Wait"/>
+      <Column id="Pattern"/>
+      <Column id="CBMFPT"/>
+      <Column id="C_FLAG"/>
+      <Column id="D1"/>
+      <Column id="D2"/>
+      <Column id="D3B"/>
+      <Column id="D4B"/>
+      <Column id="D5"/>
+      <Column id="D6"/>
+      <Column id="HMAX"/>
+      <Column id="IDX1"/>
+      <Column id="IDX2"/>
+      <Column id="IDX3"/>
+      <Column id="IDX4"/>
+      <Column id="IDX5"/>
+      <Column id="IDX6"/>
+      <Column id="IDX7"/>
+      <Column id="IDX8"/>
+      <Column id="ILMDPT"/>
+      <Column id="LMAX"/>
+      <Column id="PC"/>
+      <Column id="TIMER"/>
+      <Column id="TPH"/>
+      <Column id="TPH2"/>
+      <Column id="XH"/>
+      <Column id="XMASK"/>
+      <Column id="XMAX"/>
+      <Column id="XOS"/>
+      <Column id="XT"/>
+      <Column id="YH"/>
+      <Column id="YMASK"/>
+      <Column id="YMAX"/>
+      <Column id="YOS"/>
+      <Column id="ZH"/>
+      <Column id="ZMAX"/>
+      <Column id="Pincondition"/>
+      <Column id="Pincon"/>
+      <Column id="oPinGroup"/>
+      <Column id="oWiringLevel"/>
+      <Column id="oWiringVariant"/>
+      <Column id="Scrambler"/>
+      <Column id="VDD"/>
+      <Column id="VDDQ"/>
+      <Column id="IDD_Range"/>
+      <Column id="DCAdapt"/>
+      <Column id="DCOffset"/>
+      <Column id="oDCtype"/>
+      <Column id="oDCMin"/>
+      <Column id="oDCMax"/>
+      <Column id="piACTIVE"/>
+      <Column id="octACTIVE"/>
+      <Column id="TDF_CalibMagic"/>
+      <Column id="TDF_CalMagStrg"/>
+   </Sequence>
+   
+</Transformation>
+

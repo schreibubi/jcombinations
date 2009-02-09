@@ -1,0 +1,256 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Load VPP with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "vpp_direct.measure"
+
+include "vpp_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VBB with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "vbb_direct.measure"
+
+include "vbb_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VINT with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "genactive.extra"
+
+include "vint_direct.measure"
+
+include "vint_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VNWLL with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "vnwll_direct.measure"
+
+include "vnwll_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VBLEQ with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "vbleq_direct.measure"
+
+include "vbleq_force_current.trimming"
+
+include "footer.const"
+
+}
+
+; Load Vburn with current, measure voltage, with different VBURN trimmings
+
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n","h1i3n","H8",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "vdd_spec_range.value"
+
+include "vburn.extra"
+
+include "vburn_direct.measure"
+
+include "vburn_force_current.trimming"
+
+include "footer.const"
+
+}
+
+; BI from here on
+; Load VPP with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vpp_direct.measure"
+
+include "vpp_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VBB with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vbb_direct.measure"
+
+include "vbb_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VINT with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vint_direct.measure"
+
+include "vint_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VNWLL with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vnwll_direct.measure"
+
+include "vnwll_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load VBLEQ with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vbleq_direct.measure"
+
+include "vbleq_force_current.trimming"
+
+include "footer.const"
+
+}
+; Load Vburn with current, measure voltage
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4],["idd3n_dummy","h1i3ndu","G8",3],["idd3n","h1i3n","H8",3],["idd5b_64","h1i5be","HF",3],["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd7","h1i7","HE",3],["iddt","h1it","HZ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","FORCE",REFSWP]
+
+include "burnin.const"
+
+include "vdd_burnin.value"
+
+include "vburn_direct.measure"
+
+include "vburn_force_current.trimming"
+
+include "footer.const"
+
+}

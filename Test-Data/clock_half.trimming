@@ -1,0 +1,28 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TIMSET,    TS9,        TS13,       TRIM_ABS, TRIM_RELATIVE ] =
+[ "%NORM16", "%HALF16A", "%HALF16B", 16.0V,    16.0 ], 
+[ "%NORM10", "%HALF10A", "%HALF10B", 10.0V,    10.0 ], 
+[ "%NORM8",  "%HALF8A",  "%HALF8B",  8.0V,      8.0 ], 
+[ "%NORM6",  "%HALF6A",  "%HALF6B",  6.0V,      6.0 ], 
+[ "%NORM4",  "%HALF4A",  "%HALF4B",  4.0V,      4.0 ], 
+[ "%NORM3",  "%HALF3A",  "%HALF3B",  3.0V,      3.0 ], 
+[ "%NORM2",  "%HALF2A",  "%HALF2B",  2.0V,      2.0 ]

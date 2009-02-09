@@ -1,0 +1,55 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "X0", "TM_IREFTRIM=%01111", 0.66E-006A, 0.6168 ],  
+[ "X1", "TM_IREFTRIM=%01110", 0.70E-006A, 0.6542 ],  
+[ "X2", "TM_IREFTRIM=%01101", 0.72E-006A, 0.6728 ],  
+[ "X3", "TM_IREFTRIM=%01100", 0.75E-006A, 0.7009 ],  
+[ "X4", "TM_IREFTRIM=%01011", 0.77E-006A, 0.7196 ],  
+[ "X5", "TM_IREFTRIM=%01010", 0.80E-006A, 0.7476 ],  
+[ "X6", "TM_IREFTRIM=%01001", 0.83E-006A, 0.7757 ],  
+[ "X7", "TM_IREFTRIM=%01000", 0.86E-006A, 0.8037 ],  
+[ "X8", "TM_IREFTRIM=%00111", 0.88E-006A, 0.8224 ],  
+[ "X9", "TM_IREFTRIM=%00110", 0.91E-006A, 0.8504 ],  
+[ "XA", "TM_IREFTRIM=%00101", 0.93E-006A, 0.8691 ],  
+[ "XB", "TM_IREFTRIM=%00100", 0.97E-006A, 0.9065 ],  
+[ "XC", "TM_IREFTRIM=%00011", 0.99E-006A, 0.9252 ],  
+[ "XD", "TM_IREFTRIM=%00010", 1.02E-006A, 0.9532 ],  
+[ "XE", "TM_IREFTRIM=%00001", 1.04E-006A, 0.9719 ],  
+[ "XF", "TM_IREFTRIM=%00000", 1.07E-006A, 1.0000 ],  
+[ "XG", "TM_IREFTRIM=%10001", 1.11E-006A, 1.0373 ],  
+[ "XH", "TM_IREFTRIM=%10010", 1.13E-006A, 1.0560 ],  
+[ "XI", "TM_IREFTRIM=%10011", 1.15E-006A, 1.0747 ],  
+[ "XJ", "TM_IREFTRIM=%10100", 1.18E-006A, 1.1028 ],  
+[ "XK", "TM_IREFTRIM=%10101", 1.21E-006A, 1.1308 ],  
+[ "XL", "TM_IREFTRIM=%10110", 1.24E-006A, 1.1588 ],  
+[ "XM", "TM_IREFTRIM=%10111", 1.26E-006A, 1.1775 ],  
+[ "XN", "TM_IREFTRIM=%11000", 1.29E-006A, 1.2056 ],  
+[ "XO", "TM_IREFTRIM=%11001", 1.32E-006A, 1.2336 ],  
+[ "XP", "TM_IREFTRIM=%11010", 1.35E-006A, 1.2616 ],  
+[ "XQ", "TM_IREFTRIM=%11011", 1.37E-006A, 1.2803 ],  
+[ "XR", "TM_IREFTRIM=%11100", 1.40E-006A, 1.3084 ],  
+[ "XS", "TM_IREFTRIM=%11101", 1.43E-006A, 1.3364 ],  
+[ "XT", "TM_IREFTRIM=%11110", 1.46E-006A, 1.3644 ],  
+[ "XV", "TM_IREFTRIM=%11111", 1.48E-006A, 1.3831 ]   
+
+TRIM="IREF"
+COM_TRIM="IREF"

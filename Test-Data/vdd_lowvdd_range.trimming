@@ -1,0 +1,41 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+TRIM="VDD"
+TRIM_CBMNAME="VL"
+
+[VDD,LEVELSET] =
+	[1.00V, "!NORM_VREF_500"], 
+	[1.05V, "!NORM_VREF_525"], 
+	[1.10V, "!NORM_VREF_550"], 
+	[1.15V, "!NORM_VREF_575"], 
+	[1.20V, "!NORM_VREF_600"], 
+	[1.25V, "!NORM_VREF_625"], 
+	[1.30V, "!NORM_VREF_650"], 
+	[1.35V, "!NORM_VREF_675"], 
+	[1.40V, "!NORM_VREF_700"], 
+	[1.45V, "!NORM_VREF_725"], 
+	[1.50V, "!NORM_VREF_750"]
+
+TRIM_RELATIVE=VDD
+TRIM_ABS=VDD
+TRIM_SETI="TM_NOTMRSLOCK=ON"
+
+COM_TRIM="VDD"
