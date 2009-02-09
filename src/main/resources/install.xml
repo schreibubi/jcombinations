@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<installation version="1.0">
+	<variables>
+		<variable name="appGroup" value="${app.group}" />
+		<variable name="appTitle" value="${app.title}" />
+		<variable name="appSubPath" value="${app.subpath}" />
+		<variable name="appVersion" value="${app.version}" />
+		<!-- pre-select desktop shortcut checkbox -->
+		<variable name="DesktopShortcutCheckboxEnabled" value="true" />
+	</variables>
+
+	<info>
+		<javaversion>1.5</javaversion>
+		<appname>${app.title}</appname>
+		<appsubpath>${app.subpath}</appsubpath>
+		<appversion>${app.version}</appversion>
+
+		<!-- following appears in HelloPanel -->
+		<authors>
+			<author name="J�rg Werner" email="schreibubi@gmail.com" />
+		</authors>
+		<url>http://groovy.codehaus.org</url>
+	</info>
+
+	<guiprefs width="800" height="600" resizable="yes">
+		<modifier key="allXGap" value="5" />
+		<modifier key="allYGap" value="5" />
+		<modifier key="paragraphYGap" value="15" />
+		<modifier key="useHeadingPanel" value="yes" />
+		<modifier key="headingLineCount" value="1" />
+		<modifier key="headingFontSize" value="2" />
+		<modifier key="headingBackgroundColor" value="0x00ffffff" />
+		<modifier key="headingPanelCounter" value="text" />
+		<modifier key="headingPanelCounterPos" value="inHeading" />
+	</guiprefs>
+
+	<locale>
+		<langpack iso3="deu" />
+		<langpack iso3="eng" />
+		<langpack iso3="fra" />
+	</locale>
+
+
+	<resources>
+		<res id="Heading.image" src="classes/org/schreibubi/JCombinations/icons/JCombinations.png" />
+<!-- 		<res id="HTMLLicencePanel.licence" src="resource/asl2.html" />
+		<res id="HTMLInfoPanel.info" src="resource/README-IzPack.html"
+			parse="no" />
+		<res id="TargetPanel.dir.unix" src="resource/target_unix.txt"
+			parse="yes" />
+		<res id="Win_NT_shortcutSpec.xml" src="resource/winShortcutSpec.xml" />
+		<res id="shortcutSpec.xml" src="resource/emptyShortcutSpec.xml" />
+		<res id="ProcessPanel.Spec.xml" src="resource/processSpec.xml" />
+		<res src="resource/groovy-splash.png" id="installer.langsel.img" />
+		<res src="resource/RegistrySpec.xml" id="RegistrySpec.xml" /> -->
+	</resources>
+
+	<native type="izpack" name="ShellLink.dll" />
+
+	<panels>
+		<panel classname="HTMLInfoPanel" />
+		<panel classname="HTMLLicencePanel" />
+		<panel classname="TargetPanel" />
+		<panel classname="PacksPanel" />
+		<panel classname="SummaryPanel" />
+		<panel classname="InstallPanel" />
+		<panel classname="ProcessPanel" />
+		<panel classname="ShortcutPanel" />
+		<panel classname="FinishPanel" />
+	</panels>
+
+	<listeners>
+		<listener installer="SummaryLoggerInstallerListener" />
+		<listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener">
+			<os family="windows" />
+		</listener>
+	</listeners>
+
+	<packs>
+		<pack name="JCombinations core" required="yes">
+			<description>JCombinations core files installation.</description>
+			<file src="JCombinations-0.9.jar" targetdir="$INSTALL_PATH" />
+		</pack>
+	</packs>
+
+	<native type="izpack" name="ShellLink.dll" />
+
+</installation>

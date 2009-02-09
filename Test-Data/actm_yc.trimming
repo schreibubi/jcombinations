@@ -1,0 +1,37 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ CBMNAM_YC,  ACTM_YC]=
+[ "C0", "TM_YC=#0" ],
+[ "C1", "TM_YC=#1" ],
+[ "C2", "TM_YC=#2" ],
+[ "C3", "TM_YC=#3" ],
+[ "C4", "TM_YC=#4" ],
+[ "C5", "TM_YC=#5" ],
+[ "C6", "TM_YC=#6" ],
+[ "C7", "TM_YC=#7" ],
+[ "C8", "TM_YC=#8" ],
+[ "C9", "TM_YC=#9" ],
+[ "CA", "TM_YC=#A" ],
+[ "CB", "TM_YC=#B" ],
+[ "CC", "TM_YC=#C" ],
+[ "CD", "TM_YC=#D" ],
+[ "CE", "TM_YC=#E" ],
+[ "CF", "TM_YC=#F" ]

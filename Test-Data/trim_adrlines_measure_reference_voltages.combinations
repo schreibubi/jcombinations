@@ -1,0 +1,357 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Trim Voltage at address lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr","h1i3na","HR",3],["idd3n_adr_dummy","h1i3nad","GR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at address lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr_dummy","h1i3nad","GR",3],["idd3n_adr","h1i3na","HR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at address lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr_dummy","h1i3nad","GR",3],["idd3n_adr","h1i3na","HR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at address lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr_dummy","h1i3nad","GR",3],["idd3n_adr","h1i3na","HR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at address lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr_dummy","h1i3nad","GR",3],["idd3n_adr","h1i3na","HR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at address lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_adr","h1i2na","HD",4],["idd3n_adr_dummy","h1i3nad","GR",3],["idd3n_adr","h1i3na","HR",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","ADDRESS"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+
+; Data
+
+; Trim Voltage at data lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at data lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at data lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at data lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at data lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at data lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_data","h1i2nd","HU",4],["idd3n_data","h1i3nd","HW",3],["idd3n_data_dummy","h1i3ndd","GW",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","DATA"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+
+; Command
+
+; Trim Voltage at command lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at command lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at command lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrl.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at command lines, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "vref_direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at command lines, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "direct.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+; Trim Voltage at command lines, measure depending voltages which are accessible through VMON
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n_cmd","h1i2nc","HV",4],["idd3n_cmd","h1i3nc","HX",3],["idd3n_cmd_dummy","h1i3ncd","GX",3]
+
+[ENGINE,ASDAP_ENGARG]=["CIJ","COMMAND"]
+
+include "vdd_spec.value"
+
+include "vmon_voltages.measure"
+
+include "adrh.trimming"
+
+include "footer.const"
+
+}
+

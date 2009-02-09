@@ -1,0 +1,43 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+DCLMIN=10Hz
+DCLMAX=500Hz
+
+CHANNEL=SRF_FRQAFM_CHANNEL
+
+CLOCK=100ns
+include "normal_mode.timings"
+
+MEASURE_CBMNAME="SF"
+MEASURE="SRF"
+COM_MEASURE=MEASURE
+BITS=1024
+
+; Wait until oscillator is stable...
+IDX1=0x1999
+IDX2=0x14
+IDX5=BITS-2
+
+SCRAMBLER="NOSCR"         ; switch of SCRAMBLER!!!!!!!
+
+CFLG=CFLG|NO_MEAS
+
+

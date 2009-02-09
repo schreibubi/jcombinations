@@ -1,0 +1,33 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "T0", "TM_VREFTEMPTRIM=%110", -23.000mV, -0.383 ],
+[ "T1", "TM_VREFTEMPTRIM=%111", -48.000mV, -0.800 ],
+[ "T2", "TM_VREFTEMPTRIM=%101",   3.000mV,  0.050 ],
+[ "T3", "TM_VREFTEMPTRIM=%100",  31.000mV,  0.517 ],
+[ "T4", "TM_VREFTEMPTRIM=%000",  60.000mV,  1.000 ],
+[ "T5", "TM_VREFTEMPTRIM=%001",  82.000mV,  1.367 ],
+[ "T6", "TM_VREFTEMPTRIM=%010", 105.000mV,  1.750 ],
+[ "T7", "TM_VREFTEMPTRIM=%011", 133.000mV,  2.217 ]
+
+TRIM="VREFTEMP"
+COM_TRIM="VREFTEMP"
+

@@ -1,0 +1,48 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ MEASURE_SETI, MEASURE_CBMNAME, MEASURE, CHANNEL,                EXTRA_TESTMODE1   ] =
+[ "TM_VMONW_sel=%0000", "YA", "HIZ_VMONW (std)"  , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],  
+[ "TM_VMONW_sel=%0001", "YB", "VEQL_VMONW (std)" , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0010", "YC", "VINT_VMONW (std)" , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0011", "YD", "VBLH_VMONW (std)" , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0100", "YE", "VREFG_VMONW (std)", VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0101", "YF", "VBLEQ_VMONW (std)", VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0110", "YG", "VPL_VMONW (std)"  , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0111", "YH", "GND_VMONW (std)"  , VMONW_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VBURN_ON=%1",     "YI", "VBURN (std)"      , VBURN_CHANNEL, "TM_NOTMRSLOCK=ON" ],
+[ "TM_VMONW_sel=%0001", "YJ", "VEQL_VMONW VEQL=1.508V (min)" , VMONW_CHANNEL, "TM_VEQL=%01" ],
+[ "TM_VMONW_sel=%0001", "YK", "VEQL_VMONW VEQL=1.706V (max)" , VMONW_CHANNEL, "TM_VEQL=%11" ],
+[ "TM_VMONW_sel=%0010", "YL", "VINT_VMONW VINT=1.053V (min)" , VMONW_CHANNEL, "TM_VINTTRIM=%011" ],
+[ "TM_VMONW_sel=%0010", "YM", "VINT_VMONW VINT=1.402V (max)" , VMONW_CHANNEL, "TM_VINTTRIM=%100" ],
+[ "TM_VMONW_sel=%0011", "YN", "VBLH_VMONW VBLH=1.412V (max)" , VMONW_CHANNEL, "TM_VBLHTRIM=%0111" ],
+[ "TM_VMONW_sel=%0011", "YO", "VBLH_VMONW VBLH=0.9636 (min)" , VMONW_CHANNEL, "TM_VBLHTRIM=%1000" ],
+[ "TM_VMONW_sel=%0100", "YP", "VREFG_VMONW VREFG=0.837V (min)", VMONW_CHANNEL, "TM_VREFGLBTRIM=%0101" ],
+[ "TM_VMONW_sel=%0100", "YQ", "VREFG_VMONW VREFG=1.181V (max)", VMONW_CHANNEL, "TM_VREFGLBTRIM=%1010" ],
+[ "TM_VMONW_sel=%0101", "YR", "VBLEQ_VMONW VBLEQ=0.047V (min)", VMONW_CHANNEL, "TM_VBLEQTRIM=%0111" ],
+[ "TM_VMONW_sel=%0101", "YS", "VBLEQ_VMONW VBLEQ=1.2V   (max)", VMONW_CHANNEL, "TM_VBLEQTRIM=%1111" ],
+[ "TM_VMONW_sel=%0110", "YT", "VPL_VMONW VPL=0.009V (min)"  , VMONW_CHANNEL, "TM_VPLTRIM=%0111" ],
+[ "TM_VMONW_sel=%0110", "YU", "VPL_VMONW VPL=1.200V (max)"  , VMONW_CHANNEL, "TM_VPLTRIM=%1111" ],
+[ "TM_VBURN_ON=%1",     "YV", "VBURN VBURN=-1.5V (min)"      , VBURN_CHANNEL, "TM_VBURNTRM=%1111" ],
+[ "TM_VBURN_ON=%1",     "YW", "VBURN VBURN=-3.0V (max)"      , VBURN_CHANNEL, "TM_VBURNTRM=%0000" ] 
+
+COM_MEASURE=MEASURE
+
+CFLG=CFLG|EXTRA_TRIM_1TM

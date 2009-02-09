@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+[TRIM_SETI, TRIM_CBMNAME]=["TM_RAHALFGOOD=%0001","Y1"],
+                          ["TM_RAHALFGOOD=%0010","Y2"],
+                          ["TM_RAHALFGOOD=%0011","Y3"],
+                          ["TM_RAHALFGOOD=%0100","Y4"],
+                          ["TM_RAHALFGOOD=%0101","Y5"],
+                          ["TM_RAHALFGOOD=%0110","Y6"],
+                          ["TM_RAHALFGOOD=%0111","Y7"],
+                          ["TM_RAHALFGOOD=%1000","Y8"],
+                          ["TM_RAHALFGOOD=%1001","Y9"],
+                          ["TM_RAHALFGOOD=%1010","Y0"],
+                          ["TM_RAHALFGOOD=%1011","YA"],
+                          ["TM_RAHALFGOOD=%1100","YB"],
+                          ["TM_RAHALFGOOD=%1101","YC"],
+                          ["TM_RAHALFGOOD=%1110","YD"],
+                          ["TM_RAHALFGOOD=%1111","YE"]
+
+TRIM="HALFGOOD"
+COM_TRIM="HALFGOOD"

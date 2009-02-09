@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified"
+   targetNamespace="http://schreibubi.org/JCombinationsSchema"
+   xmlns:j="http://schreibubi.org/JCombinationsSchema">
+   <xs:element name="asdap">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:choice maxOccurs="unbounded">
+               <xs:element ref="j:alternative" />
+               <xs:element ref="j:shmoo" />
+            </xs:choice>
+         </xs:sequence>
+         <xs:attribute name="version" use="required" type="xs:integer" />
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="alternative">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="j:description" />
+            <xs:choice maxOccurs="unbounded">
+               <xs:element ref="j:alternative" />
+               <xs:element ref="j:shmoo" />
+            </xs:choice>
+         </xs:sequence>
+         <xs:attribute name="name" use="required" type="xs:string" />
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="shmoo">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="j:description" />
+            <xs:element ref="j:subtitle" />
+            <xs:element ref="j:trim" />
+            <xs:element ref="j:measure" />
+            <xs:element ref="j:defaultXdata" />
+            <xs:element ref="j:relativeXdata" />
+            <xs:element ref="j:xdata" />
+            <xs:element ref="j:ydata" />
+            <xs:element ref="j:constants" />
+         </xs:sequence>
+         <xs:attribute name="name" use="required" type="xs:string" />
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="xdata">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="j:xdataset" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="xdataset">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="j:description" />
+            <xs:element ref="j:unit" />
+            <xs:element ref="j:label" />
+            <xs:element name="xpos" type="xs:float"
+               maxOccurs="unbounded" />
+         </xs:sequence>
+         <xs:attribute name="name" use="required" type="xs:string" />
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="label">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="j:const" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="const">
+      <xs:complexType>
+         <xs:simpleContent>
+            <xs:extension base="xs:string">
+               <xs:attribute name="name" use="required"
+                  type="xs:string" />
+               <xs:attribute name="type" use="required"
+                  type="xs:string" />
+            </xs:extension>
+         </xs:simpleContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ydata">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="j:yset" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="yset">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="j:description" />
+            <xs:element ref="j:unit" />
+            <xs:element maxOccurs="unbounded" ref="j:values" />
+         </xs:sequence>
+         <xs:attribute name="name" use="required" type="xs:string" />
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="values">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="j:const" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="constants">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="j:const" />
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="description" type="xs:string" />
+   <xs:element name="subtitle" type="xs:string" />
+   <xs:element name="trim" type="xs:string" />
+   <xs:element name="measure" type="xs:string" />
+   <xs:element name="defaultXdata" type="xs:string" />
+   <xs:element name="relativeXdata" type="xs:string" />
+   <xs:element name="unit" type="xs:string" />
+</xs:schema>

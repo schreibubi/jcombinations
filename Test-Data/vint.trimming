@@ -1,0 +1,32 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "I0", "TM_VINTTRIM=%100", 1.402V ,1.16  ],
+[ "I1", "TM_VINTTRIM=%101", 1.352V ,1.12  ],
+[ "I2", "TM_VINTTRIM=%110", 1.302V ,1.08  ],
+[ "I3", "TM_VINTTRIM=%111", 1.253V ,1.04  ],
+[ "I4", "TM_VINTTRIM=%000", 1.202V ,1.00  ],
+[ "I5", "TM_VINTTRIM=%001", 1.152V ,0.95  ],
+[ "I6", "TM_VINTTRIM=%010", 1.102V ,0.91  ],
+[ "I7", "TM_VINTTRIM=%011", 1.053V ,0.87  ]
+
+TRIM="VINT"
+COM_TRIM="VINT"

@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+
+[ CBMNAM_YA,  ACTM_YA, TP_NORM, TP_INV ]=
+[ "A0", "TM_YA=#0", 0x0000, 0xFFFF ],
+[ "A1", "TM_YA=#1", 0x1111, 0xEEEE ],
+[ "A2", "TM_YA=#2", 0x2222, 0xDDDD ],
+[ "A3", "TM_YA=#3", 0x3333, 0xCCCC ],
+[ "A4", "TM_YA=#4", 0x4444, 0xBBBB ],
+[ "A5", "TM_YA=#5", 0x5555, 0xAAAA ],
+[ "A6", "TM_YA=#6", 0x6666, 0x9999 ],
+[ "A7", "TM_YA=#7", 0x7777, 0x8888 ],
+[ "A8", "TM_YA=#8", 0x8888, 0x7777 ],
+[ "A9", "TM_YA=#9", 0x9999, 0x6666 ],
+[ "AA", "TM_YA=#A", 0xAAAA, 0x5555 ],
+[ "AB", "TM_YA=#B", 0xBBBB, 0x4444 ],
+[ "AC", "TM_YA=#C", 0xCCCC, 0x3333 ],
+[ "AD", "TM_YA=#D", 0xDDDD, 0x2222 ],
+[ "AE", "TM_YA=#E", 0xEEEE, 0x1111 ],
+[ "AF", "TM_YA=#F", 0xFFFF, 0x0000 ]

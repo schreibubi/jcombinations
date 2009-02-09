@@ -1,0 +1,40 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "G0", "TM_VREFGLBTRIM=%1010", 1.181V, 1.241 ],
+[ "G1", "TM_VREFGLBTRIM=%1011", 1.159V, 1.219 ],
+[ "G2", "TM_VREFGLBTRIM=%1000", 1.135V, 1.193 ],
+[ "G3", "TM_VREFGLBTRIM=%1001", 1.113V, 1.170 ],
+[ "G4", "TM_VREFGLBTRIM=%1110", 1.089V, 1.154 ],
+[ "G5", "TM_VREFGLBTRIM=%1111", 1.067V, 1.122 ],
+[ "G6", "TM_VREFGLBTRIM=%1100", 1.043V, 1.067 ],
+[ "G7", "TM_VREFGLBTRIM=%1101", 1.021V, 1.074 ],
+[ "G8", "TM_VREFGLBTRIM=%0010", 0.997V, 1.048 ],
+[ "G9", "TM_VREFGLBTRIM=%0011", 0.974V, 1.024 ],
+[ "GA", "TM_VREFGLBTRIM=%0000", 0.951V, 1.0 ],
+[ "GB", "TM_VREFGLBTRIM=%0001", 0.929V, 0.977 ],
+[ "GC", "TM_VREFGLBTRIM=%0110", 0.905V, 0.952 ],
+[ "GD", "TM_VREFGLBTRIM=%0111", 0.882V, 0.927 ],
+[ "GE", "TM_VREFGLBTRIM=%0100", 0.859V, 0.903 ],
+[ "GF", "TM_VREFGLBTRIM=%0101", 0.837V, 0.880 ]
+
+TRIM="VREFG"
+COM_TRIM="VREFG"

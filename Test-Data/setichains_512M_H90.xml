@@ -1,0 +1,1658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!-- DOCTYPE seti SYSTEM 'C:\FM7_XML\tools\dtd\seti.dtd' -->
+<seti product="SETI_512M_H90" design_step="03" revision="3,00" date="2007-03-02">
+<chain shortname="ACTM1" index="CHN001">
+<name>ACTM1</name>
+<address base="hex">01</address>
+<length base="dec">16</length>
+<description>ACTM topo - YA, YB, XWR, XRD</description>
+</chain>
+<chain shortname="ACTM2" index="CHN002">
+<name>ACTM2</name>
+<address base="hex">02</address>
+<length base="dec">18</length>
+<description>ACTM topo - YC, YD; ACTM on/off, Scrambler on/off, Bleeder on/off, compression rate, TMBCRDIS on/off, DCTL &amp; DCTL2</description>
+</chain>
+<chain shortname="RpConf" index="CHN003">
+<name>RedpadConfig</name>
+<address base="hex">03</address>
+<length base="dec">18</length>
+<description>REDPAD config + segment split</description>
+</chain>
+<chain shortname="RpInitX" index="CHN004">
+<name>RedpadInitX</name>
+<address base="hex">04</address>
+<length base="dec">20</length>
+<description>REDPAD init (X registers); after reset, values in chain can be different from all-zero, i.e. chain is not necessarily initialized to 0 after reset!</description>
+</chain>
+<chain shortname="RpInitY" index="CHN005">
+<name>RedpadInitY</name>
+<address base="hex">05</address>
+<length base="dec">17</length>
+<description>REDPAD init (Y registers); after reset, values in chain can be different from all-zero, i.e. chain is not necessarily initialized to 0 after reset!</description>
+</chain>
+<chain shortname="GlobalCtrl" index="CHN006">
+<name>GlobalControl</name>
+<address base="hex">06</address>
+<length base="dec">21</length>
+<description>Global Control: DISINT WRT banks, array timings</description>
+</chain>
+<chain shortname="TrasRefr" index="CHN007">
+<name>TrasRefresh</name>
+<address base="hex">07</address>
+<length base="dec">7</length>
+<description>TRAS Refresh</description>
+</chain>
+<chain shortname="RibCorner1" index="CHN008">
+<name>RibCorner1</name>
+<address base="hex">08</address>
+<length base="dec">21</length>
+<description></description>
+</chain>
+<chain shortname="RibCorner2" index="CHN009">
+<name>RibCorner2</name>
+<address base="hex">09</address>
+<length base="dec">24</length>
+<description></description>
+</chain>
+<chain shortname="VrefTrim" index="CHN010">
+<name>VrefTrimming</name>
+<address base="hex">0a</address>
+<length base="dec">9</length>
+<description>Vref Trimming</description>
+</chain>
+<chain shortname="IrefTrim" index="CHN011">
+<name>IrefTrimming</name>
+<address base="hex">0b</address>
+<length base="dec">9</length>
+<description>Iref Trimming</description>
+</chain>
+<chain shortname="DllConf1" index="CHN012">
+<name>DllConfiguration1</name>
+<address base="hex">0c</address>
+<length base="dec">24</length>
+<description>DLL configuration 1: dllcfg1-4</description>
+</chain>
+<chain shortname="DllConf2" index="CHN013">
+<name>DllConfiguration2</name>
+<address base="hex">0d</address>
+<length base="dec">14</length>
+<description>DLL configuration 2: dllcfg5, dllcfg6</description>
+</chain>
+<chain shortname="DccConf1" index="CHN014">
+<name>DccConfiguration</name>
+<address base="hex">0e</address>
+<length base="dec">24</length>
+<description>DCC configuration: dcccfg1-4</description>
+</chain>
+<chain shortname="DllDccMisc" index="CHN015">
+<name>DllDccMisc</name>
+<address base="hex">0f</address>
+<length base="dec">21</length>
+<description>Miscellanous DLL and DCC testmodes</description>
+</chain>
+<chain shortname="UBL1" index="CHN016">
+<name>UpperByteLane1</name>
+<address base="hex">10</address>
+<length base="dec">13</length>
+<description>Testmodes for upper byte lane: BIASRCV1, BIASRCV2, TSHADJ, DQSS</description>
+</chain>
+<chain shortname="LBL1" index="CHN017">
+<name>LowerByteLane1</name>
+<address base="hex">11</address>
+<length base="dec">16</length>
+<description>Testmodes for lower byte lane:  BIASRCV1, BIASRCV2, TSHADJ, DQSS, MPR_WRITE, SETI_MPR_OUT</description>
+</chain>
+<chain shortname="IV1" index="CHN018">
+<name>InternalVoltages1</name>
+<address base="hex">12</address>
+<length base="dec">12</length>
+<description>Internal voltages: VNWLL, VPP coarse trimming; VBURN_ON</description>
+</chain>
+<chain shortname="IV2" index="CHN019">
+<name>InternalVoltages2</name>
+<address base="hex">13</address>
+<length base="dec">5</length>
+<description>Internal voltages: VPP fine trimming</description>
+</chain>
+<chain shortname="IV3" index="CHN020">
+<name>InternalVoltages3</name>
+<address base="hex">14</address>
+<length base="dec">11</length>
+<description>Internal voltages: VINT margin, VBLH trimming</description>
+</chain>
+<chain shortname="IV4" index="CHN021">
+<name>InternalVoltages4</name>
+<address base="hex">15</address>
+<length base="dec">14</length>
+<description>Internal voltages: VBB trimming, VDLL trimming, SIGMARVBLEQ, SIGMARVPL, VEQL</description>
+</chain>
+<chain shortname="IV5" index="CHN022">
+<name>InternalVoltages5</name>
+<address base="hex">16</address>
+<length base="dec">6</length>
+<description>Internal voltages: TMVMONC; dis_efuse</description>
+</chain>
+<chain shortname="OcdCal" index="CHN023">
+<name>OcdCalib</name>
+<address base="hex">17</address>
+<length base="dec">25</length>
+<description></description>
+</chain>
+<chain shortname="OcdReadOnly" index="CHN024">
+<name>OcdReadOnly</name>
+<address base="hex">18</address>
+<length base="dec">11</length>
+<description>Only read-out of (self- ?)calibrated values. No load command required. Chain is updated whenever tb_clk is running and se == 0.</description>
+</chain>
+<chain shortname="IV6_x4x8" index="CHN025">
+<name>InternalVoltages6_x4_x8</name>
+<address base="hex">19</address>
+<length base="dec">10</length>
+<description>VMONW, REDSWP,x4,x8, VBURN for e-Fuses</description>
+</chain>
+<chain shortname="Srf" index="CHN026">
+<name>Selfrefresh</name>
+<address base="hex">1a</address>
+<length base="dec">18</length>
+<description></description>
+</chain>
+<chain shortname="TempS" index="CHN027">
+<name>TemperatureSensor</name>
+<address base="hex">1b</address>
+<length base="dec">20</length>
+<description>Use Load command in order to read-out pass/fail flag (bit 0 of the chain). After reset, chain is not necessarily initialized to 0 after reset! Bit adcpass is a 'read-bit' and will be set by the temp. sensor circuitry.</description>
+</chain>
+<chain shortname="BI" index="CHN029">
+<name>BurnIn</name>
+<address base="hex">1d</address>
+<length base="dec">2</length>
+<description></description>
+</chain>
+<chain shortname="CmdRcvCtrl" index="CHN030">
+<name>CommandReceiverControl</name>
+<address base="hex">1e</address>
+<length base="dec">10</length>
+<description></description>
+</chain>
+<chain shortname="AddRcvCtrl" index="CHN031">
+<name>AddressReceiverControl</name>
+<address base="hex">1f</address>
+<length base="dec">10</length>
+<description></description>
+</chain>
+<chain shortname="ClkRcvCtrl" index="CHN032">
+<name>CockReceiverControl</name>
+<address base="hex">20</address>
+<length base="dec">10</length>
+<description></description>
+</chain>
+<chain shortname="EFblk1_ctrl" index="CHN033">
+<name>EFblk1_ctrl</name>
+<address base="hex">21</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk1_data" index="CHN034">
+<name>EFblk1_data</name>
+<address base="hex">22</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFblk2_ctrl" index="CHN035">
+<name>EFblk2_ctrl</name>
+<address base="hex">23</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk2_data" index="CHN036">
+<name>EFblk2_data</name>
+<address base="hex">24</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFblk3_ctrl" index="CHN037">
+<name>EFblk3_ctrl</name>
+<address base="hex">25</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk3_data" index="CHN038">
+<name>EFblk3_data</name>
+<address base="hex">26</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFblk4_ctrl" index="CHN039">
+<name>EFblk4_ctrl</name>
+<address base="hex">27</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk4_data" index="CHN040">
+<name>EFblk4_data</name>
+<address base="hex">28</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFblk5_ctrl" index="CHN041">
+<name>EFblk5_ctrl</name>
+<address base="hex">29</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk5_data" index="CHN042">
+<name>EFblk5_data</name>
+<address base="hex">2a</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="EFblk6_ctrl" index="CHN043">
+<name>EFblk6_ctrl</name>
+<address base="hex">2b</address>
+<length base="dec">5</length>
+<description>EFuse Block control with 5 control signals</description>
+</chain>
+<chain shortname="EFblk6_data" index="CHN044">
+<name>EFblk6_data</name>
+<address base="hex">2c</address>
+<length base="dec">32</length>
+<description>EFuse Block fuse information; not used in FE, therefore no limitation regarding chain length</description>
+</chain>
+<chain shortname="UBL2" index="CHN045">
+<name>UpperByteLane2</name>
+<address base="hex">2d</address>
+<length base="dec">21</length>
+<description></description>
+</chain>
+<chain shortname="LBL2" index="CHN046">
+<name>LowerByteLane2</name>
+<address base="hex">2e</address>
+<length base="dec">21</length>
+<description></description>
+</chain>
+<chain shortname="IV7" index="CHN047">
+<name>InternalVoltages7</name>
+<address base="hex">2f</address>
+<length base="dec">9</length>
+<description>VBB, VEQL</description>
+</chain>
+<chain shortname="SIGMARVPL" index="CHN048">
+<name>SIGMARVPL</name>
+<address base="hex">30</address>
+<length base="dec">8</length>
+<description>TMVSSQSHORT, SIGMARVPL trim, disable of VPL generator, VPL fuse disable</description>
+</chain>
+<chain shortname="ChipID" index="CHN063">
+<name>ChipID</name>
+<address base="hex">3f</address>
+<length base="dec">80</length>
+<description>Only read-out</description>
+</chain>
+<variable shortname="YA" index="VAR001">
+<position chain="CHN001" base="dec" length="4" length_base="dec" type="data">15</position>
+<signal_name>tmdc_cmpya[3:0]</signal_name>
+<description>ACTM YA register</description>
+</variable>
+<variable shortname="YB" index="VAR002">
+<position chain="CHN001" base="dec" length="4" length_base="dec" type="data">11</position>
+<signal_name>tmdc_cmpyb[3:0]</signal_name>
+<description>ACTM YB register</description>
+</variable>
+<variable shortname="XWR" index="VAR003">
+<position chain="CHN001" base="dec" length="4" length_base="dec" type="data">7</position>
+<signal_name>tmdc_cmpxwr[3:0]</signal_name>
+<description>ACTM XWR register</description>
+</variable>
+<variable shortname="XRD" index="VAR004">
+<position chain="CHN001" base="dec" length="4" length_base="dec" type="data">3</position>
+<signal_name>tmdc_cmpxrd[3:0]</signal_name>
+<description>ACTM XRD register</description>
+</variable>
+<variable shortname="YC" index="VAR005">
+<position chain="CHN002" base="dec" length="4" length_base="dec" type="data">17</position>
+<signal_name>tmdc_cmpyc[3:0]</signal_name>
+<description>ACTM YC register</description>
+</variable>
+<variable shortname="YD" index="VAR006">
+<position chain="CHN002" base="dec" length="4" length_base="dec" type="data">13</position>
+<signal_name>tmdc_cmpyd[3:0]</signal_name>
+<description>ACTM YD register</description>
+</variable>
+<variable shortname="TMACTM" index="VAR007">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">9</position>
+<signal_name>tmdc_actm</signal_name>
+<description>Enable ACTM</description>
+</variable>
+<variable shortname="ACTMscrambler" index="VAR008">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">8</position>
+<signal_name>tmdc_actmdc_scrambler</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMBLEEDER" index="VAR009">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">7</position>
+<signal_name>tmdc_bleeder</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCMPSELECT" index="VAR010">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">6</position>
+<signal_name>tmdc_cmp_select</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMBCRDIS" index="VAR011">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>tmdc_bcrdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCTL" index="VAR012">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">3</position>
+<signal_name>tmdc_dctl</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCTL2" index="VAR013">
+<position chain="CHN002" base="dec" length="1" length_base="dec" type="on_off">2</position>
+<signal_name>tmdc_dctl2</signal_name>
+<description></description>
+</variable>
+<variable shortname="RP_SIGMAR_SCR" index="VAR014">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">12</position>
+<signal_name>sigmar_scr</signal_name>
+<description>RP Signal Margin Scrambler</description>
+</variable>
+<variable shortname="RP_MWLS_SCR" index="VAR015">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">11</position>
+<signal_name>mwls_scr</signal_name>
+<description>RP Mult.Wordline Scrambler</description>
+</variable>
+<variable shortname="RP_RED_INCL" index="VAR016">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">10</position>
+<signal_name>red_incl</signal_name>
+<description>RP Redundancy Include</description>
+</variable>
+<variable shortname="RP_COL_DOWN" index="VAR017">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">9</position>
+<signal_name>col_down</signal_name>
+<description>RP Col Down</description>
+</variable>
+<variable shortname="RP_ROW_DOWN" index="VAR018">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">8</position>
+<signal_name>row_down</signal_name>
+<description>RP Row Down</description>
+</variable>
+<variable shortname="TM1BNKSET" index="VAR019">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">7</position>
+<signal_name>tmdc_1bnkset</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM1BNKSETconf" index="VAR020">
+<position chain="CHN003" base="dec" length="3" length_base="dec" type="data">6</position>
+<signal_name>tmdc_1bnkset_conf[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMREDPADC" index="VAR021">
+<position chain="CHN003" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_redpadc</signal_name>
+<description></description>
+</variable>
+<variable shortname="Row_State" index="VAR022">
+<position chain="CHN004" base="dec" length="2" length_base="dec" type="data">19</position>
+<signal_name>row_state[1:0]</signal_name>
+<description>RP Row State</description>
+</variable>
+<variable shortname="Redundant_Row_H" index="VAR023">
+<position chain="CHN004" base="dec" length="4" length_base="dec" type="data">17</position>
+<signal_name>redundant_row_h[11:8]</signal_name>
+<description>RP Red.Row High Addr.</description>
+</variable>
+<variable shortname="Redundant_Row_L" index="VAR024">
+<position chain="CHN004" base="dec" length="2" length_base="dec" type="data">13</position>
+<signal_name>redundant_row_l[1:0]</signal_name>
+<description>RP Red.Row Low Addr.</description>
+</variable>
+<variable shortname="Main_Row" index="VAR025">
+<position chain="CHN004" base="dec" length="12" length_base="dec" type="data">11</position>
+<signal_name>main_row[11:0]</signal_name>
+<description>RP Main Row</description>
+</variable>
+<variable shortname="Col_State" index="VAR026">
+<position chain="CHN005" base="dec" length="2" length_base="dec" type="data">16</position>
+<signal_name>col_state[1:0]</signal_name>
+<description>RP Col State</description>
+</variable>
+<variable shortname="Redundant_Col" index="VAR027">
+<position chain="CHN005" base="dec" length="5" length_base="dec" type="data">14</position>
+<signal_name>redundant_col[4:0]</signal_name>
+<description>RP Red.Col.</description>
+</variable>
+<variable shortname="Main_Col" index="VAR028">
+<position chain="CHN005" base="dec" length="10" length_base="dec" type="data">9</position>
+<signal_name>main_col[9:0]</signal_name>
+<description>RP Main Col.</description>
+</variable>
+<variable shortname="TMNOTMRSLOCK" index="VAR029">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">20</position>
+<signal_name>tm_notmrslock</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDISINT" index="VAR030">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">19</position>
+<signal_name>tm_disint</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDISINTconf" index="VAR031">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="data">18</position>
+<signal_name>tm_disint_conf</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMWRBNKS" index="VAR032">
+<position chain="CHN006" base="dec" length="2" length_base="dec" type="data">17</position>
+<signal_name>tm_wrbnks[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTWRSHORT" index="VAR033">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">15</position>
+<signal_name>tm_twrshort</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTRPSET" index="VAR034">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">14</position>
+<signal_name>tm_trpset</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTRP" index="VAR035">
+<position chain="CHN006" base="dec" length="2" length_base="dec" type="data">13</position>
+<signal_name>tm_trp[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTRPALLBANKS" index="VAR036">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">11</position>
+<signal_name>tm_trpallbanks</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCSLSHORT" index="VAR037">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">10</position>
+<signal_name>tm_cslshort</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMEXTADREN" index="VAR038">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">9</position>
+<signal_name>tm_extadr</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMEXTADRAPT" index="VAR039">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">8</position>
+<signal_name>tm_extadrapt</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMEXTADRAPTX" index="VAR040">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">7</position>
+<signal_name>tm_extadr_aptx</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCBRADR" index="VAR041">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">6</position>
+<signal_name>tm_cbradr</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCBRWLUP" index="VAR042">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">5</position>
+<signal_name>tm_cbrwlup</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMRAC" index="VAR043">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>tm_rac</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMRACRESET" index="VAR044">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">3</position>
+<signal_name>tm_racreset</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCBRALLBANKS" index="VAR045">
+<position chain="CHN006" base="dec" length="2" length_base="dec" type="data">2</position>
+<signal_name>tm_cbrallbanks[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMWBW" index="VAR046">
+<position chain="CHN006" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tm_wbw</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMHYSTERESISOFF" index="VAR047">
+<position chain="CHN007" base="dec" length="1" length_base="dec" type="on_off">6</position>
+<signal_name>tm_hys_off</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMHYSTERESISON" index="VAR048">
+<position chain="CHN007" base="dec" length="1" length_base="dec" type="on_off">5</position>
+<signal_name>tm_hys_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMRASREFR" index="VAR049">
+<position chain="CHN007" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tm_rasref[3:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMRASREFR_fuse_disable" index="VAR050">
+<position chain="CHN007" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_rasrefr_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_TSREADOUT" index="VAR051">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="on_off">20</position>
+<signal_name>tm_tsreadout</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_BIAS" index="VAR052">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="data" fuse="laser_fuse">19</position>
+<signal_name>tm_dcc_bias</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_BIAS" index="VAR053">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="data" fuse="laser_fuse">18</position>
+<signal_name>tm_dll_bias</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DCC_FUSE_B" index="VAR054">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="data" fuse="laser_fuse">17</position>
+<signal_name>tm_dcc_fuse_b</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TM_DCC_FUSE_A" index="VAR055">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="data" fuse="laser_fuse">16</position>
+<signal_name>tm_dcc_fuse_a</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TM_DCCFUSE_DISABLE" index="VAR056">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="fuse_disable">15</position>
+<signal_name>tm_dccfuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTRASAP" index="VAR057">
+<position chain="CHN008" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">14</position>
+<signal_name>tmdc_trasap[4:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMTRASAP_fuse_disable" index="VAR058">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="fuse_disable">9</position>
+<signal_name>tmdc_trasap_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMRAVLD" index="VAR059">
+<position chain="CHN008" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_ravld[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMRAVLD_fuse_disable" index="VAR060">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="fuse_disable">6</position>
+<signal_name>tmdc_ravld_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMRAVLD1" index="VAR061">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="on_off">5</position>
+<signal_name>tmdc_ravld1</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_DLL_ENDCF" index="VAR062">
+<position chain="CHN008" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tm_dll_endcf[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMDLLENDCF_fuse_disable" index="VAR063">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="fuse_disable">2</position>
+<signal_name>tmdllendcf_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSALTC" index="VAR064">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_saltc</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMWLLTC" index="VAR065">
+<position chain="CHN008" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_wlltc</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSAOFFSETEN" index="VAR066">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">23</position>
+<signal_name>tmdc_saoffseten</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMEQON" index="VAR067">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">22</position>
+<signal_name>tmdc_eqon</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMISOON" index="VAR068">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">21</position>
+<signal_name>tmdc_isoon</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMISOOFF" index="VAR069">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">20</position>
+<signal_name>tmdc_isooff</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSDTSETEN" index="VAR070">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">19</position>
+<signal_name>tmdc_sdtseten</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSDTSETeternity" index="VAR071">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off">18</position>
+<signal_name>tmdc_sdtset_eternity</signal_name>
+<description>Still in chain but not connected to anything in schematic</description>
+</variable>
+<variable shortname="TMUCTRLDLY" index="VAR072">
+<position chain="CHN009" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">14</position>
+<signal_name>tm_uctrldly[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMCASDLY" index="VAR073">
+<position chain="CHN009" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">12</position>
+<signal_name>tmdc_casdly[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMCASDLY_fuse_disable" index="VAR074">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="fuse_disable">10</position>
+<signal_name>tmdc_casdly_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCMADLY" index="VAR075">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">9</position>
+<signal_name>tmdc_cmadly</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMIB_SSA" index="VAR076">
+<position chain="CHN009" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_ib_ssa[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMCMADLY_fuse_disable" index="VAR077">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="fuse_disable">6</position>
+<signal_name>tmdc_cmadly_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM256M" index="VAR078">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="data" fuse="laser_fuse">5</position>
+<signal_name>tmdc_256m</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMRA256M" index="VAR079">
+<position chain="CHN009" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tmdc_ra256m[3:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TM256M_fuse_disable" index="VAR080">
+<position chain="CHN009" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_256m_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VREFTRIM" index="VAR081">
+<position chain="CHN010" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_vref_trim[4:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VREFTEMPTRIM" index="VAR082">
+<position chain="CHN010" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tmdc_vref_temp_trim[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="VREF_fuse_disable" index="VAR083">
+<position chain="CHN010" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_vref_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="IREFTRIM" index="VAR084">
+<position chain="CHN011" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_iref_trim[4:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="IREFTEMPTRIM" index="VAR085">
+<position chain="CHN011" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tmdc_iref_temp_trim[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="IREF_fuse_disable" index="VAR086">
+<position chain="CHN011" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_iref_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_muxF" index="VAR087">
+<position chain="CHN012" base="dec" length="1" length_base="dec" type="on_off">22</position>
+<signal_name>tmdc_dll_muxf</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_track_mod" index="VAR088">
+<position chain="CHN012" base="dec" length="2" length_base="dec" type="data">21</position>
+<signal_name>tmdc_dll_track_mod[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_boot_clk" index="VAR089">
+<position chain="CHN012" base="dec" length="2" length_base="dec" type="data">19</position>
+<signal_name>tmdc_dll_boot_clk[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_set" index="VAR090">
+<position chain="CHN012" base="dec" length="1" length_base="dec" type="on_off">17</position>
+<signal_name>tmdc_dll_set</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_endC" index="VAR091">
+<position chain="CHN012" base="dec" length="3" length_base="dec" type="data">16</position>
+<signal_name>tmdc_dll_endc[4:2]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_ramp" index="VAR092">
+<position chain="CHN012" base="dec" length="1" length_base="dec" type="on_off">10</position>
+<signal_name>tmdc_dll_ramp</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_endF" index="VAR093">
+<position chain="CHN012" base="dec" length="4" length_base="dec" type="data">9</position>
+<signal_name>tmdc_dll_endf[3:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_resDEL" index="VAR094">
+<position chain="CHN012" base="dec" length="5" length_base="dec" type="data">4</position>
+<signal_name>tmdc_dll_resdel[4:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_freeze_n" index="VAR095">
+<position chain="CHN013" base="dec" length="1" length_base="dec" type="data">13</position>
+<signal_name>tmdc_dll_freeze_n</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_fut_del" index="VAR096">
+<position chain="CHN013" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">12</position>
+<signal_name>tmdc_dll_fut_del[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMDLL_fut_del_fuse_disable" index="VAR097">
+<position chain="CHN013" base="dec" length="1" length_base="dec" type="fuse_disable">9</position>
+<signal_name>tmdc_dll_fut_del_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_pwrdn_skew" index="VAR098">
+<position chain="CHN013" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_dll_pwrdn_skew[1:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMDLL_intensive_cke" index="VAR099">
+<position chain="CHN013" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tmdc_dll_intensive_cke[4:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMDLL_intensive_cke_fuse_disable" index="VAR100">
+<position chain="CHN013" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_dll_intensive_cke_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_muxF" index="VAR101">
+<position chain="CHN014" base="dec" length="1" length_base="dec" type="on_off">22</position>
+<signal_name>tmdc_dcc_muxf</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_track_mod" index="VAR102">
+<position chain="CHN014" base="dec" length="2" length_base="dec" type="data">21</position>
+<signal_name>tmdc_dcc_track_mod[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_boot_clk" index="VAR103">
+<position chain="CHN014" base="dec" length="2" length_base="dec" type="data">19</position>
+<signal_name>tmdc_dcc_boot_clk[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_set" index="VAR104">
+<position chain="CHN014" base="dec" length="1" length_base="dec" type="on_off">17</position>
+<signal_name>tmdc_dcc_set</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_endC" index="VAR105">
+<position chain="CHN014" base="dec" length="5" length_base="dec" type="data">16</position>
+<signal_name>tmdc_dcc_endc[4:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_ramp" index="VAR106">
+<position chain="CHN014" base="dec" length="1" length_base="dec" type="on_off">10</position>
+<signal_name>tmdc_dcc_ramp</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_endF" index="VAR107">
+<position chain="CHN014" base="dec" length="4" length_base="dec" type="data">9</position>
+<signal_name>tmdc_dcc_endf[3:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_resDEL" index="VAR108">
+<position chain="CHN014" base="dec" length="5" length_base="dec" type="data">4</position>
+<signal_name>tmdc_dcc_resdel[4:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_tac_pl" index="VAR109">
+<position chain="CHN015" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">20</position>
+<signal_name>tmdc_dll_tac_pl[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDLL_tac_mi" index="VAR110">
+<position chain="CHN015" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">17</position>
+<signal_name>tmdc_dll_tac_mi[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDLL_tac_fuse_disable" index="VAR111">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="fuse_disable">14</position>
+<signal_name>tmdc_dll_tac_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_offset_m" index="VAR112">
+<position chain="CHN015" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">13</position>
+<signal_name>tmdc_dcc_offset_m[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDCC_offset_p" index="VAR113">
+<position chain="CHN015" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">10</position>
+<signal_name>tmdc_dcc_offset_p[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDCC_offset_pm_fuse_disable" index="VAR114">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="fuse_disable">7</position>
+<signal_name>tmdc_dcc_offset_pm_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMPWRDOWN" index="VAR115">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="on_off">6</position>
+<signal_name>tmdc_powerdown</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_freeze_n" index="VAR116">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="on_off">5</position>
+<signal_name>tmdc_dcc_freeze_n</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDCC_fut_del" index="VAR117">
+<position chain="CHN015" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tmdc_dcc_fut_del[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMDCC_fut_del_fuse_disable" index="VAR118">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_dcc_fut_del_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLL_extend" index="VAR119">
+<position chain="CHN015" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_dll_extend</signal_name>
+<description></description>
+</variable>
+<variable shortname="DQU_BIASRCV1" index="VAR120">
+<position chain="CHN016" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">12</position>
+<signal_name>dqu_bias_rcv1[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQU_BIASRCV2" index="VAR121">
+<position chain="CHN016" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">9</position>
+<signal_name>dqu_bias_rcv2[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQU_TSHADJ" index="VAR122">
+<position chain="CHN016" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>dqu_tshadj[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDQSSU" index="VAR123">
+<position chain="CHN016" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tmdc_dqssu[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQU_fuse_disable" index="VAR124">
+<position chain="CHN016" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>dqu_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="DQL_BIASRCV1" index="VAR125">
+<position chain="CHN017" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">15</position>
+<signal_name>dql_bias_rcv1[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQL_BIASRCV2" index="VAR126">
+<position chain="CHN017" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">12</position>
+<signal_name>dql_bias_rcv2[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQL_TSHADJ" index="VAR127">
+<position chain="CHN017" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">9</position>
+<signal_name>dql_tshadj[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMDQSSL" index="VAR128">
+<position chain="CHN017" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tmdc_dqssl[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="DQL_fuse_disable" index="VAR129">
+<position chain="CHN017" base="dec" length="1" length_base="dec" type="fuse_disable">3</position>
+<signal_name>dql_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMMPR_WRITE_L" index="VAR130">
+<position chain="CHN017" base="dec" length="1" length_base="dec" type="on_off">2</position>
+<signal_name>tmdc_mpr_write_l</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSETI_MPR_OUT_L" index="VAR131">
+<position chain="CHN017" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_seti_mpr_out_l</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSRFOSCME" index="VAR132">
+<position chain="CHN017" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_srf_osc_me</signal_name>
+<description></description>
+</variable>
+<variable shortname="VASDIS" index="VAR133">
+<position chain="CHN018" base="dec" length="1" length_base="dec" type="on_off">11</position>
+<signal_name>vasdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="VNWLLTRIM" index="VAR134">
+<position chain="CHN018" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">10</position>
+<signal_name>tmdc_vnwlltrim[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VNWLL_fuse_disable" index="VAR135">
+<position chain="CHN018" base="dec" length="1" length_base="dec" type="fuse_disable">7</position>
+<signal_name>tmdc_vnwll_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VNWLLDIS" index="VAR136">
+<position chain="CHN018" base="dec" length="1" length_base="dec" type="on_off">6</position>
+<signal_name>tmdc_vnwll_dis</signal_name>
+<description></description>
+</variable>
+<variable shortname="VPPTRIM_coarse" index="VAR137">
+<position chain="CHN018" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">5</position>
+<signal_name>tmdc_vpptrim_coarse[3:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VPPTRIM_coarse_fuse_disable" index="VAR138">
+<position chain="CHN018" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_vpptrim_coarse_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VPPDIS" index="VAR139">
+<position chain="CHN018" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_vppdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="VPPTRIM_fine" index="VAR140">
+<position chain="CHN019" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tmdc_vpptrim_fine[3:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VPPTRIM_fine_fuse_disable" index="VAR141">
+<position chain="CHN019" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_vpptrim_fine_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMGENACTIVE" index="VAR142">
+<position chain="CHN020" base="dec" length="1" length_base="dec" type="on_off">10</position>
+<signal_name>tmdc_genactive</signal_name>
+<description></description>
+</variable>
+<variable shortname="VINTTRIM" index="VAR143">
+<position chain="CHN020" base="dec" length="4" length_base="dec" type="data">9</position>
+<signal_name>tmdc_vinttrim[3:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="VINTDIS" index="VAR144">
+<position chain="CHN020" base="dec" length="1" length_base="dec" type="on_off">5</position>
+<signal_name>tmdc_vintdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="VBLHTRIM" index="VAR145">
+<position chain="CHN020" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">4</position>
+<signal_name>tmdc_vblhtrim[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VBLH_fuse_disable" index="VAR146">
+<position chain="CHN020" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_vblh_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VBLHDIS" index="VAR147">
+<position chain="CHN020" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_vblhdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDUALCBR" index="VAR148">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">13</position>
+<signal_name>cfg_dualcbr</signal_name>
+<description>Fuse+Efuse</description>
+</variable>
+<variable shortname="TMDUALCBR_fuse_disable" index="VAR149">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="fuse_disable">12</position>
+<signal_name>cfg_dualcbr_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VDLLTRIM" index="VAR150">
+<position chain="CHN021" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">11</position>
+<signal_name>tmdc_vintdlltrim[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VDLL_fuse_disable" index="VAR151">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="fuse_disable">8</position>
+<signal_name>tmdc_vdll_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VDLLDIS" index="VAR152">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="on_off">7</position>
+<signal_name>tmdc_vintdlldis</signal_name>
+<description></description>
+</variable>
+<variable shortname="SIGMARVBLEQ" index="VAR153">
+<position chain="CHN021" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tmdc_sigmarvbleq[3:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VBLEQ_fuse_disable" index="VAR154">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="fuse_disable">2</position>
+<signal_name>tmdc_vbleq_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VBLEQDIS" index="VAR155">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_vbleqdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMVBLEQGND" index="VAR156">
+<position chain="CHN021" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_vbleqgnd</signal_name>
+<description></description>
+</variable>
+<variable shortname="DIS_EFUSE" index="VAR157">
+<position chain="CHN022" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">5</position>
+<signal_name>dis_efuse</signal_name>
+<description>Fuse</description>
+</variable>
+<variable shortname="DIS_EFUSE_fuse_disable" index="VAR158">
+<position chain="CHN022" base="dec" length="1" length_base="dec" type="fuse_disable">4</position>
+<signal_name>dis_efuse_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMVMONC_sel" index="VAR159">
+<position chain="CHN022" base="dec" length="4" length_base="dec" type="data">3</position>
+<signal_name>tmdc_vmonc_sel[3:0]</signal_name>
+<description>Tmdc_vmonc_sel[3] not used!</description>
+</variable>
+<variable shortname="TMOCDSLEWPF" index="VAR160">
+<position chain="CHN023" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">24</position>
+<signal_name>tmdc_ocdslewpf[1:0]</signal_name>
+<description>Slew pfet; Fuses+Efuses</description>
+</variable>
+<variable shortname="TMOCDSLEWNF" index="VAR161">
+<position chain="CHN023" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">22</position>
+<signal_name>tmdc_ocdslewnf[1:0]</signal_name>
+<description>Slew nfet; Fuses+Efuses</description>
+</variable>
+<variable shortname="TMOCDCAL_CFG" index="VAR162">
+<position chain="CHN023" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">20</position>
+<signal_name>tmdc_ocdcal_cfg[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMOCDCAL_DISABLE" index="VAR163">
+<position chain="CHN023" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">17</position>
+<signal_name>tmdc_ocdcal_disable</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMOCDCFG_fuse_disable" index="VAR164">
+<position chain="CHN023" base="dec" length="1" length_base="dec" type="fuse_disable">16</position>
+<signal_name>tmdc_ocdcfg_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMOCDPF" index="VAR165">
+<position chain="CHN023" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">15</position>
+<signal_name>tmdc_ocdpf[4:0]</signal_name>
+<description>Strength pfet; fuse</description>
+</variable>
+<variable shortname="TMOCDNF" index="VAR166">
+<position chain="CHN023" base="dec" length="5" length_base="dec" type="data" fuse="laser_fuse">10</position>
+<signal_name>tmdc_ocdnf[4:0]</signal_name>
+<description>Strength nfet; fuse</description>
+</variable>
+<variable shortname="TMOCDPFNF_fuse_disable" index="VAR167">
+<position chain="CHN023" base="dec" length="1" length_base="dec" type="fuse_disable">5</position>
+<signal_name>tmdc_ocdpfnf_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMOCDCAL_CTRL" index="VAR168">
+<position chain="CHN023" base="dec" length="3" length_base="dec" type="data">4</position>
+<signal_name>tmdc_ocdcal_ctrl[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMOCDCAL_SEL" index="VAR169">
+<position chain="CHN023" base="dec" length="2" length_base="dec" type="data">1</position>
+<signal_name>tmdc_ocdcal_sel[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="ZQPRESENT" index="VAR170">
+<position chain="CHN024" base="dec" length="1" length_base="dec" type="data">10</position>
+<signal_name>zqpresent</signal_name>
+<description>Read-only</description>
+</variable>
+<variable shortname="OCDPF" index="VAR171">
+<position chain="CHN024" base="dec" length="5" length_base="dec" type="data">9</position>
+<signal_name>odcpf[4:0]</signal_name>
+<description>Read-only</description>
+</variable>
+<variable shortname="OCDNF" index="VAR172">
+<position chain="CHN024" base="dec" length="5" length_base="dec" type="data">4</position>
+<signal_name>ocdnf[4:0]</signal_name>
+<description>Read-only</description>
+</variable>
+<variable shortname="TM_VBURN_PMP" index="VAR173">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="on_off">9</position>
+<signal_name>tmdc_vburn_pmp</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_VBURN_ON" index="VAR174">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="on_off">8</position>
+<signal_name>tmdc_vburn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMx4" index="VAR175">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">7</position>
+<signal_name>tmdc_x4</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="TMx8" index="VAR176">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">6</position>
+<signal_name>tmdc_x8</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="TM_x4x8_fuse_disable" index="VAR177">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="fuse_disable">5</position>
+<signal_name>tmdc_x4x8_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMREFSWP" index="VAR178">
+<position chain="CHN025" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>tmdc_refswp</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMVMONW_sel" index="VAR179">
+<position chain="CHN025" base="dec" length="4" length_base="dec" type="data">3</position>
+<signal_name>tmdc_vmonw_sel[3:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCHIPIDON" index="VAR180">
+<position chain="CHN026" base="dec" length="1" length_base="dec" type="on_off">17</position>
+<signal_name>tmdc_chipid_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSRFTMP" index="VAR181">
+<position chain="CHN026" base="dec" length="3" length_base="dec" type="data">16</position>
+<signal_name>tmdc_srftmp[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSRFTMPEN" index="VAR182">
+<position chain="CHN026" base="dec" length="1" length_base="dec" type="on_off">13</position>
+<signal_name>tmdc_srftmpen</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSRF_slope" index="VAR183">
+<position chain="CHN026" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">12</position>
+<signal_name>tmdc_srf_slope[2:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMSRF_slope_fuse_disable" index="VAR184">
+<position chain="CHN026" base="dec" length="1" length_base="dec" type="fuse_disable">9</position>
+<signal_name>tmdc_srf_slope_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMSRF" index="VAR185">
+<position chain="CHN026" base="dec" length="8" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_srf[7:0]</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMSRF_fuse_disable" index="VAR186">
+<position chain="CHN026" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tmdc_srf_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TM_TS_STDCLKMUX" index="VAR187">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">19</position>
+<signal_name>tm_ts_stdclkmux</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTSDISABLE" index="VAR188">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">18</position>
+<signal_name>tmdc_tsdisable</signal_name>
+<description>Fuses</description>
+</variable>
+<variable shortname="TMTSDISABLE_fuse_disable" index="VAR189">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="fuse_disable">17</position>
+<signal_name>tmdc_tsdisable_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTS_FREEZE" index="VAR190">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">16</position>
+<signal_name>tmdc_ts_freeze</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTS_offset" index="VAR191">
+<position chain="CHN027" base="dec" length="7" length_base="dec" type="data" fuse="laser_fuse">15</position>
+<signal_name>tmdc_ts_offset[6:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMTS_offset_fuse_disable" index="VAR192">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="fuse_disable">8</position>
+<signal_name>tmdc_ts_offset_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTS_slope" index="VAR193">
+<position chain="CHN027" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">7</position>
+<signal_name>tmdc_ts_slope[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMTS_slope_fuse_disable" index="VAR194">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="fuse_disable">4</position>
+<signal_name>tmdc_ts_slope_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTSADC" index="VAR195">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">3</position>
+<signal_name>tmdc_tsadc</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTSADCCLK" index="VAR196">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">2</position>
+<signal_name>tmdc_tsadcclk</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTSADCCLKMUX" index="VAR197">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_tsadcclkmux</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMTSADCPASS" index="VAR198">
+<position chain="CHN027" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_tsadcpass</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMBICTRL" index="VAR199">
+<position chain="CHN029" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_bictrl</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMBIDC" index="VAR200">
+<position chain="CHN029" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_bidc</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCMD_BIASRCV1" index="VAR201">
+<position chain="CHN030" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">9</position>
+<signal_name>tm_cmd_biasrcv1[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCMD_BIASRCV2" index="VAR202">
+<position chain="CHN030" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tm_cmd_biasrcv2[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCMD_TSHADJ" index="VAR203">
+<position chain="CHN030" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tm_cmd_tshadj[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCMDRCV_fuse_disable" index="VAR204">
+<position chain="CHN030" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tm_cmdrcv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMADD_BIASRCV1" index="VAR205">
+<position chain="CHN031" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">9</position>
+<signal_name>tm_add_biasrcv1[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMADD_BIASRCV2" index="VAR206">
+<position chain="CHN031" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tm_add_biasrcv2[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMADD_TSHADJ" index="VAR207">
+<position chain="CHN031" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tm_add_tshadj[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMADDRCV_fuse_disable" index="VAR208">
+<position chain="CHN031" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tm_addrcv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMCKE_BIASRCV1" index="VAR209">
+<position chain="CHN032" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">9</position>
+<signal_name>tm_cke_biasrcv1[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCKE_BIASRCV2" index="VAR210">
+<position chain="CHN032" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">6</position>
+<signal_name>tm_cke_biasrcv2[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCKE_TSHADJ" index="VAR211">
+<position chain="CHN032" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tm_cke_tshadj[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="TMCKERCV_fuse_disable" index="VAR212">
+<position chain="CHN032" base="dec" length="1" length_base="dec" type="fuse_disable">0</position>
+<signal_name>tm_ckercv_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF1_BURN_ON" index="VAR213">
+<position chain="CHN033" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef1_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF1_CMD" index="VAR214">
+<position chain="CHN033" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef1_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF1_BURN_CLK" index="VAR215">
+<position chain="CHN033" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef1_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF1_FUSE_STRING" index="VAR216">
+<position chain="CHN034" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef1_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="EF2_BURN_ON" index="VAR217">
+<position chain="CHN035" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef2_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF2_CMD" index="VAR218">
+<position chain="CHN035" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef2_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF2_BURN_CLK" index="VAR219">
+<position chain="CHN035" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef2_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF2_FUSE_STRING" index="VAR220">
+<position chain="CHN036" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef2_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="EF3_BURN_ON" index="VAR221">
+<position chain="CHN037" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef3_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF3_CMD" index="VAR222">
+<position chain="CHN037" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef3_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF3_BURN_CLK" index="VAR223">
+<position chain="CHN037" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef3_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF3_FUSE_STRING" index="VAR224">
+<position chain="CHN038" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef3_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="EF4_BURN_ON" index="VAR225">
+<position chain="CHN039" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef4_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF4_CMD" index="VAR226">
+<position chain="CHN039" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef4_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF4_BURN_CLK" index="VAR227">
+<position chain="CHN039" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef4_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF4_FUSE_STRING" index="VAR228">
+<position chain="CHN040" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef4_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="EF5_BURN_ON" index="VAR229">
+<position chain="CHN041" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef5_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF5_CMD" index="VAR230">
+<position chain="CHN041" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef5_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF5_BURN_CLK" index="VAR231">
+<position chain="CHN041" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef5_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF5_FUSE_STRING" index="VAR232">
+<position chain="CHN042" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef5_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="EF6_BURN_ON" index="VAR233">
+<position chain="CHN043" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>ef6_burn_on</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF6_CMD" index="VAR234">
+<position chain="CHN043" base="dec" length="3" length_base="dec" type="on_off">3</position>
+<signal_name>ef6_cmd[2:0]</signal_name>
+<description>Efuse cmd bus</description>
+</variable>
+<variable shortname="EF6_BURN_CLK" index="VAR235">
+<position chain="CHN043" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>ef6_burn_clk</signal_name>
+<description></description>
+</variable>
+<variable shortname="EF6_FUSE_STRING" index="VAR236">
+<position chain="CHN044" base="dec" length="32" length_base="dec" type="data" fuse="efuse">31</position>
+<signal_name>ef6_fuse_string[31:0]</signal_name>
+<description>Efuses</description>
+</variable>
+<variable shortname="TMDLLCLKMONU" index="VAR237">
+<position chain="CHN045" base="dec" length="1" length_base="dec" type="on_off">20</position>
+<signal_name>tmdc_dllclkmon_u</signal_name>
+<description>Not used</description>
+</variable>
+<variable shortname="TMDPU" index="VAR238">
+<position chain="CHN045" base="dec" length="2" length_base="dec" type="data">19</position>
+<signal_name>tmdc_dpu[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMPAR_TRIMU" index="VAR239">
+<position chain="CHN045" base="dec" length="6" length_base="dec" type="data">17</position>
+<signal_name>tmdc_par_trim_u[5:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMPAW_TRIMU" index="VAR240">
+<position chain="CHN045" base="dec" length="6" length_base="dec" type="data">11</position>
+<signal_name>tmdc_paw_trim_u[5:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMODT_TRIMU" index="VAR241">
+<position chain="CHN045" base="dec" length="3" length_base="dec" type="data">5</position>
+<signal_name>tmdc_odt_trim_u[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDQRCVONU" index="VAR242">
+<position chain="CHN045" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_dqrcvon_u</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMNADQ1U" index="VAR243">
+<position chain="CHN045" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_nadq1_u</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDLLCLKMONL" index="VAR244">
+<position chain="CHN046" base="dec" length="1" length_base="dec" type="on_off">20</position>
+<signal_name>tmdc_dllclkmon_l</signal_name>
+<description>Use this bit for DLL CLK mon.</description>
+</variable>
+<variable shortname="TMDPL" index="VAR245">
+<position chain="CHN046" base="dec" length="2" length_base="dec" type="data">19</position>
+<signal_name>tmdc_dpl[1:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMPAR_TRIML" index="VAR246">
+<position chain="CHN046" base="dec" length="6" length_base="dec" type="data">17</position>
+<signal_name>tmdc_par_trim_l[5:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMPAW_TRIML" index="VAR247">
+<position chain="CHN046" base="dec" length="6" length_base="dec" type="data">11</position>
+<signal_name>tmdc_paw_trim_l[5:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMODT_TRIML" index="VAR248">
+<position chain="CHN046" base="dec" length="3" length_base="dec" type="data">5</position>
+<signal_name>tmdc_odt_trim_l[2:0]</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMDQRCVONL" index="VAR249">
+<position chain="CHN046" base="dec" length="1" length_base="dec" type="on_off">1</position>
+<signal_name>tmdc_dqrcvon_l</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMNADQ1L" index="VAR250">
+<position chain="CHN046" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_nadq1_l</signal_name>
+<description></description>
+</variable>
+<variable shortname="VBBTRIM" index="VAR251">
+<position chain="CHN047" base="dec" length="3" length_base="dec" type="data" fuse="laser_fuse">8</position>
+<signal_name>tmdc_vbbtrim[2:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VBB_fuse_disable" index="VAR252">
+<position chain="CHN047" base="dec" length="1" length_base="dec" type="fuse_disable">5</position>
+<signal_name>tmdc_vbb_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VBBDIS" index="VAR253">
+<position chain="CHN047" base="dec" length="1" length_base="dec" type="on_off">4</position>
+<signal_name>tmdc_vbbdis</signal_name>
+<description></description>
+</variable>
+<variable shortname="VEQL" index="VAR254">
+<position chain="CHN047" base="dec" length="2" length_base="dec" type="data" fuse="laser_fuse">3</position>
+<signal_name>tmdc_veql[1:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VEQL_fuse_disable" index="VAR255">
+<position chain="CHN047" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_veql_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VEQLDIS" index="VAR256">
+<position chain="CHN047" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_veqldis</signal_name>
+<description></description>
+</variable>
+<variable shortname="TMVSSQSHORT" index="VAR257">
+<position chain="CHN048" base="dec" length="1" length_base="dec" type="on_off" fuse="laser_fuse">7</position>
+<signal_name>tmdc_vssqshort_n</signal_name>
+<description>Fuse+Efuse</description>
+</variable>
+<variable shortname="TMVSSQSHORT_fuse_disable" index="VAR258">
+<position chain="CHN048" base="dec" length="1" length_base="dec" type="fuse_disable">6</position>
+<signal_name>tmdc_vssqshort_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="SIGMARVPL" index="VAR259">
+<position chain="CHN048" base="dec" length="4" length_base="dec" type="data" fuse="laser_fuse">5</position>
+<signal_name>tmdc_sigmarvpl[3:0]</signal_name>
+<description>Fuses+Efuses</description>
+</variable>
+<variable shortname="VPL_fuse_disable" index="VAR260">
+<position chain="CHN048" base="dec" length="1" length_base="dec" type="fuse_disable">1</position>
+<signal_name>tmdc_vpl_fuse_disable</signal_name>
+<description></description>
+</variable>
+<variable shortname="VPLDIS" index="VAR261">
+<position chain="CHN048" base="dec" length="1" length_base="dec" type="on_off">0</position>
+<signal_name>tmdc_vpldis</signal_name>
+<description></description>
+</variable>
+<variable shortname="CHIP_ID" index="VAR262">
+<position chain="CHN063" base="dec" length="80" length_base="dec" type="data">79</position>
+<signal_name>chip_id[79:0]</signal_name>
+<description>Read-only</description>
+</variable>
+<variable shortname="Reserved" index="VAR263">
+<position chain="CHN002" base="dec" length="1" length_base="dec">5</position>
+<position chain="CHN002" base="dec" length="2" length_base="dec">1</position>
+<position chain="CHN003" base="dec" length="5" length_base="dec">17</position>
+<position chain="CHN003" base="dec" length="3" length_base="dec">3</position>
+<position chain="CHN009" base="dec" length="3" length_base="dec">17</position>
+<position chain="CHN012" base="dec" length="1" length_base="dec">23</position>
+<position chain="CHN012" base="dec" length="3" length_base="dec">13</position>
+<position chain="CHN012" base="dec" length="1" length_base="dec">5</position>
+<position chain="CHN013" base="dec" length="1" length_base="dec">0</position>
+<position chain="CHN014" base="dec" length="1" length_base="dec">23</position>
+<position chain="CHN014" base="dec" length="1" length_base="dec">11</position>
+<position chain="CHN014" base="dec" length="1" length_base="dec">5</position>
+<position chain="CHN045" base="dec" length="1" length_base="dec">2</position>
+<position chain="CHN046" base="dec" length="1" length_base="dec">2</position>
+<signal_name></signal_name>
+<description></description>
+</variable>
+<command shortname="TMReset" index="CMD001">
+<code base="hex">01</code>
+<location>Affects all chains</location>
+<description>Resets all SETI chains</description>
+</command>
+<command shortname="SetiOff" index="CMD002">
+<code base="hex">02</code>
+<location>SETI Master</location>
+<description>Turns SETI off</description>
+</command>
+<command shortname="RedpadReset" index="CMD003">
+<code base="hex">03</code>
+<location>Redpad</location>
+<description>Resets REDPAD</description>
+</command>
+<command shortname="TempSenseLoad" index="CMD004">
+<code base="hex">04</code>
+<location>Temperature Sensor</location>
+<description>Selftest ADC-Pass read-out; 1 bit pass/fail flag</description>
+</command>
+</seti>

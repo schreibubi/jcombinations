@@ -1,0 +1,82 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; powerup
+; ================================================================================
+{
+
+include "default.const"
+
+ENGINE="PWRUPFE"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["h1rmw","h1rmw","RW",1002]
+
+SCRAMBLER="SCR1STD"
+
+CHANNEL=POWERUP_CHANNELS
+
+PINCON=1002
+
+CFLG=NO_MEAS|NO_TRIM
+
+TRIM=""
+TRIM_CBMNAME=""
+COM_TRIM=""
+
+MEASURE=""
+MEASURE_CBMNAME=""
+COM_MEASURE=""
+
+VDD=1.35V             ; set hard here to fit to final ramp value!
+
+B_NUMBER=7
+
+; initial pause
+BUMP_1=0.0V
+BUMP_2=0.5s,1.0s,2.0s
+
+; first ramp
+BUMP_3=0.3V,0.4V,0.5V,0.6V,0.8V
+BUMP_4=2ms,6ms,20ms,60ms,200ms
+
+; second ramp
+BUMP_5=0.3V,0.4V,0.5V,0.6V,0.9V,1.2V,1.4V
+BUMP_6=2ms
+
+; plateau
+BUMP_7=BUMP_5
+BUMP_8=2ms,6ms,20ms,60ms
+
+; fourth ramp
+BUMP_9=0.1V,0.3V,0.4V,0.5V,0.6V,0.7V
+BUMP_10=2ms
+
+; plateau
+BUMP_11=BUMP_9
+BUMP_12=2ms,6ms,20ms,60ms,200ms
+
+; final ramp to VDD
+BUMP_13=1.35V
+BUMP_14=BUMP_4
+
+include "footer.const"
+
+}

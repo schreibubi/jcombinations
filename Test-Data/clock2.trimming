@@ -1,0 +1,52 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TIMSET,   TRIM_ABS, TRIM_RELATIVE ] =
+[ "%250",   5.0V,  5.0 ],
+[ "%249",   4.9V,  4.9 ],
+[ "%248",   4.8V,  4.8 ],
+[ "%247",   4.7V,  4.7 ],
+[ "%246",   4.6V,  4.6 ],
+[ "%245",   4.5V,  4.5 ],
+[ "%244",   4.4V,  4.4 ],
+[ "%243",   4.3V,  4.3 ],
+[ "%242",   4.2V,  4.2 ],
+[ "%241",   4.1V,  4.1 ],
+[ "%240",   4.0V,  4.0 ],
+[ "%239",   3.9V,  3.9 ],
+[ "%238",   3.8V,  3.8 ],
+[ "%237",   3.7V,  3.7 ],
+[ "%236",   3.6V,  3.6 ],
+[ "%235",   3.5V,  3.5 ],
+[ "%234",   3.4V,  3.4 ],
+[ "%233",   3.3V,  3.3 ],
+[ "%232",   3.2V,  3.2 ],
+[ "%231",   3.1V,  3.1 ],
+[ "%230",   3.0V,  3.0 ],
+[ "%229",   2.9V,  2.9 ],
+[ "%228",   2.8V,  2.8 ],
+[ "%227",   2.7V,  2.7 ],
+[ "%226",   2.6V,  2.6 ],
+[ "%225",   2.5V,  2.5 ],
+[ "%224",   2.4V,  2.4 ],
+[ "%223",   2.3V,  2.4 ],
+[ "%222",   2.2V,  2.2 ],
+[ "%221",   2.1V,  2.1 ],
+[ "%220",   2.0V,  2.0 ]

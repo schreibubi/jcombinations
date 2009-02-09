@@ -1,0 +1,58 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[  TRIM_SETI, TRIM_ABS ]=
+[ "TM_VISOTRIM=%10011" , -VDD   ],
+[ "TM_VISOTRIM=%10010" , -0.44V ],
+[ "TM_VISOTRIM=%10001" , -0.41V ],
+[ "TM_VISOTRIM=%10000" , -0.39V ],
+[ "TM_VISOTRIM=%10111" , -0.36V ],
+[ "TM_VISOTRIM=%10110" , -0.34V ],
+[ "TM_VISOTRIM=%10101" , -0.32V ],
+[ "TM_VISOTRIM=%10100" , -0.29V ],
+[ "TM_VISOTRIM=%11011" , -0.27V ],
+[ "TM_VISOTRIM=%11010" , -0.24V ],
+[ "TM_VISOTRIM=%11001" , -0.22V ],
+[ "TM_VISOTRIM=%11000" , -0.20V ],
+[ "TM_VISOTRIM=%11111" , -0.17V ],
+[ "TM_VISOTRIM=%11110" , -0.15V ],
+[ "TM_VISOTRIM=%11101" , -0.12V ],
+[ "TM_VISOTRIM=%11100" , -0.10V ],
+[ "TM_VISOTRIM=%00011" , -0.08V ],
+[ "TM_VISOTRIM=%00010" , -0.05V ],
+[ "TM_VISOTRIM=%00001" , -0.03V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%00000" , 0.00V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%00111" , 0.02V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%00110" , 0.04V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%00101" , 0.07V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%00100" , 0.09V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01011" , 0.12V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01010" , 0.14V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01001" , 0.16V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01000" , 0.19V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01111" , 0.21V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01110" , 0.24V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01101" , 0.26V ],
+[ "TM_VISO_BULK_CTRL=1,TM_VISOTRIM=%01100" , 0.28V ]
+
+TRIM_RELATIVE=TRIM_ABS/-0.03V
+
+TRIM="VISO"
+COM_TRIM="TRIMSTEP"

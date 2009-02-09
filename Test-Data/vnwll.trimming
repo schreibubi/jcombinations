@@ -1,0 +1,32 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "W0", "TM_VNWLLTRIM=%100",  0.0V, 0.00 ],
+[ "W1", "TM_VNWLLTRIM=%101", -0.3V, 0.50 ],
+[ "W2", "TM_VNWLLTRIM=%110", -0.4V, 0.66 ],
+[ "W3", "TM_VNWLLTRIM=%111", -0.5V, 0.83 ],
+[ "W4", "TM_VNWLLTRIM=%000", -0.6V, 1.00 ],
+[ "W5", "TM_VNWLLTRIM=%001", -0.7V, 1.16 ],
+[ "W6", "TM_VNWLLTRIM=%010", -0.8V, 1.33 ],
+[ "W7", "TM_VNWLLTRIM=%011", -0.9V, 1.50 ]
+
+TRIM="VNWLL"
+COM_TRIM="VNWLL"
