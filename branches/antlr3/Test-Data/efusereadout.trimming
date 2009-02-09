@@ -1,0 +1,32 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+[ TRIM_CBMNAME, EFREFTAP,          EFSENSE_ON,      EFSENSE_OFF ,      EFREAD_ON,     EFREAD_OFF,      IDX1, BITS ] = 
+[ "Z0"        ,"TM_EF_REFTAP=%01","TM_EF_SENSE=ON" ,"TM_EF_SENSE=OFF" ,"TM_EF_RD=ON" ,"TM_EF_RD=OFF" , 0,    104],
+[ "Z1"        ,"TM_EF1_REFTAP=%1","TM_EF1_SENSE=ON","TM_EF1_SENSE=OFF","TM_EF1_RD=ON","TM_EF1_RD=OFF", 1,    32 ],
+[ "Z2"        ,"TM_EF2_REFTAP=%1","TM_EF2_SENSE=ON","TM_EF2_SENSE=OFF","TM_EF2_RD=ON","TM_EF2_RD=OFF", 2,    32 ],
+[ "Z3"        ,"TM_EF3_REFTAP=%1","TM_EF3_SENSE=ON","TM_EF3_SENSE=OFF","TM_EF3_RD=ON","TM_EF3_RD=OFF", 3,    32 ],
+[ "Z4"        ,"TM_EF4_REFTAP=%1","TM_EF4_SENSE=ON","TM_EF4_SENSE=OFF","TM_EF4_RD=ON","TM_EF4_RD=OFF", 4,    32 ],
+[ "Z5"        ,"TM_EF5_REFTAP=%1","TM_EF5_SENSE=ON","TM_EF5_SENSE=OFF","TM_EF5_RD=ON","TM_EF5_RD=OFF", 5,    32 ],
+[ "Z6"        ,"TM_EF6_REFTAP=%1","TM_EF6_SENSE=ON","TM_EF6_SENSE=OFF","TM_EF6_RD=ON","TM_EF6_RD=OFF", 6,    32 ]
+
+TRIM="EFUSEREADOUT"
+COM_TRIM=""

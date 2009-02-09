@@ -1,0 +1,89 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+IDX2=0x5F5E10   ; 100 ms burn time @ tck=8ns
+
+IDX1=2
+
+CFLG=NO_TRIM|NO_MEAS
+
+[ TRIM_CBMNAME,  EFSTRLEN, 
+                 EFFUSESTRING, 
+                 EFWALKINGONE, 
+                 EFBURN_ON, EFBURN_OFF, 
+                 EFCLKBURN_ON, EFCLKBURN_OFF,
+                 EFRESETSHIFTREG_ON, EFRESETSHIFTREG_OFF, 
+                 EFUIB_ON, EFUIB_OFF, 
+                 EFWRITE_ON, EFWRITE_OFF ] = 
+[ "BF0",  104,   "EFblksbr_data=%11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+                 "EFblksbr_data=%00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+                 "TM_EF_BURN=%1",           "TM_EF_BURN=%0", 
+                 "TM_EF_CLK_BURN=%1",       "TM_EF_CLK_BURN=%0",
+                 "TM_EF_RESET_SHIFTREG=%1", "TM_EF_RESET_SHIFTREG=%0", 
+                 "TM_EF_UIB=%1",            "TM_EF_UIB=%0",
+                 "TM_EF_WR=%1",             "TM_EF_WR=%0" ],
+[ "BF1",  32,    "TM_EF1_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF1_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF1_BURN=%1",           "TM_EF1_BURN=%0", 
+                 "TM_EF1_CLK_BURN=%1",       "TM_EF1_CLK_BURN=%0",
+                 "TM_EF1_RESET_SHIFTREG=%1", "TM_EF1_RESET_SHIFTREG=%0", 
+                 "TM_EF1_UIB=%1",            "TM_EF1_UIB=%0",
+                 "TM_EF1_WR=%1",             "TM_EF1_WR=%0" ],
+[ "BF2",  32,    "TM_EF2_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF2_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF2_BURN=%1",           "TM_EF2_BURN=%0", 
+                 "TM_EF2_CLK_BURN=%1",       "TM_EF2_CLK_BURN=%0",
+                 "TM_EF2_RESET_SHIFTREG=%1", "TM_EF2_RESET_SHIFTREG=%0", 
+                 "TM_EF2_UIB=%1",            "TM_EF2_UIB=%0",
+                 "TM_EF2_WR=%1",             "TM_EF2_WR=%0" ],
+[ "BF3",  32,    "TM_EF3_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF3_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF3_BURN=%1",           "TM_EF3_BURN=%0", 
+                 "TM_EF3_CLK_BURN=%1",       "TM_EF3_CLK_BURN=%0",
+                 "TM_EF3_RESET_SHIFTREG=%1", "TM_EF3_RESET_SHIFTREG=%0", 
+                 "TM_EF3_UIB=%1",            "TM_EF3_UIB=%0",
+                 "TM_EF3_WR=%1",             "TM_EF3_WR=%0" ],
+[ "BF4",  32,    "TM_EF4_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF4_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF4_BURN=%1",           "TM_EF4_BURN=%0", 
+                 "TM_EF4_CLK_BURN=%1",       "TM_EF4_CLK_BURN=%0",
+                 "TM_EF4_RESET_SHIFTREG=%1", "TM_EF4_RESET_SHIFTREG=%0", 
+                 "TM_EF4_UIB=%1",            "TM_EF4_UIB=%0",
+                 "TM_EF4_WR=%1",             "TM_EF4_WR=%0" ],
+[ "BF5",  32,    "TM_EF5_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF5_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF5_BURN=%1",           "TM_EF5_BURN=%0", 
+                 "TM_EF5_CLK_BURN=%1",       "TM_EF5_CLK_BURN=%0",
+                 "TM_EF5_RESET_SHIFTREG=%1", "TM_EF5_RESET_SHIFTREG=%0", 
+                 "TM_EF5_UIB=%1",            "TM_EF5_UIB=%0",
+                 "TM_EF5_WR=%1",             "TM_EF5_WR=%0" ],
+[ "BF6",  32,    "TM_EF6_FUSE_STRING=%11111111111111111111111111111111",
+                 "TM_EF6_FUSE_STRING=%00000000000000000000000000000001",
+                 "TM_EF6_BURN=%1",           "TM_EF6_BURN=%0", 
+                 "TM_EF6_CLK_BURN=%1",       "TM_EF6_CLK_BURN=%0",
+                 "TM_EF6_RESET_SHIFTREG=%1", "TM_EF6_RESET_SHIFTREG=%0", 
+                 "TM_EF6_UIB=%1",            "TM_EF6_UIB=%0",
+                 "TM_EF6_WR=%1",             "TM_EF6_WR=%0" ]
+
+IDX1 = EFSTRLEN-2
+
+TRIM=""
+COM_TRIM=TRIM

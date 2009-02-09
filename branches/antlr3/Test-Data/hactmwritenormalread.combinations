@@ -1,0 +1,101 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; double
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX]=["h1awnrd","h1awnrd","AD"]
+
+PINCON=1004
+
+IDX1=rows*banks-2
+IDX2=cols/8-2
+IDX3=rows-2
+IDX4=banks-2
+IDX5=cols/8-2
+
+ENGINE="FCN"
+
+include "actmscrambler.trimming"
+
+include "actm_ya.trimming"
+
+include "actm_xwr_xrd_double.trimming"
+
+SCRAMBLER=NM_SCRAMBLER
+
+TRIM=""
+COM_TRIM=""
+
+include "dummy.measure"
+
+D5 = TPH
+D6 = TPH2
+
+CBMNAME=CBMNAME_PREFIX+CBMNAM_YA+CBMNAM_XWR+CBMNAM_SCR
+
+COMMENT=TEMPLATE+", VDD="+VDD+", "+COM_MEASURE+"/"+COM_TRIM+", "+ENGINE+" "+ENGARG+" "+ASDAP_ENGARG+COM_BI
+
+TESTNUMBER=count++
+
+}
+; ================================================================================
+; triple
+; ================================================================================
+{
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX]=["h1awnrt","h1awnrt","AT"]
+
+PINCON=1004
+
+IDX1=rows*banks-2
+IDX2=cols/8-2
+IDX3=rows-2
+IDX4=banks-2
+IDX5=cols/8-2
+
+ENGINE="FCN"
+
+include "actmscrambler.trimming"
+
+include "actm_ya.trimming"
+
+include "actm_xwr_xrd_triple.trimming"
+
+TRIM=""
+COM_TRIM=""
+
+include "dummy.measure"
+
+D5 = TPH
+D6 = TPH2
+
+CBMNAME=CBMNAME_PREFIX+CBMNAM_YA+CBMNAM_XWR+CBMNAM_SCR
+
+COMMENT=TEMPLATE+", VDD="+VDD+", "+COM_MEASURE+"/"+COM_TRIM+", "+ENGINE+" "+ENGARG+" "+ASDAP_ENGARG+COM_BI
+
+TESTNUMBER=count++
+
+}

@@ -1,0 +1,305 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; ================================================================================
+; Disable different generators, supply voltage through corresponding
+; pad and measure current consumption on this net or the idd current
+; ================================================================================
+
+; ================================================================================
+; VBB
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VBBDIS=ON" ,"DB", VBB_CHANNEL,   "I_VBB", -80MA,  80MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=-0.4V:0.1V:0.4V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VBB"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}
+; ================================================================================
+; VPP
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VPPDIS=ON", "DP", VPP_CHANNEL,   "I_VPP", -8MA,  8MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=2.8V:0.1V:4.5V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VPP"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}
+; ================================================================================
+; VISO
+; ================================================================================
+;;{
+;;
+;;include "default.const"
+;;
+;;[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+;;
+;;[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+;;
+;;include "vdd_spec.value"
+;;
+;;;------------------------------------------------------------
+;;[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+;;[ "TM_VISODIS=ON", "DI", VISO_CHANNEL,  "I_VISO", -80MA,  80MA ]
+;;
+;;COM_MEASURE=MEASURE
+;;
+;;; we need to wait long enough before disabling!
+;;IDX5=0xFFFF
+;;IDX6=0x14
+;;
+;;CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;;;------------------------------------------------------------
+;;
+;;;------------------------------------------------------------
+;;FORCE_VALUE=-1.0V:0.1V:1.0V
+;;TRIM_CBMNAME="NLK"
+;;TRIM="VOLTAGE"
+;;TRIM_RELATIVE=FORCE_VALUE
+;;TRIM_ABS=FORCE_VALUE
+;;COM_TRIM="VISO"
+;;
+;;CFLG=CFLG|NO_MEAS
+;;;------------------------------------------------------------
+;;
+;;include "footer.const"
+;;
+;;}
+; ================================================================================
+; VNWLL
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VNWLLDIS=ON", "DW", VNWLL_CHANNEL, "I_VNWLL",  -80MA,  80MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=-1.0V:0.1V:1.0V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VNWLL"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}
+; ================================================================================
+; VBLH
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VBLHDIS=ON", "DN", VBLH_CHANNEL,  "I_VBLH",  -80MA,  80MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=0.5V:0.1V:2.0V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VBLH"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}
+; ================================================================================
+; VPL
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VPLDIS=ON", "DL", VPL_CHANNEL,   "I_VPL", -80MA,  80MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=0.0V:0.1V:1.5V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VPL"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}
+; ================================================================================
+; VBLEQ
+; ================================================================================
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_96","h1i5bf","HG",3],["idd5b_128","h1i5ba","HH",3],["idd2p0","h1i2p0b","HM",4]
+
+[ENGINE,ENGARG,CFLG]=["DISABL","IDDEXTI",0]
+
+include "vdd_spec.value"
+
+;------------------------------------------------------------
+[ EXTRA_TESTMODE2, MEASURE_CBMNAME, CHANNEL, MEASURE, DCLMIN, DCLMAX ]=
+[ "TM_VBLEQDIS=ON", "DQ", VBLEQ_CHANNEL, "I_VBLEQ", -80MA,  80MA ]
+
+COM_MEASURE=MEASURE
+
+; we need to wait long enough before disabling!
+IDX5=0xFFFF
+IDX6=0x14
+
+CFLG=CFLG|NO_TRIM|EXTRA_TRIM_1TM
+;------------------------------------------------------------
+
+;------------------------------------------------------------
+FORCE_VALUE=0.0V:0.1V:1.5V
+TRIM_CBMNAME="NLK"
+TRIM="VOLTAGE"
+TRIM_RELATIVE=FORCE_VALUE
+TRIM_ABS=FORCE_VALUE
+COM_TRIM="VBLEQ"
+
+CFLG=CFLG|NO_MEAS
+;------------------------------------------------------------
+
+include "footer.const"
+
+}

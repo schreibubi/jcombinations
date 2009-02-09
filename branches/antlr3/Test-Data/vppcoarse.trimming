@@ -1,0 +1,41 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "Q0", "TM_VPPmargin=%1000", 2.970V , 1.12 ],
+[ "Q1", "TM_VPPmargin=%1001", 2.930V , 1.10 ],
+[ "Q2", "TM_VPPmargin=%1010", 2.890V , 1.09 ],
+[ "Q3", "TM_VPPmargin=%1011", 2.850V , 1.07 ],
+[ "Q4", "TM_VPPmargin=%1100", 2.810V , 1.06 ],
+[ "Q5", "TM_VPPmargin=%1101", 2.770V , 1.04 ],
+[ "Q6", "TM_VPPmargin=%1110", 2.730V , 1.03 ],
+[ "Q7", "TM_VPPmargin=%1111", 2.690V , 1.01 ],
+[ "Q8", "TM_VPPmargin=%0000", 2.650V , 1.00 ],
+[ "Q9", "TM_VPPmargin=%0001", 2.610V , 0.98 ],
+[ "QA", "TM_VPPmargin=%0010", 2.570V , 0.96 ],
+[ "QB", "TM_VPPmargin=%0011", 2.530V , 0.95 ],
+[ "QC", "TM_VPPmargin=%0100", 2.490V , 0.93 ],
+[ "QD", "TM_VPPmargin=%0101", 2.450V , 0.92 ],
+[ "QE", "TM_VPPmargin=%0110", 2.410V , 0.90 ],
+[ "QF", "TM_VPPmargin=%0111", 2.370V , 0.89 ]
+
+TRIM="VPP"
+COM_TRIM="VPP coarse"

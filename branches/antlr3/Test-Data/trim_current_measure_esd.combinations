@@ -1,0 +1,39 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Measure I/V curves of ESD diodes
+
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd2n","h1i2n","H5",4]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["ISVM","",0]
+
+include "vdd_spec.value"
+
+include "esdpins.measure"
+
+include "esd_force_current.trimming"
+
+include "footer.const"
+
+}

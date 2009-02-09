@@ -1,0 +1,9 @@
+
+
+
+
+include "defaultall.const"
+
+PGTIME="64MS"
+MRS0=0x520	; 428 DLL off
+

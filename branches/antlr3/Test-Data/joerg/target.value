@@ -1,0 +1,35 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+; Target when VREF is forced
+VREF_TARGET=0.8V
+
+; Chip-Individual voltage trimming
+VIND_TARGET=0.950V
+VIND_STEPS=32
+VIND_CHANNEL=VMONW_CHANNEL
+VIND_PAT="h1vrefp"
+
+; Chip-individual current trimming
+IIND_TARGET=20uA
+IIND_VOLTAGE=0.5V
+IIND_STEPS=16
+IIND_CHANNEL=VMONW_CHANNEL
+IIND_PAT="h1irefp"
+
+; What trimming is active (0=both,1=I only,2=V only)
+WHATTRIM=2

@@ -1,0 +1,41 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "A0", "TM_VBLEQTRIM=%0111",0.047V ,0.0759 ],
+[ "A2", "TM_VBLEQTRIM=%1001",0.711V ,1.1486 ],
+[ "A3", "TM_VBLEQTRIM=%1010",0.804V ,1.2988 ],
+[ "A4", "TM_VBLEQTRIM=%1011",0.898V ,1.4507 ],
+[ "A5", "TM_VBLEQTRIM=%1100",0.992V ,1.6025 ],
+[ "A6", "TM_VBLEQTRIM=%1101",1.090V ,1.7609 ],
+[ "A7", "TM_VBLEQTRIM=%1110",1.180V ,1.9063 ],
+[ "A8", "TM_VBLEQTRIM=%1111",1.200V ,1.9386 ],
+[ "A9", "TM_VBLEQTRIM=%0000",0.619V ,1.0000 ],
+[ "AA", "TM_VBLEQTRIM=%0001",0.534V ,0.8626 ],
+[ "AB", "TM_VBLEQTRIM=%0010",0.449V ,0.7253 ],
+[ "AC", "TM_VBLEQTRIM=%0011",0.363V ,0.5864 ],
+[ "AD", "TM_VBLEQTRIM=%0100",0.277V ,0.4474 ],
+[ "AE", "TM_VBLEQTRIM=%0101",0.191V ,0.3085 ],
+[ "AF", "TM_VBLEQTRIM=%0110",0.105V ,0.1696 ]
+
+
+TRIM="VBLEQ"
+COM_TRIM="VBLEQ"

@@ -1,0 +1,41 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ TRIM_CBMNAME, TRIM_SETI, TRIM_ABS, TRIM_RELATIVE ]=
+[ "B0", "TM_VBURNTRM=%0000",-3.0,1.00],
+[ "B1", "TM_VBURNTRM=%0001",-2.9,0.96],
+[ "B2", "TM_VBURNTRM=%0010",-2.8,0.93],
+[ "B3", "TM_VBURNTRM=%0011",-2.7,0.90],
+[ "B4", "TM_VBURNTRM=%0100",-2.6,0.86],
+[ "B5", "TM_VBURNTRM=%0101",-2.5,0.83],
+[ "B6", "TM_VBURNTRM=%0110",-2.4,0.80],
+[ "B7", "TM_VBURNTRM=%0111",-2.3,0.76],
+[ "B8", "TM_VBURNTRM=%1000",-2.2,0.73],
+[ "B9", "TM_VBURNTRM=%1001",-2.1,0.70],
+[ "BA", "TM_VBURNTRM=%1010",-2.0,0.66],
+[ "BB", "TM_VBURNTRM=%1011",-1.9,0.63],
+[ "BC", "TM_VBURNTRM=%1100",-1.8,0.60],
+[ "BD", "TM_VBURNTRM=%1101",-1.7,0.56],
+[ "BE", "TM_VBURNTRM=%1110",-1.6,0.53],
+[ "BF", "TM_VBURNTRM=%1111",-1.5,0.50]
+
+TRIM="VBURN"
+COM_TRIM="VBURN"
+

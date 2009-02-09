@@ -1,0 +1,83 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+; Trim VDD, measure VREF
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_600","h1i5bc","HJ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["VM","TRIM",NO_POWERUP],["VM","",0]
+
+include "burnintrimmings.extra"
+
+include "burnin.const"
+
+include "vref_direct.measure"
+
+include "vdd_stability_range.trimming"
+
+include "footer.const"
+
+}
+; Trim VDD, measure depending voltages which are directly accessible 
+; through the pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_600","h1i5bc","HJ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["VM","TRIM",NO_POWERUP],["VM","",0],["VM","FORCE",REFSWP]
+
+include "burnintrimmings.extra"
+
+include "burnin.const"
+
+include "direct.measure"
+
+include "vdd_stability_range.trimming"
+
+include "footer.const"
+
+}
+; Trim VDD, measure depending voltages which are accessible through VMON pads
+{
+
+include "default.const"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["idd5b_600","h1i5bc","HJ",3]
+
+[ENGINE,ASDAP_ENGARG,CFLG]=["VM","TRIM",NO_POWERUP],["VM","",0],["VM","FORCE",REFSWP]
+
+include "burnintrimmings.extra"
+
+include "burnin.const"
+
+include "vmon_voltages.measure"
+
+include "vdd_stability_range.trimming"
+
+include "footer.const"
+
+}
+
+

@@ -1,0 +1,70 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+{
+
+include "default.const"
+
+ENGINE="FCN"
+
+[TEMPLATE,PATNAME,CBMNAME_PREFIX,PINCON]=["t1speed","t1speed","TS",2]
+
+include "vdd_spec.value"
+
+include "dummy.measure"
+
+include "clock_actm_2_3.trimming"
+
+include "actmscrambler.trimming"
+
+[ CBMNAM_XWR,  XWR_SETTINGS,   XRD_SETTINGS]=
+[ "0", "TM_XWR=#0", "TM_XRD=#0" ],
+[ "5", "TM_XWR=#5", "TM_XRD=#5" ]
+
+[ CBMNAM_YA,  ACTM_YA]=
+[ "Y1", "TM_YA=#1" ],
+[ "YF", "TM_YA=#F" ]
+
+[ CBMNAM_YB,  ACTM_YB]=
+[ "2", "TM_YB=#2" ]
+
+[ CBMNAM_YC,  ACTM_YC]=
+[ "0", "TM_YC=#0" ]
+
+[ CBMNAM_YD,  ACTM_YD]=
+[ "7", "TM_YD=#7" ]
+
+[ CASLAT,   MRS0,  CL ]  =
+[ 50005,   0x510,   "CL=5" ],
+[ 50006,   0x520,   "CL=6" ],
+[ 50007,   0x530,   "CL=7" ],
+[ 50008,   0x540,   "CL=8" ],
+[ 50009,   0x550,   "CL=9" ]
+
+CBMNAME=CBMNAM_YA+CBMNAM_YB+CBMNAM_YC+CBMNAM_YD+CBMNAM_XWR+CBMNAM_SCR
+
+CHANNEL=""
+TRIM=""
+
+COMMENT="ACTM speed @ " + CL
+
+TESTNUMBER=count++
+
+}

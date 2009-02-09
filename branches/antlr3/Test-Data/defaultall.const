@@ -1,0 +1,119 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+rows=8192
+cols=1024
+banks=8
+ENGINE="FCN"
+ENGARG=""
+SCRAMBLER="SCR1STD"
+VDD=1.5V
+VDDQ=1.5V
+TIMER=0ms
+PINGROUP="ACTM1"
+CBMFPT=1
+CL=5
+WL=6
+DCLMAX=0.95V
+DCLMIN=0.85V
+WAITTIME=10ms
+PC=0
+XMAX=rows*banks-1
+YMAX=cols-1
+ZMAX=banks-1
+RLMAX=rows-1
+LMAX=rows-1
+HMAX=1
+XT=0
+YT=0
+XH=0
+YH=0
+ZH=0
+TPH=0
+TPH2=0
+DCMR=0
+XMASK=0xFFFF
+YMASK=0xFFFF
+XOS=0
+YOS=0
+MRS0=0x528	; 428 DLL off
+MRS1=0x0	        ;   1 DLL off
+MRS2=0x0	        ; 
+MRS3=0x0	        ; 
+D5=0
+D6=0
+IDX1=rows-2
+IDX2=cols/8-2
+IDX3=banks-2
+IDX4=0
+IDX5=0
+IDX6=0
+IDX7=0
+IDX8=0x3D09      ; IDX8 for tCK>8ns
+CFLG=0
+ASDAP_ENGARG=""
+FORCE_VALUE=0V
+VREF_TARGET=0
+WHATTRIM=0
+VIND_CHANNEL=0
+VIND_TARGET=0
+VIND_PAT=0
+VIND_STEPS=0
+IIND_CHANNEL=0
+IIND_TARGET=0
+IIND_PAT=0
+IIND_STEPS=0
+IIND_VOLTAGE=0
+TRIM_SETI="TM_NOTMRSLOCK=ON"
+MEASURE_SETI="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE1="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE2="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE3="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE4="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE5="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE6="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE7="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE8="TM_NOTMRSLOCK=ON"
+EXTRA_TESTMODE9="TM_NOTMRSLOCK=ON"
+VREF_VALUE=0
+TESTMODE="NOTUSED"
+TRIMMING="NOTUSED"
+MAXFAILS=-1
+MAXREADOUT=-1
+XCOMP=0
+YCOMP=0
+DUT=5
+BITS=80
+WIRINGLEVEL="Probecard"
+DCTYPE="GENF"
+JUDGEALGO="INRANGE"
+DERIVEALGO=""
+COM_BI=""
+EXTRA_CBMNAME=""
+
+CLOCK=8ns
+include "normal_mode.timings"
+SWING=500mV
+include "default.levels"
+
+include "channels.const"
+include "target.value"
+include "cflag.const"
+

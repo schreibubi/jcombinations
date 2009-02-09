@@ -1,0 +1,34 @@
+;
+; Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+;
+; This program is free software: you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation, either version 3 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;
+
+
+
+
+[ MEASURE_SETI, MEASURE_CBMNAME, MEASURE, CHANNEL ] =
+[ "TM_VMONC_sel=%1000", "NW" ,"VNWLL" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0001", "PP" ,"VPP" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0011", "QL" ,"VEQL" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0100", "IN" ,"VINT" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0101", "VH" ,"VBLH" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0110", "BE" ,"VBLEQ" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%1001", "BB" ,"VBB" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%1010", "PL" ,"VPL" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0111", "GN" ,"GND" , VMONC_CHANNEL ],
+[ "TM_VMONC_sel=%0000", "HZ" ,"HIZ" , VMONC_CHANNEL ]
+
+COM_MEASURE=MEASURE+" VMON"
+
