@@ -22,10 +22,10 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 
-import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTreeAdaptor;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
@@ -45,7 +45,6 @@ import org.schreibubi.symbol.SymbolVisitorPrintAndEscape;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.VHashMap;
 
-import antlr.RecognitionException;
 
 /**
  * @author Jörg Werner

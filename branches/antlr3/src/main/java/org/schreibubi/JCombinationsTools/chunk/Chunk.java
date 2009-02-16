@@ -56,7 +56,7 @@ public class Chunk implements Host<Chunk> {
 		this.before = before;
 		this.after = after;
 		if ((remove.size() < (stop - start + before + after + 1))
-				| (replace.size() < (stop - start + before + after + 1)) | (replace.size() != remove.size())) {
+				|| (replace.size() < (stop - start + before + after + 1)) || (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");
@@ -91,8 +91,8 @@ public class Chunk implements Host<Chunk> {
 		this.before = before;
 		this.after = after;
 		if ((remove.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() != remove.size())) {
+				|| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
+				|| (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");
@@ -128,8 +128,8 @@ public class Chunk implements Host<Chunk> {
 			this.after = 0;
 		}
 		if ((remove.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() != remove.size())) {
+				|| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
+				|| (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");

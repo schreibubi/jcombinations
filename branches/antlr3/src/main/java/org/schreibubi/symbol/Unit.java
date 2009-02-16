@@ -86,7 +86,7 @@ public class Unit {
 	public boolean compareTo(Unit o) {
 		List<String> on = o.getNominator();
 		List<String> od = o.getDenominator();
-		return (this.nominator.containsAll(on) & this.denominator.containsAll(od));
+		return (this.nominator.containsAll(on) && this.denominator.containsAll(od));
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class Unit {
 	 * @return true if empty
 	 */
 	public boolean empty() {
-		return ((denominator.size() == 0) & (nominator.size() == 0));
+		return ((denominator.size() == 0) && (nominator.size() == 0));
 	}
 
 	@Override
