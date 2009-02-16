@@ -25,7 +25,7 @@ import javax.swing.tree.TreePath;
  * @author Jörg Werner
  * 
  */
-public abstract class OurTreeNode implements TreeNode {
+public abstract class OurTreeNode implements TreeNode, Cloneable {
 
 	/**
 	 * The node itself is selected
