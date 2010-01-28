@@ -43,7 +43,7 @@ public class JCombinationsLoadSaveTest {
 	 * @throws JiBXException
 	 * @throws FileNotFoundException
 	 */
-	@Test
+//	@Test
 	public static void jCombinationsLoadSave() throws JiBXException, FileNotFoundException {
 		IBindingFactory bfact;
 		bfact = BindingDirectory.getFactory(org.schreibubi.JCombinations.FileFormat.Asdap.class);
@@ -56,7 +56,7 @@ public class JCombinationsLoadSaveTest {
 		mctx.marshalDocument(obj, "UTF-8", null, new FileOutputStream("target/test-classes/output_test.xml"));
 	}
 
-	@Test
+//	@Test
 	public static void jCombinationsMatSave() throws Exception {
 		IBindingFactory bfact;
 		bfact = BindingDirectory.getFactory(org.schreibubi.JCombinations.FileFormat.Asdap.class);
