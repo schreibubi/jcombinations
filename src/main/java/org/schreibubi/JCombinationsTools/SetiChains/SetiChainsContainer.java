@@ -23,7 +23,6 @@ import org.schreibubi.JCombinationsTools.SetiFormat.Chain;
 import org.schreibubi.JCombinationsTools.SetiFormat.Command;
 import org.schreibubi.JCombinationsTools.SetiFormat.Seti;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -32,8 +31,10 @@ public abstract class SetiChainsContainer {
 
 	abstract public LinkedHashMap<Integer, SetiChain> retrieveAllChains();
 
-	abstract public SetiChain retrieveSetiChain(Seti seti, Chain chain, SetiTypeEnum setiType) throws Exception;
+	abstract public SetiChain retrieveSetiChain(Seti seti, Chain chain,
+			SetiTypeEnum setiType) throws Exception;
 
-	abstract public SetiChain retrieveSetiChain(Seti seti, Command command) throws Exception;
+	abstract public SetiChain retrieveSetiChain(Seti seti, Command command)
+			throws Exception;
 
 }

@@ -62,11 +62,11 @@ public class PDFDialog extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 394954428313718556L;
+	private static final long serialVersionUID = 394954428313718556L;
 
-	private static PDFDialog	dialog;
+	private static PDFDialog dialog;
 
-	private static Choice		result				= Choice.CANCEL;
+	private static Choice result = Choice.CANCEL;
 
 	/**
 	 * Show the dialog
@@ -82,23 +82,23 @@ public class PDFDialog extends JDialog {
 		return PDFDialog.result;
 	}
 
-	private JPanel			jContentPane				= null;
+	private JPanel jContentPane = null;
 
-	private JRadioButton	singlePageRadioButton		= null;
+	private JRadioButton singlePageRadioButton = null;
 
-	private JRadioButton	multiplePagesRadioButton	= null;
+	private JRadioButton multiplePagesRadioButton = null;
 
-	private JButton			exportButton				= null;
+	private JButton exportButton = null;
 
-	private JButton			cancelButton				= null;
+	private JButton cancelButton = null;
 
-	private ButtonGroup		buttonGroup					= null;
+	private ButtonGroup buttonGroup = null;
 
-	private JLabel			jLabel						= null;	;
+	private JLabel jLabel = null;;
 
-	private JPanel			radioPanel					= null;
+	private JPanel radioPanel = null;
 
-	private JPanel			buttonPanel					= null;
+	private JPanel buttonPanel = null;
 
 	/**
 	 * This is the default constructor
@@ -119,7 +119,8 @@ public class PDFDialog extends JDialog {
 	private JPanel getButtonPanel() {
 		if (this.buttonPanel == null) {
 			this.buttonPanel = new JPanel();
-			this.buttonPanel.setLayout(new BoxLayout(getButtonPanel(), BoxLayout.X_AXIS));
+			this.buttonPanel.setLayout(new BoxLayout(getButtonPanel(),
+					BoxLayout.X_AXIS));
 			this.buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		}
 		return this.buttonPanel;
@@ -157,10 +158,11 @@ public class PDFDialog extends JDialog {
 			this.exportButton.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
-					if (getMultiplePagesRadioButton().isSelected())
+					if (getMultiplePagesRadioButton().isSelected()) {
 						PDFDialog.result = Choice.MULTI;
-					else
+					} else {
 						PDFDialog.result = Choice.SINGLE;
+					}
 
 					setVisible(false);
 				}
@@ -177,7 +179,8 @@ public class PDFDialog extends JDialog {
 	private JPanel getJContentPane() {
 		if (this.jContentPane == null) {
 			this.jContentPane = new JPanel();
-			this.jContentPane.setLayout(new BoxLayout(getJContentPane(), BoxLayout.Y_AXIS));
+			this.jContentPane.setLayout(new BoxLayout(getJContentPane(),
+					BoxLayout.Y_AXIS));
 
 			JPanel m_radioPanel = getRadioPanel();
 
@@ -227,7 +230,8 @@ public class PDFDialog extends JDialog {
 	private JPanel getRadioPanel() {
 		if (this.radioPanel == null) {
 			this.radioPanel = new JPanel();
-			this.radioPanel.setLayout(new BoxLayout(getRadioPanel(), BoxLayout.Y_AXIS));
+			this.radioPanel.setLayout(new BoxLayout(getRadioPanel(),
+					BoxLayout.Y_AXIS));
 			this.radioPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		}
 		return this.radioPanel;

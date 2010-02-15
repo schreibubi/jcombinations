@@ -25,14 +25,18 @@ package org.schreibubi.JCombinations.splash;
 public class Splasher {
 
 	/**
-	 * Shows the splash screen, launches the application and then disposes the splash screen.
+	 * Shows the splash screen, launches the application and then disposes the
+	 * splash screen.
 	 * 
 	 * @param args
 	 *            the command line arguments
 	 */
 	public static void main(String[] args) {
-		SplashWindow.splash(Splasher.class.getResource("/org/schreibubi/JCombinations/icons/JCombinations.png"));
-		SplashWindow.invokeMain("org.schreibubi.JCombinations.ui.MainWindow", args);
+		SplashWindow
+				.splash(Splasher.class
+						.getResource("/org/schreibubi/JCombinations/icons/JCombinations.png"));
+		SplashWindow.invokeMain("org.schreibubi.JCombinations.ui.MainWindow",
+				args);
 		SplashWindow.disposeSplash();
 	}
 

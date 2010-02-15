@@ -25,7 +25,6 @@ import org.schreibubi.JCombinationsTools.settings.SettingsSingleton;
 import org.schreibubi.symbol.SymbolString;
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -41,22 +40,27 @@ public class SetiPrinter {
 			SettingsSingleton.initialize("SetiPrinter", settings);
 			SettingsSingleton.getInstance().parseArguments(args, 1);
 			if ((SettingsSingleton.getInstance().areRequiredOptionsSet() == false)
-					|| (SettingsSingleton.getInstance().getProperty("help").equals("true"))) {
+					|| (SettingsSingleton.getInstance().getProperty("help")
+							.equals("true"))) {
 				SettingsSingleton.getInstance().displayHelp();
 				Runtime.getRuntime().exit(0);
 			}
 
-			if (SettingsSingleton.getInstance().getProperty("version").equals("true")) {
+			if (SettingsSingleton.getInstance().getProperty("version").equals(
+					"true")) {
 				Info.printVersion("SetiPrinter");
 				Runtime.getRuntime().exit(0);
 			}
 
-			String setiFile = SettingsSingleton.getInstance().getProperty("seti");
-			String command = SettingsSingleton.getInstance().getProperty("testmodes");
+			String setiFile = SettingsSingleton.getInstance().getProperty(
+					"seti");
+			String command = SettingsSingleton.getInstance().getProperty(
+					"testmodes");
 
 			SetiChainBuilder scb = new SetiChainBuilder(setiFile);
 			SymbolString s = new SymbolString(command);
-			SetiChainData setiChainData = scb.createSerialChain(s, SetiTypeEnum.WRITE);
+			SetiChainData setiChainData = scb.createSerialChain(s,
+					SetiTypeEnum.WRITE);
 			int len = setiChainData.getSize();
 
 			System.out.print("Command: ");
@@ -77,7 +81,8 @@ public class SetiPrinter {
 			}
 			System.out.println();
 
-			VArrayList<Integer> vList = scb.createMRSChain(s, -1, SetiTypeEnum.WRITE);
+			VArrayList<Integer> vList = scb.createMRSChain(s, -1,
+					SetiTypeEnum.WRITE);
 			System.out.println("MRS2SETI: ");
 			for (Integer i : vList) {
 				System.out.println("#" + String.format("%04x", i));

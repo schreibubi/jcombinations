@@ -32,9 +32,9 @@ public class ExtendedJFreeChart extends JFreeChart {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 4463896210584613767L;
+	private static final long serialVersionUID = 4463896210584613767L;
 
-	private TreePath			treePath;
+	private TreePath treePath;
 
 	/**
 	 * @param plot
@@ -49,7 +49,8 @@ public class ExtendedJFreeChart extends JFreeChart {
 	 * @param plot
 	 * @param createLegend
 	 */
-	public ExtendedJFreeChart(String title, Font titleFont, Plot plot, boolean createLegend) {
+	public ExtendedJFreeChart(String title, Font titleFont, Plot plot,
+			boolean createLegend) {
 		super(title, titleFont, plot, createLegend);
 	}
 

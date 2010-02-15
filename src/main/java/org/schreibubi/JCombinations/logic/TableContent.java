@@ -25,7 +25,6 @@ import javax.swing.table.TableModel;
 
 import org.schreibubi.symbol.Symbol;
 
-
 /**
  * A class which contains all relevant information for displaying the tables
  * 
@@ -33,20 +32,20 @@ import org.schreibubi.symbol.Symbol;
  */
 public class TableContent implements TableModel {
 
-	private ArrayList<ArrayList<Double>>	table			= null;
+	private ArrayList<ArrayList<Double>> table = null;
 
-	private ArrayList<Symbol>				xlabel			= null;
+	private ArrayList<Symbol> xlabel = null;
 
-	private ArrayList<Symbol>				ylabel			= null;
+	private ArrayList<Symbol> ylabel = null;
 
-	private DataModel						dm				= null;
+	private DataModel dm = null;
 
-	private String							name;
+	private String name;
 
 	/**
 	 * Event listener list
 	 */
-	protected EventListenerList				listenerList	= new EventListenerList();
+	protected EventListenerList listenerList = new EventListenerList();
 
 	/**
 	 * Constructor
@@ -60,8 +59,8 @@ public class TableContent implements TableModel {
 	 * @param ylabel
 	 *            y-labels
 	 */
-	public TableContent(String name, ArrayList<ArrayList<Double>> table, ArrayList<Symbol> xlabel,
-			ArrayList<Symbol> ylabel) {
+	public TableContent(String name, ArrayList<ArrayList<Double>> table,
+			ArrayList<Symbol> xlabel, ArrayList<Symbol> ylabel) {
 		super();
 		setName(name);
 		setTable(table);
@@ -72,7 +71,9 @@ public class TableContent implements TableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.table.TableModel#addTableModelListener(javax.swing.event.TableModelListener)
+	 * @see
+	 * javax.swing.table.TableModel#addTableModelListener(javax.swing.event.
+	 * TableModelListener)
 	 */
 	public void addTableModelListener(TableModelListener l) {
 		this.listenerList.add(TableModelListener.class, l);
@@ -94,10 +95,11 @@ public class TableContent implements TableModel {
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
 	public int getColumnCount() {
-		if (this.table != null)
+		if (this.table != null) {
 			return this.table.get(0).size() + 1;
-		else
+		} else {
 			return 0;
+		}
 	}
 
 	/*
@@ -130,10 +132,11 @@ public class TableContent implements TableModel {
 	 * @see javax.swing.table.TableModel#getRowCount()
 	 */
 	public int getRowCount() {
-		if (this.table != null)
+		if (this.table != null) {
 			return this.table.size() + 1;
-		else
+		} else {
 			return 0;
+		}
 	}
 
 	/**
@@ -158,16 +161,19 @@ public class TableContent implements TableModel {
 	public Object getValueAt(int row, int col) {
 		if (this.table != null) {
 			if (row == 0) {
-				if (col == 0)
+				if (col == 0) {
 					return ""; // left upper corner
-				else
+				} else {
 					return this.xlabel.get(col - 1).getValueUnitString();
-			} else if (col == 0)
+				}
+			} else if (col == 0) {
 				return this.ylabel.get(row - 1).getValueUnitString();
-			else
+			} else {
 				return this.table.get(row - 1).get(col - 1);
-		} else
+			}
+		} else {
 			return "";
+		}
 	}
 
 	/**
@@ -196,7 +202,9 @@ public class TableContent implements TableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.table.TableModel#removeTableModelListener(javax.swing.event.TableModelListener)
+	 * @see
+	 * javax.swing.table.TableModel#removeTableModelListener(javax.swing.event
+	 * .TableModelListener)
 	 */
 	public void removeTableModelListener(TableModelListener l) {
 		this.listenerList.remove(TableModelListener.class, l);
@@ -212,7 +220,9 @@ public class TableContent implements TableModel {
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.schreibubi.JCombinations.logic.DataEventListener#selectionUpdated(org.schreibubi.JCombinations.logic.SelectionEvent)
+			 * @see
+			 * org.schreibubi.JCombinations.logic.DataEventListener#selectionUpdated
+			 * (org.schreibubi.JCombinations.logic.SelectionEvent)
 			 */
 			@Override
 			public void selectionUpdated(SelectionEvent e) {
@@ -268,13 +278,15 @@ public class TableContent implements TableModel {
 		TableModelEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == TableModelListener.class) {
 				// Lazily create the event:
-				if (e == null)
+				if (e == null) {
 					e = new TableModelEvent(obj);
+				}
 				((TableModelListener) listeners[i + 1]).tableChanged(e);
 			}
+		}
 	}
 
 }

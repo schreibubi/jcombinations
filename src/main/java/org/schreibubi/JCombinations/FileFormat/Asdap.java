@@ -27,9 +27,9 @@ import javax.swing.tree.TreeNode;
  */
 public class Asdap extends OurTreeNode {
 
-	private ArrayList<OurTreeNode>	childs	= new ArrayList<OurTreeNode>();
+	private ArrayList<OurTreeNode> childs = new ArrayList<OurTreeNode>();
 
-	private int						version;
+	private int version;
 
 	/**
 	 * Constructor
@@ -49,11 +49,13 @@ public class Asdap extends OurTreeNode {
 		setVersion(a.getVersion());
 		if (deepCopy) {
 			ArrayList<OurTreeNode> childs_copy = new ArrayList<OurTreeNode>();
-			for (OurTreeNode node : a.getChilds())
+			for (OurTreeNode node : a.getChilds()) {
 				childs_copy.add(node.deepClone());
+			}
 			setChilds(childs_copy);
-		} else
+		} else {
 			setChilds(null);
+		}
 	}
 
 	/**
@@ -67,7 +69,9 @@ public class Asdap extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi.JCombinations.FileFormat.TreeVisitor)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi
+	 * .JCombinations.FileFormat.TreeVisitor)
 	 */
 	@Override
 	public void accept(TreeVisitor v) throws Exception {
@@ -77,13 +81,16 @@ public class Asdap extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void addChild(OurTreeNode child) {
 		child.setParent(this);
-		if (this.childs == null)
+		if (this.childs == null) {
 			this.childs = new ArrayList<OurTreeNode>();
+		}
 		this.childs.add(child);
 	}
 
@@ -207,7 +214,8 @@ public class Asdap extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @seeorg.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.
+	 * schreibubi.JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void removeChild(OurTreeNode child) {
@@ -217,7 +225,8 @@ public class Asdap extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
 	 */
 	@Override
 	public void removeChildAt(int pos) {
@@ -229,16 +238,20 @@ public class Asdap extends OurTreeNode {
 	 *            The childs to set.
 	 */
 	public void setChilds(ArrayList<OurTreeNode> childs) {
-		if (childs != null)
-			for (OurTreeNode node : childs)
+		if (childs != null) {
+			for (OurTreeNode node : childs) {
 				node.setParent(this);
+			}
+		}
 		this.childs = childs;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void setParent(OurTreeNode parent) {

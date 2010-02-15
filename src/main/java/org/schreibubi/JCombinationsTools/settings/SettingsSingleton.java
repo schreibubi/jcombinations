@@ -33,33 +33,37 @@ import org.apache.commons.cli.PosixParser;
  */
 public class SettingsSingleton {
 
-	private final Properties[]			propArray	= new Properties[3];
+	private final Properties[] propArray = new Properties[3];
 
-	private static SettingsSingleton	myInstance	= null;
+	private static SettingsSingleton myInstance = null;
 
 	public static SettingsSingleton getInstance() throws Exception {
-		if (myInstance == null)
+		if (myInstance == null) {
 			throw new Exception("SettingsSingleton was not initialized!");
+		}
 		return myInstance;
 	}
 
-	public static void initialize(String programName, SettingsInterface[] settingsEnum) throws Exception {
-		if (myInstance != null)
+	public static void initialize(String programName,
+			SettingsInterface[] settingsEnum) throws Exception {
+		if (myInstance != null) {
 			throw new Exception("SettingsSingletion was already initialized!");
+		}
 		myInstance = new SettingsSingleton(programName, settingsEnum);
 
 	}
 
-	private String										programName		= null;
+	private String programName = null;
 
-	private SettingsInterface[]							settingsEnum	= null;
+	private SettingsInterface[] settingsEnum = null;
 
-	private Options										options			= null;
+	private Options options = null;
 
-	private final HashMap<SettingsInterface, Boolean>	optionSet		= new HashMap<SettingsInterface, Boolean>();
+	private final HashMap<SettingsInterface, Boolean> optionSet = new HashMap<SettingsInterface, Boolean>();
 
 	@SuppressWarnings("static-access")
-	private SettingsSingleton(String programName, SettingsInterface[] settingsEnum) {
+	private SettingsSingleton(String programName,
+			SettingsInterface[] settingsEnum) {
 		this.programName = programName;
 		this.settingsEnum = settingsEnum;
 
@@ -76,7 +80,9 @@ public class SettingsSingleton {
 		for (SettingsInterface a : settingsEnum) {
 			OptionBuilder o = OptionBuilder.withLongOpt(a.getLongArgName());
 			if (a.hasArgs()) {
-				o = o.withDescription(a.getExplanation() + ", default \"" + a.getDefaultValue() + "\"").hasArg()
+				o = o.withDescription(
+						a.getExplanation() + ", default \""
+								+ a.getDefaultValue() + "\"").hasArg()
 						.withArgName(a.getArgName());
 			} else {
 				o = o.withDescription(a.getExplanation());
@@ -90,7 +96,8 @@ public class SettingsSingleton {
 		for (SettingsInterface a : settingsEnum) {
 			if (a.required()) {
 				if ((optionSet.get(a) == null) || (optionSet.get(a) == false)) {
-					System.err.println("Required option " + a.getLongArgName() + " is missing.");
+					System.err.println("Required option " + a.getLongArgName()
+							+ " is missing.");
 					return false;
 				}
 			}
@@ -111,8 +118,9 @@ public class SettingsSingleton {
 	}
 
 	public String getProperty(String name, int level) {
-		if ((level >= 0) && (level <= 2))
+		if ((level >= 0) && (level <= 2)) {
 			return propArray[level].getProperty(name);
+		}
 		return null;
 	}
 
@@ -126,7 +134,8 @@ public class SettingsSingleton {
 			for (SettingsInterface a : settingsEnum) {
 				if (line.hasOption(a.getShortArgName())) {
 					if (a.hasArgs()) {
-						setProperty(a.getLongArgName(), line.getOptionValue(a.getShortArgName()), level);
+						setProperty(a.getLongArgName(), line.getOptionValue(a
+								.getShortArgName()), level);
 					} else {
 						setProperty(a.getLongArgName(), "true", level);
 					}

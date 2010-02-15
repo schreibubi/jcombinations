@@ -20,7 +20,6 @@ import java.math.BigInteger;
 
 import org.schreibubi.JCombinationsTools.util.Helper;
 
-
 /**
  * Seti position
  * 
@@ -29,25 +28,25 @@ import org.schreibubi.JCombinationsTools.util.Helper;
  */
 public class Position {
 
-	private Chain		chain;
+	private Chain chain;
 
-	private String		length;
+	private String length;
 
-	private String		length_base;
+	private String length_base;
 
-	private String		defaultValue;
+	private String defaultValue;
 
-	private String		defaultValue_base;
+	private String defaultValue_base;
 
-	private String		type;
+	private String type;
 
-	private String		fuse;
+	private String fuse;
 
-	private String		position;
+	private String position;
 
-	private String		position_base;
+	private String position_base;
 
-	private Variable	fuse_disable_bit;
+	private Variable fuse_disable_bit;
 
 	/**
 	 * @return Returns the chain.
@@ -60,12 +59,13 @@ public class Position {
 	 * @return Returns the decoded length.
 	 */
 	public BigInteger getDecodedDefaultValue() {
-		if (this.defaultValue_base.equalsIgnoreCase("dec"))
+		if (this.defaultValue_base.equalsIgnoreCase("dec")) {
 			return new BigInteger(this.position, 10);
-		else if (this.defaultValue_base.equalsIgnoreCase("hex"))
+		} else if (this.defaultValue_base.equalsIgnoreCase("hex")) {
 			return new BigInteger(this.position, 16);
-		else if (this.defaultValue_base.equalsIgnoreCase("bin"))
+		} else if (this.defaultValue_base.equalsIgnoreCase("bin")) {
 			return new BigInteger(this.position, 2);
+		}
 		return BigInteger.ZERO;
 	}
 
@@ -73,12 +73,13 @@ public class Position {
 	 * @return Returns the decoded length.
 	 */
 	public int getDecodedLength() {
-		if (this.length_base.equalsIgnoreCase("dec"))
+		if (this.length_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.length);
-		else if (this.length_base.equalsIgnoreCase("hex"))
+		} else if (this.length_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.length, 16);
-		else if (this.length_base.equalsIgnoreCase("bin"))
+		} else if (this.length_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.length, 2);
+		}
 		return 0;
 	}
 
@@ -86,12 +87,13 @@ public class Position {
 	 * @return Returns the decoded length.
 	 */
 	public int getDecodedPosition() {
-		if (this.position_base.equalsIgnoreCase("dec"))
+		if (this.position_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.position);
-		else if (this.position_base.equalsIgnoreCase("hex"))
+		} else if (this.position_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.position, 16);
-		else if (this.position_base.equalsIgnoreCase("bin"))
+		} else if (this.position_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.position, 2);
+		}
 		return 0;
 	}
 

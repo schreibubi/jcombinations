@@ -23,20 +23,19 @@ import javax.swing.tree.TreeNode;
 
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class Alternative extends OurTreeNode {
 
-	private VArrayList<OurTreeNode>	childs		= new VArrayList<OurTreeNode>();
+	private VArrayList<OurTreeNode> childs = new VArrayList<OurTreeNode>();
 
-	private String					name		= null;
+	private String name = null;
 
-	private String					description	= null;
+	private String description = null;
 
-	private OurTreeNode				parent		= null;
+	private OurTreeNode parent = null;
 
 	/**
 	 * 
@@ -58,17 +57,21 @@ public class Alternative extends OurTreeNode {
 		setParent(a.getParent());
 		if (deepCopy) {
 			VArrayList<OurTreeNode> childs_copy = new VArrayList<OurTreeNode>();
-			for (OurTreeNode node : a.getChilds())
+			for (OurTreeNode node : a.getChilds()) {
 				childs_copy.add(node.deepClone());
+			}
 			setChilds(childs_copy);
-		} else
+		} else {
 			setChilds(null);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi.JCombinations.FileFormat.TreeVisitor)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi
+	 * .JCombinations.FileFormat.TreeVisitor)
 	 */
 	@Override
 	public void accept(TreeVisitor v) throws Exception {
@@ -78,13 +81,16 @@ public class Alternative extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void addChild(OurTreeNode child) {
 		child.setParent(this);
-		if (this.childs == null)
+		if (this.childs == null) {
 			this.childs = new VArrayList<OurTreeNode>();
+		}
 		this.childs.add(child);
 	}
 
@@ -211,7 +217,8 @@ public class Alternative extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @seeorg.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.
+	 * schreibubi.JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void removeChild(OurTreeNode child) {
@@ -221,7 +228,8 @@ public class Alternative extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
 	 */
 	@Override
 	public void removeChildAt(int pos) {
@@ -233,9 +241,11 @@ public class Alternative extends OurTreeNode {
 	 *            The childs to set.
 	 */
 	public void setChilds(VArrayList<OurTreeNode> childs) {
-		if (childs != null)
-			for (OurTreeNode node : childs)
+		if (childs != null) {
+			for (OurTreeNode node : childs) {
 				node.setParent(this);
+			}
+		}
 		this.childs = childs;
 	}
 
@@ -258,7 +268,9 @@ public class Alternative extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void setParent(OurTreeNode parent) {

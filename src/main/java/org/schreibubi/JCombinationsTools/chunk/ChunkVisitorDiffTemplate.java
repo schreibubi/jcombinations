@@ -26,13 +26,13 @@ import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
- * ChunkVisitorDiffTemplate is a visitor for chunks which generates a unified diff output from the visited chunks.
+ * ChunkVisitorDiffTemplate is a visitor for chunks which generates a unified
+ * diff output from the visited chunks.
  */
 public class ChunkVisitorDiffTemplate implements Visitor<Chunk> {
 
-	PrintWriter	pw	= null;
+	PrintWriter pw = null;
 
 	/**
 	 * Constructor
@@ -59,7 +59,8 @@ public class ChunkVisitorDiffTemplate implements Visitor<Chunk> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Chunk> s) throws Exception {
 		// TODO Auto-generated method stub

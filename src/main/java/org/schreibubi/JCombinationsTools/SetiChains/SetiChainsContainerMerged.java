@@ -23,19 +23,19 @@ import org.schreibubi.JCombinationsTools.SetiFormat.Chain;
 import org.schreibubi.JCombinationsTools.SetiFormat.Command;
 import org.schreibubi.JCombinationsTools.SetiFormat.Seti;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class SetiChainsContainerMerged extends SetiChainsContainer {
 
-	private final LinkedHashMap<Integer, SetiChain>	chainHash	= new LinkedHashMap<Integer, SetiChain>();
+	private final LinkedHashMap<Integer, SetiChain> chainHash = new LinkedHashMap<Integer, SetiChain>();
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.SetiChains.SetiChainsContainer#retrieveAllChains()
+	 * @seeorg.schreibubi.JCombinationsTools.SetiChains.SetiChainsContainer#
+	 * retrieveAllChains()
 	 */
 	@Override
 	public LinkedHashMap<Integer, SetiChain> retrieveAllChains() {
@@ -43,25 +43,29 @@ public class SetiChainsContainerMerged extends SetiChainsContainer {
 	}
 
 	@Override
-	public SetiChain retrieveSetiChain(Seti seti, Chain chain, SetiTypeEnum setiType) throws Exception {
+	public SetiChain retrieveSetiChain(Seti seti, Chain chain,
+			SetiTypeEnum setiType) throws Exception {
 		int key = chain.getDecodedAddress() + 10000 * setiType.ordinal();
 		if (chainHash.get(key) == null) {
 			SetiChain n = new SetiChain(seti, chain, setiType);
 			chainHash.put(key, n);
 			return n;
-		} else
+		} else {
 			return chainHash.get(key);
+		}
 	}
 
 	@Override
-	public SetiChain retrieveSetiChain(Seti seti, Command command) throws Exception {
+	public SetiChain retrieveSetiChain(Seti seti, Command command)
+			throws Exception {
 		int key = command.getDecodedCode() + 100000;
 		if (chainHash.get(key) == null) {
 			SetiChain n = new SetiChain(seti, command);
 			chainHash.put(key, n);
 			return n;
-		} else
+		} else {
 			return chainHash.get(key);
+		}
 	}
 
 }

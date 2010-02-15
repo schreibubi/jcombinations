@@ -24,7 +24,6 @@ import org.schreibubi.JCombinations.FileFormat.Shmoo;
 import org.schreibubi.JCombinations.FileFormat.TreeVisitor;
 import org.schreibubi.JCombinations.FileFormat.Ydata;
 
-
 /**
  * Returns a set of all used activeDuts
  * 
@@ -32,7 +31,7 @@ import org.schreibubi.JCombinations.FileFormat.Ydata;
  */
 public class DataListNodesVisitor implements TreeVisitor {
 
-	TreeSet<String>	dataList	= new TreeSet<String>();
+	TreeSet<String> dataList = new TreeSet<String>();
 
 	/**
 	 * Constructor
@@ -50,32 +49,41 @@ public class DataListNodesVisitor implements TreeVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Alternative)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Alternative)
 	 */
 	public void visit(Alternative a) throws Exception {
-		for (int i = 0; i < a.getChildCount(); i++)
+		for (int i = 0; i < a.getChildCount(); i++) {
 			(a.getChildAt(i)).accept(this);
+		}
 	}
 
 	public void visit(Asdap r) throws Exception {
-		for (int i = 0; i < r.getChildCount(); i++)
+		for (int i = 0; i < r.getChildCount(); i++) {
 			(r.getChildAt(i)).accept(this);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Shmoo)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Shmoo)
 	 */
 	public void visit(Shmoo s) throws Exception {
-		for (int i = 0; i < s.getChildCount(); i++)
+		for (int i = 0; i < s.getChildCount(); i++) {
 			(s.getChildAt(i)).accept(this);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Data)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Data)
 	 */
 	public void visit(Ydata d) throws Exception {
 		this.dataList.add(d.getDescription());

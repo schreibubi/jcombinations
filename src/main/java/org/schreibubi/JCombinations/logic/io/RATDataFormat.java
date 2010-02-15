@@ -26,18 +26,21 @@ import javax.swing.tree.TreePath;
 
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * @author Jörg Werner
  */
 public class RATDataFormat implements ExportDataInterface {
 
-	public void writeData(DataModel dm, OutputStream out, ArrayList<TreePath> nodes) throws IOException {
-		BufferedWriter outstream = new BufferedWriter(new OutputStreamWriter(out));
-		outstream.write("[FORMAT]\nIDAT\n[VERSION]\n3\n[HEAD]\nWritten by JCombinations\n[LEGEND]\n[TESTS]\n");
+	public void writeData(DataModel dm, OutputStream out,
+			ArrayList<TreePath> nodes) throws IOException {
+		BufferedWriter outstream = new BufferedWriter(new OutputStreamWriter(
+				out));
+		outstream
+				.write("[FORMAT]\nIDAT\n[VERSION]\n3\n[HEAD]\nWritten by JCombinations\n[LEGEND]\n[TESTS]\n");
 
 		// Write Header with first letter of column names big, Separator: |
-		outstream.write("TNO  |RESULTNAME |BANK|TESTTIME |CNO |TESTNAME                     \n");
+		outstream
+				.write("TNO  |RESULTNAME |BANK|TESTTIME |CNO |TESTNAME                     \n");
 
 		outstream.write("[TESTTIME]\n0.0s\n");
 		outstream.close();

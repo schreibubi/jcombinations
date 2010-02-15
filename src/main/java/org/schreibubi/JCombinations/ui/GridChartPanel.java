@@ -85,20 +85,23 @@ import com.lowagie.text.pdf.PdfWriter;
 /**
  * @author Werner Jörg
  */
-public class GridChartPanel extends JPanel implements Printable, MessageSource, ProgressSource {
+public class GridChartPanel extends JPanel implements Printable, MessageSource,
+		ProgressSource {
 
 	static class ImageTransferHandler extends TransferHandler {
 
 		class ImageTransferable implements Transferable {
-			private Image	image;
+			private Image image;
 
 			ImageTransferable(Image pic) {
 				this.image = pic;
 			}
 
-			public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
-				if (!isDataFlavorSupported(flavor))
+			public Object getTransferData(DataFlavor flavor)
+					throws UnsupportedFlavorException {
+				if (!isDataFlavorSupported(flavor)) {
 					throw new UnsupportedFlavorException(flavor);
+				}
 				return this.image;
 			}
 
@@ -114,12 +117,13 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		/**
 		 * 
 		 */
-		private static final long	serialVersionUID	= 3617013048540345650L;
+		private static final long serialVersionUID = 3617013048540345650L;
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
+		 * @see
+		 * javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
 		 */
 		@Override
 		public int getSourceActions(JComponent c) {
@@ -129,28 +133,31 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
+		 * @see
+		 * javax.swing.TransferHandler#createTransferable(javax.swing.JComponent
+		 * )
 		 */
 		@Override
 		protected Transferable createTransferable(JComponent c) {
-			BufferedImage b = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
+			BufferedImage b = new BufferedImage(c.getWidth(), c.getHeight(),
+					BufferedImage.TYPE_INT_RGB);
 			c.print(b.getGraphics());
 			return new ImageTransferable(b);
 		}
 	}
 
-	private static int			DEFAULT_WIDTH		= 210;
+	private static int DEFAULT_WIDTH = 210;
 
-	private static int			DEFAULT_HEIGHT		= 150;
+	private static int DEFAULT_HEIGHT = 150;
 
-	private static int			EXTRA_MARGIN		= 30;
+	private static int EXTRA_MARGIN = 30;
 
-	private static Logger		logger				= LoggerFactory.getLogger(MainWindow.class);
+	private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -3304134998948470261L;
+	private static final long serialVersionUID = -3304134998948470261L;
 
 	/**
 	 * Create PDF
@@ -165,12 +172,15 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 	 *            ProgressListener
 	 */
 	@SuppressWarnings("unchecked")
-	public static void generatePDF(File name, DataModel dm, ArrayList<TreePath> selection, ProgressListener pl) {
-		com.lowagie.text.Document document = new Document(PageSize.A4.rotate(), 50, 50, 50, 50);
+	public static void generatePDF(File name, DataModel dm,
+			ArrayList<TreePath> selection, ProgressListener pl) {
+		com.lowagie.text.Document document = new Document(PageSize.A4.rotate(),
+				50, 50, 50, 50);
 		try {
 			ArrayList<ExtendedJFreeChart> charts = dm.getCharts(selection);
 			if (charts.size() > 0) {
-				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(name));
+				PdfWriter writer = PdfWriter.getInstance(document,
+						new FileOutputStream(name));
 				writer.setViewerPreferences(PdfWriter.PageModeUseOutlines);
 				document.addAuthor("Jörg Werner");
 				document.addSubject("Created by JCombinations");
@@ -178,8 +188,10 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 				document.addCreator("JCombinations using iText");
 
 				// we define a header and a footer
-				HeaderFooter header = new HeaderFooter(new Phrase("JCombinations by Jörg Werner"), false);
-				HeaderFooter footer = new HeaderFooter(new Phrase("Page "), new Phrase("."));
+				HeaderFooter header = new HeaderFooter(new Phrase(
+						"JCombinations by Jörg Werner"), false);
+				HeaderFooter footer = new HeaderFooter(new Phrase("Page "),
+						new Phrase("."));
 				footer.setAlignment(Element.ALIGN_CENTER);
 				document.setHeader(header);
 				document.setFooter(footer);
@@ -191,33 +203,51 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 
 				PdfContentByte cb = writer.getDirectContent();
 
-				pl.progressStarted(new ProgressEvent(GridChartPanel.class, 0, charts.size()));
+				pl.progressStarted(new ProgressEvent(GridChartPanel.class, 0,
+						charts.size()));
 				for (int i = 0; i < charts.size(); i++) {
 					ExtendedJFreeChart chart = charts.get(i);
-					PdfTemplate tp = cb.createTemplate(document.right(EXTRA_MARGIN) - document.left(EXTRA_MARGIN),
-							document.top(EXTRA_MARGIN) - document.bottom(EXTRA_MARGIN));
-					Graphics2D g2d = tp.createGraphics(document.right(EXTRA_MARGIN) - document.left(EXTRA_MARGIN),
-							document.top(EXTRA_MARGIN) - document.bottom(EXTRA_MARGIN), mapper);
-					Rectangle2D r2d = new Rectangle2D.Double(0, 0, document.right(EXTRA_MARGIN)
-							- document.left(EXTRA_MARGIN), document.top(EXTRA_MARGIN) - document.bottom(EXTRA_MARGIN));
+					PdfTemplate tp = cb.createTemplate(document
+							.right(EXTRA_MARGIN)
+							- document.left(EXTRA_MARGIN), document
+							.top(EXTRA_MARGIN)
+							- document.bottom(EXTRA_MARGIN));
+					Graphics2D g2d = tp.createGraphics(document
+							.right(EXTRA_MARGIN)
+							- document.left(EXTRA_MARGIN), document
+							.top(EXTRA_MARGIN)
+							- document.bottom(EXTRA_MARGIN), mapper);
+					Rectangle2D r2d = new Rectangle2D.Double(0, 0, document
+							.right(EXTRA_MARGIN)
+							- document.left(EXTRA_MARGIN), document
+							.top(EXTRA_MARGIN)
+							- document.bottom(EXTRA_MARGIN));
 					chart.draw(g2d, r2d);
 					g2d.dispose();
-					cb.addTemplate(tp, document.left(EXTRA_MARGIN), document.bottom(EXTRA_MARGIN));
-					PdfDestination destination = new PdfDestination(PdfDestination.FIT);
+					cb.addTemplate(tp, document.left(EXTRA_MARGIN), document
+							.bottom(EXTRA_MARGIN));
+					PdfDestination destination = new PdfDestination(
+							PdfDestination.FIT);
 					TreePath treePath = chart.getTreePath();
 					PdfOutline po = cb.getRootOutline();
 					for (int j = 0; j < treePath.getPathCount(); j++) {
 						ArrayList<PdfOutline> lpo = po.getKids();
 						PdfOutline cpo = null;
-						for (PdfOutline outline : lpo)
-							if (outline.getTitle().compareTo(treePath.getPathComponent(j).toString()) == 0)
+						for (PdfOutline outline : lpo) {
+							if (outline.getTitle().compareTo(
+									treePath.getPathComponent(j).toString()) == 0) {
 								cpo = outline;
-						if (cpo == null)
-							cpo = new PdfOutline(po, destination, treePath.getPathComponent(j).toString());
+							}
+						}
+						if (cpo == null) {
+							cpo = new PdfOutline(po, destination, treePath
+									.getPathComponent(j).toString());
+						}
 						po = cpo;
 					}
 					document.newPage();
-					pl.progressIncremented(new ProgressEvent(GridChartPanel.class, i));
+					pl.progressIncremented(new ProgressEvent(
+							GridChartPanel.class, i));
 				}
 				document.close();
 				pl.progressEnded(new ProgressEvent(GridChartPanel.class));
@@ -230,12 +260,12 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		}
 	}
 
-	private DataModel			dm				= null;
+	private DataModel dm = null;
 
 	/**
 	 * Event listener list
 	 */
-	protected EventListenerList	listenerList	= new EventListenerList();
+	protected EventListenerList listenerList = new EventListenerList();
 
 	/**
 	 * Constructor
@@ -269,8 +299,10 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 	 */
 	public void copyToClipboard() {
 		TransferHandler t = getTransferHandler();
-		if (t != null)
-			t.exportToClipboard(this, Toolkit.getDefaultToolkit().getSystemClipboard(), TransferHandler.COPY);
+		if (t != null) {
+			t.exportToClipboard(this, Toolkit.getDefaultToolkit()
+					.getSystemClipboard(), TransferHandler.COPY);
+		}
 	}
 
 	/**
@@ -283,21 +315,25 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 	 */
 	public void generateExcel(File name, ArrayList<TreePath> selection) {
 		ArrayList<TableContent> tables = this.dm.getTable(selection);
-		if (tables.size() > 0)
+		if (tables.size() > 0) {
 			try {
 				HSSFWorkbook wb = new HSSFWorkbook();
 				for (int i = 0; i < tables.size(); i++) {
 					TableContent table = tables.get(i);
 					String sheetName = table.getName().replace('/', ' ');
-					HSSFSheet sheet = wb.createSheet(sheetName.substring(0, Math.min(31, sheetName.length())));
+					HSSFSheet sheet = wb.createSheet(sheetName.substring(0,
+							Math.min(31, sheetName.length())));
 					for (int row = 0; row < table.getRowCount(); row++) {
 						HSSFRow excelRow = sheet.createRow((short) row);
 						for (int col = 0; col < table.getColumnCount(); col++) {
 							Object val = table.getValueAt(row, col);
-							if (val instanceof String)
-								excelRow.createCell((short) col).setCellValue((String) val);
-							else if (val instanceof Double)
-								excelRow.createCell((short) col).setCellValue((Double) val);
+							if (val instanceof String) {
+								excelRow.createCell((short) col).setCellValue(
+										(String) val);
+							} else if (val instanceof Double) {
+								excelRow.createCell((short) col).setCellValue(
+										(Double) val);
+							}
 						}
 
 					}
@@ -308,6 +344,7 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 			} catch (IOException ioe) {
 				System.err.println(ioe.getMessage());
 			}
+		}
 	}
 
 	/**
@@ -320,11 +357,14 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 	 * @param multi
 	 *            Multipage (true) or Singlepage (false) mode
 	 */
-	public void generateSVG(File name, ArrayList<TreePath> selection, boolean multi) {
-		DOMImplementation domImpl = GenericDOMImplementation.getDOMImplementation();
+	public void generateSVG(File name, ArrayList<TreePath> selection,
+			boolean multi) {
+		DOMImplementation domImpl = GenericDOMImplementation
+				.getDOMImplementation();
 
 		// Create an instance of org.w3c.dom.Document
-		org.w3c.dom.Document document = domImpl.createDocument(null, "svg", null);
+		org.w3c.dom.Document document = domImpl.createDocument(null, "svg",
+				null);
 
 		SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(document);
 		ctx.setComment("Generated by JCombinations with Batik SVG Generator");
@@ -332,16 +372,19 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		SVGGraphics2D svgGenerator = new SVGGraphics2D(ctx, true);
 
 		ArrayList<ExtendedJFreeChart> charts = this.dm.getCharts(selection);
-		if (charts.size() > 0)
+		if (charts.size() > 0) {
 			for (ExtendedJFreeChart chart : charts) {
-				Rectangle2D r2d = new Rectangle2D.Double(0, 0, GridChartPanel.DEFAULT_WIDTH,
+				Rectangle2D r2d = new Rectangle2D.Double(0, 0,
+						GridChartPanel.DEFAULT_WIDTH,
 						GridChartPanel.DEFAULT_HEIGHT);
 				chart.draw(svgGenerator, r2d);
 			}
+		}
 
 		print(svgGenerator);
 		try {
-			OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(name), "UTF-8");
+			OutputStreamWriter out = new OutputStreamWriter(
+					new FileOutputStream(name), "UTF-8");
 			svgGenerator.stream(out, false);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
@@ -363,16 +406,18 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.print.Printable#print(java.awt.Graphics, java.awt.print.PageFormat, int)
+	 * @see java.awt.print.Printable#print(java.awt.Graphics,
+	 * java.awt.print.PageFormat, int)
 	 */
 	public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
-		if (pageIndex > 0)
-			return (Printable.NO_SUCH_PAGE     );
-		else {
+		if (pageIndex > 0) {
+			return (Printable.NO_SUCH_PAGE);
+		} else {
 			Graphics2D g2d = (Graphics2D) g;
-			g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+			g2d.translate(pageFormat.getImageableX(), pageFormat
+					.getImageableY());
 			print(g2d);
-			return (Printable.PAGE_EXISTS     );
+			return (Printable.PAGE_EXISTS);
 		}
 	}
 
@@ -434,14 +479,17 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 			int xi = (int) Math.ceil(x);
 			int yi = (int) Math.ceil(y);
 			setLayout(new GridLayout(xi, yi));
-			setPreferredSize(new Dimension(yi * GridChartPanel.DEFAULT_WIDTH, xi * GridChartPanel.DEFAULT_HEIGHT));
+			setPreferredSize(new Dimension(yi * GridChartPanel.DEFAULT_WIDTH,
+					xi * GridChartPanel.DEFAULT_HEIGHT));
 			revalidate();
 			setTransferHandler(new ImageTransferHandler());
 			fireSetupProgress(this, 0, charts.size() - 1);
 			for (int i = 0; i < charts.size(); i++) {
 				JFreeChart chart = charts.get(i);
 				ChartPanel chartPanel = new ChartPanel(chart, false);
-				chartPanel.setPreferredSize(new Dimension(GridChartPanel.DEFAULT_WIDTH, GridChartPanel.DEFAULT_HEIGHT));
+				chartPanel.setPreferredSize(new Dimension(
+						GridChartPanel.DEFAULT_WIDTH,
+						GridChartPanel.DEFAULT_HEIGHT));
 				chartPanel.revalidate();
 				chartPanel.setMouseZoomable(true);
 				add(chartPanel);
@@ -457,13 +505,15 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		MessageEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == MessageListener.class) {
 				// Lazily create the event:
-				if (e == null)
+				if (e == null) {
 					e = new MessageEvent(source, message);
+				}
 				((MessageListener) listeners[i + 1]).message(e);
 			}
+		}
 	}
 
 	protected void fireProgressEnded(Object source) {
@@ -472,13 +522,15 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		ProgressEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == ProgressListener.class) {
 				// Lazily create the event:
-				if (e == null)
+				if (e == null) {
 					e = new ProgressEvent(source);
+				}
 				((ProgressListener) listeners[i + 1]).progressEnded(e);
 			}
+		}
 	}
 
 	protected void fireProgressIncremented(Object source, int progress) {
@@ -487,13 +539,15 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		ProgressEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == ProgressListener.class) {
 				// Lazily create the event:
-				if (e == null)
+				if (e == null) {
 					e = new ProgressEvent(source, progress);
+				}
 				((ProgressListener) listeners[i + 1]).progressIncremented(e);
 			}
+		}
 	}
 
 	protected void fireSetupProgress(Object source, int min, int max) {
@@ -502,13 +556,15 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource, 
 		ProgressEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == ProgressListener.class) {
 				// Lazily create the event:
-				if (e == null)
+				if (e == null) {
 					e = new ProgressEvent(source, min, max);
+				}
 				((ProgressListener) listeners[i + 1]).progressStarted(e);
 			}
+		}
 	}
 
 }

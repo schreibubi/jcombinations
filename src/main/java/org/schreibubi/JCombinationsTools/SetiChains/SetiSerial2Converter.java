@@ -22,19 +22,18 @@ import org.schreibubi.JCombinationsTools.SetiFormat.PinAssignment;
 import org.schreibubi.JCombinationsTools.SetiFormat.Seti;
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class SetiSerial2Converter {
 
-	protected int					parallelWidth	= 4;
-	protected VArrayList<Integer>	fixedHighPins	= new VArrayList<Integer>();
-	protected VArrayList<Integer>	fixedLowPins	= new VArrayList<Integer>();
-	protected VArrayList<Integer>	commandPins		= new VArrayList<Integer>();
-	protected VArrayList<Integer>	maskPins		= new VArrayList<Integer>();
-	protected VArrayList<Integer>	dataPins		= new VArrayList<Integer>();
+	protected int parallelWidth = 4;
+	protected VArrayList<Integer> fixedHighPins = new VArrayList<Integer>();
+	protected VArrayList<Integer> fixedLowPins = new VArrayList<Integer>();
+	protected VArrayList<Integer> commandPins = new VArrayList<Integer>();
+	protected VArrayList<Integer> maskPins = new VArrayList<Integer>();
+	protected VArrayList<Integer> dataPins = new VArrayList<Integer>();
 
 	/**
 	 * 

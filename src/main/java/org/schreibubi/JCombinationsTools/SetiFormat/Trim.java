@@ -26,22 +26,23 @@ import org.schreibubi.JCombinationsTools.util.Helper;
  */
 public class Trim {
 
-	private String	trimstring;
+	private String trimstring;
 
-	private String	trimvalue;
+	private String trimvalue;
 
-	private String	trimvalue_base;
+	private String trimvalue_base;
 
 	/**
 	 * @return Returns the decoded trimvalue.
 	 */
 	public int getDecodedTrimvalue() {
-		if (this.trimvalue_base.equalsIgnoreCase("dec"))
+		if (this.trimvalue_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.trimvalue);
-		else if (this.trimvalue_base.equalsIgnoreCase("hex"))
+		} else if (this.trimvalue_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.trimvalue, 16);
-		else if (this.trimvalue_base.equalsIgnoreCase("bin"))
+		} else if (this.trimvalue_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.trimvalue, 2);
+		}
 		return 0;
 	}
 

@@ -26,53 +26,58 @@ import org.schreibubi.JCombinations.FileFormat.TreeVisitor;
 import org.schreibubi.JCombinations.FileFormat.Ydata;
 import org.schreibubi.JCombinations.logic.TreeEventCollector;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class AddNodesVisitor implements TreeVisitor {
 
-	private OurTreeNode			rootTreeNode	= null;
+	private OurTreeNode rootTreeNode = null;
 
-	private TreeEventCollector	eventCollector	= null;
+	private TreeEventCollector eventCollector = null;
 
 	/**
 	 * @param rootTreeNode
 	 *            tree to which visitor adds the nodes
 	 * @param eventCollector
 	 */
-	public AddNodesVisitor(OurTreeNode rootTreeNode, TreeEventCollector eventCollector) {
+	public AddNodesVisitor(OurTreeNode rootTreeNode,
+			TreeEventCollector eventCollector) {
 		this.rootTreeNode = rootTreeNode;
 		this.eventCollector = eventCollector;
 	}
 
 	public void visit(Alternative a) throws Exception {
 		OurTreeNode path = getTreeNodeAtPath(this.rootTreeNode, a.getTreePath());
-		if (path != null)
-			for (int i = 0; i < a.getChildCount(); i++)
+		if (path != null) {
+			for (int i = 0; i < a.getChildCount(); i++) {
 				(a.getChildAt(i)).accept(this);
-		else {
+			}
+		} else {
 			OurTreeNode alt = a.deepClone();
-			OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, a.getTreePath().getParentPath());
+			OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, a
+					.getTreePath().getParentPath());
 			parent.addChild(alt);
 			this.eventCollector.addEvent(parent, alt, parent.getIndex(alt));
 		}
 	}
 
 	public void visit(Asdap r) throws Exception {
-		for (int i = 0; i < r.getChildCount(); i++)
+		for (int i = 0; i < r.getChildCount(); i++) {
 			(r.getChildAt(i)).accept(this);
+		}
 	}
 
 	public void visit(Shmoo s) throws Exception {
 		OurTreeNode path = getTreeNodeAtPath(this.rootTreeNode, s.getTreePath());
-		if (path != null)
-			for (int i = 0; i < s.getChildCount(); i++)
+		if (path != null) {
+			for (int i = 0; i < s.getChildCount(); i++) {
 				(s.getChildAt(i)).accept(this);
-		else {
+			}
+		} else {
 			OurTreeNode shm = s.deepClone();
-			OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, s.getTreePath().getParentPath());
+			OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, s
+					.getTreePath().getParentPath());
 			parent.addChild(shm);
 			this.eventCollector.addEvent(parent, s, parent.getIndex(s));
 		}
@@ -80,29 +85,36 @@ public class AddNodesVisitor implements TreeVisitor {
 
 	public void visit(Ydata d) throws Exception {
 		OurTreeNode dat = d.deepClone();
-		OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, d.getTreePath().getParentPath());
+		OurTreeNode parent = getTreeNodeAtPath(this.rootTreeNode, d
+				.getTreePath().getParentPath());
 		parent.addChild(dat);
 		this.eventCollector.addEvent(parent, d, parent.getIndex(d));
 	}
 
-	private OurTreeNode getTreeNodeAtPath(OurTreeNode rootTreeNode, TreePath path) {
+	private OurTreeNode getTreeNodeAtPath(OurTreeNode rootTreeNode,
+			TreePath path) {
 		Object[] objectPath = path.getPath();
-		if (rootTreeNode.getName().equals(((OurTreeNode) objectPath[0]).getName())) { // the
+		if (rootTreeNode.getName().equals(
+				((OurTreeNode) objectPath[0]).getName())) { // the
 			// roots are the same
 			OurTreeNode node = rootTreeNode;
 			for (int i = 1; i < objectPath.length; i++) {
 				boolean found = false;
-				for (int j = 0; j < node.getChildCount(); j++)
-					if (((OurTreeNode) objectPath[i]).getName().equals(((OurTreeNode) node.getChildAt(j)).getName())) {
+				for (int j = 0; j < node.getChildCount(); j++) {
+					if (((OurTreeNode) objectPath[i]).getName().equals(
+							((OurTreeNode) node.getChildAt(j)).getName())) {
 						node = (OurTreeNode) node.getChildAt(j);
 						found = true;
 						break;
 					}
-				if (!found)
+				}
+				if (!found) {
 					return null;
+				}
 			}
 			return node;
-		} else
+		} else {
 			return null;
+		}
 	}
 }

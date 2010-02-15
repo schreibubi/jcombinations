@@ -30,17 +30,17 @@ public abstract class OurTreeNode implements TreeNode {
 	/**
 	 * The node itself is selected
 	 */
-	public static final int	MYSELF	= 1;
+	public static final int MYSELF = 1;
 
 	/**
 	 * A parent of the node is selected
 	 */
-	public static final int	PARENTS	= 2;
+	public static final int PARENTS = 2;
 
 	/**
 	 * A child of the node is selected
 	 */
-	public static final int	CHILDS	= 4;
+	public static final int CHILDS = 4;
 
 	/**
 	 * Visit function
@@ -67,29 +67,38 @@ public abstract class OurTreeNode implements TreeNode {
 	 * @param treePaths
 	 *            List of selected nodes
 	 * @param sel
-	 *            Determines the condition if the node itself has to be selected, or if it is enough that a parent or a
-	 *            child is selected. Or MYSELF, CHILD, PARENT to describe what you want
+	 *            Determines the condition if the node itself has to be
+	 *            selected, or if it is enough that a parent or a child is
+	 *            selected. Or MYSELF, CHILD, PARENT to describe what you want
 	 * @return true if selected
 	 */
 	public boolean componentSelected(ArrayList<TreePath> treePaths, int sel) {
 		if (treePaths != null) {
-			if (((sel & OurTreeNode.MYSELF) > 0))
-				for (TreePath treePath : treePaths)
-					if (treePath.equals(this.getTreePath()))
+			if (((sel & OurTreeNode.MYSELF) > 0)) {
+				for (TreePath treePath : treePaths) {
+					if (treePath.equals(this.getTreePath())) {
 						return true;
+					}
+				}
+			}
 			if ((sel & OurTreeNode.PARENTS) > 0) {
 				TreePath childPath = getTreePath();
-				for (TreePath treePath : treePaths)
-					if (treePath.isDescendant(childPath))
+				for (TreePath treePath : treePaths) {
+					if (treePath.isDescendant(childPath)) {
 						return true;
+					}
+				}
 			}
-			if ((sel & OurTreeNode.CHILDS) > 0)
+			if ((sel & OurTreeNode.CHILDS) > 0) {
 				if (treePaths != null) {
 					TreePath childPath = getTreePath();
-					for (TreePath treePath : treePaths)
-						if (childPath.isDescendant(treePath))
+					for (TreePath treePath : treePaths) {
+						if (childPath.isDescendant(treePath)) {
 							return true;
+						}
+					}
 				}
+			}
 		}
 		return false;
 	}

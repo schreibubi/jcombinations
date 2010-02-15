@@ -29,9 +29,9 @@ public class SelectionEvent extends EventObject {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3258135760375918902L;
+	private static final long serialVersionUID = 3258135760375918902L;
 
-	ArrayList<TreePath>			selection			= null;
+	ArrayList<TreePath> selection = null;
 
 	/**
 	 * Constructor

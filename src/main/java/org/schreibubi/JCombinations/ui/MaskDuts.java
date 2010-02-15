@@ -31,7 +31,6 @@ import org.schreibubi.JCombinations.logic.DataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * @author Jörg Werner
  */
@@ -40,21 +39,21 @@ public class MaskDuts extends JInternalFrame {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3616444596750596152L;
+	private static final long serialVersionUID = 3616444596750596152L;
 
-	private static Logger		logger				= LoggerFactory.getLogger(MaskDuts.class);
+	private static Logger logger = LoggerFactory.getLogger(MaskDuts.class);
 
-	private JPanel				jContentPane		= null;
+	private JPanel jContentPane = null;
 
-	private JList				jList				= null;
+	private JList jList = null;
 
-	private JLabel				jLabel				= null;
+	private JLabel jLabel = null;
 
-	private JScrollPane			jScrollPane			= null;
+	private JScrollPane jScrollPane = null;
 
-	private DataModel			dm					= null;
+	private DataModel dm = null;
 
-	private JButton				deleteButton		= null;
+	private JButton deleteButton = null;
 
 	/**
 	 * This is the default constructor
@@ -103,12 +102,14 @@ public class MaskDuts extends JInternalFrame {
 	private int[] arrayToSelection(ArrayList<String> sel) {
 		int[] a = new int[sel.size()];
 		int count = 0;
-		for (String s : sel)
-			for (int i = 0; i < getJList().getModel().getSize(); i++)
+		for (String s : sel) {
+			for (int i = 0; i < getJList().getModel().getSize(); i++) {
 				if (s.equals(getJList().getModel().getElementAt(i))) {
 					a[count++] = i;
 					break;
 				}
+			}
+		}
 		return a;
 	}
 
@@ -121,11 +122,14 @@ public class MaskDuts extends JInternalFrame {
 		if (this.deleteButton == null) {
 			this.deleteButton = new JButton();
 			this.deleteButton.setText("Delete selected DUTs");
-			this.deleteButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					MaskDuts.this.dm.deleteSeries(selectionToArray(getJList().getSelectedIndices()));
-				}
-			});
+			this.deleteButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							MaskDuts.this.dm
+									.deleteSeries(selectionToArray(getJList()
+											.getSelectedIndices()));
+						}
+					});
 		}
 		return this.deleteButton;
 	}
@@ -174,14 +178,19 @@ public class MaskDuts extends JInternalFrame {
 			this.jList = new JList();
 			this.jList.setLayoutOrientation(JList.VERTICAL);
 			this.jList.setVisibleRowCount(-1);
-			this.jList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-					// Ignore extra messages.
-					if (e.getValueIsAdjusting())
-						return;
-					MaskDuts.this.dm.setSeriesMask(selectionToArray(getJList().getSelectedIndices()));
-				}
-			});
+			this.jList
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(
+								javax.swing.event.ListSelectionEvent e) {
+							// Ignore extra messages.
+							if (e.getValueIsAdjusting()) {
+								return;
+							}
+							MaskDuts.this.dm
+									.setSeriesMask(selectionToArray(getJList()
+											.getSelectedIndices()));
+						}
+					});
 		}
 		return this.jList;
 	}
@@ -210,13 +219,15 @@ public class MaskDuts extends JInternalFrame {
 		this.setTitle("Mask Duts");
 		this.setContentPane(getJContentPane());
 		this.setDataModel(null);
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+		this
+				.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 	}
 
 	private ArrayList<String> selectionToArray(int[] i) {
 		ArrayList<String> sel = new ArrayList<String>();
-		for (int element : i)
+		for (int element : i) {
 			sel.add((String) getJList().getModel().getElementAt(element));
+		}
 		return sel;
 	}
 

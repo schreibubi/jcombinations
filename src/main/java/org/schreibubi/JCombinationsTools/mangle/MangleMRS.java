@@ -29,9 +29,9 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class MangleMRS extends Mangle {
 
-	private int	opcode	= 0;
+	private int opcode = 0;
 
-	private int	str_incr	= 0, int_incr = 0;
+	private int str_incr = 0, int_incr = 0;
 
 	/**
 	 * Constructor
@@ -56,7 +56,9 @@ public class MangleMRS extends Mangle {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mangle.Mangle#getNextPatchDoublePair(org.schreibubi.symbol.SymbolDouble)
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mangle.Mangle#getNextPatchDoublePair
+	 * (org.schreibubi.symbol.SymbolDouble)
 	 */
 	@Override
 	public VArrayList<SymbolDouble> getNextPatchDoublePair(SymbolDouble s) {
@@ -73,7 +75,9 @@ public class MangleMRS extends Mangle {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mangle.Mangle#getNextPatchIntegerPair(org.schreibubi.symbol.SymbolInteger)
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mangle.Mangle#getNextPatchIntegerPair
+	 * (org.schreibubi.symbol.SymbolInteger)
 	 */
 	@Override
 	public VArrayList<SymbolInteger> getNextPatchIntegerPair(SymbolInteger s) {
@@ -88,8 +92,9 @@ public class MangleMRS extends Mangle {
 	}
 
 	/**
-	 * Generates the byte list of a String with length length. The integer value i is represented as a string with
-	 * character from A-M (inverted false) or N-Z (inverted true). Example: i=2, length=3, inverted=false: AAC Example:
+	 * Generates the byte list of a String with length length. The integer value
+	 * i is represented as a string with character from A-M (inverted false) or
+	 * N-Z (inverted true). Example: i=2, length=3, inverted=false: AAC Example:
 	 * i=2, length=3, inverted=true: ZZX
 	 * 
 	 * @return an VArray which contains the char values
@@ -115,7 +120,9 @@ public class MangleMRS extends Mangle {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi.symbol.SymbolDouble)
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi
+	 * .symbol.SymbolDouble)
 	 */
 	@Override
 	public SymbolDouble mangle(SymbolDouble s) {
@@ -129,7 +136,9 @@ public class MangleMRS extends Mangle {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi.symbol.SymbolInteger)
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi
+	 * .symbol.SymbolInteger)
 	 */
 	@Override
 	public SymbolInteger mangle(SymbolInteger s) {
@@ -143,7 +152,9 @@ public class MangleMRS extends Mangle {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi.symbol.SymbolString)
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mangle.Mangle#mangle(org.schreibubi
+	 * .symbol.SymbolString)
 	 */
 	@Override
 	public SymbolString mangle(SymbolString s) {
@@ -152,8 +163,9 @@ public class MangleMRS extends Mangle {
 		if (modulo > 0) {
 			int fillCount = 4 - modulo;
 			char c = 0;
-			for (int i = 0; i < fillCount; i++)
+			for (int i = 0; i < fillCount; i++) {
 				val = val + c;
+			}
 		}
 		SymbolString n = new SymbolString(s);
 		n.setValue(val);

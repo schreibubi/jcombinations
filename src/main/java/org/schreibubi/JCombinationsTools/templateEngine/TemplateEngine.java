@@ -41,44 +41,50 @@ import org.schreibubi.symbol.Symbol;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.VHashMap;
 
-
 /**
  * @author Jörg Werner
  */
 public class TemplateEngine {
 
-	public static VArrayList<String> exec(File variablesFile, boolean generateSeparateFiles,
-			String outputFilenameOrVariable, boolean multiTemplate, String templateFilenameOrVariable, File inputDir,
-			File outputDir, File headerFile, File footerFile) throws Exception {
-		if (!variablesFile.exists())
+	public static VArrayList<String> exec(File variablesFile,
+			boolean generateSeparateFiles, String outputFilenameOrVariable,
+			boolean multiTemplate, String templateFilenameOrVariable,
+			File inputDir, File outputDir, File headerFile, File footerFile)
+			throws Exception {
+		if (!variablesFile.exists()) {
 			throw new Exception(variablesFile.toString() + " does not exist");
+		}
 
-		AssignLexer assignLexer = new AssignLexer(new BufferedReader(new FileReader(variablesFile)));
+		AssignLexer assignLexer = new AssignLexer(new BufferedReader(
+				new FileReader(variablesFile)));
 		AssignParser assignParser = new AssignParser(assignLexer);
 		assignParser.lines();
 
 		AssignTreeWalker assignTreeWalker = new AssignTreeWalker();
 		VArrayList<VHashMap<Symbol>> symbolTableLines = null;
 		symbolTableLines = assignTreeWalker.lines(assignParser.getAST());
-		return exec(symbolTableLines, generateSeparateFiles, outputFilenameOrVariable, multiTemplate,
-				templateFilenameOrVariable, inputDir, outputDir, headerFile, footerFile);
+		return exec(symbolTableLines, generateSeparateFiles,
+				outputFilenameOrVariable, multiTemplate,
+				templateFilenameOrVariable, inputDir, outputDir, headerFile,
+				footerFile);
 	}
 
 	/**
 	 * @param symbolTable
 	 *            symbolTable containing the variables
 	 * @param generateSeparateFiles
-	 *            If true, then each instance of a template is put into a separate file. The name of the file is
-	 *            determined by the variable name passed in name. If false everything is put into one file, which name
-	 *            is passed in name.
+	 *            If true, then each instance of a template is put into a
+	 *            separate file. The name of the file is determined by the
+	 *            variable name passed in name. If false everything is put into
+	 *            one file, which name is passed in name.
 	 * @param outputFilenameOrVariable
-	 *            Name of the output file if generateSeparateFiles is false or the variable name which contains the
-	 *            filename if it is true.
+	 *            Name of the output file if generateSeparateFiles is false or
+	 *            the variable name which contains the filename if it is true.
 	 * @param multiTemplate
 	 *            template name is taken from a variable
 	 * @param templateFilenameOrVariable
-	 *            Name of the template file if multiTemplate is false or the variable name which contains the template
-	 *            name to use.
+	 *            Name of the template file if multiTemplate is false or the
+	 *            variable name which contains the template name to use.
 	 * @param inputDir
 	 *            TODO
 	 * @param outputDir
@@ -90,9 +96,12 @@ public class TemplateEngine {
 	 * @return List of files generated
 	 * @throws Exception
 	 */
-	public static VArrayList<String> exec(VArrayList<VHashMap<Symbol>> symbolTableLines, boolean generateSeparateFiles,
-			String outputFilenameOrVariable, boolean multiTemplate, String templateFilenameOrVariable, File inputDir,
-			File outputDir, File headerFile, File footerFile) throws Exception {
+	public static VArrayList<String> exec(
+			VArrayList<VHashMap<Symbol>> symbolTableLines,
+			boolean generateSeparateFiles, String outputFilenameOrVariable,
+			boolean multiTemplate, String templateFilenameOrVariable,
+			File inputDir, File outputDir, File headerFile, File footerFile)
+			throws Exception {
 		VArrayList<String> fns = new VArrayList<String>();
 		char footer[] = null;
 		if (footerFile != null) {
@@ -120,10 +129,12 @@ public class TemplateEngine {
 		if (!multiTemplate) {
 			File templateFile = new File(templateFilenameOrVariable);
 			if (!templateFile.exists()) {
-				throw new Exception(templateFilenameOrVariable + " does not exist");
+				throw new Exception(templateFilenameOrVariable
+						+ " does not exist");
 			}
 
-			TemplateLexer TemplateLexer = new TemplateLexer(new BufferedReader(new FileReader(templateFile)));
+			TemplateLexer TemplateLexer = new TemplateLexer(new BufferedReader(
+					new FileReader(templateFile)));
 			TemplateParser = new TemplateParser(TemplateLexer);
 			TemplateParser.statements();
 
@@ -140,7 +151,8 @@ public class TemplateEngine {
 			fns.add(s.getPath());
 		}
 
-		for (ListIterator<VHashMap<Symbol>> i = symbolTableLines.listIterator(); i.hasNext();) {
+		for (ListIterator<VHashMap<Symbol>> i = symbolTableLines.listIterator(); i
+				.hasNext();) {
 			FileWriter fw = null;
 			/* get variables used to fill out the actual template */
 			VHashMap<Symbol> sT = i.next();
@@ -159,13 +171,17 @@ public class TemplateEngine {
 			 * if we have multiple templates in one run reread the template
 			 */
 			if (multiTemplate) {
-				String multiTemplateFilename = evalTemplateExpression(templateFilenameOrVariable, sT);
-				File templateFile = FileNameLookupSingleton.getInstance().lookup(inputDir, multiTemplateFilename);
+				String multiTemplateFilename = evalTemplateExpression(
+						templateFilenameOrVariable, sT);
+				File templateFile = FileNameLookupSingleton.getInstance()
+						.lookup(inputDir, multiTemplateFilename);
 				if (!templateFile.exists()) {
-					throw new Exception(multiTemplateFilename + " does not exist");
+					throw new Exception(multiTemplateFilename
+							+ " does not exist");
 				}
 
-				BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(multiTemplateFilename)));
+				BufferedReader bufferedReader = new BufferedReader(
+						new FileReader(new File(multiTemplateFilename)));
 				TemplateLexer TemplateLexer = new TemplateLexer(bufferedReader);
 				TemplateParser = new TemplateParser(TemplateLexer);
 				TemplateParser.statements();
@@ -205,25 +221,47 @@ public class TemplateEngine {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.isRequired().withLongOpt("output-filename").withDescription(
-					"[out] which variable is used for nameing the files").hasArg().withArgName("variable name").create(
-					'o'));
-			options.addOption(OptionBuilder.withLongOpt("multifile").withDescription(
-					"output template to multiple files, -o contains variable name to use for filename").create('m'));
-			options.addOption(OptionBuilder.withLongOpt("multitemplate").withDescription(
-					"use multiple templates, -t contains variable name to use for template").create('u'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("template").withDescription(
-					"[in] the file containing the template to process").hasArg().withArgName("file").create('t'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("variables").withDescription(
-					"[in] a file containing the values of the variables which should be replaced in the template")
-					.hasArg().withArgName("file").create('v'));
-			options.addOption(OptionBuilder.withLongOpt("outputDir").withDescription(
-					"output directory to write the generated files to.").hasArg().withArgName("file").create('d'));
-			options.addOption(OptionBuilder.withLongOpt("header").withDescription("header to insert in each file")
-					.hasArg().withArgName("file").create('h'));
-			options.addOption(OptionBuilder.withLongOpt("footer").withDescription("footer to insert in each file")
-					.hasArg().withArgName("file").create('f'));
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"output-filename").withDescription(
+					"[out] which variable is used for nameing the files")
+					.hasArg().withArgName("variable name").create('o'));
+			options
+					.addOption(OptionBuilder
+							.withLongOpt("multifile")
+							.withDescription(
+									"output template to multiple files, -o contains variable name to use for filename")
+							.create('m'));
+			options
+					.addOption(OptionBuilder
+							.withLongOpt("multitemplate")
+							.withDescription(
+									"use multiple templates, -t contains variable name to use for template")
+							.create('u'));
+			options.addOption(OptionBuilder.isRequired()
+					.withLongOpt("template").withDescription(
+							"[in] the file containing the template to process")
+					.hasArg().withArgName("file").create('t'));
+			options
+					.addOption(OptionBuilder
+							.isRequired()
+							.withLongOpt("variables")
+							.withDescription(
+									"[in] a file containing the values of the variables which should be replaced in the template")
+							.hasArg().withArgName("file").create('v'));
+			options
+					.addOption(OptionBuilder
+							.withLongOpt("outputDir")
+							.withDescription(
+									"output directory to write the generated files to.")
+							.hasArg().withArgName("file").create('d'));
+			options.addOption(OptionBuilder.withLongOpt("header")
+					.withDescription("header to insert in each file").hasArg()
+					.withArgName("file").create('h'));
+			options.addOption(OptionBuilder.withLongOpt("footer")
+					.withDescription("footer to insert in each file").hasArg()
+					.withArgName("file").create('f'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
 
 			CommandLine line = CLparser.parse(options, args);
 
@@ -270,11 +308,14 @@ public class TemplateEngine {
 			File inputDirFile = new File(".");
 			File outputDirFile = new File(outputDir);
 
-			exec(variablesFile, generateSeparateFilesSwitch, outputFilenameOrVariable, multiTemplateSwitch,
-					templateFilenameOrVariable, inputDirFile, outputDirFile, headerFile, footerFile);
+			exec(variablesFile, generateSeparateFilesSwitch,
+					outputFilenameOrVariable, multiTemplateSwitch,
+					templateFilenameOrVariable, inputDirFile, outputDirFile,
+					headerFile, footerFile);
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp(Info.getVersionString("TemplateEngine"), options);
+			formatter.printHelp(Info.getVersionString("TemplateEngine"),
+					options);
 		} catch (Exception e) {
 			System.out.println("TemplateEngine error: " + e.getMessage());
 			e.printStackTrace();
@@ -282,7 +323,8 @@ public class TemplateEngine {
 		}
 	}
 
-	private static String evalTemplateExpression(String fn, VHashMap<Symbol> sT) throws Exception {
+	private static String evalTemplateExpression(String fn, VHashMap<Symbol> sT)
+			throws Exception {
 
 		TemplateLexer TemplateLexer = new TemplateLexer(new StringReader(fn));
 		TemplateParser TemplateParser = new TemplateParser(TemplateLexer);
@@ -292,9 +334,11 @@ public class TemplateEngine {
 		PrintWriter pw = new PrintWriter(sw);
 
 		/*
-		 * ASTFactory factory = new ASTFactory(); AST r = factory.create(0,"AST ROOT");
-		 * r.setFirstChild(TemplateParser.getAST()); ASTFrame frame = new ASTFrame("Preserve Whitespace Example AST",
-		 * r); frame.setVisible(true);
+		 * ASTFactory factory = new ASTFactory(); AST r =
+		 * factory.create(0,"AST ROOT");
+		 * r.setFirstChild(TemplateParser.getAST()); ASTFrame frame = new
+		 * ASTFrame("Preserve Whitespace Example AST", r);
+		 * frame.setVisible(true);
 		 */
 
 		TemplateTreeWalker TemplateWalker = new TemplateTreeWalker();

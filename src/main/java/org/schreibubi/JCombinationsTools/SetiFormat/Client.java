@@ -26,11 +26,11 @@ import org.schreibubi.JCombinationsTools.util.Helper;
  */
 public class Client {
 
-	private String	shortname;
+	private String shortname;
 
-	private String	index;
+	private String index;
 
-	private String	description;
+	private String description;
 
 	/**
 	 * @return Returns the description.

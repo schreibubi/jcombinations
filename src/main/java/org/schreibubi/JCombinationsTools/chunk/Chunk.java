@@ -23,17 +23,16 @@ import org.schreibubi.visitor.Host;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
  * Chunk class contains all the information of one chunk of a whole patch
  */
 public class Chunk implements Host<Chunk> {
 
-	private String	name	= "";
+	private String name = "";
 
-	private int		start, stop, before, after;
+	private int start, stop, before, after;
 
-	private VArrayList<Integer>	remove, replace;
+	private VArrayList<Integer> remove, replace;
 
 	/**
 	 * Constructor of a chunk.
@@ -47,7 +46,8 @@ public class Chunk implements Host<Chunk> {
 	 *            List of binary values which are replaced
 	 * @throws Exception
 	 */
-	public Chunk(int start, int stop, int before, int after, VArrayList<Integer> remove, VArrayList<Integer> replace)
+	public Chunk(int start, int stop, int before, int after,
+			VArrayList<Integer> remove, VArrayList<Integer> replace)
 			throws Exception {
 		this.remove = remove;
 		this.replace = replace;
@@ -56,15 +56,18 @@ public class Chunk implements Host<Chunk> {
 		this.before = before;
 		this.after = after;
 		if ((remove.size() < (stop - start + before + after + 1))
-				| (replace.size() < (stop - start + before + after + 1)) | (replace.size() != remove.size())) {
+				| (replace.size() < (stop - start + before + after + 1))
+				| (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");
 			Helper.printHexLine(replace);
 
-			throw new Exception("Length of chunk is inconsistent with data. Size: "
-					+ (stop - start + before + after + 1) + " remove size: " + remove.size() + " replace size: "
-					+ replace.size());
+			throw new Exception(
+					"Length of chunk is inconsistent with data. Size: "
+							+ (stop - start + before + after + 1)
+							+ " remove size: " + remove.size()
+							+ " replace size: " + replace.size());
 		}
 	}
 
@@ -81,7 +84,8 @@ public class Chunk implements Host<Chunk> {
 	 *            List of binary values which are replaced
 	 * @throws Exception
 	 */
-	public Chunk(String name, int len, int before, int after, VArrayList<Integer> remove, VArrayList<Integer> replace)
+	public Chunk(String name, int len, int before, int after,
+			VArrayList<Integer> remove, VArrayList<Integer> replace)
 			throws Exception {
 		this.name = name;
 		this.remove = remove;
@@ -91,15 +95,18 @@ public class Chunk implements Host<Chunk> {
 		this.before = before;
 		this.after = after;
 		if ((remove.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() != remove.size())) {
+				| (replace.size() < (this.stop - this.start + this.before
+						+ this.after + 1)) | (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");
 			Helper.printHexLine(replace);
-			throw new Exception("Length of chunk is inconsistent with data. Size: "
-					+ (this.stop - this.start + this.before + this.after + 1) + " remove size: " + remove.size()
-					+ " replace size: " + replace.size());
+			throw new Exception(
+					"Length of chunk is inconsistent with data. Size: "
+							+ (this.stop - this.start + this.before
+									+ this.after + 1) + " remove size: "
+							+ remove.size() + " replace size: "
+							+ replace.size());
 
 		}
 	}
@@ -115,7 +122,8 @@ public class Chunk implements Host<Chunk> {
 	 *            List of binary values which are replaced
 	 * @throws Exception
 	 */
-	public Chunk(VArrayList<Integer> pos, VArrayList<Integer> remove, VArrayList<Integer> replace) throws Exception {
+	public Chunk(VArrayList<Integer> pos, VArrayList<Integer> remove,
+			VArrayList<Integer> replace) throws Exception {
 		this.remove = remove;
 		this.replace = replace;
 		this.start = pos.get(0).intValue();
@@ -128,15 +136,18 @@ public class Chunk implements Host<Chunk> {
 			this.after = 0;
 		}
 		if ((remove.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() < (this.stop - this.start + this.before + this.after + 1))
-				| (replace.size() != remove.size())) {
+				| (replace.size() < (this.stop - this.start + this.before
+						+ this.after + 1)) | (replace.size() != remove.size())) {
 			System.out.println("Remove:");
 			Helper.printHexLine(remove);
 			System.out.println("Replace:");
 			Helper.printHexLine(replace);
-			throw new Exception("Length of chunk is inconsistent with data. Size: "
-					+ (this.stop - this.start + this.before + this.after + 1) + " remove size: " + remove.size()
-					+ " replace size: " + replace.size());
+			throw new Exception(
+					"Length of chunk is inconsistent with data. Size: "
+							+ (this.stop - this.start + this.before
+									+ this.after + 1) + " remove size: "
+							+ remove.size() + " replace size: "
+							+ replace.size());
 		}
 	}
 
@@ -163,15 +174,17 @@ public class Chunk implements Host<Chunk> {
 				byte rem, rep;
 				rem = convertIntToByte(this.remove.get(before + j).intValue());
 				rep = convertIntToByte(this.replace.get(before + j).intValue());
-				if (binary[i] == rem)
+				if (binary[i] == rem) {
 					binary[i] = rep;
-				else
+				} else {
 					return false;
+				}
 				j++;
 			}
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	/**
@@ -182,10 +195,11 @@ public class Chunk implements Host<Chunk> {
 	 * @return converted byte
 	 */
 	public byte convertIntToByte(int i) {
-		if (i > 127)
+		if (i > 127) {
 			return (byte) (i - 256);
-		else
+		} else {
 			return (byte) i;
+		}
 	}
 
 	/**
@@ -208,8 +222,9 @@ public class Chunk implements Host<Chunk> {
 			this.before = 0;
 			this.after = 0;
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	public int getAfter() {

@@ -20,8 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * VHash implements a Hash which supports the visitor pattern. Also a custom iterator is used for easier iteration over
- * a hash.
+ * VHash implements a Hash which supports the visitor pattern. Also a custom
+ * iterator is used for easier iteration over a hash.
  * 
  * @param <T>
  *            type of class which the HashMap supports
@@ -32,7 +32,7 @@ public class VHashMap<T> extends HashMap<String, T> implements Host<T> {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 6098121288008595079L;
+	private static final long serialVersionUID = 6098121288008595079L;
 
 	public VHashMap() {
 		super();

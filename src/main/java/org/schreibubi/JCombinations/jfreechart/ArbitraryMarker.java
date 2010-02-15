@@ -37,16 +37,16 @@ public class ArbitraryMarker extends Marker {
 	/**
 	 * 
 	 */
-	private static final long			serialVersionUID	= 2859453922364205910L;
+	private static final long serialVersionUID = 2859453922364205910L;
 
 	/** The gradient paint transformer (optional). */
-	private GradientPaintTransformer	gradientPaintTransformer;
+	private GradientPaintTransformer gradientPaintTransformer;
 
-	private ArrayList<Double>			domainVal			= new ArrayList<Double>();
+	private ArrayList<Double> domainVal = new ArrayList<Double>();
 
-	private ArrayList<Double>			rangeLow			= new ArrayList<Double>();
+	private ArrayList<Double> rangeLow = new ArrayList<Double>();
 
-	private ArrayList<Double>			rangeHigh			= new ArrayList<Double>();
+	private ArrayList<Double> rangeHigh = new ArrayList<Double>();
 
 	/**
 	 * Constructor
@@ -58,9 +58,11 @@ public class ArbitraryMarker extends Marker {
 	 * @param rangeHigh
 	 *            upper y-values of range
 	 */
-	public ArbitraryMarker(ArrayList<Double> domainVal, ArrayList<Double> rangeLow, ArrayList<Double> rangeHigh) {
-		this(domainVal, rangeLow, rangeHigh, new Color(222, 222, 255, 240), new BasicStroke(0.5f), new Color(222, 222,
-				255, 240), new BasicStroke(0.5f), 0.5f);
+	public ArbitraryMarker(ArrayList<Double> domainVal,
+			ArrayList<Double> rangeLow, ArrayList<Double> rangeHigh) {
+		this(domainVal, rangeLow, rangeHigh, new Color(222, 222, 255, 240),
+				new BasicStroke(0.5f), new Color(222, 222, 255, 240),
+				new BasicStroke(0.5f), 0.5f);
 	}
 
 	/**
@@ -83,8 +85,10 @@ public class ArbitraryMarker extends Marker {
 	 * @param alpha
 	 *            Alpha channel
 	 */
-	public ArbitraryMarker(ArrayList<Double> domainVal, ArrayList<Double> rangeLow, ArrayList<Double> rangeHigh,
-			Paint paint, Stroke stroke, Paint outlinePaint, Stroke outlineStroke, float alpha) {
+	public ArbitraryMarker(ArrayList<Double> domainVal,
+			ArrayList<Double> rangeLow, ArrayList<Double> rangeHigh,
+			Paint paint, Stroke stroke, Paint outlinePaint,
+			Stroke outlineStroke, float alpha) {
 		super(paint, stroke, outlinePaint, outlineStroke, alpha);
 		this.domainVal = domainVal;
 		this.rangeLow = rangeLow;
@@ -97,7 +101,8 @@ public class ArbitraryMarker extends Marker {
 	 * @return A clone.
 	 * 
 	 * @throws CloneNotSupportedException
-	 *             Not thrown by this class, but the exception is declared for the use of subclasses.
+	 *             Not thrown by this class, but the exception is declared for
+	 *             the use of subclasses.
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
@@ -114,19 +119,26 @@ public class ArbitraryMarker extends Marker {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof ArbitraryMarker))
+		}
+		if (!(obj instanceof ArbitraryMarker)) {
 			return false;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
+		}
 		ArbitraryMarker that = (ArbitraryMarker) obj;
-		if (!this.rangeLow.equals(that.rangeLow))
+		if (!this.rangeLow.equals(that.rangeLow)) {
 			return false;
-		if (!this.rangeHigh.equals(that.rangeHigh))
+		}
+		if (!this.rangeHigh.equals(that.rangeHigh)) {
 			return false;
-		if (!ObjectUtilities.equal(this.gradientPaintTransformer, that.gradientPaintTransformer))
+		}
+		if (!ObjectUtilities.equal(this.gradientPaintTransformer,
+				that.gradientPaintTransformer)) {
 			return false;
+		}
 		return true;
 	}
 

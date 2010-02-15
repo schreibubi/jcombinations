@@ -17,8 +17,8 @@
 package org.schreibubi.visitor;
 
 /**
- * Host interface for the visitor pattern. All classes which want to support the visitor pattern have to implement this
- * interface.
+ * Host interface for the visitor pattern. All classes which want to support the
+ * visitor pattern have to implement this interface.
  * 
  * @author Jörg Werner
  * @param <T>

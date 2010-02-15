@@ -32,20 +32,22 @@ import org.schreibubi.JCombinations.FileFormat.Asdap;
 import org.schreibubi.JCombinations.FileFormat.OurTreeNode;
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * @author Werner Jörg
  */
-public class GeneralDataFormat implements ExportDataInterface, ImportDataInterface {
+public class GeneralDataFormat implements ExportDataInterface,
+		ImportDataInterface {
 
-	// private static Logger logger = LoggerFactory.getLogger( GeneralDataFormat.class
+	// private static Logger logger = LoggerFactory.getLogger(
+	// GeneralDataFormat.class
 	// );
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.io.ImportDataInterface#readData(org.schreibubi.JCombinations.logic.DataModel,
-	 *      java.io.InputStream)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.io.ImportDataInterface#readData(org
+	 * .schreibubi.JCombinations.logic.DataModel, java.io.InputStream)
 	 */
 	public void readData(DataModel dm, InputStream in) throws IOException {
 
@@ -63,10 +65,13 @@ public class GeneralDataFormat implements ExportDataInterface, ImportDataInterfa
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.io.ExportDataInterface#writeData(org.schreibubi.JCombinations.logic.DataModel,
-	 *      java.io.OutputStream, java.util.ArrayList)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.io.ExportDataInterface#writeData(org
+	 * .schreibubi.JCombinations.logic.DataModel, java.io.OutputStream,
+	 * java.util.ArrayList)
 	 */
-	public void writeData(DataModel dm, OutputStream out, ArrayList<TreePath> nodes) throws IOException {
+	public void writeData(DataModel dm, OutputStream out,
+			ArrayList<TreePath> nodes) throws IOException {
 
 		IBindingFactory bfact;
 		try {

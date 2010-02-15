@@ -19,31 +19,41 @@ package org.schreibubi.JCombinationsTools.coordinatorPatch;
 import org.schreibubi.JCombinationsTools.settings.SettingsInterface;
 
 public enum CoordinatorPatchOptions implements SettingsInterface {
-	VERSION("version", "version", false, "", "v", "", false), PRETAGS("pretags", "[in] pre tags for file searching",
-			true, "pre-tags", "e", "", false), POSTTAGS("posttags", "[in] post tags for file searching", true,
-			"post-tags", "f", "", false), SILENT("silent", "do not print warnings", false, "", "l", "false", false), CONDITIONTEMPLATE(
-			"conditiontemplate", "[in] condition template", true, "file", "t", "", false), CONDITIONHEADER(
-			"conditionheader", "[in] condition header", true, "file", "j", "", false), CONDITIONPREFIX(
-			"conditionprefix", "[in] condition file prefix", true, "file", "i", "pcf", false), COMBINATIONS(
-			"combinations", "[in] combinations file", true, "file", "c", "", true), CONDITION("condition",
-			"[out] condition file name", true, "file", "b", "", false), NOPATGEN("nopatgen",
-			"do not start pattern generation", false, "", "o", "false", false), NOPCF("nopcf", "do not generate pcf",
-			false, "", "u", "false", false), PCFDIR("pcfdir", "[out] output dir for generated pcf files", true,
-			"directory", "q", ".", false), MPADIR("mpadir", "[out] output dir for generated mpa files", true,
-			"directory", "d", ".", false), EXEC("exec", "compile command", true, "command", "x", "", true), NOREMOVE(
-			"noremove", "do not remove generated pat and mpa files", false, "", "r", "false", false), HELP("help",
-			"Help", false, "gives you help", "h", "false", false);
+	VERSION("version", "version", false, "", "v", "", false), PRETAGS(
+			"pretags", "[in] pre tags for file searching", true, "pre-tags",
+			"e", "", false), POSTTAGS("posttags",
+			"[in] post tags for file searching", true, "post-tags", "f", "",
+			false), SILENT("silent", "do not print warnings", false, "", "l",
+			"false", false), CONDITIONTEMPLATE("conditiontemplate",
+			"[in] condition template", true, "file", "t", "", false), CONDITIONHEADER(
+			"conditionheader", "[in] condition header", true, "file", "j", "",
+			false), CONDITIONPREFIX("conditionprefix",
+			"[in] condition file prefix", true, "file", "i", "pcf", false), COMBINATIONS(
+			"combinations", "[in] combinations file", true, "file", "c", "",
+			true), CONDITION("condition", "[out] condition file name", true,
+			"file", "b", "", false), NOPATGEN("nopatgen",
+			"do not start pattern generation", false, "", "o", "false", false), NOPCF(
+			"nopcf", "do not generate pcf", false, "", "u", "false", false), PCFDIR(
+			"pcfdir", "[out] output dir for generated pcf files", true,
+			"directory", "q", ".", false), MPADIR("mpadir",
+			"[out] output dir for generated mpa files", true, "directory", "d",
+			".", false), EXEC("exec", "compile command", true, "command", "x",
+			"", true), NOREMOVE("noremove",
+			"do not remove generated pat and mpa files", false, "", "r",
+			"false", false), HELP("help", "Help", false, "gives you help", "h",
+			"false", false);
 
-	String	longArgName;
-	String	explanation;
-	boolean	hasArgs;
-	String	argName;
-	String	shortArgName;
-	String	defaultValue;
-	boolean	required;
+	String longArgName;
+	String explanation;
+	boolean hasArgs;
+	String argName;
+	String shortArgName;
+	String defaultValue;
+	boolean required;
 
-	CoordinatorPatchOptions(String longArgName, String explanation, boolean hasArgs, String argName,
-			String shortArgName, String defaultValue, boolean required) {
+	CoordinatorPatchOptions(String longArgName, String explanation,
+			boolean hasArgs, String argName, String shortArgName,
+			String defaultValue, boolean required) {
 		this.longArgName = longArgName;
 		this.explanation = explanation;
 		this.hasArgs = hasArgs;
@@ -56,7 +66,9 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getArgName()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getArgName
+	 * ()
 	 */
 	public String getArgName() {
 		return argName;
@@ -65,7 +77,8 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getDefaultValue()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getDefaultValue()
 	 */
 	public String getDefaultValue() {
 		return defaultValue;
@@ -74,7 +87,8 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getExplanation()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getExplanation()
 	 */
 	public String getExplanation() {
 		return explanation;
@@ -83,7 +97,8 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getLongArgName()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getLongArgName()
 	 */
 	public String getLongArgName() {
 		return longArgName;
@@ -92,7 +107,8 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getShortArgName()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getShortArgName()
 	 */
 	public String getShortArgName() {
 		return shortArgName;
@@ -101,7 +117,9 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#isHasArgs()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#isHasArgs
+	 * ()
 	 */
 	public boolean hasArgs() {
 		return hasArgs;
@@ -110,7 +128,8 @@ public enum CoordinatorPatchOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.settings.SettingsInterface#required()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.settings.SettingsInterface#required()
 	 */
 	@Override
 	public boolean required() {

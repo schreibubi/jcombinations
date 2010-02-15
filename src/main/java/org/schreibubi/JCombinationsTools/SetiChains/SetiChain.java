@@ -24,7 +24,6 @@ import org.schreibubi.JCombinationsTools.SetiFormat.Position;
 import org.schreibubi.JCombinationsTools.SetiFormat.Seti;
 import org.schreibubi.JCombinationsTools.SetiFormat.Variable;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -35,14 +34,14 @@ public class SetiChain {
 		READ, WRITE, COMMAND
 	}
 
-	private boolean				onlyHeader		= false;
+	private boolean onlyHeader = false;
 
-	private int					chainOffset;
-	private int					bitChainLength;
+	private int chainOffset;
+	private int bitChainLength;
 
-	private final Chain			chain;
+	private final Chain chain;
 
-	private final SetiChainData	setiChainData	= new SetiChainData();
+	private final SetiChainData setiChainData = new SetiChainData();
 
 	/**
 	 * @param seti
@@ -50,7 +49,8 @@ public class SetiChain {
 	 * @param setiChainLen
 	 * @throws Exception
 	 */
-	public SetiChain(Seti seti, Chain chain, SetiTypeEnum setiType) throws Exception {
+	public SetiChain(Seti seti, Chain chain, SetiTypeEnum setiType)
+			throws Exception {
 		this.chain = chain;
 		initChain(chain.getDecodedAddress(), setiType);
 	}
@@ -76,23 +76,30 @@ public class SetiChain {
 	 * @throws Exception
 	 */
 	public void setChain(BigInteger value) throws Exception {
-		if (onlyHeader)
+		if (onlyHeader) {
 			throw new Exception("Not possible for this kind of chain!");
+		}
 		// activate the command bits for the whole chain
 		for (int i = 0; i < bitChainLength; i++) {
-			setiChainData.setBit(chainOffset + i, true, value.testBit(bitChainLength - 1 - i), true);
+			setiChainData.setBit(chainOffset + i, true, value
+					.testBit(bitChainLength - 1 - i), true);
 		}
 	}
 
 	public void setVariable(Variable var, BigInteger value) throws Exception {
-		if (onlyHeader)
+		if (onlyHeader) {
 			throw new Exception("Not possible for this kind of chain!");
+		}
 		Position position = var.getPosition();
-		if (position.getChain().getDecodedAddress() != chain.getDecodedAddress())
-			throw new Exception("Variable " + var.getShortname() + " can't be found in Chain " + chain.getShortname()
-					+ "!");
-		int bitStartOffsetInChain = bitChainLength - 1 - position.getDecodedPosition();
-		int bitStopOffsetInChain = bitChainLength - 1
+		if (position.getChain().getDecodedAddress() != chain
+				.getDecodedAddress()) {
+			throw new Exception("Variable " + var.getShortname()
+					+ " can't be found in Chain " + chain.getShortname() + "!");
+		}
+		int bitStartOffsetInChain = bitChainLength - 1
+				- position.getDecodedPosition();
+		int bitStopOffsetInChain = bitChainLength
+				- 1
 				- (position.getDecodedPosition() - position.getDecodedLength() + 1);
 		int bitInChainLength = bitStopOffsetInChain - bitStartOffsetInChain + 1;
 
@@ -107,10 +114,12 @@ public class SetiChain {
 	 * @param chain
 	 * @throws Exception
 	 */
-	private void initChain(int chainOrCommandNumber, SetiTypeEnum setiType) throws Exception {
+	private void initChain(int chainOrCommandNumber, SetiTypeEnum setiType)
+			throws Exception {
 		boolean isWrite = false;
 		boolean isCommand = false;
-		// offset for the chain start in MRS2Seti compared to the serial interface
+		// offset for the chain start in MRS2Seti compared to the serial
+		// interface
 		int setiMRS2SetiHeaderOffset = 2;
 
 		// number of bits occupied by the seti chain number in the chain
@@ -151,8 +160,10 @@ public class SetiChain {
 		// chain number (MSB to LSB!)
 		int chainNumberOffset = commandTypeOffset + 1;
 		for (int i = 0; i < setiChainVariableLength; i++) {
-			setiChainData.setBit(chainNumberOffset + i, ((chainOrCommandNumber & (int) Math.pow(2,
-					setiChainVariableLength - 1 - i)) > 0), false, false);
+			setiChainData.setBit(chainNumberOffset + i,
+					((chainOrCommandNumber & (int) Math.pow(2,
+							setiChainVariableLength - 1 - i)) > 0), false,
+					false);
 		}
 
 		// seti read (0)/write (1)

@@ -20,35 +20,37 @@ import java.util.ListIterator;
 
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
- * Class which helps generating all possible combinations. It needs to know for each possible position the number of
- * possibilities. It iterates through all possible combinations by calling getNextCombination
+ * Class which helps generating all possible combinations. It needs to know for
+ * each possible position the number of possibilities. It iterates through all
+ * possible combinations by calling getNextCombination
  * 
  * @author Jörg Werner
  * 
  */
 public class Combination {
 
-	VArrayList<Integer>	possibilities		= new VArrayList<Integer>();
+	VArrayList<Integer> possibilities = new VArrayList<Integer>();
 
-	VArrayList<Integer>	alternatives		= null;
+	VArrayList<Integer> alternatives = null;
 
-	int					totalPossibilities	= 0;
+	int totalPossibilities = 0;
 
-	int					alt					= 0;
+	int alt = 0;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param alternatives
-	 *            Array which contains how many possibilities exist for each position
+	 *            Array which contains how many possibilities exist for each
+	 *            position
 	 */
 	public Combination(VArrayList<Integer> alternatives) {
 
 		int previous = 1;
 
-		for (ListIterator<Integer> i = alternatives.listIterator(alternatives.size()); i.hasPrevious();) {
+		for (ListIterator<Integer> i = alternatives.listIterator(alternatives
+				.size()); i.hasPrevious();) {
 			int alt = i.previous();
 			this.possibilities.add(0, previous);
 			previous = previous * alt;
@@ -66,7 +68,8 @@ public class Combination {
 	}
 
 	/**
-	 * Returns which positions have changed for the last call to getNextCombination()
+	 * Returns which positions have changed for the last call to
+	 * getNextCombination()
 	 * 
 	 * @return positions which have changed
 	 */

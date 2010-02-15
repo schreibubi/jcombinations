@@ -17,7 +17,8 @@
 package org.schreibubi.symbol;
 
 /**
- * Symbol Interface is the common interface for all symbols. Implements the visitor pattern
+ * Symbol Interface is the common interface for all symbols. Implements the
+ * visitor pattern
  */
 public interface SymbolInterface {
 

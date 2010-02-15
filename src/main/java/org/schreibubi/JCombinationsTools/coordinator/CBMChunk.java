@@ -24,18 +24,19 @@ import org.schreibubi.visitor.VArrayList;
  * 
  */
 public class CBMChunk implements Cloneable {
-	private String							name;
-	private SetiChain.SetiTypeEnum	setiType;
-	private int								start;
-	private int								length;
-	private VArrayList<Integer>				cbmContent	= new VArrayList<Integer>();
+	private String name;
+	private SetiChain.SetiTypeEnum setiType;
+	private int start;
+	private int length;
+	private VArrayList<Integer> cbmContent = new VArrayList<Integer>();
 
 	/**
 	 * @param setiType
 	 *            r/w/c
 	 * 
 	 */
-	public CBMChunk(String name, SetiChain.SetiTypeEnum command, int start, int length) {
+	public CBMChunk(String name, SetiChain.SetiTypeEnum command, int start,
+			int length) {
 		this.name = name;
 		this.setiType = command;
 		this.start = start;

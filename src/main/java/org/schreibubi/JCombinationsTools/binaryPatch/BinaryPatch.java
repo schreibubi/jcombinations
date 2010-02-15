@@ -41,7 +41,6 @@ import org.schreibubi.visitor.VArrayList;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 
-
 /**
  * BinaryPatch program
  * 
@@ -59,20 +58,24 @@ public class BinaryPatch {
 	public static void exec(String patch) {
 		try {
 			File f = new File(patch);
-			if (!f.exists())
+			if (!f.exists()) {
 				throw new Exception(patch + " does not exist");
-			PatchLexer patchLexer = new PatchLexer(new BufferedReader(new FileReader(f)));
+			}
+			PatchLexer patchLexer = new PatchLexer(new BufferedReader(
+					new FileReader(f)));
 			PatchParser patchParser = new PatchParser(patchLexer);
 			patchParser.patches();
 
 			/*
-			 * ASTFactory factory = new ASTFactory(); AST r = factory.create(0,"AST ROOT");
-			 * r.setFirstChild(parser.getAST()); ASTFrame frame = new ASTFrame("Preserve Whitespace Example AST", r);
-			 * frame.setVisible(true);
+			 * ASTFactory factory = new ASTFactory(); AST r =
+			 * factory.create(0,"AST ROOT"); r.setFirstChild(parser.getAST());
+			 * ASTFrame frame = new ASTFrame("Preserve Whitespace Example AST",
+			 * r); frame.setVisible(true);
 			 */
 
 			PatchTreeWalker patchWalker = new PatchTreeWalker();
-			VArrayList<Patch> patches = patchWalker.patches(patchParser.getAST());
+			VArrayList<Patch> patches = patchWalker.patches(patchParser
+					.getAST());
 			String backupName = "";
 			byte backup[] = null;
 			byte binary[] = null;
@@ -81,9 +84,9 @@ public class BinaryPatch {
 				Patch p = it.next();
 				// System.out.print("Patching "+p.getNewName()+"...");
 				// read file in memory
-				if (backupName.equals(p.getReferenceName()))
+				if (backupName.equals(p.getReferenceName())) {
 					binary = backup.clone();
-				else {
+				} else {
 					File filein = new File(p.getReferenceName());
 					FileInputStream instr = new FileInputStream(filein);
 					flength = filein.length();
@@ -94,13 +97,17 @@ public class BinaryPatch {
 				}
 
 				// apply patches
-				ChunkVisitorPatch chunkVisitorPatch = new ChunkVisitorPatch(binary);
+				ChunkVisitorPatch chunkVisitorPatch = new ChunkVisitorPatch(
+						binary);
 				p.getChunks().accept(chunkVisitorPatch);
 
 				// Write patched file
 				File fileout = new File(p.getNewName());
-				if (fileout.exists())
-					System.out.println("Warning: overwriting already existing file: " + p.getNewName());
+				if (fileout.exists()) {
+					System.out
+							.println("Warning: overwriting already existing file: "
+									+ p.getNewName());
+				}
 				FileOutputStream outstr = new FileOutputStream(fileout);
 				outstr.write(binary);
 				outstr.close();
@@ -130,7 +137,8 @@ public class BinaryPatch {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
 
 			CommandLine line;
 			line = CLparser.parse(options, args);
@@ -141,10 +149,11 @@ public class BinaryPatch {
 			}
 			String[] leftargs = line.getArgs();
 
-			if (leftargs.length == 1)
+			if (leftargs.length == 1) {
 				exec(leftargs[0]);
-			else
+			} else {
 				System.out.println("BinaryPatch <patchfile>");
+			}
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp(Info.getVersionString("BinaryPatch"), options);

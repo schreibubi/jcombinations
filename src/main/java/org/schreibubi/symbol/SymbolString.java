@@ -26,7 +26,7 @@ import org.schreibubi.visitor.Visitor;
  * 
  */
 public class SymbolString extends Symbol {
-	private static String	STANDARD_FORMAT	= "";
+	private static String STANDARD_FORMAT = "";
 
 	/**
 	 * Formats a hex number
@@ -40,13 +40,15 @@ public class SymbolString extends Symbol {
 	private static String formatHexNumber(int i, int len) {
 		String res = Integer.toHexString(i);
 		int hexlen = res.length();
-		if (hexlen < len)
-			for (i = 0; i < len - hexlen; i++)
+		if (hexlen < len) {
+			for (i = 0; i < len - hexlen; i++) {
 				res = "0" + res;
+			}
+		}
 		return res;
 	}
 
-	private String	value	= "";
+	private String value = "";
 
 	/**
 	 * Constructor
@@ -122,8 +124,9 @@ public class SymbolString extends Symbol {
 			String o = ((SymbolString) s).getValue();
 			this.value = this.value + o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -243,15 +246,19 @@ public class SymbolString extends Symbol {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof SymbolString))
+		}
+		if (!(obj instanceof SymbolString)) {
 			return false;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
+		}
 		SymbolString that = (SymbolString) obj;
-		if (!(this.value.equals(that.value)))
+		if (!(this.value.equals(that.value))) {
 			return false;
+		}
 		return true;
 	}
 
@@ -289,8 +296,9 @@ public class SymbolString extends Symbol {
 	public VArrayList<Integer> getBinaryRepresentation() {
 		String val = getValue();
 		VArrayList<Integer> b = new VArrayList<Integer>();
-		for (int i = 0; i < val.length(); i++)
+		for (int i = 0; i < val.length(); i++) {
 			b.add(new Integer(val.charAt(i)));
+		}
 		return b;
 	}
 
@@ -303,11 +311,13 @@ public class SymbolString extends Symbol {
 	public VArrayList<Integer> getBinaryRepresentation(int len) {
 		String val = getValue();
 		VArrayList<Integer> b = new VArrayList<Integer>();
-		for (int i = 0; i < len; i++)
-			if (i < val.length())
+		for (int i = 0; i < len; i++) {
+			if (i < val.length()) {
 				b.add(new Integer(val.charAt(i)));
-			else
+			} else {
 				b.add(0);
+			}
+		}
 		return b;
 	}
 
@@ -350,10 +360,11 @@ public class SymbolString extends Symbol {
 		String res = "";
 		for (int i = 0; i < this.value.length(); i++) {
 			char c = this.value.charAt(i);
-			if ((c < 0x20) | (c > 0x7E))
+			if ((c < 0x20) | (c > 0x7E)) {
 				res += "\\u" + formatHexNumber(c, 4);
-			else
+			} else {
 				res += c;
+			}
 		}
 		return res;
 	}

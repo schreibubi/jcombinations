@@ -27,18 +27,17 @@ import org.schreibubi.JCombinations.FileFormat.Shmoo;
 import org.schreibubi.JCombinations.FileFormat.TreeVisitor;
 import org.schreibubi.JCombinations.FileFormat.Ydata;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class CopyNodesVisitor implements TreeVisitor {
 
-	private ArrayList<TreePath>	selection	= null;
+	private ArrayList<TreePath> selection = null;
 
-	private OurTreeNode			topNode		= null;
+	private OurTreeNode topNode = null;
 
-	private OurTreeNode			parent		= null;
+	private OurTreeNode parent = null;
 
 	/**
 	 * @param selection
@@ -55,7 +54,8 @@ public class CopyNodesVisitor implements TreeVisitor {
 	}
 
 	public void visit(Alternative a) throws Exception {
-		if (a.componentSelected(this.selection, OurTreeNode.MYSELF | OurTreeNode.PARENTS)) {
+		if (a.componentSelected(this.selection, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS)) {
 			Alternative alt = new Alternative(a, true);
 			this.parent.addChild(alt);
 		} else if (a.componentSelected(this.selection, OurTreeNode.CHILDS)) {
@@ -69,9 +69,10 @@ public class CopyNodesVisitor implements TreeVisitor {
 	}
 
 	public void visit(Asdap r) throws Exception {
-		if (r.componentSelected(this.selection, OurTreeNode.MYSELF | OurTreeNode.PARENTS))
+		if (r.componentSelected(this.selection, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS)) {
 			this.topNode = new Asdap(r, true);
-		else if (r.componentSelected(this.selection, OurTreeNode.CHILDS)) {
+		} else if (r.componentSelected(this.selection, OurTreeNode.CHILDS)) {
 			this.topNode = new Asdap(r, false);
 			for (int i = 0; i < r.getChildCount(); i++) {
 				this.parent = this.topNode;
@@ -81,7 +82,8 @@ public class CopyNodesVisitor implements TreeVisitor {
 	}
 
 	public void visit(Shmoo s) throws Exception {
-		if (s.componentSelected(this.selection, OurTreeNode.MYSELF | OurTreeNode.PARENTS)) {
+		if (s.componentSelected(this.selection, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS)) {
 			Shmoo shm = new Shmoo(s, true);
 			this.parent.addChild(shm);
 		} else if (s.componentSelected(this.selection, OurTreeNode.CHILDS)) {
@@ -95,7 +97,8 @@ public class CopyNodesVisitor implements TreeVisitor {
 	}
 
 	public void visit(Ydata d) throws Exception {
-		if (d.componentSelected(this.selection, OurTreeNode.MYSELF | OurTreeNode.PARENTS)) {
+		if (d.componentSelected(this.selection, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS)) {
 			Ydata dat = new Ydata(d, true);
 			this.parent.addChild(dat);
 		}

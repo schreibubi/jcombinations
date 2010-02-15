@@ -46,7 +46,6 @@ import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.collections.AST;
 
-
 /**
  * DataModel
  * 
@@ -54,22 +53,22 @@ import antlr.collections.AST;
  */
 public class DataModel {
 
-	private static Logger		logger				= LoggerFactory.getLogger(DataModel.class);
+	private static Logger logger = LoggerFactory.getLogger(DataModel.class);
 
-	private OurTreeNode			root				= null;
+	private OurTreeNode root = null;
 
-	private ArrayList<String>	seriesMask			= new ArrayList<String>();
+	private ArrayList<String> seriesMask = new ArrayList<String>();
 
-	private String				limitsText			= "";
+	private String limitsText = "";
 
-	private DUTListModelAdapter	dutListModelAdapter	= null;
+	private DUTListModelAdapter dutListModelAdapter = null;
 
-	private boolean				overlay;
+	private boolean overlay;
 
 	/**
 	 * Event listener list
 	 */
-	protected EventListenerList	listenerList		= new EventListenerList();
+	protected EventListenerList listenerList = new EventListenerList();
 
 	/**
 	 * Constructor
@@ -115,15 +114,17 @@ public class DataModel {
 	public void applyLimits() {
 		EvalVariablesParser parser = null;
 		try {
-			EvalVariablesLexer lexer = new EvalVariablesLexer(new StringReader(this.limitsText));
+			EvalVariablesLexer lexer = new EvalVariablesLexer(new StringReader(
+					this.limitsText));
 			parser = new EvalVariablesParser(lexer);
 			parser.lines();
 			fireMessage(this, "Applied limits succesfully\n", false);
 		} catch (TokenStreamException f) {
 			fireMessage(this, "Lexer error:" + f + "\n", true);
 		} catch (RecognitionException f) {
-			fireMessage(this, "Syntax error: " + f + "\n", calculateStringPosition(this.limitsText, f.getLine(), f
-					.getColumn()), true);
+			fireMessage(this, "Syntax error: " + f + "\n",
+					calculateStringPosition(this.limitsText, f.getLine(), f
+							.getColumn()), true);
 		} catch (Exception f) {
 			fireMessage(this, "Exception: " + f + "\n", true);
 		}
@@ -158,7 +159,8 @@ public class DataModel {
 	 */
 	public void deleteSeries(ArrayList<String> series) {
 		ArrayList<TreePath> selection = new ArrayList<TreePath>();
-		SeriesToSelectionVisitor v = new SeriesToSelectionVisitor(series, selection);
+		SeriesToSelectionVisitor v = new SeriesToSelectionVisitor(series,
+				selection);
 		try {
 			this.root.accept(v);
 		} catch (Exception e) {
@@ -177,7 +179,7 @@ public class DataModel {
 		SelectionEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == DataEventListener.class) {
 				// Lazily create the event:
 				if (e == null) {
@@ -185,6 +187,7 @@ public class DataModel {
 				}
 				((DataEventListener) listeners[i + 1]).selectionUpdated(e);
 			}
+		}
 	}
 
 	/**
@@ -192,11 +195,13 @@ public class DataModel {
 	 * @return charts
 	 */
 	public ArrayList<ExtendedJFreeChart> getCharts(ArrayList<TreePath> selection) {
-		if (selection == null)
+		if (selection == null) {
 			return null;
+		}
 		ArrayList<ExtendedJFreeChart> charts = new ArrayList<ExtendedJFreeChart>();
 		if (overlay) {
-			ChartNodesVisitorOverlay v = new ChartNodesVisitorOverlay(selection, this.seriesMask, charts);
+			ChartNodesVisitorOverlay v = new ChartNodesVisitorOverlay(
+					selection, this.seriesMask, charts);
 			try {
 				this.root.accept(v);
 			} catch (Exception e) {
@@ -204,7 +209,8 @@ public class DataModel {
 				fireMessage(this, e.getMessage(), false);
 			}
 		} else {
-			ChartNodesVisitor v = new ChartNodesVisitor(selection, this.seriesMask, charts);
+			ChartNodesVisitor v = new ChartNodesVisitor(selection,
+					this.seriesMask, charts);
 			try {
 				this.root.accept(v);
 			} catch (Exception e) {
@@ -297,10 +303,12 @@ public class DataModel {
 	 * @return table
 	 */
 	public ArrayList<TableContent> getTable(ArrayList<TreePath> selection) {
-		if (selection == null)
+		if (selection == null) {
 			return null;
+		}
 		ArrayList<TableContent> table = new ArrayList<TableContent>();
-		TableNodesVisitor v = new TableNodesVisitor(selection, this.seriesMask, table);
+		TableNodesVisitor v = new TableNodesVisitor(selection, this.seriesMask,
+				table);
 		try {
 			this.root.accept(v);
 		} catch (Exception e) {
@@ -395,7 +403,7 @@ public class DataModel {
 		DataEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == DataEventListener.class) {
 				// Lazily create the event:
 				if (e == null) {
@@ -403,6 +411,7 @@ public class DataModel {
 				}
 				((DataEventListener) listeners[i + 1]).limitMessage(e);
 			}
+		}
 	}
 
 	protected void fireMessage(Object source, String str, int pos, boolean error) {
@@ -411,7 +420,7 @@ public class DataModel {
 		DataEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == DataEventListener.class) {
 				// Lazily create the event:
 				if (e == null) {
@@ -419,16 +428,18 @@ public class DataModel {
 				}
 				((DataEventListener) listeners[i + 1]).limitMessage(e);
 			}
+		}
 	}
 
-	protected void fireTreeStructureChanged(Object source, TreePath path, int[] childIndices, Object[] children) {
+	protected void fireTreeStructureChanged(Object source, TreePath path,
+			int[] childIndices, Object[] children) {
 		DataModel.logger.info("fired TreeStructureChanged");
 		// Guaranteed to return a non-null array
 		Object[] listeners = this.listenerList.getListenerList();
 		TreeModelEvent e = null;
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == DataEventListener.class) {
 				// Lazily create the event:
 				if (e == null) {
@@ -436,6 +447,7 @@ public class DataModel {
 				}
 				((DataEventListener) listeners[i + 1]).treeStructureChanged(e);
 			}
+		}
 	}
 
 }

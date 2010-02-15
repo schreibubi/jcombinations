@@ -22,7 +22,8 @@ import org.schreibubi.symbol.SymbolString;
 import org.schreibubi.visitor.VArrayList;
 
 /**
- * The mangle class transforms the values of the patterns into the values found in the binary file.
+ * The mangle class transforms the values of the patterns into the values found
+ * in the binary file.
  * 
  * @author Jörg Werner
  * 
@@ -45,7 +46,8 @@ public abstract class Mangle {
 	 * @throws Exception
 	 *             if no more test values are available
 	 */
-	public abstract VArrayList<SymbolDouble> getNextPatchDoublePair(SymbolDouble s) throws Exception;
+	public abstract VArrayList<SymbolDouble> getNextPatchDoublePair(
+			SymbolDouble s) throws Exception;
 
 	/**
 	 * Generates a test value used for the binary differences
@@ -56,7 +58,8 @@ public abstract class Mangle {
 	 * @throws Exception
 	 *             if no more test values are available
 	 */
-	public abstract VArrayList<SymbolInteger> getNextPatchIntegerPair(SymbolInteger s) throws Exception;
+	public abstract VArrayList<SymbolInteger> getNextPatchIntegerPair(
+			SymbolInteger s) throws Exception;
 
 	/**
 	 * Generates a test value used for the binary differences
@@ -67,7 +70,8 @@ public abstract class Mangle {
 	 * @throws Exception
 	 *             if no more test values are available
 	 */
-	public abstract VArrayList<SymbolString> getNextPatchStringPair(SymbolString s) throws Exception;
+	public abstract VArrayList<SymbolString> getNextPatchStringPair(
+			SymbolString s) throws Exception;
 
 	/**
 	 * Mangles a Double

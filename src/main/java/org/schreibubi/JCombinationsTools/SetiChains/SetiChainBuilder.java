@@ -35,25 +35,26 @@ import org.schreibubi.JCombinationsTools.settings.SettingsSingleton;
 import org.schreibubi.symbol.SymbolString;
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class SetiChainBuilder {
 	// definitions for version attribute on document root element
-	public static final String		VERSION_URI			= null;
+	public static final String VERSION_URI = null;
 
-	public static final String		VERSION_NAME		= "format";
+	public static final String VERSION_NAME = "format";
 	// attribute text strings used for different document versions
-	public static final String[]	VERSION_TEXTS		= { "1.0", "seti_rel200", "seti_rel210", "seti_rel211",
-			"seti_rel212"								};
+	public static final String[] VERSION_TEXTS = { "1.0", "seti_rel200",
+			"seti_rel210", "seti_rel211", "seti_rel212" };
 
 	// binding names corresponding to text strings
-	public static final String[]	VERSION_BINDINGS	= { "bindings_SetiFormat_1_00", "bindings_SetiFormat_2_00",
-			"bindings_SetiFormat_2_10", "bindings_SetiFormat_2_10", "bindings_SetiFormat_2_10" };
+	public static final String[] VERSION_BINDINGS = {
+			"bindings_SetiFormat_1_00", "bindings_SetiFormat_2_00",
+			"bindings_SetiFormat_2_10", "bindings_SetiFormat_2_10",
+			"bindings_SetiFormat_2_10" };
 
-	private Seti					seti				= null;
+	private Seti seti = null;
 
 	/**
 	 * Constructor
@@ -70,8 +71,10 @@ public class SetiChainBuilder {
 	 * @param file
 	 *            name of seti.xml file
 	 */
-	public SetiChainBuilder(String setiXmlFile) throws JiBXException, FileNotFoundException {
-		BindingSelector sel = new BindingSelector(VERSION_URI, VERSION_NAME, VERSION_TEXTS, VERSION_BINDINGS);
+	public SetiChainBuilder(String setiXmlFile) throws JiBXException,
+			FileNotFoundException {
+		BindingSelector sel = new BindingSelector(VERSION_URI, VERSION_NAME,
+				VERSION_TEXTS, VERSION_BINDINGS);
 		IUnmarshallingContext con = sel.getContext();
 		con.setDocument(new FileInputStream(setiXmlFile), null);
 		Seti seti = (Seti) sel.unmarshalVersioned(Seti.class);
@@ -84,8 +87,9 @@ public class SetiChainBuilder {
 	 * @param varOrChainOrCommandStr
 	 * @throws Exception
 	 */
-	public SetiChain constructSetiChain(String varOrChainOrCommandStr, SetiTypeEnum setiType,
-			SetiChainsContainer chainContainer) throws Exception {
+	public SetiChain constructSetiChain(String varOrChainOrCommandStr,
+			SetiTypeEnum setiType, SetiChainsContainer chainContainer)
+			throws Exception {
 		boolean needsValue = false;
 		switch (setiType) {
 		case WRITE:
@@ -104,7 +108,8 @@ public class SetiChainBuilder {
 		if (needsValue) {
 			if (varOrChainOrCommandStr.contains("=")) {
 				int strpos = varOrChainOrCommandStr.indexOf("=");
-				varOrChainOrCommandName = varOrChainOrCommandStr.substring(0, strpos);
+				varOrChainOrCommandName = varOrChainOrCommandStr.substring(0,
+						strpos);
 				valueString = varOrChainOrCommandStr.substring(strpos + 1);
 
 				if (valueString.startsWith("%")) {
@@ -118,9 +123,11 @@ public class SetiChainBuilder {
 				} else {
 					valuenum = new BigInteger(valueString, 10);
 				}
-			} else
-				throw new Exception("You need to assign a value to the Variable or Chain with name "
-						+ varOrChainOrCommandName + "!");
+			} else {
+				throw new Exception(
+						"You need to assign a value to the Variable or Chain with name "
+								+ varOrChainOrCommandName + "!");
+			}
 		} else {
 			varOrChainOrCommandName = varOrChainOrCommandStr;
 		}
@@ -133,7 +140,8 @@ public class SetiChainBuilder {
 			if ((foundVar = findVariableWithShortName(varOrChainOrCommandName)) != null) {
 				Position position = foundVar.getPosition();
 				chain = position.getChain();
-				setiChain = chainContainer.retrieveSetiChain(seti, chain, setiType);
+				setiChain = chainContainer.retrieveSetiChain(seti, chain,
+						setiType);
 				setiChain.setVariable(foundVar, valuenum);
 				Variable fuse_disable_bit = position.getFuse_disable_bit();
 
@@ -144,34 +152,43 @@ public class SetiChainBuilder {
 			} else if ((chain = findChainWithShortName(varOrChainOrCommandName)) != null) {
 				setiChain = new SetiChain(seti, chain, setiType);
 				setiChain.setChain(valuenum);
-			} else
-				throw new Exception("No Variable or Chain with name " + varOrChainOrCommandName + " found!");
+			} else {
+				throw new Exception("No Variable or Chain with name "
+						+ varOrChainOrCommandName + " found!");
+			}
 			break;
 		case READ:
 			if ((chain = findChainWithShortName(varOrChainOrCommandName)) != null) {
-				setiChain = chainContainer.retrieveSetiChain(seti, chain, setiType);
-			} else
-				throw new Exception("No Chain with name " + varOrChainOrCommandName + " found!");
+				setiChain = chainContainer.retrieveSetiChain(seti, chain,
+						setiType);
+			} else {
+				throw new Exception("No Chain with name "
+						+ varOrChainOrCommandName + " found!");
+			}
 			break;
 		case COMMAND:
 			Command command = null;
 			if ((command = findCommandWithShortName(varOrChainOrCommandName)) != null) {
 				setiChain = chainContainer.retrieveSetiChain(seti, command);
-			} else
-				throw new Exception("No Command with name " + varOrChainOrCommandName + " found!");
+			} else {
+				throw new Exception("No Command with name "
+						+ varOrChainOrCommandName + " found!");
+			}
 			break;
 		}
 		return setiChain;
 	}
 
-	public VArrayList<Integer> createCBMChain(SymbolString s, VArrayList<Integer> cbmChannels, int length,
-			SetiTypeEnum setiType) throws Exception {
+	public VArrayList<Integer> createCBMChain(SymbolString s,
+			VArrayList<Integer> cbmChannels, int length, SetiTypeEnum setiType)
+			throws Exception {
 		SetiChainData setiChainData = createSerialChain(s, setiType);
 		ConvertSetiSerial2CBM cbmConverter = new ConvertSetiSerial2CBM(seti);
 		return cbmConverter.getCBMContent(cbmChannels, setiChainData, length);
 	}
 
-	public VArrayList<Integer> createMRSChain(SymbolString s, int length, SetiTypeEnum setiType) throws Exception {
+	public VArrayList<Integer> createMRSChain(SymbolString s, int length,
+			SetiTypeEnum setiType) throws Exception {
 		SetiChainData setiChainData = createSerialChain(s, setiType);
 		ConvertSetiSerial2Hex convertSeti2Hex = new ConvertSetiSerial2Hex(seti);
 		return convertSeti2Hex.getMRSValues(setiChainData, length);
@@ -183,11 +200,13 @@ public class SetiChainBuilder {
 	 * @return
 	 * @throws Exception
 	 */
-	public SetiChainData createSerialChain(SymbolString s, SetiTypeEnum setiType) throws Exception {
+	public SetiChainData createSerialChain(SymbolString s, SetiTypeEnum setiType)
+			throws Exception {
 		String valuestr = s.getValue();
 		String[] setiTMArray = valuestr.split(",");
 		SetiChainsContainer scC = null;
-		if (SettingsSingleton.getInstance().getProperty("mergeseti").equals("true")) {
+		if (SettingsSingleton.getInstance().getProperty("mergeseti").equals(
+				"true")) {
 			scC = new SetiChainsContainerMerged();
 		} else {
 			scC = new SetiChainsContainerSeparated();
@@ -216,17 +235,19 @@ public class SetiChainBuilder {
 	private Chain findChainWithShortName(String shortname) {
 		boolean found = false;
 		Chain setiChain = null;
-		for (ListIterator<Chain> chainIter = seti.getChains().listIterator(); chainIter.hasNext();) {
+		for (ListIterator<Chain> chainIter = seti.getChains().listIterator(); chainIter
+				.hasNext();) {
 			setiChain = chainIter.next();
 			if (setiChain.getShortname().equalsIgnoreCase(shortname)) {
 				found = true;
 				break;
 			}
 		}
-		if (found)
+		if (found) {
 			return setiChain;
-		else
+		} else {
 			return null;
+		}
 	}
 
 	/**
@@ -238,17 +259,19 @@ public class SetiChainBuilder {
 	private Command findCommandWithShortName(String shortname) {
 		boolean found = false;
 		Command setiVariable = null;
-		for (ListIterator<Command> varIter = seti.getCommands().listIterator(); varIter.hasNext();) {
+		for (ListIterator<Command> varIter = seti.getCommands().listIterator(); varIter
+				.hasNext();) {
 			setiVariable = varIter.next();
 			if (setiVariable.getShortname().equalsIgnoreCase(shortname)) {
 				found = true;
 				break;
 			}
 		}
-		if (found)
+		if (found) {
 			return setiVariable;
-		else
+		} else {
 			return null;
+		}
 	}
 
 	/**
@@ -260,17 +283,19 @@ public class SetiChainBuilder {
 	private Variable findVariableWithShortName(String shortname) {
 		boolean found = false;
 		Variable setiVariable = null;
-		for (ListIterator<Variable> varIter = seti.getVariables().listIterator(); varIter.hasNext();) {
+		for (ListIterator<Variable> varIter = seti.getVariables()
+				.listIterator(); varIter.hasNext();) {
 			setiVariable = varIter.next();
 			if (setiVariable.getShortname().equalsIgnoreCase(shortname)) {
 				found = true;
 				break;
 			}
 		}
-		if (found)
+		if (found) {
 			return setiVariable;
-		else
+		} else {
 			return null;
+		}
 	}
 
 }

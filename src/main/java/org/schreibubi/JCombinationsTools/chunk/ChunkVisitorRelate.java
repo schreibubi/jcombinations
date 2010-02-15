@@ -24,18 +24,20 @@ import org.schreibubi.visitor.VTreeMap;
 import org.schreibubi.visitor.Visitor;
 
 /**
- * ChunkVisitorRelate is a visitor for chunks which tries to relate them to the chunks passed to the constructor. If a
- * visited Chunks matches the list, it obtains the name from the list match.
+ * ChunkVisitorRelate is a visitor for chunks which tries to relate them to the
+ * chunks passed to the constructor. If a visited Chunks matches the list, it
+ * obtains the name from the list match.
  */
 public class ChunkVisitorRelate implements Visitor<Chunk> {
 
-	VArrayList<Chunk>	other	= null;
+	VArrayList<Chunk> other = null;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param other
-	 *            A list of chunks the visited chunks are checked against, to determine their name
+	 *            A list of chunks the visited chunks are checked against, to
+	 *            determine their name
 	 */
 	public ChunkVisitorRelate(VArrayList<Chunk> other) {
 		this.other = other;
@@ -44,11 +46,12 @@ public class ChunkVisitorRelate implements Visitor<Chunk> {
 	// other is possibleChunks
 	public void visit(Chunk s) {
 		// first try exact match
-		for (int j = 0; j < this.other.size(); j++)
+		for (int j = 0; j < this.other.size(); j++) {
 			if (s.equivalentTo(this.other.get(j))) {
 				s.setName((this.other.get(j)).getName());
 				break;
 			}
+		}
 	}
 
 	public void visit(VArrayList<Chunk> s) throws Exception {
@@ -60,7 +63,8 @@ public class ChunkVisitorRelate implements Visitor<Chunk> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Chunk> s) throws Exception {
 		// TODO Auto-generated method stub

@@ -26,21 +26,20 @@ import org.schreibubi.symbol.SymbolDouble;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.VLinkedHashMap;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class DCResults {
 
-	int														touchdown;
-	int														dut;
-	String													test;
-	VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>	results				= new VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>();
-	VArrayList<Integer>										activeDuts			= new VArrayList<Integer>();
-	int														fileDutOffset		= 0;
-	int														touchdownDutOffset	= 0;
-	static Pattern											p					= Pattern.compile(";");
+	int touchdown;
+	int dut;
+	String test;
+	VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> results = new VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>();
+	VArrayList<Integer> activeDuts = new VArrayList<Integer>();
+	int fileDutOffset = 0;
+	int touchdownDutOffset = 0;
+	static Pattern p = Pattern.compile(";");
 
 	public int getDut() {
 		return dut;
@@ -98,7 +97,8 @@ public class DCResults {
 	}
 
 	public void setValue(String value) {
-		int dutWithOffset = dut + (touchdown - 1) * touchdownDutOffset + fileDutOffset;
+		int dutWithOffset = dut + (touchdown - 1) * touchdownDutOffset
+				+ fileDutOffset;
 		if (activeDuts.contains(dutWithOffset)) {
 			NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
 			DecimalFormat myFormatter = (DecimalFormat) nf;
@@ -108,19 +108,24 @@ public class DCResults {
 			if (t == null) {
 				t = new VLinkedHashMap<VLinkedHashMap<Symbol>>();
 			}
-			VLinkedHashMap<Symbol> d = t.get("DUT" + myFormatter.format(dutWithOffset));
+			VLinkedHashMap<Symbol> d = t.get("DUT"
+					+ myFormatter.format(dutWithOffset));
 			if (d == null) {
 				d = new VLinkedHashMap<Symbol>();
 			}
 			String[] values = p.split(value, 0);
 			for (int i = 0; i < values.length; i++) {
 				if (values[i].contains("**")) {
-					d.put("S" + i, new SymbolDouble("DUT" + myFormatter.format(dutWithOffset), 0.0));
+					d.put("S" + i, new SymbolDouble("DUT"
+							+ myFormatter.format(dutWithOffset), 0.0));
 				} else {
 					try {
-						d.put("S" + i, new SymbolDouble("DUT" + myFormatter.format(dutWithOffset), values[i].trim()));
+						d.put("S" + i, new SymbolDouble("DUT"
+								+ myFormatter.format(dutWithOffset), values[i]
+								.trim()));
 					} catch (NumberFormatException e) {
-						d.put("S" + i, new SymbolDouble("DUT" + myFormatter.format(dutWithOffset), 0.0));
+						d.put("S" + i, new SymbolDouble("DUT"
+								+ myFormatter.format(dutWithOffset), 0.0));
 					}
 				}
 			}

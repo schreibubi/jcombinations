@@ -33,28 +33,29 @@ import org.schreibubi.symbol.SymbolInteger;
 import org.schreibubi.symbol.SymbolString;
 import org.schreibubi.visitor.VHashMap;
 
-
 /**
  * @author Jörg Werner
  * 
  */
-public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAliasable {
+public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller,
+		IAliasable {
 
-	private static final String	ENTRY_ELEMENT	= "const";
+	private static final String ENTRY_ELEMENT = "const";
 
-	private static final String	KEY_ATTRIBUTE	= "name";
+	private static final String KEY_ATTRIBUTE = "name";
 
-	private static final String	TYPE_ATTRIBUTE	= "type";
+	private static final String TYPE_ATTRIBUTE = "type";
 
-	private String				m_uri;
+	private String m_uri;
 
-	private int					m_index;
+	private int m_index;
 
-	private String				m_name;
+	private String m_name;
 
 	/**
-	 * Default constructor. This uses a pre-defined name for the top-level element. It'll be used by JiBX when no name
-	 * information is supplied by the mapping which references this custom marshaller/unmarshaller.
+	 * Default constructor. This uses a pre-defined name for the top-level
+	 * element. It'll be used by JiBX when no name information is supplied by
+	 * the mapping which references this custom marshaller/unmarshaller.
 	 */
 	public VHashMapSymbolSerializer() {
 		this.m_uri = null;
@@ -63,13 +64,16 @@ public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAl
 	}
 
 	/**
-	 * Aliased constructor. This takes a name definition for the top-level element. It'll be used by JiBX when a name is
-	 * supplied by the mapping which references this custom marshaller/unmarshaller.
+	 * Aliased constructor. This takes a name definition for the top-level
+	 * element. It'll be used by JiBX when a name is supplied by the mapping
+	 * which references this custom marshaller/unmarshaller.
 	 * 
 	 * @param uri
-	 *            namespace URI for the top-level element (also used for all other names within the binding)
+	 *            namespace URI for the top-level element (also used for all
+	 *            other names within the binding)
 	 * @param index
-	 *            namespace index corresponding to the defined URI within the marshalling context definitions
+	 *            namespace index corresponding to the defined URI within the
+	 *            marshalling context definitions
 	 * @param name
 	 *            local name for the top-level element
 	 */
@@ -91,7 +95,8 @@ public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAl
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jibx.runtime.IUnmarshaller#isPresent(org.jibx.runtime.IUnmarshallingContext)
+	 * @seeorg.jibx.runtime.IUnmarshaller#isPresent(org.jibx.runtime.
+	 * IUnmarshallingContext)
 	 */
 	public boolean isPresent(IUnmarshallingContext ctx) throws JiBXException {
 		return ctx.isAt(this.m_uri, this.m_name);
@@ -100,21 +105,24 @@ public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAl
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jibx.runtime.IMarshaller#marshal(java.lang.Object, org.jibx.runtime.IMarshallingContext)
+	 * @see org.jibx.runtime.IMarshaller#marshal(java.lang.Object,
+	 * org.jibx.runtime.IMarshallingContext)
 	 */
-	public void marshal(Object obj, IMarshallingContext ictx) throws JiBXException {
+	public void marshal(Object obj, IMarshallingContext ictx)
+			throws JiBXException {
 
 		// make sure the parameters are as expected
-		if (!(obj instanceof VHashMap))
+		if (!(obj instanceof VHashMap)) {
 			throw new JiBXException("Invalid object type for marshaller");
-		else if (!(ictx instanceof MarshallingContext))
+		} else if (!(ictx instanceof MarshallingContext)) {
 			throw new JiBXException("Invalid object type for marshaller");
-		else {
+		} else {
 
 			// start by generating start tag for container
 			MarshallingContext ctx = (MarshallingContext) ictx;
 			VHashMap map = (VHashMap) obj;
-			ctx.startTagAttributes(this.m_index, this.m_name).closeStartContent();
+			ctx.startTagAttributes(this.m_index, this.m_name)
+					.closeStartContent();
 
 			// loop through all entries in map
 			Iterator iter = map.entrySet().iterator();
@@ -123,12 +131,17 @@ public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAl
 				String key = (String) entry.getKey();
 				Symbol value = (Symbol) entry.getValue();
 				if (value != null) {
-					ctx.startTagAttributes(this.m_index, VHashMapSymbolSerializer.ENTRY_ELEMENT);
-					ctx.attribute(this.m_index, VHashMapSymbolSerializer.KEY_ATTRIBUTE, key);
-					ctx.attribute(this.m_index, VHashMapSymbolSerializer.TYPE_ATTRIBUTE, value.getTypeString());
+					ctx.startTagAttributes(this.m_index,
+							VHashMapSymbolSerializer.ENTRY_ELEMENT);
+					ctx.attribute(this.m_index,
+							VHashMapSymbolSerializer.KEY_ATTRIBUTE, key);
+					ctx.attribute(this.m_index,
+							VHashMapSymbolSerializer.TYPE_ATTRIBUTE, value
+									.getTypeString());
 					ctx.closeStartContent();
 					ctx.content(value.getValueString());
-					ctx.endTag(this.m_index, VHashMapSymbolSerializer.ENTRY_ELEMENT);
+					ctx.endTag(this.m_index,
+							VHashMapSymbolSerializer.ENTRY_ELEMENT);
 				}
 			}
 
@@ -140,28 +153,35 @@ public class VHashMapSymbolSerializer implements IMarshaller, IUnmarshaller, IAl
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jibx.runtime.IUnmarshaller#unmarshal(java.lang.Object, org.jibx.runtime.IUnmarshallingContext)
+	 * @see org.jibx.runtime.IUnmarshaller#unmarshal(java.lang.Object,
+	 * org.jibx.runtime.IUnmarshallingContext)
 	 */
 	@SuppressWarnings("unchecked")
-	public Object unmarshal(Object obj, IUnmarshallingContext ictx) throws JiBXException {
+	public Object unmarshal(Object obj, IUnmarshallingContext ictx)
+			throws JiBXException {
 
 		// make sure we're at the appropriate start tag
 		UnmarshallingContext ctx = (UnmarshallingContext) ictx;
-		if (!ctx.isAt(this.m_uri, this.m_name))
+		if (!ctx.isAt(this.m_uri, this.m_name)) {
 			ctx.throwStartTagNameError(this.m_uri, this.m_name);
+		}
 
 		// create new hashmap if needed
 		VHashMap map = (VHashMap) obj;
-		if (map == null)
+		if (map == null) {
 			map = new VHashMap();
+		}
 
 		// process all entries present in document
 		ctx.parsePastStartTag(this.m_uri, this.m_name);
 		while (ctx.isAt(this.m_uri, VHashMapSymbolSerializer.ENTRY_ELEMENT)) {
-			String key = ctx.attributeText(null, VHashMapSymbolSerializer.KEY_ATTRIBUTE, null);
-			Symbol.SymType type = Symbol.getTypeFromString(ctx.attributeText(null,
-					VHashMapSymbolSerializer.TYPE_ATTRIBUTE, null).toUpperCase());
-			String text = ctx.parseElementText(this.m_uri, VHashMapSymbolSerializer.ENTRY_ELEMENT);
+			String key = ctx.attributeText(null,
+					VHashMapSymbolSerializer.KEY_ATTRIBUTE, null);
+			Symbol.SymType type = Symbol.getTypeFromString(ctx.attributeText(
+					null, VHashMapSymbolSerializer.TYPE_ATTRIBUTE, null)
+					.toUpperCase());
+			String text = ctx.parseElementText(this.m_uri,
+					VHashMapSymbolSerializer.ENTRY_ELEMENT);
 			Symbol sym = null;
 			switch (type) {
 			case INTEGER:

@@ -24,12 +24,12 @@ import org.schreibubi.visitor.VTreeMap;
 import org.schreibubi.visitor.Visitor;
 
 /**
- * ChunkVisitorPatch is a visitor for chunks which calls the method apply for each chunk found in an {@link VHashMap} or
- * {@link VArrayList}.
+ * ChunkVisitorPatch is a visitor for chunks which calls the method apply for
+ * each chunk found in an {@link VHashMap} or {@link VArrayList}.
  */
 public class ChunkVisitorPatch implements Visitor<Chunk> {
 
-	byte[]	binary;
+	byte[] binary;
 
 	/**
 	 * Constructor
@@ -56,7 +56,8 @@ public class ChunkVisitorPatch implements Visitor<Chunk> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Chunk> s) throws Exception {
 		// TODO Auto-generated method stub

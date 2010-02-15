@@ -25,9 +25,10 @@ import java.util.Map;
  * @param <T>
  *            type of the LinkedHashMap
  */
-public class VLinkedHashMap<T> extends LinkedHashMap<String, T> implements Host<T> {
+public class VLinkedHashMap<T> extends LinkedHashMap<String, T> implements
+		Host<T> {
 
-	private static final long	serialVersionUID	= -6493849243665071189L;
+	private static final long serialVersionUID = -6493849243665071189L;
 
 	public VLinkedHashMap() {
 		super();
@@ -41,7 +42,8 @@ public class VLinkedHashMap<T> extends LinkedHashMap<String, T> implements Host<
 		super(initialCapacity, loadFactor);
 	}
 
-	public VLinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder) {
+	public VLinkedHashMap(int initialCapacity, float loadFactor,
+			boolean accessOrder) {
 		super(initialCapacity, loadFactor, accessOrder);
 	}
 

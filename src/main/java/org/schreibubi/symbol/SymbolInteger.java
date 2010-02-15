@@ -23,16 +23,15 @@ import java.util.Locale;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
  * Class for storing integer.
  */
 public class SymbolInteger extends Symbol {
-	private static String	STANDARD_FORMAT	= "###";
+	private static String STANDARD_FORMAT = "###";
 
-	private int				value;
+	private int value;
 
-	private Unit			unit			= null;
+	private Unit unit = null;
 
 	/**
 	 * Constructor
@@ -151,7 +150,8 @@ public class SymbolInteger extends Symbol {
 	public SymbolInteger add(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -171,7 +171,8 @@ public class SymbolInteger extends Symbol {
 	public SymbolInteger and(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -303,17 +304,22 @@ public class SymbolInteger extends Symbol {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof SymbolInteger))
+		}
+		if (!(obj instanceof SymbolInteger)) {
 			return false;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
+		}
 		SymbolInteger that = (SymbolInteger) obj;
-		if (!(this.value == that.value))
+		if (!(this.value == that.value)) {
 			return false;
-		if (!this.unit.equals(that.unit))
+		}
+		if (!this.unit.equals(that.unit)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -336,7 +342,8 @@ public class SymbolInteger extends Symbol {
 	public boolean ge(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -470,7 +477,8 @@ public class SymbolInteger extends Symbol {
 	public boolean gt(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -504,7 +512,8 @@ public class SymbolInteger extends Symbol {
 	public boolean le(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -533,7 +542,8 @@ public class SymbolInteger extends Symbol {
 	public boolean lt(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -607,7 +617,8 @@ public class SymbolInteger extends Symbol {
 	public SymbolInteger or(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -729,7 +740,8 @@ public class SymbolInteger extends Symbol {
 	public SymbolInteger sub(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();
@@ -790,7 +802,8 @@ public class SymbolInteger extends Symbol {
 	public SymbolInteger xor(Symbol s) throws Exception {
 		if (s instanceof SymbolInteger) {
 			SymbolInteger os = (SymbolInteger) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			int o = os.getValue();

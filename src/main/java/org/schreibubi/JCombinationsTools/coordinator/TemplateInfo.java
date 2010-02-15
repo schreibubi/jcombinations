@@ -24,8 +24,8 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class TemplateInfo {
 
-	VArrayList<CBMChunk>	cbms		= null;
-	VArrayList<Integer>		channels	= null;
+	VArrayList<CBMChunk> cbms = null;
+	VArrayList<Integer> channels = null;
 
 	/**
 	 * 
@@ -37,8 +37,9 @@ public class TemplateInfo {
 
 	public VArrayList<String> getCbmNames() {
 		VArrayList<String> names = new VArrayList<String>();
-		for (CBMChunk c : cbms)
+		for (CBMChunk c : cbms) {
 			names.add(c.getName());
+		}
 		return names;
 	}
 

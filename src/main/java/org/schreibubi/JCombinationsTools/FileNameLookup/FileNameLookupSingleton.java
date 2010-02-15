@@ -25,30 +25,34 @@ import java.util.regex.Pattern;
 
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class FileNameLookupSingleton {
 
-	private static FileNameLookupSingleton	myInstance	= null;
+	private static FileNameLookupSingleton myInstance = null;
 
 	public static FileNameLookupSingleton getInstance() throws Exception {
-		if (myInstance == null)
+		if (myInstance == null) {
 			throw new Exception("FileNameLookup has not yet been initialized");
+		}
 		return myInstance;
 	}
 
-	public static void initialize(VArrayList<String> pre, VArrayList<String> post) throws Exception {
-		if (myInstance != null)
-			throw new Exception("FileNameLookupSingleton was already initialized!");
+	public static void initialize(VArrayList<String> pre,
+			VArrayList<String> post) throws Exception {
+		if (myInstance != null) {
+			throw new Exception(
+					"FileNameLookupSingleton was already initialized!");
+		}
 		myInstance = new FileNameLookupSingleton(pre, post);
 	}
 
-	private final VArrayList<String>	preList, postList;
+	private final VArrayList<String> preList, postList;
 
-	private FileNameLookupSingleton(VArrayList<String> pre, VArrayList<String> post) {
+	private FileNameLookupSingleton(VArrayList<String> pre,
+			VArrayList<String> post) {
 		this.preList = pre;
 		this.postList = post;
 	}
@@ -61,8 +65,9 @@ public class FileNameLookupSingleton {
 	 */
 	public File lookup(File dir, String name) throws Exception {
 		int pos = name.indexOf('.');
-		if (pos == -1)
+		if (pos == -1) {
 			throw new Exception("No . found in filename: " + name + "!");
+		}
 		String type = name.substring(pos + 1);
 		String basename = name.substring(0, pos);
 		String acc = "";
@@ -70,11 +75,13 @@ public class FileNameLookupSingleton {
 			for (int i = preList.size(); i >= 0; i--) {
 				acc += basename;
 				for (int j = 0; j < i; j++) {
-					acc += "_(|([A-Z0-9@]*\\+)*" + preList.get(j) + "(\\+[A-Z0-9@]*)*)";
+					acc += "_(|([A-Z0-9@]*\\+)*" + preList.get(j)
+							+ "(\\+[A-Z0-9@]*)*)";
 				}
 				acc += "." + type;
 				for (int l = 0; l < k; l++) {
-					acc += "_(|([A-Z0-9@]*\\+)*" + postList.get(l) + "(\\+[A-Z0-9@]*)*)";
+					acc += "_(|([A-Z0-9@]*\\+)*" + postList.get(l)
+							+ "(\\+[A-Z0-9@]*)*)";
 				}
 				if (i > 0) {
 					acc += "|";
@@ -89,7 +96,8 @@ public class FileNameLookupSingleton {
 		if (dir.isDirectory()) {
 			List<String> list = Arrays.asList(dir.list());
 
-			// Put all matches into results together with the number of tag matches
+			// Put all matches into results together with the number of tag
+			// matches
 			ArrayList<String> results = new ArrayList<String>();
 			int max = 0;
 			for (String n : list) {
@@ -113,13 +121,15 @@ public class FileNameLookupSingleton {
 				}
 			}
 
-			if (results.size() > 1)
-				throw new Exception("No unique filename match for " + name + "! Possible candidates are: "
-						+ results.toString());
-			else if (results.size() == 0)
+			if (results.size() > 1) {
+				throw new Exception("No unique filename match for " + name
+						+ "! Possible candidates are: " + results.toString());
+			} else if (results.size() == 0) {
 				throw new Exception("No matching file for " + name + "!");
+			}
 			return new File(dir, results.get(0));
-		} else
+		} else {
 			return null;
+		}
 	}
 }

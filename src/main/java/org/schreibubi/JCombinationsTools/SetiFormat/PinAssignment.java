@@ -24,14 +24,16 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class PinAssignment {
 
-	private String					mode;
+	private String mode;
 
-	private VArrayList<Bitgroup>	bitgroups	= new VArrayList<Bitgroup>();
+	private VArrayList<Bitgroup> bitgroups = new VArrayList<Bitgroup>();
 
 	public Bitgroup getBitgroup(String name) {
-		for (Bitgroup p : getBitgroups())
-			if (p.getType().equals(name))
+		for (Bitgroup p : getBitgroups()) {
+			if (p.getType().equals(name)) {
 				return p;
+			}
+		}
 		return null;
 	}
 

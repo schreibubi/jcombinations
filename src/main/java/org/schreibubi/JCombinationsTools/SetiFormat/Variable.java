@@ -27,21 +27,21 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class Variable {
 
-	private String					shortname;
+	private String shortname;
 
-	private String					index;
+	private String index;
 
-	private Position				position	= null;
+	private Position position = null;
 
-	private VArrayList<Position>	positions	= new VArrayList<Position>();
+	private VArrayList<Position> positions = new VArrayList<Position>();
 
-	private String					signal_name;
+	private String signal_name;
 
-	private String					description;
+	private String description;
 
-	private String					io;
+	private String io;
 
-	private String					wait_time;
+	private String wait_time;
 
 	/**
 	 * @return Returns the description.
@@ -65,10 +65,11 @@ public class Variable {
 	 * @return Returns the positions.
 	 */
 	public Position getPosition() {
-		if (this.position == null)
+		if (this.position == null) {
 			return this.positions.get(0);
-		else
+		} else {
 			return this.position;
+		}
 	}
 
 	/**

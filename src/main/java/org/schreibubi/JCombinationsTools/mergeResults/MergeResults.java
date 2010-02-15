@@ -66,7 +66,6 @@ import org.schreibubi.visitor.VLinkedHashMap;
 
 import antlr.collections.AST;
 
-
 /**
  * Merge results from dclog-file with the data of the combinations files.
  * 
@@ -88,10 +87,12 @@ public class MergeResults {
 
 			defaultProperties.setProperty("triggerTrimColumn", "TRIM");
 			defaultProperties.setProperty("triggerMeasureColumn", "MEASURE");
-			defaultProperties.setProperty("trimColumns",
-					"TRIM_TESTMODE,TRIM_TRIMMING,TRIM_RELATIVE,TRIM_ABS,TRIM_PATNAME,FORCE_VALUE");
+			defaultProperties
+					.setProperty("trimColumns",
+							"TRIM_TESTMODE,TRIM_TRIMMING,TRIM_RELATIVE,TRIM_ABS,TRIM_PATNAME,FORCE_VALUE");
 			defaultProperties.setProperty("trimAbsColumn", "TRIM_ABS");
-			defaultProperties.setProperty("trimRelativeColumn", "TRIM_RELATIVE");
+			defaultProperties
+					.setProperty("trimRelativeColumn", "TRIM_RELATIVE");
 			defaultProperties.setProperty("subtitleColumn", "COMMENT");
 			defaultProperties.setProperty("dutSelection", "1-1024");
 			defaultProperties.setProperty("dutOffset", "32");
@@ -106,47 +107,72 @@ public class MergeResults {
 			ArrayList<String> dclogFiles = new ArrayList<String>();
 			String outputFile = "";
 			String combinationsFile = "";
-			String triggerTrimColumn = userProperties.getProperty("triggerTrimColumn");
-			String triggerMeasureColumn = userProperties.getProperty("triggerMeasureColumn");
-			String trimColumnsString = userProperties.getProperty("trimColumns");
+			String triggerTrimColumn = userProperties
+					.getProperty("triggerTrimColumn");
+			String triggerMeasureColumn = userProperties
+					.getProperty("triggerMeasureColumn");
+			String trimColumnsString = userProperties
+					.getProperty("trimColumns");
 			String trimAbsColumn = userProperties.getProperty("trimAbsColumn");
-			String trimRelativeColumn = userProperties.getProperty("trimRelativeColumn");
-			String subtitleColumn = userProperties.getProperty("subtitleColumn");
-			String dutSelectionString = userProperties.getProperty("dutSelection");
+			String trimRelativeColumn = userProperties
+					.getProperty("trimRelativeColumn");
+			String subtitleColumn = userProperties
+					.getProperty("subtitleColumn");
+			String dutSelectionString = userProperties
+					.getProperty("dutSelection");
 			String dutOffsetString = userProperties.getProperty("dutOffset");
-			boolean zip = Boolean.parseBoolean(userProperties.getProperty("zip"));
+			boolean zip = Boolean.parseBoolean(userProperties
+					.getProperty("zip"));
 
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.withLongOpt("dclog").withDescription("[in] dclog-files").hasArg()
-					.withArgName("file").create('d'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("combinations").withDescription(
-					"[in] combinations file").hasArg().withArgName("file").create('c'));
-			options.addOption(OptionBuilder.withLongOpt("output").withDescription("[out] output file").hasArg()
-					.withArgName("file").create('o'));
-			options.addOption(OptionBuilder.withLongOpt("trim").withDescription(
-					"Column name of trim column, defaults to " + triggerTrimColumn).hasArg().withArgName("column")
-					.create('t'));
-			options.addOption(OptionBuilder.withLongOpt("measure").withDescription(
-					"Column name of measure column, defaults to " + triggerMeasureColumn).hasArg()
+			options.addOption(OptionBuilder.withLongOpt("dclog")
+					.withDescription("[in] dclog-files").hasArg().withArgName(
+							"file").create('d'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"combinations").withDescription("[in] combinations file")
+					.hasArg().withArgName("file").create('c'));
+			options.addOption(OptionBuilder.withLongOpt("output")
+					.withDescription("[out] output file").hasArg().withArgName(
+							"file").create('o'));
+			options.addOption(OptionBuilder.withLongOpt("trim")
+					.withDescription(
+							"Column name of trim column, defaults to "
+									+ triggerTrimColumn).hasArg().withArgName(
+							"column").create('t'));
+			options.addOption(OptionBuilder.withLongOpt("measure")
+					.withDescription(
+							"Column name of measure column, defaults to "
+									+ triggerMeasureColumn).hasArg()
 					.withArgName("column").create('m'));
-			options.addOption(OptionBuilder.withLongOpt("xvals").withDescription(
-					"Column name containing the x-values, defaults to " + trimColumnsString).hasArg().withArgName(
-					"column").create('x'));
-			options.addOption(OptionBuilder.withLongOpt("relative").withDescription(
-					"Column name containing the relative changes, defaults to " + trimRelativeColumn).hasArg()
-					.withArgName("column").create('r'));
-			options.addOption(OptionBuilder.withLongOpt("subtitle").withDescription(
-					"Column name containing the subtitles for the shmoos, defaults to " + subtitleColumn).hasArg()
-					.withArgName("column").create('s'));
-			options.addOption(OptionBuilder.withLongOpt("zip").withDescription("zip output file").create('z'));
-			options.addOption(OptionBuilder.withLongOpt("dut").withDescription("use only DUTs " + dutSelectionString)
-					.hasArg().withArgName("column").create('u'));
-			options.addOption(OptionBuilder.withLongOpt("dutOffset").withDescription(
-					"dut offset when merging multiple measurments " + dutOffsetString).hasArg().withArgName("offset")
-					.create('f'));
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
+			options.addOption(OptionBuilder.withLongOpt("xvals")
+					.withDescription(
+							"Column name containing the x-values, defaults to "
+									+ trimColumnsString).hasArg().withArgName(
+							"column").create('x'));
+			options.addOption(OptionBuilder.withLongOpt("relative")
+					.withDescription(
+							"Column name containing the relative changes, defaults to "
+									+ trimRelativeColumn).hasArg().withArgName(
+							"column").create('r'));
+			options.addOption(OptionBuilder.withLongOpt("subtitle")
+					.withDescription(
+							"Column name containing the subtitles for the shmoos, defaults to "
+									+ subtitleColumn).hasArg().withArgName(
+							"column").create('s'));
+			options.addOption(OptionBuilder.withLongOpt("zip").withDescription(
+					"zip output file").create('z'));
+			options.addOption(OptionBuilder.withLongOpt("dut").withDescription(
+					"use only DUTs " + dutSelectionString).hasArg()
+					.withArgName("column").create('u'));
+			options.addOption(OptionBuilder.withLongOpt("dutOffset")
+					.withDescription(
+							"dut offset when merging multiple measurments "
+									+ dutOffsetString).hasArg().withArgName(
+							"offset").create('f'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
 
 			CommandLine line = CLparser.parse(options, args);
 
@@ -167,7 +193,8 @@ public class MergeResults {
 			} else {
 				int dotPos = combinationsFile.lastIndexOf(".");
 				if (dotPos > -1) {
-					dclogFiles.add("dclog_af_b_source.csv_" + combinationsFile.substring(0, dotPos));
+					dclogFiles.add("dclog_af_b_source.csv_"
+							+ combinationsFile.substring(0, dotPos));
 				} else {
 					dclogFiles.add("dclog_af_b_source.csv_" + combinationsFile);
 				}
@@ -216,14 +243,18 @@ public class MergeResults {
 			}
 
 			String[] dS = dutSelectionString.split("-");
-			if (dS.length < 2)
-				throw new Exception("dut specification is wrong, should be e.g. 1-16");
+			if (dS.length < 2) {
+				throw new Exception(
+						"dut specification is wrong, should be e.g. 1-16");
+			}
 			int dutStart = Integer.parseInt(dS[0]);
 			int dutStop = Integer.parseInt(dS[1]);
 
 			int dutOffset = Integer.parseInt(dutOffsetString);
-			merge(dclogFiles, combinationsFile, outputFile, zip, triggerTrimColumn, trimRelativeColumn, trimAbsColumn,
-					trimColumns, triggerMeasureColumn, subtitleColumn, dutStart, dutStop, dutOffset);
+			merge(dclogFiles, combinationsFile, outputFile, zip,
+					triggerTrimColumn, trimRelativeColumn, trimAbsColumn,
+					trimColumns, triggerMeasureColumn, subtitleColumn,
+					dutStart, dutStop, dutOffset);
 
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
@@ -235,11 +266,13 @@ public class MergeResults {
 
 	}
 
-	private static boolean altContainsSymbol(VLinkedHashMap<Symbol> symbolList, String symbol) throws Exception {
-		if (symbolList.get(symbol) != null)
+	private static boolean altContainsSymbol(VLinkedHashMap<Symbol> symbolList,
+			String symbol) throws Exception {
+		if (symbolList.get(symbol) != null) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 	/**
@@ -263,16 +296,19 @@ public class MergeResults {
 		return child;
 	}
 
-	private static String generateAlternativeName(VLinkedHashMap<Symbol> symbolList) throws Exception {
+	private static String generateAlternativeName(
+			VLinkedHashMap<Symbol> symbolList) throws Exception {
 		Iterator<Symbol> i = symbolList.values().iterator();
 		Symbol s = i.next();
-		if (s != null)
+		if (s != null) {
 			return s.toString();
-		else
+		} else {
 			return "";
+		}
 	}
 
-	private static String generateName(VLinkedHashMap<Symbol> symbolList) throws Exception {
+	private static String generateName(VLinkedHashMap<Symbol> symbolList)
+			throws Exception {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 		SymbolVisitorPrint symbolVisitorPrint = new SymbolVisitorPrint(pw);
@@ -286,11 +322,13 @@ public class MergeResults {
 		return sw.toString();
 	}
 
-	private static String getSymbolValueString(VArrayList<VLinkedHashMap<Symbol>> symbolList, String symbol) {
+	private static String getSymbolValueString(
+			VArrayList<VLinkedHashMap<Symbol>> symbolList, String symbol) {
 		for (VLinkedHashMap<Symbol> map : symbolList) {
 			Symbol sym = map.get(symbol);
-			if (sym != null)
+			if (sym != null) {
 				return sym.getValueString();
+			}
 		}
 		return "";
 	}
@@ -322,14 +360,17 @@ public class MergeResults {
 	 *            stop dut
 	 * @throws Exception
 	 */
-	private static void merge(ArrayList<String> dclogFiles, String combinations, String output, boolean zip,
-			String triggerTrimColumn, String trimRelativeColumn, String trimAbsColumn, VArrayList<String> trimColumns,
-			String triggerMeasureColumn, String subtitleColumn, int dutStart, int dutStop, int dutOffset)
-			throws Exception {
+	private static void merge(ArrayList<String> dclogFiles,
+			String combinations, String output, boolean zip,
+			String triggerTrimColumn, String trimRelativeColumn,
+			String trimAbsColumn, VArrayList<String> trimColumns,
+			String triggerMeasureColumn, String subtitleColumn, int dutStart,
+			int dutStop, int dutOffset) throws Exception {
 
 		File combinationsFile = new File(combinations);
-		if (!combinationsFile.exists())
+		if (!combinationsFile.exists()) {
 			throw new Exception(combinations + " does not exist.");
+		}
 
 		VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> data = new VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>();
 
@@ -343,16 +384,20 @@ public class MergeResults {
 			} else {
 				File gzLogFile = new File(file + ".gz");
 				if (gzLogFile.exists()) {
-					dc = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(gzLogFile))));
+					dc = new BufferedReader(
+							new InputStreamReader(new GZIPInputStream(
+									new FileInputStream(gzLogFile))));
 				} else {
 					File bzLogFile = new File(file + ".bz2");
 					if (bzLogFile.exists()) {
 						FileInputStream fIS = new FileInputStream(bzLogFile);
 						fIS.read(); // read dummy B
 						fIS.read(); // read dummy Z
-						dc = new BufferedReader(new InputStreamReader(new CBZip2InputStream(fIS)));
-					} else
+						dc = new BufferedReader(new InputStreamReader(
+								new CBZip2InputStream(fIS)));
+					} else {
 						throw new Exception(file + " does not exist.");
+					}
 				}
 			}
 			// *****************************************************************************
@@ -372,19 +417,21 @@ public class MergeResults {
 		// *****************************************************************************
 		// * Load the combinations file and parse it
 		// *****************************************************************************
-		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(new BufferedReader(
-				new FileReader(new File(combinations))));
-		EvalGenCombinationsParser evalGenCombinationsParser = new EvalGenCombinationsParser(evalGenCombinationsLexer);
+		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(
+				new BufferedReader(new FileReader(new File(combinations))));
+		EvalGenCombinationsParser evalGenCombinationsParser = new EvalGenCombinationsParser(
+				evalGenCombinationsLexer);
 		evalGenCombinationsParser.setIncludeDir(new File("."));
 		evalGenCombinationsParser.blocks();
 
 		EvalGenCombinationsTreeWalker evalGenCombinationsWalker = new EvalGenCombinationsTreeWalker();
-		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker.blocks(evalGenCombinationsParser
-				.getAST());
+		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker
+				.blocks(evalGenCombinationsParser.getAST());
 
 		OurTreeNode globalParent = new Asdap(1);
 
-		Iterator<VLinkedHashMap<VLinkedHashMap<Symbol>>> dataIterator = data.values().iterator();
+		Iterator<VLinkedHashMap<VLinkedHashMap<Symbol>>> dataIterator = data
+				.values().iterator();
 
 		evalGenCombinationsWalker.setGlobalSymbolTable(new VHashMap<Symbol>());
 
@@ -411,7 +458,8 @@ public class MergeResults {
 					System.out.println("Warning: dclog is to short!!!!");
 					break;
 				}
-				VLinkedHashMap<VLinkedHashMap<Symbol>> entry = dataIterator.next();
+				VLinkedHashMap<VLinkedHashMap<Symbol>> entry = dataIterator
+						.next();
 				OurTreeNode parent = globalParent;
 
 				// for this combination calculate the value of the symbol table
@@ -421,12 +469,16 @@ public class MergeResults {
 				VArrayList<VLinkedHashMap<Symbol>> altSymbols = new VArrayList<VLinkedHashMap<Symbol>>();
 				for (int j = 0; j < block.size(); j++) {
 					VArrayList<String> setKeys = block.get(j).getKeys();
-					VArrayList<AST> setValues = block.get(j).getAlternative(combination.get(j));
-					if (setKeys.size() != setValues.size())
-						throw new Exception("Number of Keys is unequal to number of values");
+					VArrayList<AST> setValues = block.get(j).getAlternative(
+							combination.get(j));
+					if (setKeys.size() != setValues.size()) {
+						throw new Exception(
+								"Number of Keys is unequal to number of values");
+					}
 					VLinkedHashMap<Symbol> altSymbol = new VLinkedHashMap<Symbol>();
 					for (int k = 0; k < setKeys.size(); k++) {
-						Symbol res = evalGenCombinationsWalker.expr(setValues.get(k));
+						Symbol res = evalGenCombinationsWalker.expr(setValues
+								.get(k));
 						res.setName(setKeys.get(k));
 						symbolTable.put(setKeys.get(k), res);
 
@@ -439,14 +491,20 @@ public class MergeResults {
 					// check if we have a nontrivial alternative
 					String name = generateName(altSymbols.get(j));
 
-					if (altContainsSymbol(altSymbols.get(j), triggerMeasureColumn)) {
+					if (altContainsSymbol(altSymbols.get(j),
+							triggerMeasureColumn)) {
 						// shmoo
-						String shmooTrim = getSymbolValueString(altSymbols, triggerTrimColumn);
-						String shmooMeasure = getSymbolValueString(altSymbols, triggerMeasureColumn);
-						String shmooSubtitle = getSymbolValueString(altSymbols, subtitleColumn);
+						String shmooTrim = getSymbolValueString(altSymbols,
+								triggerTrimColumn);
+						String shmooMeasure = getSymbolValueString(altSymbols,
+								triggerMeasureColumn);
+						String shmooSubtitle = getSymbolValueString(altSymbols,
+								subtitleColumn);
 
-						name = shmooMeasure + "/" + shmooTrim + "/" + shmooSubtitle;
-					} else if (altContainsSymbol(altSymbols.get(j), triggerTrimColumn)) {
+						name = shmooMeasure + "/" + shmooTrim + "/"
+								+ shmooSubtitle;
+					} else if (altContainsSymbol(altSymbols.get(j),
+							triggerTrimColumn)) {
 						//
 					} else if (nonTrivialAlt.contains(j)) {
 						// general alternative
@@ -456,7 +514,8 @@ public class MergeResults {
 					if (child == null) {
 						// child does not exist yet, so we need to create a new
 						// one
-						if (altContainsSymbol(altSymbols.get(j), triggerMeasureColumn)) {
+						if (altContainsSymbol(altSymbols.get(j),
+								triggerMeasureColumn)) {
 							// add shmoo
 							if (lastshmoo != null) {
 								// add remaining stuff to last shmoo
@@ -467,24 +526,34 @@ public class MergeResults {
 								for (Symbol sym : xLabelsAcc.get(trimAbsColumn)) {
 									xpos.add(sym.convertToDouble().getValue());
 								}
-								for (String s : xLabelsAcc.keySet())
+								for (String s : xLabelsAcc.keySet()) {
 									if (xLabelsAcc.get(s).get(0) instanceof SymbolString) {
-										xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
-									} else if (xLabelsAcc.get(s).get(0).getUnit() != null) {
-										xlabels.add(new Xdata(s, s, xLabelsAcc.get(s).get(0).getUnit().toString(),
+										xlabels.add(new Xdata(s, s, "",
 												xLabelsAcc.get(s), xpos));
+									} else if (xLabelsAcc.get(s).get(0)
+											.getUnit() != null) {
+										xlabels.add(new Xdata(s, s, xLabelsAcc
+												.get(s).get(0).getUnit()
+												.toString(), xLabelsAcc.get(s),
+												xpos));
 									} else {
-										xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
+										xlabels.add(new Xdata(s, s, "",
+												xLabelsAcc.get(s), xpos));
 									}
+								}
 								lastshmoo.setXdata(xlabels);
 
-								for (String s : yDataAcc.keySet())
+								for (String s : yDataAcc.keySet()) {
 									if (yDataAcc.get(s).get(0).getUnit() == null) {
-										lastshmoo.addChild(new Ydata(lastshmoo, s, s, "", yDataAcc.get(s)));
+										lastshmoo.addChild(new Ydata(lastshmoo,
+												s, s, "", yDataAcc.get(s)));
 									} else {
-										lastshmoo.addChild(new Ydata(lastshmoo, s, s, yDataAcc.get(s).get(0).getUnit()
-												.toString(), yDataAcc.get(s)));
+										lastshmoo.addChild(new Ydata(lastshmoo,
+												s, s, yDataAcc.get(s).get(0)
+														.getUnit().toString(),
+												yDataAcc.get(s)));
 									}
+								}
 
 								// reset accumulation arrays
 								xLabelsAcc = new VLinkedHashMap<VArrayList<Symbol>>();
@@ -494,15 +563,23 @@ public class MergeResults {
 							Shmoo shmoo = new Shmoo();
 							// shmoo.setName( generateName( altSymbols.get( j )
 							// ) );
-							String shmooTrim = getSymbolValueString(altSymbols, triggerTrimColumn);
-							String shmooMeasure = getSymbolValueString(altSymbols, triggerMeasureColumn);
-							String shmooSubtitle = getSymbolValueString(altSymbols, subtitleColumn);
+							String shmooTrim = getSymbolValueString(altSymbols,
+									triggerTrimColumn);
+							String shmooMeasure = getSymbolValueString(
+									altSymbols, triggerMeasureColumn);
+							String shmooSubtitle = getSymbolValueString(
+									altSymbols, subtitleColumn);
 							/*
-							 * for ( int m = 0; m < altSymbols.size(); m++ ) { if ( nonTrivialAlt.contains( m ) ) {
-							 * System.out.print( generateName( altSymbols.get( m ) ) + " " ); } }
+							 * for ( int m = 0; m < altSymbols.size(); m++ ) {
+							 * if ( nonTrivialAlt.contains( m ) ) {
+							 * System.out.print( generateName( altSymbols.get( m
+							 * ) ) + " " ); } }
 							 */
-							shmoo.setName(shmooMeasure + "/" + shmooTrim + "/" + shmooSubtitle);
-							shmoo.setDescription(shmooMeasure + "/" + shmooTrim);
+							shmoo.setName(shmooMeasure + "/" + shmooTrim + "/"
+									+ shmooSubtitle);
+							shmoo
+									.setDescription(shmooMeasure + "/"
+											+ shmooTrim);
 							shmoo.setSubtitle(shmooSubtitle);
 							shmoo.setTrim(shmooTrim);
 							shmoo.setMeasure(shmooMeasure);
@@ -516,20 +593,23 @@ public class MergeResults {
 							shmoo.setConstants(constants);
 
 							parent.addChild(shmoo);
-							System.out.println("New Shmoo: " + shmooMeasure + "/" + shmooTrim + ", " + shmooSubtitle);
+							System.out.println("New Shmoo: " + shmooMeasure
+									+ "/" + shmooTrim + ", " + shmooSubtitle);
 							System.out.println("at: " + shmoo.getTreePath());
 							lastshmoo = shmoo;
 							parent = shmoo;
-						} else if (altContainsSymbol(altSymbols.get(j), triggerTrimColumn)) {
+						} else if (altContainsSymbol(altSymbols.get(j),
+								triggerTrimColumn)) {
 							// accumulate data
 							// add required values from the alternatives
 							VLinkedHashMap<Symbol> oST = new VLinkedHashMap<Symbol>();
 							for (VLinkedHashMap<Symbol> sT : altSymbols) {
-								for (String symName : sT.keySet())
+								for (String symName : sT.keySet()) {
 									if (trimColumns.contains(symName)) {
 										Symbol value = sT.get(symName);
 										oST.put(symName, value);
 									}
+								}
 							}
 
 							// now oST only contains the last value of all
@@ -565,18 +645,22 @@ public class MergeResults {
 							// add general alternative
 
 							boolean found = false;
-							for (String symName : altSymbols.get(j).keySet())
+							for (String symName : altSymbols.get(j).keySet()) {
 								if (trimColumns.contains(symName)) {
 									found = true;
 									break;
 								}
+							}
 
 							if (!found) {
 								Alternative alternative = new Alternative();
 								alternative.setName(name);
-								alternative.setDescription(generateAlternativeName(altSymbols.get(j)));
+								alternative
+										.setDescription(generateAlternativeName(altSymbols
+												.get(j)));
 								if (parent instanceof Shmoo) {
-									System.out.println("adding alt " + name + " to Shmoo " + parent.toString());
+									System.out.println("adding alt " + name
+											+ " to Shmoo " + parent.toString());
 								}
 								parent.addChild(alternative);
 								parent = alternative;
@@ -598,24 +682,34 @@ public class MergeResults {
 				for (Symbol sym : xLabelsAcc.get(trimAbsColumn)) {
 					xpos.add(sym.convertToDouble().getValue());
 				}
-				for (String s : xLabelsAcc.keySet())
+				for (String s : xLabelsAcc.keySet()) {
 					if (xLabelsAcc.get(s).get(0) instanceof SymbolString) {
-						xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
+						xlabels
+								.add(new Xdata(s, s, "", xLabelsAcc.get(s),
+										xpos));
 					} else if (xLabelsAcc.get(s).get(0).getUnit() != null) {
-						xlabels.add(new Xdata(s, s, xLabelsAcc.get(s).get(0).getUnit().toString(), xLabelsAcc.get(s),
-								xpos));
+						xlabels
+								.add(new Xdata(s, s, xLabelsAcc.get(s).get(0)
+										.getUnit().toString(), xLabelsAcc
+										.get(s), xpos));
 					} else {
-						xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
+						xlabels
+								.add(new Xdata(s, s, "", xLabelsAcc.get(s),
+										xpos));
 					}
+				}
 				lastshmoo.setXdata(xlabels);
 
-				for (String s : yDataAcc.keySet())
+				for (String s : yDataAcc.keySet()) {
 					if (yDataAcc.get(s).get(0).getUnit() == null) {
-						lastshmoo.addChild(new Ydata(lastshmoo, s, s, "", yDataAcc.get(s)));
-					} else {
-						lastshmoo.addChild(new Ydata(lastshmoo, s, s, yDataAcc.get(s).get(0).getUnit().toString(),
+						lastshmoo.addChild(new Ydata(lastshmoo, s, s, "",
 								yDataAcc.get(s)));
+					} else {
+						lastshmoo.addChild(new Ydata(lastshmoo, s, s, yDataAcc
+								.get(s).get(0).getUnit().toString(), yDataAcc
+								.get(s)));
 					}
+				}
 			}
 		}
 
@@ -626,7 +720,8 @@ public class MergeResults {
 		OutputStream outStream = null;
 		if (zip) {
 			System.out.print("Saving " + output + ".zip...");
-			ZipOutputStream zipOutStream = new ZipOutputStream(new FileOutputStream(output + ".zip"));
+			ZipOutputStream zipOutStream = new ZipOutputStream(
+					new FileOutputStream(output + ".zip"));
 			zipOutStream.putNextEntry(new ZipEntry("default.xml"));
 			outStream = zipOutStream;
 		} else {

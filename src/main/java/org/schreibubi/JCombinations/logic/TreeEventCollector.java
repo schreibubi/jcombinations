@@ -24,7 +24,6 @@ import javax.swing.event.TreeModelEvent;
 
 import org.schreibubi.JCombinations.FileFormat.OurTreeNode;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -32,9 +31,9 @@ import org.schreibubi.JCombinations.FileFormat.OurTreeNode;
 public class TreeEventCollector {
 
 	class ChildPos {
-		private OurTreeNode	child;
+		private OurTreeNode child;
 
-		private int			pos;
+		private int pos;
 
 		/**
 		 * @param child
@@ -76,7 +75,7 @@ public class TreeEventCollector {
 		}
 	}
 
-	private HashMap<OurTreeNode, ArrayList<ChildPos>>	treeNodeList	= new HashMap<OurTreeNode, ArrayList<ChildPos>>();
+	private HashMap<OurTreeNode, ArrayList<ChildPos>> treeNodeList = new HashMap<OurTreeNode, ArrayList<ChildPos>>();
 
 	/**
 	 * @param parent
@@ -85,8 +84,9 @@ public class TreeEventCollector {
 	 */
 	public void addEvent(OurTreeNode parent, OurTreeNode child, int pos) {
 		ArrayList<ChildPos> eList = this.treeNodeList.get(parent);
-		if (eList == null)
+		if (eList == null) {
 			eList = new ArrayList<ChildPos>();
+		}
 		ChildPos c = new ChildPos(child, pos);
 		eList.add(c);
 		this.treeNodeList.put(parent, eList);
@@ -96,7 +96,8 @@ public class TreeEventCollector {
 	 * @param listenerList
 	 * @param source
 	 */
-	public void fireTreeNodesChanged(EventListenerList listenerList, Object source) {
+	public void fireTreeNodesChanged(EventListenerList listenerList,
+			Object source) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		TreeModelEvent e = null;
@@ -111,13 +112,16 @@ public class TreeEventCollector {
 			}
 			// Process the listeners last to first, notifying
 			// those that are interested in this event
-			for (int i = listeners.length - 2; i >= 0; i -= 2)
+			for (int i = listeners.length - 2; i >= 0; i -= 2) {
 				if (listeners[i] == DataEventListener.class) {
 					// Lazily create the event:
-					if (e == null)
-						e = new TreeModelEvent(source, parent.getTreePath(), childIndices, children);
+					if (e == null) {
+						e = new TreeModelEvent(source, parent.getTreePath(),
+								childIndices, children);
+					}
 					((DataEventListener) listeners[i + 1]).treeNodesChanged(e);
 				}
+			}
 		}
 	}
 
@@ -125,7 +129,8 @@ public class TreeEventCollector {
 	 * @param listenerList
 	 * @param source
 	 */
-	public void fireTreeNodesInserted(EventListenerList listenerList, Object source) {
+	public void fireTreeNodesInserted(EventListenerList listenerList,
+			Object source) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		TreeModelEvent e = null;
@@ -140,13 +145,16 @@ public class TreeEventCollector {
 			}
 			// Process the listeners last to first, notifying
 			// those that are interested in this event
-			for (int i = listeners.length - 2; i >= 0; i -= 2)
+			for (int i = listeners.length - 2; i >= 0; i -= 2) {
 				if (listeners[i] == DataEventListener.class) {
 					// Lazily create the event:
-					if (e == null)
-						e = new TreeModelEvent(source, parent.getTreePath(), childIndices, children);
+					if (e == null) {
+						e = new TreeModelEvent(source, parent.getTreePath(),
+								childIndices, children);
+					}
 					((DataEventListener) listeners[i + 1]).treeNodesInserted(e);
 				}
+			}
 		}
 	}
 
@@ -154,7 +162,8 @@ public class TreeEventCollector {
 	 * @param listenerList
 	 * @param source
 	 */
-	public void fireTreeNodesRemoved(EventListenerList listenerList, Object source) {
+	public void fireTreeNodesRemoved(EventListenerList listenerList,
+			Object source) {
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		TreeModelEvent e = null;
@@ -169,13 +178,16 @@ public class TreeEventCollector {
 			}
 			// Process the listeners last to first, notifying
 			// those that are interested in this event
-			for (int i = listeners.length - 2; i >= 0; i -= 2)
+			for (int i = listeners.length - 2; i >= 0; i -= 2) {
 				if (listeners[i] == DataEventListener.class) {
 					// Lazily create the event:
-					if (e == null)
-						e = new TreeModelEvent(source, parent.getTreePath(), childIndices, children);
+					if (e == null) {
+						e = new TreeModelEvent(source, parent.getTreePath(),
+								childIndices, children);
+					}
 					((DataEventListener) listeners[i + 1]).treeNodesRemoved(e);
 				}
+			}
 		}
 	}
 
@@ -185,8 +197,9 @@ public class TreeEventCollector {
 	public void removeNodes() {
 		for (OurTreeNode parent : this.treeNodeList.keySet()) {
 			ArrayList<ChildPos> cPositions = this.treeNodeList.get(parent);
-			for (ChildPos pos : cPositions)
+			for (ChildPos pos : cPositions) {
 				parent.removeChild(pos.getChild());
+			}
 		}
 	}
 

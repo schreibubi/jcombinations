@@ -27,15 +27,15 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class Content {
 
-	private String				index;
+	private String index;
 
-	private String				shortname;
+	private String shortname;
 
-	private String				description;
+	private String description;
 
-	private String				defaultvalue;
+	private String defaultvalue;
 
-	private VArrayList<Trim>	trimmings	= new VArrayList<Trim>();
+	private VArrayList<Trim> trimmings = new VArrayList<Trim>();
 
 	/**
 	 * @return Returns the defaultvalue.

@@ -19,21 +19,24 @@ package org.schreibubi.JCombinationsTools.setiPrinter;
 import org.schreibubi.JCombinationsTools.settings.SettingsInterface;
 
 public enum SetiPrinterOptions implements SettingsInterface {
-	VERSION("version", "version", false, "", "v", "", false), SETI("seti", "[in] seti.xml", true, "file", "s", "", true), MERGESETI(
-			"mergeseti", "merge seti chains if possible", false, "", "r", "false", false), TESTMODES("testmodes",
-			"testmodes", true, "seti-commands, comma separated", "t", "", true), HELP("help", "Help", false,
-			"gives you help", "h", "false", false);
+	VERSION("version", "version", false, "", "v", "", false), SETI("seti",
+			"[in] seti.xml", true, "file", "s", "", true), MERGESETI(
+			"mergeseti", "merge seti chains if possible", false, "", "r",
+			"false", false), TESTMODES("testmodes", "testmodes", true,
+			"seti-commands, comma separated", "t", "", true), HELP("help",
+			"Help", false, "gives you help", "h", "false", false);
 
-	String	longArgName;
-	String	explanation;
-	boolean	hasArgs;
-	String	argName;
-	String	shortArgName;
-	String	defaultValue;
-	boolean	required;
+	String longArgName;
+	String explanation;
+	boolean hasArgs;
+	String argName;
+	String shortArgName;
+	String defaultValue;
+	boolean required;
 
-	SetiPrinterOptions(String longArgName, String explanation, boolean hasArgs, String argName, String shortArgName,
-			String defaultValue, boolean required) {
+	SetiPrinterOptions(String longArgName, String explanation, boolean hasArgs,
+			String argName, String shortArgName, String defaultValue,
+			boolean required) {
 		this.longArgName = longArgName;
 		this.explanation = explanation;
 		this.hasArgs = hasArgs;
@@ -46,7 +49,9 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getArgName()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getArgName
+	 * ()
 	 */
 	public String getArgName() {
 		return argName;
@@ -55,7 +60,8 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getDefaultValue()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getDefaultValue()
 	 */
 	public String getDefaultValue() {
 		return defaultValue;
@@ -64,7 +70,8 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getExplanation()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getExplanation()
 	 */
 	public String getExplanation() {
 		return explanation;
@@ -73,7 +80,8 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getLongArgName()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getLongArgName()
 	 */
 	public String getLongArgName() {
 		return longArgName;
@@ -82,7 +90,8 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#getShortArgName()
+	 * @seeorg.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#
+	 * getShortArgName()
 	 */
 	public String getShortArgName() {
 		return shortArgName;
@@ -91,7 +100,9 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#isHasArgs()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.mergeResults.SettingsInterface#isHasArgs
+	 * ()
 	 */
 	public boolean hasArgs() {
 		return hasArgs;
@@ -100,7 +111,8 @@ public enum SetiPrinterOptions implements SettingsInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinationsTools.settings.SettingsInterface#required()
+	 * @see
+	 * org.schreibubi.JCombinationsTools.settings.SettingsInterface#required()
 	 */
 	@Override
 	public boolean required() {

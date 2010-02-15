@@ -24,9 +24,9 @@ import java.util.Vector;
  * 
  */
 public class SetiChainData {
-	private final Vector<Boolean>	commandsChain	= new Vector<Boolean>();
-	private final Vector<Boolean>	dataMaskChain	= new Vector<Boolean>();
-	private final Vector<Boolean>	dataChain		= new Vector<Boolean>();
+	private final Vector<Boolean> commandsChain = new Vector<Boolean>();
+	private final Vector<Boolean> dataMaskChain = new Vector<Boolean>();
+	private final Vector<Boolean> dataChain = new Vector<Boolean>();
 
 	public void append(SetiChainData other) {
 		commandsChain.addAll(other.getCommands());

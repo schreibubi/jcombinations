@@ -24,7 +24,6 @@ import javax.swing.tree.TreePath;
 
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -42,6 +41,7 @@ public interface ExportDataInterface {
 	 *            which nodes to output
 	 * @throws IOException
 	 */
-	public void writeData(DataModel dm, OutputStream out, ArrayList<TreePath> nodes) throws IOException;
+	public void writeData(DataModel dm, OutputStream out,
+			ArrayList<TreePath> nodes) throws IOException;
 
 }

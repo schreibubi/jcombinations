@@ -31,25 +31,28 @@ public class Info {
 	 * 
 	 * 1.3 was Hagnau
 	 * 
-	 * Changes: - Matlab export added - Overwrite warning only given once in Coordinator - include statements are now
-	 * possible outside the {...} block - Big fix for calculations with units - Merge results now uses the TESTNAME to
-	 * look up the results - Combination file is looked up according to Makepackage rules in Coordinator and
-	 * MergeResults - ignore parse errors for numbers in lotresults (CHIPID) - implemented option statement in
-	 * combination files to set command line switches - fix double defined command line options in Coordinator -
-	 * Mavenized build - library updates - support for multiple touchdowns - Support for setirel_211 - fixed help for
-	 * MergeResults - added mergeseti option
+	 * Changes: - Matlab export added - Overwrite warning only given once in
+	 * Coordinator - include statements are now possible outside the {...} block
+	 * - Big fix for calculations with units - Merge results now uses the
+	 * TESTNAME to look up the results - Combination file is looked up according
+	 * to Makepackage rules in Coordinator and MergeResults - ignore parse
+	 * errors for numbers in lotresults (CHIPID) - implemented option statement
+	 * in combination files to set command line switches - fix double defined
+	 * command line options in Coordinator - Mavenized build - library updates -
+	 * support for multiple touchdowns - Support for setirel_211 - fixed help
+	 * for MergeResults - added mergeseti option
 	 */
-	public static final String	version		= "Version 1.3 (\"Hagnau\", SVN: $Rev: 183 $)";
+	public static final String version = "Version 1.3 (\"Hagnau\", SVN: $Rev: 183 $)";
 
 	/**
 	 * Authors
 	 */
-	public static final String	authors		= "Jörg Werner";
+	public static final String authors = "Jörg Werner";
 
 	/**
 	 * Copyright
 	 */
-	public static final String	copyright	= "(C) 2009 Jörg Werner";
+	public static final String copyright = "(C) 2009 Jörg Werner";
 
 	/**
 	 * Returns the version string
@@ -59,7 +62,8 @@ public class Info {
 	 * @return version string for the program
 	 */
 	public static String getVersionString(String name) {
-		return name + "\n" + Info.version + "\nWritten by " + Info.authors + "\n" + Info.copyright + "\n";
+		return name + "\n" + Info.version + "\nWritten by " + Info.authors
+				+ "\n" + Info.copyright + "\n";
 	}
 
 	/**

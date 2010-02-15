@@ -40,7 +40,6 @@ import org.schreibubi.JCombinations.FileFormat.Ydata;
 import org.schreibubi.JCombinations.jfreechart.XYLineAndShapeRendererExtended;
 import org.schreibubi.JCombinations.logic.ExtendedJFreeChart;
 
-
 /**
  * Creates the charts from all selected nodes
  * 
@@ -49,15 +48,15 @@ import org.schreibubi.JCombinations.logic.ExtendedJFreeChart;
  */
 public class ChartNodesVisitor implements TreeVisitor {
 
-	ArrayList<TreePath>				treePaths	= null;
+	ArrayList<TreePath> treePaths = null;
 
-	ArrayList<ExtendedJFreeChart>	charts		= null;
+	ArrayList<ExtendedJFreeChart> charts = null;
 
-	ArrayList<ArrayList<Double>>	dutData		= null;
+	ArrayList<ArrayList<Double>> dutData = null;
 
-	ArrayList<String>				dutName		= null;
+	ArrayList<String> dutName = null;
 
-	ArrayList<String>				seriesMask	= null;
+	ArrayList<String> seriesMask = null;
 
 	/**
 	 * Constructor
@@ -69,8 +68,8 @@ public class ChartNodesVisitor implements TreeVisitor {
 	 * @param charts
 	 *            generated charts
 	 */
-	public ChartNodesVisitor(ArrayList<TreePath> treePaths, ArrayList<String> seriesMask,
-			ArrayList<ExtendedJFreeChart> charts) {
+	public ChartNodesVisitor(ArrayList<TreePath> treePaths,
+			ArrayList<String> seriesMask, ArrayList<ExtendedJFreeChart> charts) {
 		this.charts = charts;
 		this.seriesMask = seriesMask;
 		this.treePaths = treePaths;
@@ -79,44 +78,56 @@ public class ChartNodesVisitor implements TreeVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Alternative)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Alternative)
 	 */
 	public void visit(Alternative a) throws Exception {
-		for (int i = 0; i < a.getChildCount(); i++)
+		for (int i = 0; i < a.getChildCount(); i++) {
 			(a.getChildAt(i)).accept(this);
+		}
 	}
 
 	public void visit(Asdap r) throws Exception {
-		for (int i = 0; i < r.getChildCount(); i++)
+		for (int i = 0; i < r.getChildCount(); i++) {
 			(r.getChildAt(i)).accept(this);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Shmoo)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Shmoo)
 	 */
 	public void visit(Shmoo s) throws Exception {
-		if (s.componentSelected(this.treePaths, OurTreeNode.MYSELF | OurTreeNode.PARENTS | OurTreeNode.CHILDS)) {
-			NumberAxis xAxis = new NumberAxis(s.getTrim() + " [" + s.getXdataDefault().getUnit() + "]");
+		if (s.componentSelected(this.treePaths, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS | OurTreeNode.CHILDS)) {
+			NumberAxis xAxis = new NumberAxis(s.getTrim() + " ["
+					+ s.getXdataDefault().getUnit() + "]");
 			xAxis.setAutoRangeIncludesZero(false);
-			NumberAxis yAxis = new NumberAxis(s.getMeasure() + " [" + ((Ydata) s.getYdata().get(0)).getUnit() + "]");
+			NumberAxis yAxis = new NumberAxis(s.getMeasure() + " ["
+					+ ((Ydata) s.getYdata().get(0)).getUnit() + "]");
 			yAxis.setAutoRangeIncludesZero(false);
-			XYLineAndShapeRenderer renderer = new XYLineAndShapeRendererExtended(true, true);
+			XYLineAndShapeRenderer renderer = new XYLineAndShapeRendererExtended(
+					true, true);
 			renderer.setBaseToolTipGenerator(new StandardXYToolTipGenerator());
 
 			this.dutData = new ArrayList<ArrayList<Double>>();
 			this.dutName = new ArrayList<String>();
-			for (int i = 0; i < s.getChildCount(); i++)
+			for (int i = 0; i < s.getChildCount(); i++) {
 				(s.getChildAt(i)).accept(this);
+			}
 
 			XYSeriesCollection xyseries = new XYSeriesCollection();
 			ArrayList<Double> x = s.getXdataDefault().getXPositions();
 			for (int j = 0; j < this.dutData.size(); j++) {
 				ArrayList<Double> y = this.dutData.get(j);
 				XYSeries xy = new XYSeries(this.dutName.get(j));
-				for (int i = 0; i < y.size(); i++)
+				for (int i = 0; i < y.size(); i++) {
 					xy.add(x.get(i), y.get(i));
+				}
 				xyseries.addSeries(xy);
 			}
 
@@ -125,15 +136,19 @@ public class ChartNodesVisitor implements TreeVisitor {
 			plot.setDomainCrosshairVisible(true);
 			plot.setRangeCrosshairVisible(true);
 			Marker marker = s.getMarker();
-			if (marker != null)
+			if (marker != null) {
 				plot.addRangeMarker(marker, Layer.BACKGROUND);
-			ExtendedJFreeChart chart = new ExtendedJFreeChart(s.getDescription(), JFreeChart.DEFAULT_TITLE_FONT, plot,
+			}
+			ExtendedJFreeChart chart = new ExtendedJFreeChart(s
+					.getDescription(), JFreeChart.DEFAULT_TITLE_FONT, plot,
 					false);
-			if (marker == null)
+			if (marker == null) {
 				chart.addSubtitle(new TextTitle(s.getSubtitle()));
-			else
-				chart.addSubtitle(new TextTitle(s.getSubtitle() + " " + s.getValueAt(3) + "/" + s.getValueAt(4) + "/"
+			} else {
+				chart.addSubtitle(new TextTitle(s.getSubtitle() + " "
+						+ s.getValueAt(3) + "/" + s.getValueAt(4) + "/"
 						+ s.getValueAt(5)));
+			}
 
 			chart.setTreePath(s.getTreePath());
 			this.charts.add(chart);
@@ -144,14 +159,19 @@ public class ChartNodesVisitor implements TreeVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Data)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Data)
 	 */
 	public void visit(Ydata d) throws Exception {
-		if (d.componentSelected(this.treePaths, OurTreeNode.MYSELF | OurTreeNode.PARENTS))
-			if (!this.seriesMask.contains(d.getDescription()) | d.componentSelected(this.treePaths, OurTreeNode.MYSELF)) {
+		if (d.componentSelected(this.treePaths, OurTreeNode.MYSELF
+				| OurTreeNode.PARENTS)) {
+			if (!this.seriesMask.contains(d.getDescription())
+					| d.componentSelected(this.treePaths, OurTreeNode.MYSELF)) {
 				this.dutData.add(d.getDoubleValues());
 				this.dutName.add(d.getDescription());
 			}
+		}
 	}
 
 }

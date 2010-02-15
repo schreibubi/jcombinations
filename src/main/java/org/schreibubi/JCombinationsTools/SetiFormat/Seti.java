@@ -27,31 +27,31 @@ import org.schreibubi.visitor.VArrayList;
  */
 public class Seti {
 
-	private String						product;
+	private String product;
 
-	private String						design_step;
+	private String design_step;
 
-	private String						revision;
+	private String revision;
 
-	private String						date;
-
-	/** from version 2.00 onwards only */
-	private String						format;
+	private String date;
 
 	/** from version 2.00 onwards only */
-	private VArrayList<Client>			clients			= new VArrayList<Client>();
+	private String format;
 
-	private VArrayList<Chain>			chains			= new VArrayList<Chain>();
+	/** from version 2.00 onwards only */
+	private VArrayList<Client> clients = new VArrayList<Client>();
 
-	private VArrayList<Variable>		variables		= new VArrayList<Variable>();
+	private VArrayList<Chain> chains = new VArrayList<Chain>();
 
-	private VArrayList<Command>			commands		= new VArrayList<Command>();
+	private VArrayList<Variable> variables = new VArrayList<Variable>();
+
+	private VArrayList<Command> commands = new VArrayList<Command>();
 
 	/** not yet used, need extension of the xml-format for that! */
-	private VArrayList<Content>			contents		= new VArrayList<Content>();
+	private VArrayList<Content> contents = new VArrayList<Content>();
 
 	/** from version 2.00 onwards only */
-	private VArrayList<PinAssignment>	pinassignments	= new VArrayList<PinAssignment>();
+	private VArrayList<PinAssignment> pinassignments = new VArrayList<PinAssignment>();
 
 	/**
 	 * @return Returns the chains.
@@ -97,9 +97,11 @@ public class Seti {
 	}
 
 	public PinAssignment getPinassignment(String name) {
-		for (PinAssignment p : getPinassignments())
-			if (p.getMode().equals(name))
+		for (PinAssignment p : getPinassignments()) {
+			if (p.getMode().equals(name)) {
 				return p;
+			}
+		}
 		return null;
 	}
 

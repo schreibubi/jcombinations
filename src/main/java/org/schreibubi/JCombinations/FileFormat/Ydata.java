@@ -23,22 +23,21 @@ import javax.swing.tree.TreeNode;
 
 import org.schreibubi.symbol.Symbol;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class Ydata extends OurTreeNode {
 
-	private String				name		= null;
+	private String name = null;
 
-	private String				description	= null;
+	private String description = null;
 
-	private ArrayList<Symbol>	values		= null;
+	private ArrayList<Symbol> values = null;
 
-	private OurTreeNode			parent;
+	private OurTreeNode parent;
 
-	private String				unit		= null;
+	private String unit = null;
 
 	/**
 	 * Constructor
@@ -55,7 +54,8 @@ public class Ydata extends OurTreeNode {
 	 * @param unit
 	 * @param values
 	 */
-	public Ydata(OurTreeNode parent, String name, String description, String unit, ArrayList<Symbol> values) {
+	public Ydata(OurTreeNode parent, String name, String description,
+			String unit, ArrayList<Symbol> values) {
 		super();
 		setParent(parent);
 		setName(name);
@@ -77,18 +77,22 @@ public class Ydata extends OurTreeNode {
 		setUnit(d.getUnit());
 		if (deepCopy) {
 			ArrayList<Symbol> values_copy = new ArrayList<Symbol>();
-			for (Symbol b : d.getValues())
+			for (Symbol b : d.getValues()) {
 				values_copy.add(b);
+			}
 			setValues(values_copy);
-		} else
+		} else {
 			setValues(d.getValues());
+		}
 		setParent(d.getParent());
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi.JCombinations.FileFormat.TreeVisitor)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi
+	 * .JCombinations.FileFormat.TreeVisitor)
 	 */
 	@Override
 	public void accept(TreeVisitor v) throws Exception {
@@ -98,7 +102,9 @@ public class Ydata extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void addChild(OurTreeNode child) {
@@ -152,12 +158,13 @@ public class Ydata extends OurTreeNode {
 	 */
 	public ArrayList<Double> getDoubleValues() {
 		ArrayList<Double> d = new ArrayList<Double>();
-		for (Symbol sym : this.values)
+		for (Symbol sym : this.values) {
 			try {
 				d.add(sym.convertToDouble().getValue());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
 		return d;
 	}
 
@@ -213,7 +220,8 @@ public class Ydata extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @seeorg.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.
+	 * schreibubi.JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void removeChild(OurTreeNode child) {
@@ -222,7 +230,8 @@ public class Ydata extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
 	 */
 	@Override
 	public void removeChildAt(int pos) {
@@ -247,7 +256,9 @@ public class Ydata extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void setParent(OurTreeNode parent) {

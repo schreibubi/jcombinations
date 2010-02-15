@@ -40,9 +40,9 @@ import com.jmatio.types.MLStructure;
  */
 public class MatlabWriteTreeVisitor implements TreeVisitor {
 
-	private MLStructure					rootStructure	= null;
-	private final Stack<MLStructure>	arrayStack		= new Stack<MLStructure>();
-	private final Stack<Integer>		positionStack	= new Stack<Integer>();
+	private MLStructure rootStructure = null;
+	private final Stack<MLStructure> arrayStack = new Stack<MLStructure>();
+	private final Stack<Integer> positionStack = new Stack<Integer>();
 
 	/**
 	 * Constructor
@@ -58,14 +58,16 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.
-	 * Alternative)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat. Alternative)
 	 */
 	public void visit(Alternative a) throws Exception {
 		MLStructure altStructure = arrayStack.peek();
 		Integer position = positionStack.peek();
 		altStructure.setField("name", new MLChar(null, a.getName()), position);
-		altStructure.setField("description", new MLChar(null, a.getDescription()), position);
+		altStructure.setField("description", new MLChar(null, a
+				.getDescription()), position);
 
 		int countShmoos = 0;
 		int countAlts = 0;
@@ -76,7 +78,8 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 				countAlts++;
 			}
 		}
-		MLStructure collectShmoos = new MLStructure("shmoos", new int[] { 1, countShmoos });
+		MLStructure collectShmoos = new MLStructure("shmoos", new int[] { 1,
+				countShmoos });
 		arrayStack.push(collectShmoos);
 		positionStack.push(0);
 		for (int i = 0; i < a.getChildCount(); i++) {
@@ -88,7 +91,8 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 		positionStack.pop();
 		altStructure.setField("shmoos", collectShmoos);
 
-		MLStructure collectAlts = new MLStructure("alternatives", new int[] { 1, countAlts });
+		MLStructure collectAlts = new MLStructure("alternatives", new int[] {
+				1, countAlts });
 		arrayStack.push(collectAlts);
 		positionStack.push(0);
 		for (int i = 0; i < a.getChildCount(); i++) {
@@ -116,7 +120,8 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 				countAlts++;
 			}
 		}
-		MLStructure collectShmoos = new MLStructure("shmoos", new int[] { 1, countShmoos });
+		MLStructure collectShmoos = new MLStructure("shmoos", new int[] { 1,
+				countShmoos });
 		arrayStack.push(collectShmoos);
 		positionStack.push(0);
 		for (int i = 0; i < r.getChildCount(); i++) {
@@ -128,7 +133,8 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 		positionStack.pop();
 		rootStructure.setField("shmoos", collectShmoos);
 
-		MLStructure collectAlts = new MLStructure("alternatives", new int[] { 1, countAlts });
+		MLStructure collectAlts = new MLStructure("alternatives", new int[] {
+				1, countAlts });
 		arrayStack.push(collectAlts);
 		positionStack.push(0);
 		for (int i = 0; i < r.getChildCount(); i++) {
@@ -145,33 +151,42 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Shmoo
-	 * )
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Shmoo )
 	 */
 	public void visit(Shmoo s) throws Exception {
 		MLStructure mlStructure = arrayStack.peek();
 		Integer position = positionStack.peek();
 		mlStructure.setField("name", new MLChar(null, s.getName()), position);
-		mlStructure.setField("description", new MLChar(null, s.getDescription()), position);
-		mlStructure.setField("subtitle", new MLChar(null, s.getSubtitle()), position);
+		mlStructure.setField("description",
+				new MLChar(null, s.getDescription()), position);
+		mlStructure.setField("subtitle", new MLChar(null, s.getSubtitle()),
+				position);
 		mlStructure.setField("trim", new MLChar(null, s.getTrim()), position);
-		mlStructure.setField("measure", new MLChar(null, s.getMeasure()), position);
-		mlStructure.setField("defaultXdata", new MLChar(null, s.getDefaultXdata()), position);
-		mlStructure.setField("relativeXdata", new MLChar(null, s.getRelativeXdata()), position);
+		mlStructure.setField("measure", new MLChar(null, s.getMeasure()),
+				position);
+		mlStructure.setField("defaultXdata", new MLChar(null, s
+				.getDefaultXdata()), position);
+		mlStructure.setField("relativeXdata", new MLChar(null, s
+				.getRelativeXdata()), position);
 
 		ArrayList<Xdata> xdatasets = s.getXdata();
-		MLStructure mlXdataSets = new MLStructure("xdataset", new int[] { 1, xdatasets.size() });
+		MLStructure mlXdataSets = new MLStructure("xdataset", new int[] { 1,
+				xdatasets.size() });
 		for (int i = 0; i < xdatasets.size(); i++) {
 			Xdata xdata = xdatasets.get(i);
 			mlXdataSets.setField("name", new MLChar(null, xdata.getName()), i);
-			mlXdataSets.setField("description", new MLChar(null, xdata.getDescription()), i);
+			mlXdataSets.setField("description", new MLChar(null, xdata
+					.getDescription()), i);
 			mlXdataSets.setField("unit", new MLChar(null, xdata.getUnit()), i);
 			Double[] d = new Double[] { 1.0 };
-			mlXdataSets.setField("xpos", new MLDouble(null, xdata.getXPositions().toArray(d), 1), i);
+			mlXdataSets.setField("xpos", new MLDouble(null, xdata
+					.getXPositions().toArray(d), 1), i);
 		}
 		mlStructure.setField("xdataset", mlXdataSets, position);
 
-		MLStructure collectYdata = new MLStructure("ydata", new int[] { 1, s.getChildCount() });
+		MLStructure collectYdata = new MLStructure("ydata", new int[] { 1,
+				s.getChildCount() });
 		arrayStack.push(collectYdata);
 		positionStack.push(0);
 		for (int i = 0; i < s.getChildCount(); i++) {
@@ -189,14 +204,16 @@ public class MatlabWriteTreeVisitor implements TreeVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Data)
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Data)
 	 */
 	public void visit(Ydata d) throws Exception {
 		MLStructure mlStructure = arrayStack.peek();
 		Integer position = positionStack.peek();
 
 		mlStructure.setField("name", new MLChar(null, d.getName()), position);
-		mlStructure.setField("description", new MLChar(null, d.getDescription()), position);
+		mlStructure.setField("description",
+				new MLChar(null, d.getDescription()), position);
 		mlStructure.setField("unit", new MLChar(null, d.getUnit()), position);
 
 		ArrayList<Symbol> v = d.getValues();

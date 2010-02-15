@@ -26,13 +26,13 @@ public class DataEvent extends EventObject {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3258135760375918902L;
+	private static final long serialVersionUID = 3258135760375918902L;
 
-	String						message				= "";
+	String message = "";
 
-	int							pos					= -1;
+	int pos = -1;
 
-	boolean						error				= false;
+	boolean error = false;
 
 	/**
 	 * Constructor

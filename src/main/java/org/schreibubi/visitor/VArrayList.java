@@ -30,7 +30,7 @@ public class VArrayList<T> extends ArrayList<T> implements Host<T> {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3696369414526030335L;
+	private static final long serialVersionUID = 3696369414526030335L;
 
 	public VArrayList() {
 		super();

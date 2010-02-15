@@ -21,22 +21,22 @@ import java.util.Comparator;
 
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class Bitgroup {
 
-	private String			type;
-	private VArrayList<Pin>	pins	= new VArrayList<Pin>();
+	private String type;
+	private VArrayList<Pin> pins = new VArrayList<Pin>();
 
 	public VArrayList<Integer> getPins() {
 		VArrayList<Integer> l = new VArrayList<Integer>();
 		for (Pin p : pins) {
 			String pname = p.getPinname();
-			if (pname.toUpperCase().substring(0, 3).equals("ADD"))
+			if (pname.toUpperCase().substring(0, 3).equals("ADD")) {
 				l.add(Integer.parseInt(pname.substring(3)));
+			}
 		}
 		return l;
 	}
@@ -48,8 +48,9 @@ public class Bitgroup {
 			}
 		});
 		VArrayList<Integer> l = new VArrayList<Integer>();
-		for (Pin p : pins)
+		for (Pin p : pins) {
 			l.add(Integer.parseInt(p.getPinname().substring(3)));
+		}
 		return l;
 	}
 

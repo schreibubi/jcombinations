@@ -26,12 +26,12 @@ import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
- * ChunkVisitorPrint is a visitor for chunks which calls the method toString for each chunk found in an Array or Hash.
+ * ChunkVisitorPrint is a visitor for chunks which calls the method toString for
+ * each chunk found in an Array or Hash.
  */
 public class ChunkVisitorPrint implements Visitor<Chunk> {
-	PrintWriter	pw	= null;
+	PrintWriter pw = null;
 
 	/**
 	 * Constructor
@@ -48,7 +48,8 @@ public class ChunkVisitorPrint implements Visitor<Chunk> {
 			if (s.getName() != "") {
 				this.pw.println(s.getName() + ":");
 			}
-			this.pw.println("@ " + s.getStart() + ", " + s.getStop() + ", " + s.getBefore() + ", " + s.getAfter());
+			this.pw.println("@ " + s.getStart() + ", " + s.getStop() + ", "
+					+ s.getBefore() + ", " + s.getAfter());
 			this.pw.println("-" + Helper.printHexLine(s.getRemove()));
 			this.pw.println("+" + Helper.printHexLine(s.getReplace()));
 		}
@@ -63,7 +64,8 @@ public class ChunkVisitorPrint implements Visitor<Chunk> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Chunk> s) throws Exception {
 		// TODO Auto-generated method stub

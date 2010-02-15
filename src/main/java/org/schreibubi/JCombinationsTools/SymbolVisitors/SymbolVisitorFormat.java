@@ -32,15 +32,14 @@ import org.schreibubi.visitor.VHashMap;
 import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 
-
 /**
  * SymbolVisitorFormat outputs a symbol formatted as given by the format string.
  */
 public class SymbolVisitorFormat extends SymbolVisitor {
 
-	String		format	= "";
+	String format = "";
 
-	PrintWriter	pw		= null;
+	PrintWriter pw = null;
 
 	/**
 	 * Constructor
@@ -58,7 +57,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble
+	 * )
 	 */
 	@Override
 	public void visit(SymbolDouble s) {
@@ -74,7 +75,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger
+	 * )
 	 */
 	@Override
 	public void visit(SymbolInteger s) {
@@ -90,7 +93,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString
+	 * )
 	 */
 	@Override
 	public void visit(SymbolString s) {
@@ -108,7 +113,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList
+	 * )
 	 */
 	@Override
 	public void visit(VArrayList<Symbol> s) throws Exception {
@@ -124,7 +131,8 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Symbol> s) throws Exception {
 		// TODO Auto-generated method stub
@@ -134,7 +142,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap
+	 * )
 	 */
 	@Override
 	public void visit(VHashMap<Symbol> s) throws Exception {
@@ -150,7 +160,8 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VLinkedHashMap)
+	 * @seeorg.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.
+	 * VLinkedHashMap)
 	 */
 	@Override
 	public void visit(VLinkedHashMap<Symbol> s) throws Exception {
@@ -166,7 +177,9 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap
+	 * )
 	 */
 	@Override
 	public void visit(VTreeMap<Symbol> s) throws Exception {

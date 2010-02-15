@@ -48,7 +48,6 @@ import org.schreibubi.visitor.VHashMap;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 
-
 /**
  * GenerateBinaryDiffValues program
  * 
@@ -64,36 +63,41 @@ public class GenerateBinaryDiffValues {
 	 * @param templateVariable
 	 *            variable which contains the template name
 	 * @param seti
-	 *            if unequal "" enables seti patching with passed value as filename for the necessary xml file
+	 *            if unequal "" enables seti patching with passed value as
+	 *            filename for the necessary xml file
 	 * @return list off templates for which testvalues were generated
 	 */
-	public static VArrayList<String> exec(String variablesInName, String outputDir, String setiXmlFile,
-			String templateVariable) {
+	public static VArrayList<String> exec(String variablesInName,
+			String outputDir, String setiXmlFile, String templateVariable) {
 		VArrayList<String> usedTemplates = new VArrayList<String>();
 		try {
 			File variablesInFile = new File(variablesInName);
-			if (!variablesInFile.exists())
+			if (!variablesInFile.exists()) {
 				throw new Exception(variablesInName + " does not exist.");
+			}
 
-			AssignLexer assignLexer = new AssignLexer(new BufferedReader(new FileReader(variablesInFile)));
+			AssignLexer assignLexer = new AssignLexer(new BufferedReader(
+					new FileReader(variablesInFile)));
 			AssignParser assignParser = new AssignParser(assignLexer);
 			assignParser.lines();
 
 			/*
-			 * ASTFactory factory = new ASTFactory(); AST r = factory.create( 0, "AST ROOT" ); r.setFirstChild(
-			 * assignParser.getAST() ); ASTFrame frame = new ASTFrame( "Preserve Whitespace Example AST", r );
+			 * ASTFactory factory = new ASTFactory(); AST r = factory.create( 0,
+			 * "AST ROOT" ); r.setFirstChild( assignParser.getAST() ); ASTFrame
+			 * frame = new ASTFrame( "Preserve Whitespace Example AST", r );
 			 * frame.setVisible( true );
 			 */
 
 			AssignTreeWalker assignTreeWalker = new AssignTreeWalker();
-			VHashMap<VHashMap<Symbol>> typeSizeMap = assignTreeWalker.maxlines(assignParser.getAST(), templateVariable);
+			VHashMap<VHashMap<Symbol>> typeSizeMap = assignTreeWalker.maxlines(
+					assignParser.getAST(), templateVariable);
 
 			for (String template : typeSizeMap.keySet()) {
 				usedTemplates.add(template);
 				Mangle mangle = null;
-				if (setiXmlFile.length() > 0)
+				if (setiXmlFile.length() > 0) {
 					throw new Exception("Seti Patching not supported any more");
-				else {
+				} else {
 					mangle = new MangleMRS(0x040F0000);
 				}
 				// Visit typeSizeMap with visitorDiffVal to generate List of
@@ -101,13 +105,16 @@ public class GenerateBinaryDiffValues {
 				VArrayList<Chunk> allPossibleChunks = new VArrayList<Chunk>();
 				VArrayList<Symbol> removeSymbolList = new VArrayList<Symbol>();
 				VArrayList<Symbol> replaceSymbolList = new VArrayList<Symbol>();
-				SymbolVisitorDiffVal visitorDiffVal = new SymbolVisitorDiffVal(allPossibleChunks, removeSymbolList,
-						replaceSymbolList, mangle);
-				VHashMap<Symbol> typeSizeMapTemplate = typeSizeMap.get(template);
+				SymbolVisitorDiffVal visitorDiffVal = new SymbolVisitorDiffVal(
+						allPossibleChunks, removeSymbolList, replaceSymbolList,
+						mangle);
+				VHashMap<Symbol> typeSizeMapTemplate = typeSizeMap
+						.get(template);
 				typeSizeMapTemplate.accept(visitorDiffVal);
 
 				// Print out lines for template engine
-				PrintWriter pw = new PrintWriter(new FileWriter(new File(outputDir, template + ".testvalues")));
+				PrintWriter pw = new PrintWriter(new FileWriter(new File(
+						outputDir, template + ".testvalues")));
 
 				// remove
 				SymbolVisitorPrint visitorPrinter = new SymbolVisitorPrint(pw);
@@ -119,17 +126,23 @@ public class GenerateBinaryDiffValues {
 				pw.close();
 
 				// Print out list of possible chunks
-				pw = new PrintWriter(new FileWriter(new File(outputDir, template + ".possiblechunks")));
+				pw = new PrintWriter(new FileWriter(new File(outputDir,
+						template + ".possiblechunks")));
 				pw.println("--- dummy");
 				pw.println("+++ dummy");
-				ChunkVisitorPrint chunkVisitorPrinter = new ChunkVisitorPrint(pw);
+				ChunkVisitorPrint chunkVisitorPrinter = new ChunkVisitorPrint(
+						pw);
 				allPossibleChunks.accept(chunkVisitorPrinter);
 				pw.close();
 			}
 		} catch (TokenStreamException e) {
-			System.out.println("GenerateBinaryDiffValues TokenStreamException: " + e);
+			System.out
+					.println("GenerateBinaryDiffValues TokenStreamException: "
+							+ e);
 		} catch (RecognitionException e) {
-			System.out.println("GenerateBinaryDiffValues RecognitionException: " + e);
+			System.out
+					.println("GenerateBinaryDiffValues RecognitionException: "
+							+ e);
 		} catch (JiBXException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -142,9 +155,10 @@ public class GenerateBinaryDiffValues {
 	}
 
 	/**
-	 * This program takes the file with all possible combinations of variables and creates two set of variables for
-	 * relating the variable names to positions in the binary diff. Additionally a patch is created containing the
-	 * expected chunks from a binary diff.
+	 * This program takes the file with all possible combinations of variables
+	 * and creates two set of variables for relating the variable names to
+	 * positions in the binary diff. Additionally a patch is created containing
+	 * the expected chunks from a binary diff.
 	 * 
 	 * @param args
 	 */
@@ -158,13 +172,18 @@ public class GenerateBinaryDiffValues {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.isRequired().withLongOpt("variablesIn").withDescription(
-					"[in] file containing the variables").hasArg().withArgName("file").create('i'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("dir").withDescription("[out] output directory")
-					.hasArg().withArgName("file").create('d'));
-			options.addOption(OptionBuilder.withLongOpt("seti").withDescription("[in] enable seti-chain patching")
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"variablesIn").withDescription(
+					"[in] file containing the variables").hasArg().withArgName(
+					"file").create('i'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt("dir")
+					.withDescription("[out] output directory").hasArg()
+					.withArgName("file").create('d'));
+			options.addOption(OptionBuilder.withLongOpt("seti")
+					.withDescription("[in] enable seti-chain patching")
 					.hasArg().withArgName("file").create('s'));
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
 
 			CommandLine line = CLparser.parse(options, args);
 
@@ -185,7 +204,8 @@ public class GenerateBinaryDiffValues {
 			exec(variablesInName, outputDir, seti, "TEMPLATE");
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp(Info.getVersionString("GenerateBinaryDiffValues"), options);
+			formatter.printHelp(Info
+					.getVersionString("GenerateBinaryDiffValues"), options);
 		} catch (Exception e) {
 			System.out.println("GenerateBinaryDiffValues error: " + e);
 			e.printStackTrace();

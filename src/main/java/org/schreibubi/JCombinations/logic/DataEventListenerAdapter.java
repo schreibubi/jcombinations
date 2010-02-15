@@ -19,7 +19,8 @@ package org.schreibubi.JCombinations.logic;
 import javax.swing.event.TreeModelEvent;
 
 /**
- * This is just for convinience, so one not needs to implement all the unnecessary routines
+ * This is just for convinience, so one not needs to implement all the
+ * unnecessary routines
  * 
  * @author Jörg Werner
  * 
@@ -29,7 +30,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#limitMessage(org.schreibubi.JCombinations.logic.DataEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#limitMessage(org
+	 * .schreibubi.JCombinations.logic.DataEvent)
 	 */
 	public void limitMessage(DataEvent e) {
 	}
@@ -37,7 +40,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#selectionUpdated(org.schreibubi.JCombinations.logic.SelectionEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#selectionUpdated
+	 * (org.schreibubi.JCombinations.logic.SelectionEvent)
 	 */
 	public void selectionUpdated(SelectionEvent e) {
 	}
@@ -45,7 +50,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#treeNodesChanged(javax.swing.event.TreeModelEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#treeNodesChanged
+	 * (javax.swing.event.TreeModelEvent)
 	 */
 	public void treeNodesChanged(TreeModelEvent e) {
 	}
@@ -53,7 +60,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#treeNodesInserted(javax.swing.event.TreeModelEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#treeNodesInserted
+	 * (javax.swing.event.TreeModelEvent)
 	 */
 	public void treeNodesInserted(TreeModelEvent e) {
 	}
@@ -61,7 +70,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#treeNodesRemoved(javax.swing.event.TreeModelEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#treeNodesRemoved
+	 * (javax.swing.event.TreeModelEvent)
 	 */
 	public void treeNodesRemoved(TreeModelEvent e) {
 	}
@@ -69,7 +80,9 @@ public class DataEventListenerAdapter implements DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.DataEventListener#treeStructureChanged(javax.swing.event.TreeModelEvent)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.DataEventListener#treeStructureChanged
+	 * (javax.swing.event.TreeModelEvent)
 	 */
 	public void treeStructureChanged(TreeModelEvent e) {
 	}

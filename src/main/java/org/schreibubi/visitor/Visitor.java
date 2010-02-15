@@ -17,8 +17,9 @@
 package org.schreibubi.visitor;
 
 /**
- * Visitor Interface. Implements the visitor pattern for visiting a class which implements the {@link Host} interface.
- * Additionally convenience methods for visiting a whole {@link VHashMap} or {@link VArrayList} exist.
+ * Visitor Interface. Implements the visitor pattern for visiting a class which
+ * implements the {@link Host} interface. Additionally convenience methods for
+ * visiting a whole {@link VHashMap} or {@link VArrayList} exist.
  * 
  * @param <T>
  *            type of visitor

@@ -42,10 +42,9 @@ import org.schreibubi.JCombinations.logic.io.GeneralDataFormat;
 import org.schreibubi.JCombinations.logic.io.ImportDataInterface;
 import org.schreibubi.JCombinations.ui.GridChartPanel;
 
-
 /**
- * Class which generates pdf files from the xml-data files given on the command-line. A limit file can be given and also
- * which DUTs should be masked.
+ * Class which generates pdf files from the xml-data files given on the
+ * command-line. A limit file can be given and also which DUTs should be masked.
  * 
  * @author Jörg Werner
  * 
@@ -62,10 +61,12 @@ public class PdfGen {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.withLongOpt("limits").withDescription("[in] limit-file").hasArg()
-					.withArgName("file").create('l'));
-			options.addOption(OptionBuilder.withLongOpt("mask").withDescription("[in] mask DUTs").hasArg().withArgName(
-					"").create('m'));
+			options.addOption(OptionBuilder.withLongOpt("limits")
+					.withDescription("[in] limit-file").hasArg().withArgName(
+							"file").create('l'));
+			options.addOption(OptionBuilder.withLongOpt("mask")
+					.withDescription("[in] mask DUTs").hasArg().withArgName("")
+					.create('m'));
 
 			CommandLine line = CLparser.parse(options, args);
 			String[] leftargs = line.getArgs();
@@ -81,14 +82,18 @@ public class PdfGen {
 				System.out.print("Reading " + inFile + "...");
 				fileInputStream = new FileInputStream(file);
 				if (file.getName().endsWith(".zip")) {
-					ZipInputStream zipInputStream = new ZipInputStream(fileInputStream);
+					ZipInputStream zipInputStream = new ZipInputStream(
+							fileInputStream);
 					zipInputStream.getNextEntry();
 					in.readData(dm, zipInputStream);
 					zipInputStream.close();
-					outFile = inFile.substring(0, inFile.lastIndexOf(".xml.zip")) + ".pdf";
+					outFile = inFile.substring(0, inFile
+							.lastIndexOf(".xml.zip"))
+							+ ".pdf";
 				} else {
 					in.readData(dm, fileInputStream);
-					outFile = inFile.substring(0, inFile.lastIndexOf(".xml")) + ".pdf";
+					outFile = inFile.substring(0, inFile.lastIndexOf(".xml"))
+							+ ".pdf";
 				}
 				fileInputStream.close();
 				System.out.println("done.");
@@ -97,8 +102,9 @@ public class PdfGen {
 					String maskString = line.getOptionValue("m");
 					String[] maskArray = maskString.split(",");
 					ArrayList<String> dutMask = new ArrayList<String>();
-					for (String s : maskArray)
+					for (String s : maskArray) {
 						dutMask.add(s);
+					}
 					dm.setSeriesMask(dutMask);
 				}
 
@@ -106,10 +112,12 @@ public class PdfGen {
 					System.out.print("Applying limits...");
 					String limitsText = "";
 					String limitsFile = line.getOptionValue("l");
-					BufferedReader inReader = new BufferedReader(new FileReader(limitsFile));
+					BufferedReader inReader = new BufferedReader(
+							new FileReader(limitsFile));
 					String s;
-					while ((s = inReader.readLine()) != null)
+					while ((s = inReader.readLine()) != null) {
 						limitsText = limitsText + s + "\n";
+					}
 					inReader.close();
 					dm.setLimitsText(limitsText);
 					dm.applyLimits();
@@ -133,7 +141,8 @@ public class PdfGen {
 				ArrayList<TreePath> selection = new ArrayList<TreePath>();
 				selection.add(dm.getRoot().getTreePath());
 
-				GridChartPanel.generatePDF(new File(outFile), dm, selection, pl);
+				GridChartPanel
+						.generatePDF(new File(outFile), dm, selection, pl);
 				System.out.println("done.");
 
 			}

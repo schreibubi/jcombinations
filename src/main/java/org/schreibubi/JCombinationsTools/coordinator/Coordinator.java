@@ -46,7 +46,6 @@ import org.schreibubi.visitor.VHashMap;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 
-
 /**
  * @author Jörg Werner
  */
@@ -62,46 +61,58 @@ public class Coordinator {
 
 			CoordinatorOptions[] settings = CoordinatorOptions.values();
 			SettingsSingleton.initialize("Coordinator", settings);
-			// command line arguments have the highest priority, so they go into level 2
+			// command line arguments have the highest priority, so they go into
+			// level 2
 			SettingsSingleton.getInstance().parseArguments(args, 2);
 
-			if (SettingsSingleton.getInstance().getProperty("help").equals("true")) {
+			if (SettingsSingleton.getInstance().getProperty("help").equals(
+					"true")) {
 				SettingsSingleton.getInstance().displayHelp();
 				Runtime.getRuntime().exit(0);
 			}
 
-			if (SettingsSingleton.getInstance().getProperty("version").equals("true")) {
+			if (SettingsSingleton.getInstance().getProperty("version").equals(
+					"true")) {
 				Info.printVersion("SetiPrinter");
 				Runtime.getRuntime().exit(0);
 			}
 
-			String combinationFileName = SettingsSingleton.getInstance().getProperty("combinations");
+			String combinationFileName = SettingsSingleton.getInstance()
+					.getProperty("combinations");
 
 			// pre-tags
 			VArrayList<String> preTags = new VArrayList<String>();
-			String preTagsString = SettingsSingleton.getInstance().getProperty("pretags");
-			preTags = new VArrayList<String>(Arrays.asList(preTagsString.split(",")));
+			String preTagsString = SettingsSingleton.getInstance().getProperty(
+					"pretags");
+			preTags = new VArrayList<String>(Arrays.asList(preTagsString
+					.split(",")));
 			// post-tags
 			VArrayList<String> postTags = new VArrayList<String>();
-			String postTagsString = SettingsSingleton.getInstance().getProperty("posttags");
-			postTags = new VArrayList<String>(Arrays.asList(postTagsString.split(",")));
+			String postTagsString = SettingsSingleton.getInstance()
+					.getProperty("posttags");
+			postTags = new VArrayList<String>(Arrays.asList(postTagsString
+					.split(",")));
 
 			FileNameLookupSingleton.initialize(preTags, postTags);
 
-			File dir = new File(combinationFileName).getAbsoluteFile().getParentFile();
-			File combinationFile = FileNameLookupSingleton.getInstance().lookup(dir, combinationFileName);
+			File dir = new File(combinationFileName).getAbsoluteFile()
+					.getParentFile();
+			File combinationFile = FileNameLookupSingleton.getInstance()
+					.lookup(dir, combinationFileName);
 			System.out.println("Processing: " + combinationFile.getName());
 
 			// Generate all possible combinations
 			System.out.print("Generating and evaluation all combinations...");
 			VHashMap<String> optionsFromEvalGenWalker = new VHashMap<String>();
-			VArrayList<VHashMap<Symbol>> symbolTableLines = EvalGenCombinations.exec(new FileReader(combinationFile),
-					dir, optionsFromEvalGenWalker);
+			VArrayList<VHashMap<Symbol>> symbolTableLines = EvalGenCombinations
+					.exec(new FileReader(combinationFile), dir,
+							optionsFromEvalGenWalker);
 			System.out.println("done");
 
 			// now additional default options are known...
 			// -----------------------------------------------------------------------------
-			String argumentsString = optionsFromEvalGenWalker.get("Coordinator");
+			String argumentsString = optionsFromEvalGenWalker
+					.get("Coordinator");
 			if (argumentsString != null) {
 				String[] arguments = argumentsString.split(" ");
 				SettingsSingleton.getInstance().parseArguments(arguments, 1);
@@ -112,51 +123,70 @@ public class Coordinator {
 				Runtime.getRuntime().exit(0);
 			}
 
-			String conditionFilePrefix = SettingsSingleton.getInstance().getProperty("conditionprefix");
+			String conditionFilePrefix = SettingsSingleton.getInstance()
+					.getProperty("conditionprefix");
 
 			boolean ignoreMissingCBMpos = false;
-			if (SettingsSingleton.getInstance().getProperty("ignoremissingcbmpos").equals("true")) {
+			if (SettingsSingleton.getInstance().getProperty(
+					"ignoremissingcbmpos").equals("true")) {
 				ignoreMissingCBMpos = true;
 			}
 			boolean silent = false;
-			if (SettingsSingleton.getInstance().getProperty("silent").equals("true")) {
+			if (SettingsSingleton.getInstance().getProperty("silent").equals(
+					"true")) {
 				silent = true;
 			}
 
-			String cbmOutputDir = SettingsSingleton.getInstance().getProperty("cbmdir");
-			String patternInputDir = SettingsSingleton.getInstance().getProperty("patterndir");
-			String pcfOutputDir = SettingsSingleton.getInstance().getProperty("pcfdir");
+			String cbmOutputDir = SettingsSingleton.getInstance().getProperty(
+					"cbmdir");
+			String patternInputDir = SettingsSingleton.getInstance()
+					.getProperty("patterndir");
+			String pcfOutputDir = SettingsSingleton.getInstance().getProperty(
+					"pcfdir");
 
-			int cbmOffset = Integer.parseInt(SettingsSingleton.getInstance().getProperty("cbmOffset"));
+			int cbmOffset = Integer.parseInt(SettingsSingleton.getInstance()
+					.getProperty("cbmOffset"));
 
-			String conditionFileTemplateName = conditionFilePrefix + ".template";
+			String conditionFileTemplateName = conditionFilePrefix
+					+ ".template";
 			String conditionFileHeaderName = conditionFilePrefix + ".header";
 
-			if (!SettingsSingleton.getInstance().getProperty("conditiontemplate").equals("")) {
-				conditionFileTemplateName = SettingsSingleton.getInstance().getProperty("conditiontemplate");
+			if (!SettingsSingleton.getInstance().getProperty(
+					"conditiontemplate").equals("")) {
+				conditionFileTemplateName = SettingsSingleton.getInstance()
+						.getProperty("conditiontemplate");
 			}
-			if (!SettingsSingleton.getInstance().getProperty("conditionheader").equals("")) {
-				conditionFileHeaderName = SettingsSingleton.getInstance().getProperty("conditionheader");
+			if (!SettingsSingleton.getInstance().getProperty("conditionheader")
+					.equals("")) {
+				conditionFileHeaderName = SettingsSingleton.getInstance()
+						.getProperty("conditionheader");
 			}
 
 			String conditionFileName = "";
-			if (!SettingsSingleton.getInstance().getProperty("condition").equals("")) {
-				conditionFileName = SettingsSingleton.getInstance().getProperty("condition");
+			if (!SettingsSingleton.getInstance().getProperty("condition")
+					.equals("")) {
+				conditionFileName = SettingsSingleton.getInstance()
+						.getProperty("condition");
 			} else {
 				int dotPos = combinationFileName.indexOf(".");
 				if (dotPos > -1) {
-					conditionFileName = conditionFilePrefix + "_" + combinationFileName.subSequence(0, dotPos);
+					conditionFileName = conditionFilePrefix + "_"
+							+ combinationFileName.subSequence(0, dotPos);
 				} else {
-					conditionFileName = conditionFilePrefix + "_" + combinationFileName;
+					conditionFileName = conditionFilePrefix + "_"
+							+ combinationFileName;
 				}
 			}
-			String setiFile = SettingsSingleton.getInstance().getProperty("seti");
-// -----------------------------------------------------------------------------
-			if (SettingsSingleton.getInstance().getProperty("nocbmgen").equals("false")) {
+			String setiFile = SettingsSingleton.getInstance().getProperty(
+					"seti");
+			// -----------------------------------------------------------------------------
+			if (SettingsSingleton.getInstance().getProperty("nocbmgen").equals(
+					"false")) {
 				boolean filesWereOverwritten = false;
 				System.out.print("Creating CBM dat files...");
 
-				SetiChainBuilder constructSetiChain = new SetiChainBuilder(setiFile);
+				SetiChainBuilder constructSetiChain = new SetiChainBuilder(
+						setiFile);
 
 				VHashMap<TemplateInfo> templateInfos = new VHashMap<TemplateInfo>();
 
@@ -164,20 +194,25 @@ public class Coordinator {
 
 				int cbmPatternCount = cbmOffset;
 
-				for (ListIterator<VHashMap<Symbol>> i = symbolTableLines.listIterator(); i.hasNext();) {
+				for (ListIterator<VHashMap<Symbol>> i = symbolTableLines
+						.listIterator(); i.hasNext();) {
 					/* get variables used to fill out the actual template */
 					VHashMap<Symbol> sT = i.next();
 
-					String patName = sT.get("PATNAME").convertToString().getValue();
+					String patName = sT.get("PATNAME").convertToString()
+							.getValue();
 					TemplateInfo tI = templateInfos.get(patName);
 					// if template was not done already before
 					if (tI == null) {
 						// read in the cbm position file for this template
-						tI = readCBMpos(patternInputDir, patName, ignoreMissingCBMpos);
+						tI = readCBMpos(patternInputDir, patName,
+								ignoreMissingCBMpos);
 						if (tI == null) {
 							if (!silent) {
-								System.err.println("WARNING: " + patName
-										+ ".asc does not contain a cbm part, but ignored due to manual override!");
+								System.err
+										.println("WARNING: "
+												+ patName
+												+ ".asc does not contain a cbm part, but ignored due to manual override!");
 							}
 						} else {
 							templateInfos.put(patName, tI);
@@ -185,60 +220,81 @@ public class Coordinator {
 					}
 
 					if (tI != null) {
-						// check if we already have a dat file with the same settings...
-						VArrayList<Symbol> currentSymbols = selectSymbols(sT, tI.getCbmNames());
+						// check if we already have a dat file with the same
+						// settings...
+						VArrayList<Symbol> currentSymbols = selectSymbols(sT,
+								tI.getCbmNames());
 						currentSymbols.add(sT.get("PATNAME"));
 
-						Integer foundNumber = patCbmSettings.get(currentSymbols.toString());
+						Integer foundNumber = patCbmSettings.get(currentSymbols
+								.toString());
 						if (foundNumber != null) {
-							// we have already a dat file containing the same settings
+							// we have already a dat file containing the same
+							// settings
 							// so set the CBMNAME accordingly
-							sT.put("CBMNAME", new SymbolString(Integer.toHexString(foundNumber).toUpperCase()));
+							sT.put("CBMNAME", new SymbolString(Integer
+									.toHexString(foundNumber).toUpperCase()));
 						} else {
 							// first time we have these conditions
 							cbmPatternCount++;
-							String cbmName = Integer.toHexString(cbmPatternCount);
+							String cbmName = Integer
+									.toHexString(cbmPatternCount);
 
 							VArrayList<String> cbmNames = tI.getCbmNames();
 
 							// remember our settings...
-							VArrayList<Symbol> selectedSymbols = selectSymbols(sT, cbmNames);
+							VArrayList<Symbol> selectedSymbols = selectSymbols(
+									sT, cbmNames);
 							selectedSymbols.add(sT.get("PATNAME"));
-							patCbmSettings.put(selectedSymbols.toString(), cbmPatternCount);
+							patCbmSettings.put(selectedSymbols.toString(),
+									cbmPatternCount);
 
-							sT.put("CBMNAME", new SymbolString(cbmName.toUpperCase()));
+							sT.put("CBMNAME", new SymbolString(cbmName
+									.toUpperCase()));
 
 							// calculate seti-chains and put them in CBM chunks
-							for (CBMChunk chunk : tI.getCbms())
+							for (CBMChunk chunk : tI.getCbms()) {
 								if (sT.get(chunk.getName()) != null) {
-									VArrayList<Integer> content = constructSetiChain.createCBMChain(sT.get(
-											chunk.getName()).convertToString(), tI.getChannels(), chunk.getLength(),
-											chunk.getSetiType());
+									VArrayList<Integer> content = constructSetiChain
+											.createCBMChain(sT.get(
+													chunk.getName())
+													.convertToString(), tI
+													.getChannels(), chunk
+													.getLength(), chunk
+													.getSetiType());
 									chunk.setCbmContent(content);
 								}
+							}
 							// now optimize CBMChunks (are already in ascending
 							// order, so we only need to check the next one)
-							VArrayList<CBMChunk> compressedChunks = new VArrayList<CBMChunk>(tI.getCbms());
+							VArrayList<CBMChunk> compressedChunks = new VArrayList<CBMChunk>(
+									tI.getCbms());
 
 							// write them to file
 
-							File cbmOutput = new File(cbmOutputDir, cbmName + ".dat");
+							File cbmOutput = new File(cbmOutputDir, cbmName
+									+ ".dat");
 							if (cbmOutput.exists()) {
 								filesWereOverwritten = true;
 							}
-							DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(
-									cbmOutput)));
+							DataOutputStream out = new DataOutputStream(
+									new BufferedOutputStream(
+											new FileOutputStream(cbmOutput)));
 							out.writeInt(compressedChunks.size());
-							for (CBMChunk chunk : compressedChunks)
+							for (CBMChunk chunk : compressedChunks) {
 								if (sT.get(chunk.getName()) != null) {
 									// output hexstring to cbm-file
 									out.writeInt(chunk.getStart());
 									out.writeInt(chunk.getLength());
-									for (Integer integer : chunk.getCbmContent()) {
+									for (Integer integer : chunk
+											.getCbmContent()) {
 										out.writeInt(integer);
 									}
-								} else
-									throw new Exception(chunk.getName() + " does not exist");
+								} else {
+									throw new Exception(chunk.getName()
+											+ " does not exist");
+								}
+							}
 
 							out.close();
 						}
@@ -248,22 +304,28 @@ public class Coordinator {
 				}
 				System.out.println("done");
 				if ((!silent) && (filesWereOverwritten)) {
-					System.err.println("WARNING: Some .dat files were overwritten!");
+					System.err
+							.println("WARNING: Some .dat files were overwritten!");
 				}
 			} else {
-				// Even if no CBM.dat generation is requested, we need to set the CBMNAME...
-				for (ListIterator<VHashMap<Symbol>> i = symbolTableLines.listIterator(); i.hasNext();) {
+				// Even if no CBM.dat generation is requested, we need to set
+				// the CBMNAME...
+				for (ListIterator<VHashMap<Symbol>> i = symbolTableLines
+						.listIterator(); i.hasNext();) {
 					/* get variables used to fill out the actual template */
 					VHashMap<Symbol> sT = i.next();
 					sT.put("CBMNAME", new SymbolString(""));
 				}
 			}
 
-			if (SettingsSingleton.getInstance().getProperty("nopcf").equals("false")) {
+			if (SettingsSingleton.getInstance().getProperty("nopcf").equals(
+					"false")) {
 				// Create the condition file
 				System.out.print("Creating " + conditionFileName + "...");
-				TemplateEngine.exec(symbolTableLines, false, conditionFileName, false, conditionFileTemplateName,
-						new File("."), new File(pcfOutputDir), new File(conditionFileHeaderName), null);
+				TemplateEngine.exec(symbolTableLines, false, conditionFileName,
+						false, conditionFileTemplateName, new File("."),
+						new File(pcfOutputDir), new File(
+								conditionFileHeaderName), null);
 				System.out.println("done");
 			}
 
@@ -279,7 +341,8 @@ public class Coordinator {
 		}
 	}
 
-	private static SetiChain.SetiTypeEnum convertToSetiType(String s) throws Exception {
+	private static SetiChain.SetiTypeEnum convertToSetiType(String s)
+			throws Exception {
 		switch (s.toUpperCase().charAt(0)) {
 		case 'R':
 			return SetiChain.SetiTypeEnum.READ;
@@ -303,9 +366,11 @@ public class Coordinator {
 	 * @throws NumberFormatException
 	 * @throws Exception
 	 */
-	private static TemplateInfo readCBMpos(String patDir, String patName, boolean ignoreMissingCBMpos)
-			throws FileNotFoundException, IOException, NumberFormatException, Exception {
-		File patFile = FileNameLookupSingleton.getInstance().lookup(new File(patDir), patName + ".asc");
+	private static TemplateInfo readCBMpos(String patDir, String patName,
+			boolean ignoreMissingCBMpos) throws FileNotFoundException,
+			IOException, NumberFormatException, Exception {
+		File patFile = FileNameLookupSingleton.getInstance().lookup(
+				new File(patDir), patName + ".asc");
 		if (patFile.exists()) {
 			BufferedReader in = new BufferedReader(new FileReader(patFile));
 
@@ -313,8 +378,9 @@ public class Coordinator {
 			String str = null;
 			do {
 				str = in.readLine();
-				if (str == null)
+				if (str == null) {
 					return null;
+				}
 			} while (!str.contains("~ASDAPSETUP"));
 
 			VArrayList<Integer> channels = new VArrayList<Integer>();
@@ -322,8 +388,9 @@ public class Coordinator {
 			Pattern p = Pattern.compile(";~\\s*([\\s\\w,_]*)");
 			str = in.readLine();
 			Matcher m = p.matcher(str);
-			if (!m.matches())
+			if (!m.matches()) {
 				throw new Exception("No pin definition found in line " + str);
+			}
 
 			String[] chanArray = m.group(1).split(",");
 			for (String element : chanArray) {
@@ -334,19 +401,24 @@ public class Coordinator {
 			str = null;
 			while (!(str = in.readLine()).contains("~ASDAPSETEND")) {
 				m = p.matcher(str);
-				if (!m.matches())
-					throw new Exception("No cbm position defined in line " + str);
+				if (!m.matches()) {
+					throw new Exception("No cbm position defined in line "
+							+ str);
+				}
 				String[] parts = m.group(1).split(",");
-				CBMChunk c = new CBMChunk(parts[0].trim(), convertToSetiType(parts[1].trim()), Integer
-						.parseInt(parts[2].trim()), Integer.parseInt(parts[3].trim()));
+				CBMChunk c = new CBMChunk(parts[0].trim(),
+						convertToSetiType(parts[1].trim()), Integer
+								.parseInt(parts[2].trim()), Integer
+								.parseInt(parts[3].trim()));
 				cbms.add(c);
 			}
 			in.close();
 			return new TemplateInfo(cbms, channels);
-		} else if (ignoreMissingCBMpos)
+		} else if (ignoreMissingCBMpos) {
 			return null;
-		else
+		} else {
 			throw new Exception(patName + ".asc does not exist!");
+		}
 	}
 
 	/**
@@ -354,7 +426,8 @@ public class Coordinator {
 	 * @param symbolNames
 	 * @return
 	 */
-	private static VArrayList<Symbol> selectSymbols(VHashMap<Symbol> symbolList, VArrayList<String> symbolNames) {
+	private static VArrayList<Symbol> selectSymbols(
+			VHashMap<Symbol> symbolList, VArrayList<String> symbolNames) {
 		VArrayList<Symbol> settings = new VArrayList<Symbol>();
 		for (String n : symbolNames) {
 			settings.add(symbolList.get(n));

@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class Unit {
 
-	List<String>	nominator	= new ArrayList<String>();
+	List<String> nominator = new ArrayList<String>();
 
-	List<String>	denominator	= new ArrayList<String>();
+	List<String> denominator = new ArrayList<String>();
 
 	/**
 	 * Constructor
@@ -86,7 +86,8 @@ public class Unit {
 	public boolean compareTo(Unit o) {
 		List<String> on = o.getNominator();
 		List<String> od = o.getDenominator();
-		return (this.nominator.containsAll(on) & this.denominator.containsAll(od));
+		return (this.nominator.containsAll(on) & this.denominator
+				.containsAll(od));
 	}
 
 	/**
@@ -114,15 +115,19 @@ public class Unit {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof Unit))
+		}
+		if (!(obj instanceof Unit)) {
 			return false;
+		}
 		Unit that = (Unit) obj;
-		if (!this.denominator.equals(that.denominator))
+		if (!this.denominator.equals(that.denominator)) {
 			return false;
-		if (!this.nominator.equals(that.nominator))
+		}
+		if (!this.nominator.equals(that.nominator)) {
 			return false;
+		}
 		return true;
 	}
 

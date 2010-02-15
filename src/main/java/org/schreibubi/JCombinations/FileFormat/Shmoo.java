@@ -27,42 +27,41 @@ import org.schreibubi.symbol.Symbol;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.VHashMap;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class Shmoo extends OurTreeNode {
 
-	private String					name			= null;
+	private String name = null;
 
-	private String					description		= null;
+	private String description = null;
 
-	private String					subtitle		= null;
+	private String subtitle = null;
 
-	private String					defaultXdata	= null;
+	private String defaultXdata = null;
 
-	private String					relativeXdata	= null;
+	private String relativeXdata = null;
 
-	private VArrayList<Xdata>		xdata			= null;
+	private VArrayList<Xdata> xdata = null;
 
-	private VArrayList<OurTreeNode>	ydata			= new VArrayList<OurTreeNode>();
+	private VArrayList<OurTreeNode> ydata = new VArrayList<OurTreeNode>();
 
-	private OurTreeNode				parent			= null;
+	private OurTreeNode parent = null;
 
-	private LimitInterface			limit			= null;
+	private LimitInterface limit = null;
 
-	private VHashMap<Symbol>		constants		= null;
+	private VHashMap<Symbol> constants = null;
 
-	private Marker					marker			= null;
+	private Marker marker = null;
 
-	private int						passData		= 0;
+	private int passData = 0;
 
-	private int						failData		= 0;
+	private int failData = 0;
 
-	private String					trim;
+	private String trim;
 
-	private String					measure;
+	private String measure;
 
 	/**
 	 * Constructor
@@ -82,8 +81,10 @@ public class Shmoo extends OurTreeNode {
 	 * @param ydata
 	 * @param limit
 	 */
-	public Shmoo(OurTreeNode parent, String name, String subtitle, String description, String trim, String measure,
-			VArrayList<Xdata> xlabels, VArrayList<OurTreeNode> ydata, LimitInterface limit) {
+	public Shmoo(OurTreeNode parent, String name, String subtitle,
+			String description, String trim, String measure,
+			VArrayList<Xdata> xlabels, VArrayList<OurTreeNode> ydata,
+			LimitInterface limit) {
 		super();
 		setParent(parent);
 		setName(name);
@@ -108,18 +109,21 @@ public class Shmoo extends OurTreeNode {
 		setDescription(c.getDescription());
 		setSubtitle(c.getSubtitle());
 		VArrayList<Xdata> xlabels_copy = new VArrayList<Xdata>();
-		for (Xdata b : c.getXdata())
+		for (Xdata b : c.getXdata()) {
 			xlabels_copy.add(new Xdata(b));
+		}
 		setXdata(xlabels_copy);
 
 		if (deepCopy) {
 
 			VArrayList<OurTreeNode> ydata_copy = new VArrayList<OurTreeNode>();
-			for (OurTreeNode n : c.getYdata())
+			for (OurTreeNode n : c.getYdata()) {
 				ydata_copy.add(n.deepClone());
+			}
 			setYdata(ydata_copy);
-		} else
+		} else {
 			setYdata(null);
+		}
 		setTrim(c.getTrim());
 		setMeasure(c.getMeasure());
 		setParent(c.getParent());
@@ -132,7 +136,9 @@ public class Shmoo extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi.JCombinations.FileFormat.TreeVisitor)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#accept(org.schreibubi
+	 * .JCombinations.FileFormat.TreeVisitor)
 	 */
 	@Override
 	public void accept(TreeVisitor v) throws Exception {
@@ -142,12 +148,15 @@ public class Shmoo extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#addChild(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void addChild(OurTreeNode child) {
-		if (this.ydata == null)
+		if (this.ydata == null) {
 			this.ydata = new VArrayList<OurTreeNode>();
+		}
 		this.ydata.add(child);
 	}
 
@@ -225,9 +234,11 @@ public class Shmoo extends OurTreeNode {
 	 * @return Returns the xlabels.
 	 */
 	public int getDefaultXdataPos() {
-		for (int i = 0; i < this.xdata.size(); i++)
-			if (this.xdata.get(i).getName().equals(this.defaultXdata))
+		for (int i = 0; i < this.xdata.size(); i++) {
+			if (this.xdata.get(i).getName().equals(this.defaultXdata)) {
 				return i;
+			}
+		}
 		return -1;
 	}
 
@@ -294,9 +305,11 @@ public class Shmoo extends OurTreeNode {
 	 * @return Returns the xlabels.
 	 */
 	public int getRelativeXdataPos() {
-		for (int i = 0; i < this.xdata.size(); i++)
-			if (this.xdata.get(i).getName().equals(this.relativeXdata))
+		for (int i = 0; i < this.xdata.size(); i++) {
+			if (this.xdata.get(i).getName().equals(this.relativeXdata)) {
 				return i;
+			}
+		}
 		return -1;
 	}
 
@@ -351,9 +364,11 @@ public class Shmoo extends OurTreeNode {
 	 * @return Returns the xlabels.
 	 */
 	public Xdata getXdataDefault() {
-		for (Xdata xd : this.xdata)
-			if (xd.getName().equals(this.defaultXdata))
+		for (Xdata xd : this.xdata) {
+			if (xd.getName().equals(this.defaultXdata)) {
 				return xd;
+			}
+		}
 		return null;
 	}
 
@@ -376,7 +391,8 @@ public class Shmoo extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @seeorg.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChild(org.
+	 * schreibubi.JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void removeChild(OurTreeNode child) {
@@ -386,7 +402,8 @@ public class Shmoo extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#removeChildAt(int)
 	 */
 	@Override
 	public void removeChildAt(int pos) {
@@ -424,16 +441,18 @@ public class Shmoo extends OurTreeNode {
 	public void setLimit(LimitInterface limit) {
 		this.limit = limit;
 		try {
-			setMarker(limit.calcLimits(getXdata(), getDefaultXdataPos(), getRelativeXdataPos(), getConstants()));
+			setMarker(limit.calcLimits(getXdata(), getDefaultXdataPos(),
+					getRelativeXdataPos(), getConstants()));
 			this.passData = 0;
 			this.failData = 0;
 			for (int i = 0; i < getChildCount(); i++) {
 				Ydata d = (Ydata) getChildAt(i);
-				if (limit.judgeDataSeries(getXdata(), getDefaultXdataPos(), getRelativeXdataPos(), getConstants(), d
-						.getValues()))
+				if (limit.judgeDataSeries(getXdata(), getDefaultXdataPos(),
+						getRelativeXdataPos(), getConstants(), d.getValues())) {
 					this.passData++;
-				else
+				} else {
 					this.failData++;
+				}
 			}
 		} catch (Exception e) {
 		}
@@ -466,7 +485,9 @@ public class Shmoo extends OurTreeNode {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi.JCombinations.FileFormat.OurTreeNode)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.OurTreeNode#setParent(org.schreibubi
+	 * .JCombinations.FileFormat.OurTreeNode)
 	 */
 	@Override
 	public void setParent(OurTreeNode parent) {
@@ -510,9 +531,11 @@ public class Shmoo extends OurTreeNode {
 	 *            The ydata to set.
 	 */
 	public void setYdata(VArrayList<OurTreeNode> ydata) {
-		if (ydata != null)
-			for (OurTreeNode node : ydata)
+		if (ydata != null) {
+			for (OurTreeNode node : ydata) {
 				node.setParent(this);
+			}
+		}
 		this.ydata = ydata;
 	}
 

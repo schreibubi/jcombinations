@@ -32,7 +32,7 @@ public class VTreeMap<T> extends TreeMap<String, T> implements Host<T> {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -2043676214317085712L;
+	private static final long serialVersionUID = -2043676214317085712L;
 
 	public VTreeMap() {
 		super();

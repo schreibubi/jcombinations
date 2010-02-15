@@ -39,14 +39,15 @@ public class StandardFileFilter extends FileFilter {
 		String s = f.getName();
 		int i = s.lastIndexOf('.');
 
-		if ((i > 0) && (i < s.length() - 1))
+		if ((i > 0) && (i < s.length() - 1)) {
 			ext = s.substring(i + 1).toLowerCase();
+		}
 		return ext;
 	}
 
-	private ArrayList<String>	extensions	= new ArrayList<String>();
+	private ArrayList<String> extensions = new ArrayList<String>();
 
-	private String				description;
+	private String description;
 
 	/**
 	 * 
@@ -70,14 +71,18 @@ public class StandardFileFilter extends FileFilter {
 	 */
 	@Override
 	public boolean accept(File f) {
-		if (f.isDirectory())
+		if (f.isDirectory()) {
 			return true;
+		}
 
 		String extension = getExtension(f);
-		if (extension != null)
-			for (String e : this.extensions)
-				if (extension.equals(e))
+		if (extension != null) {
+			for (String e : this.extensions) {
+				if (extension.equals(e)) {
 					return true;
+				}
+			}
+		}
 
 		return false;
 	}

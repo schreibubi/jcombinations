@@ -31,10 +31,12 @@ import java.net.URL;
 /**
  * A Splash window.
  * <p>
- * Usage: MyApplication is your application class. Create a Splasher class which opens the splash window, invokes the
- * main method of your Application class, and disposes the splash window afterwards. Please note that we want to keep
- * the Splasher class and the SplashWindow class as small as possible. The less code and the less classes must be loaded
- * into the JVM to open the splash screen, the faster it will appear.
+ * Usage: MyApplication is your application class. Create a Splasher class which
+ * opens the splash window, invokes the main method of your Application class,
+ * and disposes the splash window afterwards. Please note that we want to keep
+ * the Splasher class and the SplashWindow class as small as possible. The less
+ * code and the less classes must be loaded into the JVM to open the splash
+ * screen, the faster it will appear.
  * 
  * <pre>
  * class Splasher {
@@ -53,12 +55,12 @@ public class SplashWindow extends Window {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -4293157705278246780L;
+	private static final long serialVersionUID = -4293157705278246780L;
 
 	/**
 	 * The current instance of the splash window. (Singleton design pattern).
 	 */
-	private static SplashWindow	instance;
+	private static SplashWindow instance;
 
 	/**
 	 * Closes the splash window.
@@ -81,10 +83,12 @@ public class SplashWindow extends Window {
 	 */
 	public static void invokeMain(String className, String[] args) {
 		try {
-			Class.forName(className).getMethod("main", new Class[] { String[].class }).invoke(null,
+			Class.forName(className).getMethod("main",
+					new Class[] { String[].class }).invoke(null,
 					new Object[] { args });
 		} catch (Exception e) {
-			InternalError error = new InternalError("Failed to invoke main method");
+			InternalError error = new InternalError(
+					"Failed to invoke main method");
 			error.initCause(e);
 			throw error;
 		}
@@ -111,14 +115,17 @@ public class SplashWindow extends Window {
 			// called at least once by the AWT event dispatcher thread.
 			// If more than one processor is available, we don't wait,
 			// and maximize CPU throughput instead.
-			if (!EventQueue.isDispatchThread() && (Runtime.getRuntime().availableProcessors() == 1))
+			if (!EventQueue.isDispatchThread()
+					&& (Runtime.getRuntime().availableProcessors() == 1)) {
 				synchronized (SplashWindow.instance) {
-					while (!SplashWindow.instance.paintCalled)
+					while (!SplashWindow.instance.paintCalled) {
 						try {
 							SplashWindow.instance.wait();
 						} catch (InterruptedException e) {
 						}
+					}
 				}
+			}
 		}
 	}
 
@@ -129,25 +136,27 @@ public class SplashWindow extends Window {
 	 *            The url of the splash image.
 	 */
 	public static void splash(URL imageURL) {
-		if (imageURL != null)
+		if (imageURL != null) {
 			splash(Toolkit.getDefaultToolkit().createImage(imageURL));
+		}
 	}
 
 	/**
 	 * The splash image which is displayed on the splash window.
 	 */
-	private Image	image;
+	private Image image;
 
 	/**
-	 * This attribute indicates whether the method paint(Graphics) has been called at least once since the construction
-	 * of this window.<br>
-	 * This attribute is used to notify method splash(Image) that the window has been drawn at least once by the AWT
-	 * event dispatcher thread.<br>
-	 * This attribute acts like a latch. Once set to true, it will never be changed back to false again.
+	 * This attribute indicates whether the method paint(Graphics) has been
+	 * called at least once since the construction of this window.<br>
+	 * This attribute is used to notify method splash(Image) that the window has
+	 * been drawn at least once by the AWT event dispatcher thread.<br>
+	 * This attribute acts like a latch. Once set to true, it will never be
+	 * changed back to false again.
 	 * 
 	 * @see #paint
 	 */
-	private boolean	paintCalled	= false;
+	private boolean paintCalled = false;
 
 	/**
 	 * Creates a new instance.
@@ -174,7 +183,8 @@ public class SplashWindow extends Window {
 		int imgHeight = image.getHeight(this);
 		setSize(imgWidth, imgHeight);
 		Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((screenDim.width - imgWidth) / 2, (screenDim.height - imgHeight) / 2);
+		setLocation((screenDim.width - imgWidth) / 2,
+				(screenDim.height - imgHeight) / 2);
 
 		// Users shall be able to close the splash window by
 		// clicking on its display area. This mouse listener

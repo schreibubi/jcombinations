@@ -26,7 +26,6 @@ import org.schreibubi.JCombinations.FileFormat.OurTreeNode;
 import org.schreibubi.JCombinations.logic.DataEventListenerAdapter;
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * Adapts the DataModel to the TreeTableModel
  * 
@@ -37,18 +36,18 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/**
 	 * Event listener list
 	 */
-	protected EventListenerList	listenerList	= new EventListenerList();
+	protected EventListenerList listenerList = new EventListenerList();
 
 	// private static Logger logger = LoggerFactory.getLogger(
 	// TreeTableModelAdapter.class );
 
-	DataModel					dm				= null;
+	DataModel dm = null;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param dm
-	 * 		associated DataModel
+	 *            associated DataModel
 	 */
 	public TreeTableModelAdapter(DataModel dm) {
 		this.dm = dm;
@@ -91,7 +90,8 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.tree.TreeModel#addTreeModelListener(javax.swing.event.TreeModelListener)
+	 * @seejavax.swing.tree.TreeModel#addTreeModelListener(javax.swing.event.
+	 * TreeModelListener)
 	 */
 	public void addTreeModelListener(TreeModelListener l) {
 		this.listenerList.add(TreeModelListener.class, l);
@@ -169,7 +169,8 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.tree.TreeModel#getIndexOfChild(java.lang.Object, java.lang.Object)
+	 * @see javax.swing.tree.TreeModel#getIndexOfChild(java.lang.Object,
+	 * java.lang.Object)
 	 */
 	public int getIndexOfChild(Object parent, Object child) {
 		return ((OurTreeNode) parent).getIndex((OurTreeNode) child);
@@ -194,7 +195,9 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jdesktop.swingx.treetable.TreeTableModel#getValueAt(java.lang.Object, int)
+	 * @see
+	 * org.jdesktop.swingx.treetable.TreeTableModel#getValueAt(java.lang.Object,
+	 * int)
 	 */
 	public Object getValueAt(Object node, int column) {
 		OurTreeNode s = (OurTreeNode) node;
@@ -206,7 +209,9 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jdesktop.swingx.treetable.TreeTableModel#isCellEditable(java.lang.Object, int)
+	 * @see
+	 * org.jdesktop.swingx.treetable.TreeTableModel#isCellEditable(java.lang
+	 * .Object, int)
 	 */
 	public boolean isCellEditable(Object node, int column) {
 		return false;
@@ -224,7 +229,9 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.tree.TreeModel#removeTreeModelListener(javax.swing.event.TreeModelListener)
+	 * @see
+	 * javax.swing.tree.TreeModel#removeTreeModelListener(javax.swing.event.
+	 * TreeModelListener)
 	 */
 	public void removeTreeModelListener(TreeModelListener l) {
 		this.listenerList.remove(TreeModelListener.class, l);
@@ -233,7 +240,9 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.jdesktop.swingx.treetable.TreeTableModel#setValueAt(java.lang.Object, java.lang.Object, int)
+	 * @see
+	 * org.jdesktop.swingx.treetable.TreeTableModel#setValueAt(java.lang.Object,
+	 * java.lang.Object, int)
 	 */
 	public void setValueAt(Object value, Object node, int column) {
 		// not applicable
@@ -242,14 +251,17 @@ public class TreeTableModelAdapter implements TreeTableModel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.tree.TreeModel#valueForPathChanged(javax.swing.tree.TreePath, java.lang.Object)
+	 * @see
+	 * javax.swing.tree.TreeModel#valueForPathChanged(javax.swing.tree.TreePath,
+	 * java.lang.Object)
 	 */
 	public void valueForPathChanged(TreePath arg0, Object arg1) {
 	}
 
 	/*
-	 * Notify all listeners that have registered interest for notification on this event type. The event instance is
-	 * lazily created using the parameters passed into the fire method.
+	 * Notify all listeners that have registered interest for notification on
+	 * this event type. The event instance is lazily created using the
+	 * parameters passed into the fire method.
 	 * 
 	 * @see EventListenerList
 	 */
@@ -258,15 +270,17 @@ public class TreeTableModelAdapter implements TreeTableModel {
 		Object[] listeners = this.listenerList.getListenerList();
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == TreeModelListener.class) {
 				((TreeModelListener) listeners[i + 1]).treeNodesChanged(e);
 			}
+		}
 	}
 
 	/*
-	 * Notify all listeners that have registered interest for notification on this event type. The event instance is
-	 * lazily created using the parameters passed into the fire method.
+	 * Notify all listeners that have registered interest for notification on
+	 * this event type. The event instance is lazily created using the
+	 * parameters passed into the fire method.
 	 * 
 	 * @see EventListenerList
 	 */
@@ -275,15 +289,17 @@ public class TreeTableModelAdapter implements TreeTableModel {
 		Object[] listeners = this.listenerList.getListenerList();
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == TreeModelListener.class) {
 				((TreeModelListener) listeners[i + 1]).treeNodesInserted(e);
 			}
+		}
 	}
 
 	/*
-	 * Notify all listeners that have registered interest for notification on this event type. The event instance is
-	 * lazily created using the parameters passed into the fire method.
+	 * Notify all listeners that have registered interest for notification on
+	 * this event type. The event instance is lazily created using the
+	 * parameters passed into the fire method.
 	 * 
 	 * @see EventListenerList
 	 */
@@ -292,15 +308,17 @@ public class TreeTableModelAdapter implements TreeTableModel {
 		Object[] listeners = this.listenerList.getListenerList();
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == TreeModelListener.class) {
 				((TreeModelListener) listeners[i + 1]).treeNodesRemoved(e);
 			}
+		}
 	}
 
 	/*
-	 * Notify all listeners that have registered interest for notification on this event type. The event instance is
-	 * lazily created using the parameters passed into the fire method.
+	 * Notify all listeners that have registered interest for notification on
+	 * this event type. The event instance is lazily created using the
+	 * parameters passed into the fire method.
 	 * 
 	 * @see EventListenerList
 	 */
@@ -309,10 +327,11 @@ public class TreeTableModelAdapter implements TreeTableModel {
 		Object[] listeners = this.listenerList.getListenerList();
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
 			if (listeners[i] == TreeModelListener.class) {
 				((TreeModelListener) listeners[i + 1]).treeStructureChanged(e);
 			}
+		}
 	}
 
 }

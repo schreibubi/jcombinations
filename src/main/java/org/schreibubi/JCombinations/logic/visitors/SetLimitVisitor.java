@@ -26,7 +26,6 @@ import org.schreibubi.JCombinations.logic.limits.CorridorLimits;
 
 import antlr.collections.AST;
 
-
 /**
  * Applies the limits to all the shmoos in the tree
  * 
@@ -35,9 +34,9 @@ import antlr.collections.AST;
  */
 public class SetLimitVisitor implements TreeVisitor {
 
-	private AST					ast				= null;
+	private AST ast = null;
 
-	private TreeEventCollector	eventCollector	= null;
+	private TreeEventCollector eventCollector = null;
 
 	/**
 	 * Constructor
@@ -54,39 +53,52 @@ public class SetLimitVisitor implements TreeVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Alternative)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Alternative)
 	 */
 	public void visit(Alternative a) throws Exception {
-		for (int i = 0; i < a.getChildCount(); i++)
+		for (int i = 0; i < a.getChildCount(); i++) {
 			(a.getChildAt(i)).accept(this);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Asdap)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Asdap)
 	 */
 	public void visit(Asdap r) throws Exception {
-		for (int i = 0; i < r.getChildCount(); i++)
+		for (int i = 0; i < r.getChildCount(); i++) {
 			(r.getChildAt(i)).accept(this);
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Shmoo)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Shmoo)
 	 */
 	public void visit(Shmoo s) throws Exception {
 		String trim = s.getTrim();
 		String measure = s.getMeasure();
-		s.setLimit(new CorridorLimits(this.ast, trim, measure, measure + "ERR"));
-		this.eventCollector.addEvent(s.getParent(), s, s.getParent().getIndex(s));
+		s
+				.setLimit(new CorridorLimits(this.ast, trim, measure, measure
+						+ "ERR"));
+		this.eventCollector.addEvent(s.getParent(), s, s.getParent()
+				.getIndex(s));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Data)
+	 * @see
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Data)
 	 */
 	public void visit(Ydata d) throws Exception {
 	}

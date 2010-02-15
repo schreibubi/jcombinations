@@ -29,7 +29,6 @@ import org.schreibubi.JCombinations.logic.SelectionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * @author Jörg Werner
  * 
@@ -39,18 +38,19 @@ public class DUTListModelAdapter implements ListModel, DataEventListener {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -8143801778039582153L;
+	private static final long serialVersionUID = -8143801778039582153L;
 
-	private static Logger		logger				= LoggerFactory.getLogger(DUTListModelAdapter.class);
+	private static Logger logger = LoggerFactory
+			.getLogger(DUTListModelAdapter.class);
 
-	private DataModel			dm					= null;
+	private DataModel dm = null;
 
-	private String[]			dutList				= null;
+	private String[] dutList = null;
 
 	/**
 	 * Event listener list
 	 */
-	protected EventListenerList	listenerList		= new EventListenerList();
+	protected EventListenerList listenerList = new EventListenerList();
 
 	/**
 	 * Constructor
@@ -67,7 +67,9 @@ public class DUTListModelAdapter implements ListModel, DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
+	 * @see
+	 * javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener
+	 * )
 	 */
 	public void addListDataListener(ListDataListener l) {
 		this.listenerList.add(ListDataListener.class, l);
@@ -98,7 +100,8 @@ public class DUTListModelAdapter implements ListModel, DataEventListener {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
+	 * @seejavax.swing.ListModel#removeListDataListener(javax.swing.event.
+	 * ListDataListener)
 	 */
 	public void removeListDataListener(ListDataListener l) {
 		this.listenerList.remove(ListDataListener.class, l);
@@ -113,19 +116,22 @@ public class DUTListModelAdapter implements ListModel, DataEventListener {
 	public void treeNodesInserted(TreeModelEvent e) {
 		DUTListModelAdapter.logger.info("received treeNodesInserted");
 		this.dutList = this.dm.getPossibleDataList();
-		fireListDataEvent(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
+		fireListDataEvent(new ListDataEvent(this,
+				ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
 	}
 
 	public void treeNodesRemoved(TreeModelEvent e) {
 		DUTListModelAdapter.logger.info("received treeNodesRemoved");
 		this.dutList = this.dm.getPossibleDataList();
-		fireListDataEvent(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
+		fireListDataEvent(new ListDataEvent(this,
+				ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
 	}
 
 	public void treeStructureChanged(TreeModelEvent e) {
 		DUTListModelAdapter.logger.info("received treeStructureChanged");
 		this.dutList = this.dm.getPossibleDataList();
-		fireListDataEvent(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
+		fireListDataEvent(new ListDataEvent(this,
+				ListDataEvent.CONTENTS_CHANGED, 0, getSize() - 1));
 	}
 
 	/**
@@ -136,9 +142,11 @@ public class DUTListModelAdapter implements ListModel, DataEventListener {
 		Object[] listeners = this.listenerList.getListenerList();
 		// Process the listeners last to first, notifying
 		// those that are interested in this event
-		for (int i = listeners.length - 2; i >= 0; i -= 2)
-			if (listeners[i] == ListDataListener.class)
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == ListDataListener.class) {
 				((ListDataListener) listeners[i + 1]).contentsChanged(e);
+			}
+		}
 	}
 
 }

@@ -35,7 +35,8 @@ import org.jfree.data.Range;
 import org.jfree.ui.GradientPaintTransformer;
 
 /**
- * Adds support for ArbitraryMarker (@see org.schreibubi.JCombinations.jfreechart.ArbitraryMarker) in the
+ * Adds support for ArbitraryMarker (@see
+ * org.schreibubi.JCombinations.jfreechart.ArbitraryMarker) in the
  * XYLineAndShapeRenderer
  * 
  * @author Jörg Werner
@@ -46,7 +47,7 @@ public class XYLineAndShapeRendererExtended extends XYLineAndShapeRenderer {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -4045750507977719516L;
+	private static final long serialVersionUID = -4045750507977719516L;
 
 	/**
 	 * Constructor
@@ -80,13 +81,14 @@ public class XYLineAndShapeRendererExtended extends XYLineAndShapeRenderer {
 	 *            the axis data area.
 	 */
 	@Override
-	public void drawRangeMarker(Graphics2D g2, XYPlot plot, ValueAxis rangeAxis, Marker marker, Rectangle2D dataArea) {
+	public void drawRangeMarker(Graphics2D g2, XYPlot plot,
+			ValueAxis rangeAxis, Marker marker, Rectangle2D dataArea) {
 
-		if (marker instanceof ValueMarker)
+		if (marker instanceof ValueMarker) {
 			super.drawRangeMarker(g2, plot, rangeAxis, marker, dataArea);
-		else if (marker instanceof IntervalMarker)
+		} else if (marker instanceof IntervalMarker) {
 			super.drawRangeMarker(g2, plot, rangeAxis, marker, dataArea);
-		else if (marker instanceof ArbitraryMarker) {
+		} else if (marker instanceof ArbitraryMarker) {
 
 			ArbitraryMarker im = (ArbitraryMarker) marker;
 			ArrayList<Double> xvals = im.getDomainVal();
@@ -106,9 +108,12 @@ public class XYLineAndShapeRendererExtended extends XYLineAndShapeRenderer {
 				double x = domain.constrain(xvals.get(i));
 				double low = range.constrain(lows.get(i));
 				double high = range.constrain(highs.get(i));
-				int low2d = (int) Math.round(rangeAxis.valueToJava2D(low, dataArea, plot.getRangeAxisEdge()));
-				int high2d = (int) Math.round(rangeAxis.valueToJava2D(high, dataArea, plot.getRangeAxisEdge()));
-				int x2d = (int) Math.round(domainAxis.valueToJava2D(x, dataArea, plot.getDomainAxisEdge()));
+				int low2d = (int) Math.round(rangeAxis.valueToJava2D(low,
+						dataArea, plot.getRangeAxisEdge()));
+				int high2d = (int) Math.round(rangeAxis.valueToJava2D(high,
+						dataArea, plot.getRangeAxisEdge()));
+				int x2d = (int) Math.round(domainAxis.valueToJava2D(x,
+						dataArea, plot.getDomainAxisEdge()));
 				xpoly[i] = x2d;
 				xpoly[2 * length - 1 - i] = x2d;
 				ypoly[i] = low2d;
@@ -117,43 +122,53 @@ public class XYLineAndShapeRendererExtended extends XYLineAndShapeRenderer {
 
 			PlotOrientation orientation = plot.getOrientation();
 			Polygon poly = null;
-			if (orientation == PlotOrientation.HORIZONTAL)
+			if (orientation == PlotOrientation.HORIZONTAL) {
 				poly = new Polygon(ypoly, xpoly, length * 2);
-			else if (orientation == PlotOrientation.VERTICAL)
+			} else if (orientation == PlotOrientation.VERTICAL) {
 				poly = new Polygon(xpoly, ypoly, length * 2);
+			}
 
 			Paint p = im.getPaint();
 			if (p instanceof GradientPaint) {
 				GradientPaint gp = (GradientPaint) p;
 				GradientPaintTransformer t = im.getGradientPaintTransformer();
-				if (t != null)
+				if (t != null) {
 					gp = t.transform(gp, poly);
+				}
 				g2.setPaint(gp);
-			} else
+			} else {
 				g2.setPaint(p);
+			}
 			g2.fill(poly);
 			/*
-			 * String label = marker.getLabel(); RectangleAnchor anchor = marker.getLabelAnchor(); if ( label != null ) {
-			 * Font labelFont = marker.getLabelFont(); g2.setFont( labelFont ); g2.setPaint( marker.getLabelPaint() );
-			 * Point2D coordinates = calculateRangeMarkerTextAnchorPoint( g2, orientation, dataArea, poly,
-			 * marker.getLabelOffset(), marker.getLabelOffsetType(), anchor ); TextUtilities.drawAlignedString( label,
-			 * g2, ( float ) coordinates.getX(), ( float ) coordinates.getY(), marker.getLabelTextAnchor() ); }
+			 * String label = marker.getLabel(); RectangleAnchor anchor =
+			 * marker.getLabelAnchor(); if ( label != null ) { Font labelFont =
+			 * marker.getLabelFont(); g2.setFont( labelFont ); g2.setPaint(
+			 * marker.getLabelPaint() ); Point2D coordinates =
+			 * calculateRangeMarkerTextAnchorPoint( g2, orientation, dataArea,
+			 * poly, marker.getLabelOffset(), marker.getLabelOffsetType(),
+			 * anchor ); TextUtilities.drawAlignedString( label, g2, ( float )
+			 * coordinates.getX(), ( float ) coordinates.getY(),
+			 * marker.getLabelTextAnchor() ); }
 			 */
 		}
 	}
 
-	private void sort(ArrayList<Double> x, ArrayList<Double> yl, ArrayList<Double> yh) {
+	private void sort(ArrayList<Double> x, ArrayList<Double> yl,
+			ArrayList<Double> yh) {
 		for (int i = x.size(); --i >= 0;) {
 			boolean swapped = false;
-			for (int j = 0; j < i; j++)
+			for (int j = 0; j < i; j++) {
 				if (x.get(j) > x.get(j + 1)) {
 					Collections.swap(x, j, j + 1);
 					Collections.swap(yl, j, j + 1);
 					Collections.swap(yh, j, j + 1);
 					swapped = true;
 				}
-			if (!swapped)
+			}
+			if (!swapped) {
 				return;
+			}
 		}
 	}
 

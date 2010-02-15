@@ -26,23 +26,23 @@ import org.schreibubi.JCombinationsTools.util.Helper;
  */
 public class Chain {
 
-	private String	shortname;
+	private String shortname;
 
-	private String	name;
+	private String name;
 
-	private String	index;
+	private String index;
 
-	private String	client;
+	private String client;
 
-	private String	description;
+	private String description;
 
-	private String	address;
+	private String address;
 
-	private String	address_base;
+	private String address_base;
 
-	private String	length;
+	private String length;
 
-	private String	length_base;
+	private String length_base;
 
 	/**
 	 * @return Returns the address.
@@ -66,12 +66,13 @@ public class Chain {
 	 * @return Returns the decoded address.
 	 */
 	public int getDecodedAddress() {
-		if (this.address_base.equalsIgnoreCase("dec"))
+		if (this.address_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.address);
-		else if (this.address_base.equalsIgnoreCase("hex"))
+		} else if (this.address_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.address, 16);
-		else if (this.address_base.equalsIgnoreCase("bin"))
+		} else if (this.address_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.address, 2);
+		}
 		return 0;
 	}
 
@@ -79,12 +80,13 @@ public class Chain {
 	 * @return Returns the decoded length.
 	 */
 	public int getDecodedLength() {
-		if (this.length_base.equalsIgnoreCase("dec"))
+		if (this.length_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.length);
-		else if (this.length_base.equalsIgnoreCase("hex"))
+		} else if (this.length_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.length, 16);
-		else if (this.length_base.equalsIgnoreCase("bin"))
+		} else if (this.length_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.length, 2);
+		}
 		return 0;
 	}
 

@@ -29,21 +29,21 @@ import org.jfree.chart.plot.Marker;
 
 import antlr.collections.AST;
 
-
 /**
  * @author Jörg Werner
  */
 public class CorridorLimits implements LimitInterface {
 
-	private static Logger	logger	= LoggerFactory.getLogger(CorridorLimits.class);
+	private static Logger logger = LoggerFactory
+			.getLogger(CorridorLimits.class);
 
-	private AST				ast;
+	private AST ast;
 
-	private String			trim;
+	private String trim;
 
-	private String			measure;
+	private String measure;
 
-	private String			measureError;
+	private String measureError;
 
 	/**
 	 * Constructor
@@ -53,7 +53,8 @@ public class CorridorLimits implements LimitInterface {
 	 * @param measure
 	 * @param measureError
 	 */
-	public CorridorLimits(AST ast, String trim, String measure, String measureError) {
+	public CorridorLimits(AST ast, String trim, String measure,
+			String measureError) {
 		this.ast = ast;
 		this.trim = trim;
 		this.measure = measure;
@@ -63,12 +64,16 @@ public class CorridorLimits implements LimitInterface {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.limits.LimitInterface#calcLimits(org.schreibubi.JCombinations.FileFormat.Data,
-	 *      java.util.HashMap, java.util.ArrayList)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.limits.LimitInterface#calcLimits(org
+	 * .schreibubi.JCombinations.FileFormat.Data, java.util.HashMap,
+	 * java.util.ArrayList)
 	 */
-	public Marker calcLimits(ArrayList<Xdata> xlabels, int xAbsValuesIndex, int xRelativeValuesIndex,
-			VHashMap<Symbol> constantVariables) throws Exception {
-		CorridorLimits.logger.debug("CalcLimits for " + this.trim + " measure " + this.measure);
+	public Marker calcLimits(ArrayList<Xdata> xlabels, int xAbsValuesIndex,
+			int xRelativeValuesIndex, VHashMap<Symbol> constantVariables)
+			throws Exception {
+		CorridorLimits.logger.debug("CalcLimits for " + this.trim + " measure "
+				+ this.measure);
 		ArrayList<Double> xvals = new ArrayList<Double>();
 		ArrayList<Double> rangeLow = new ArrayList<Double>();
 		ArrayList<Double> rangeHigh = new ArrayList<Double>();
@@ -79,37 +84,45 @@ public class CorridorLimits implements LimitInterface {
 				Xdata xlabel = xlabels.get(j);
 				Symbol sym = xlabel.getLabels().get(i).clone();
 				symbolTable.put(sym.getName(), sym);
-				if (j == xRelativeValuesIndex)
+				if (j == xRelativeValuesIndex) {
 					// correct name in symbol table!
 					symbolTable.put(this.trim + "TRIM", sym.clone());
+				}
 			}
 			EvalVariablesTreeWalker walker = new EvalVariablesTreeWalker();
 			walker.lines(this.ast, symbolTable, constantVariables);
 			Symbol m = symbolTable.get(this.measure);
 			Symbol me = symbolTable.get(this.measureError);
-			if (m == null)
-				throw new Exception("Warning: Variable " + this.measure + " not found\n");
-			if (me == null)
-				throw new Exception("Warning: Variable " + this.measureError + " not found\n");
+			if (m == null) {
+				throw new Exception("Warning: Variable " + this.measure
+						+ " not found\n");
+			}
+			if (me == null) {
+				throw new Exception("Warning: Variable " + this.measureError
+						+ " not found\n");
+			}
 			double dm = m.convertToDouble().getValue();
 			double dme = me.convertToDouble().getValue();
 			xvals.add(xlabels.get(xAbsValuesIndex).getXPositions().get(i));
 			rangeLow.add(new Double(dm - dme));
 			rangeHigh.add(new Double(dm + dme));
 		}
-		CorridorLimits.logger
-				.debug("CalcLimits for " + this.trim + " measure " + this.measure + "succesfully finished");
+		CorridorLimits.logger.debug("CalcLimits for " + this.trim + " measure "
+				+ this.measure + "succesfully finished");
 		return new ArbitraryMarker(xvals, rangeLow, rangeHigh);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.JCombinations.logic.limits.LimitInterface#judgeDataSeries(java.util.HashMap,
-	 *      java.util.ArrayList, java.util.ArrayList)
+	 * @see
+	 * org.schreibubi.JCombinations.logic.limits.LimitInterface#judgeDataSeries
+	 * (java.util.HashMap, java.util.ArrayList, java.util.ArrayList)
 	 */
-	public boolean judgeDataSeries(ArrayList<Xdata> xlabels, int xAbsValuesIndex, int xRelativeValuesIndex,
-			VHashMap<Symbol> constantVariables, ArrayList<Symbol> yv) throws Exception {
+	public boolean judgeDataSeries(ArrayList<Xdata> xlabels,
+			int xAbsValuesIndex, int xRelativeValuesIndex,
+			VHashMap<Symbol> constantVariables, ArrayList<Symbol> yv)
+			throws Exception {
 		for (int i = 0; i < xlabels.get(0).getLabels().size(); i++) {
 			VHashMap<Symbol> symbolTable = new VHashMap<Symbol>();
 			// Add all xlabels to symbol table
@@ -117,25 +130,31 @@ public class CorridorLimits implements LimitInterface {
 				Xdata xlabel = xlabels.get(j);
 				Symbol sym = xlabel.getLabels().get(i).clone();
 				symbolTable.put(sym.getName(), sym);
-				if (j == xRelativeValuesIndex)
+				if (j == xRelativeValuesIndex) {
 					// correct name in symbol
 					// table!
 					symbolTable.put(this.trim + "TRIM", sym.clone());
+				}
 			}
 
 			EvalVariablesTreeWalker walker = new EvalVariablesTreeWalker();
 			walker.lines(this.ast, symbolTable, constantVariables);
 			Symbol m = symbolTable.get(this.measure);
 			Symbol me = symbolTable.get(this.measureError);
-			if (m == null)
-				throw new Exception("Limits evaluation for " + this.measure + " failed\n");
-			if (me == null)
-				throw new Exception("Limits evaluation for " + this.measureError + " failed\n");
+			if (m == null) {
+				throw new Exception("Limits evaluation for " + this.measure
+						+ " failed\n");
+			}
+			if (me == null) {
+				throw new Exception("Limits evaluation for "
+						+ this.measureError + " failed\n");
+			}
 			double dm = m.convertToDouble().getValue();
 			double dme = me.convertToDouble().getValue();
 			double y = yv.get(i).convertToDouble().getValue();
-			if ((y < dm - Math.abs(dme)) | (y > dm + Math.abs(dme)))
+			if ((y < dm - Math.abs(dme)) | (y > dm + Math.abs(dme))) {
 				return false;
+			}
 		}
 		return true;
 	}

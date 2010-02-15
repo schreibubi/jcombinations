@@ -22,9 +22,9 @@ package org.schreibubi.JCombinationsTools.SetiFormat;
  */
 public class Pin {
 
-	private int		bit;
+	private int bit;
 
-	private String	pinname;
+	private String pinname;
 
 	public int getBit() {
 		return bit;

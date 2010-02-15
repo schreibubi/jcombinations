@@ -74,7 +74,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameActivated(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameActivated(javax
+		 * .swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameActivated(InternalFrameEvent arg0) {
 			JInternalFrame i = arg0.getInternalFrame();
@@ -84,15 +86,18 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameClosed(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameClosed(javax
+		 * .swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameClosed(InternalFrameEvent arg0) {
 			JInternalFrame[] allFrames = getJDesktopPane().getAllFrames();
 			boolean plotFrameLeft = false;
-			for (JInternalFrame element : allFrames)
+			for (JInternalFrame element : allFrames) {
 				if (element instanceof PlotWindow) {
 					plotFrameLeft = true;
 				}
+			}
 			if (!plotFrameLeft) {
 				updateMenuItemsActive(null);
 			}
@@ -101,7 +106,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameClosing(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameClosing(javax
+		 * .swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameClosing(InternalFrameEvent arg0) {
 		}
@@ -109,7 +116,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameDeactivated(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameDeactivated(
+		 * javax.swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameDeactivated(InternalFrameEvent arg0) {
 		}
@@ -117,7 +126,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameDeiconified(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameDeiconified(
+		 * javax.swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameDeiconified(InternalFrameEvent arg0) {
 		}
@@ -125,7 +136,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameIconified(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameIconified(javax
+		 * .swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameIconified(InternalFrameEvent arg0) {
 		}
@@ -133,7 +146,9 @@ public class MainWindow extends JFrame {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see javax.swing.event.InternalFrameListener#internalFrameOpened(javax.swing.event.InternalFrameEvent)
+		 * @see
+		 * javax.swing.event.InternalFrameListener#internalFrameOpened(javax
+		 * .swing.event.InternalFrameEvent)
 		 */
 		public void internalFrameOpened(InternalFrameEvent arg0) {
 			JInternalFrame i = arg0.getInternalFrame();
@@ -146,18 +161,19 @@ public class MainWindow extends JFrame {
 	 * @author Jörg Werner
 	 * 
 	 */
-	public class MyStatusBar extends JXStatusBar implements MessageListener, ProgressListener {
+	public class MyStatusBar extends JXStatusBar implements MessageListener,
+			ProgressListener {
 
 		/**
 		 * 
 		 */
-		private static final long	serialVersionUID	= 8193727898452849392L;
+		private static final long serialVersionUID = 8193727898452849392L;
 
-		private JLabel				leadingLabel		= null;
+		private JLabel leadingLabel = null;
 
-		private JLabel				trailingLabel		= null;
+		private JLabel trailingLabel = null;
 
-		private JProgressBar		progressBar			= null;
+		private JProgressBar progressBar = null;
 
 		/**
 		 * 
@@ -169,7 +185,8 @@ public class MainWindow extends JFrame {
 			c1.setFixedWidth(100);
 			add(leadingLabel, c1);
 			progressBar = new JProgressBar();
-			add(progressBar, new JXStatusBar.Constraint(JXStatusBar.Constraint.ResizeBehavior.FILL));
+			add(progressBar, new JXStatusBar.Constraint(
+					JXStatusBar.Constraint.ResizeBehavior.FILL));
 			progressBar.setVisible(true);
 			trailingLabel = new JLabel("Ready");
 			JXStatusBar.Constraint c2 = new JXStatusBar.Constraint();
@@ -251,36 +268,43 @@ public class MainWindow extends JFrame {
 	 * @author Jörg Werner
 	 * 
 	 */
-	public class TransferActionListener implements ActionListener, PropertyChangeListener {
-		private JComponent	focusOwner	= null;
+	public class TransferActionListener implements ActionListener,
+			PropertyChangeListener {
+		private JComponent focusOwner = null;
 
 		/**
 		 * Constructor
 		 */
 		public TransferActionListener() {
-			KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+			KeyboardFocusManager manager = KeyboardFocusManager
+					.getCurrentKeyboardFocusManager();
 			manager.addPropertyChangeListener("permanentFocusOwner", this);
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+		 * @see
+		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
+		 * )
 		 */
 		public void actionPerformed(ActionEvent e) {
-			if (this.focusOwner == null)
+			if (this.focusOwner == null) {
 				return;
+			}
 			String action = e.getActionCommand();
 			Action a = this.focusOwner.getActionMap().get(action);
 			if (a != null) {
-				a.actionPerformed(new ActionEvent(this.focusOwner, ActionEvent.ACTION_PERFORMED, null));
+				a.actionPerformed(new ActionEvent(this.focusOwner,
+						ActionEvent.ACTION_PERFORMED, null));
 			}
 		}
 
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+		 * @seejava.beans.PropertyChangeListener#propertyChange(java.beans.
+		 * PropertyChangeEvent)
 		 */
 		public void propertyChange(PropertyChangeEvent e) {
 			Object o = e.getNewValue();
@@ -295,9 +319,9 @@ public class MainWindow extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3977014033327141169L;
+	private static final long serialVersionUID = 3977014033327141169L;
 
-	private static Logger		logger				= LoggerFactory.getLogger(MainWindow.class);
+	private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
 	/**
 	 * @param args
@@ -306,81 +330,81 @@ public class MainWindow extends JFrame {
 		PlasticLookAndFeel.setPlasticTheme(new ExperienceBlue());
 		try {
 			UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
-// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
 
 		MainWindow.logger.info("Program started");
-// LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-// StatusPrinter.print(lc);
+		// LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		// StatusPrinter.print(lc);
 
 		MainWindow application = new MainWindow();
 		application.setVisible(true);
 	}
 
-	private javax.swing.JPanel		jContentPane			= null;
+	private javax.swing.JPanel jContentPane = null;
 
-	private javax.swing.JMenuBar	MMenuBar				= null;
+	private javax.swing.JMenuBar MMenuBar = null;
 
-	private javax.swing.JMenu		fileMenu				= null;
+	private javax.swing.JMenu fileMenu = null;
 
-	private javax.swing.JMenu		editMenu				= null;
+	private javax.swing.JMenu editMenu = null;
 
-	private javax.swing.JMenu		helpMenu				= null;
+	private javax.swing.JMenu helpMenu = null;
 
-	private javax.swing.JMenuItem	exitMenuItem			= null;
+	private javax.swing.JMenuItem exitMenuItem = null;
 
-	private javax.swing.JMenuItem	aboutMenuItem			= null;
+	private javax.swing.JMenuItem aboutMenuItem = null;
 
-	private javax.swing.JMenuItem	cutMenuItem				= null;
+	private javax.swing.JMenuItem cutMenuItem = null;
 
-	private javax.swing.JMenuItem	copyMenuItem			= null;
+	private javax.swing.JMenuItem copyMenuItem = null;
 
-	private javax.swing.JMenuItem	pasteMenuItem			= null;
+	private javax.swing.JMenuItem pasteMenuItem = null;
 
-	private JMenuItem				importDataItem			= null;
+	private JMenuItem importDataItem = null;
 
-	private JToolBar				jToolBar				= null;
+	private JToolBar jToolBar = null;
 
-	private JButton					importDataButton		= null;
+	private JButton importDataButton = null;
 
-	private JDesktopPane			jDesktopPane			= null;
+	private JDesktopPane jDesktopPane = null;
 
-	private JMenuItem				LoadLimitsMenuItem		= null;
+	private JMenuItem LoadLimitsMenuItem = null;
 
-	private JMenuItem				SaveLimitsMenuItem		= null;
+	private JMenuItem SaveLimitsMenuItem = null;
 
-	private JButton					openLimitsButton		= null;
+	private JButton openLimitsButton = null;
 
-	private JButton					openShmooButton			= null;
+	private JButton openShmooButton = null;
 
-	private JButton					openMaskButton			= null;
+	private JButton openMaskButton = null;
 
-	private JMenuItem				limitsMenuItem			= null;
+	private JMenuItem limitsMenuItem = null;
 
-	private JMenuItem				exportDataItem			= null;
+	private JMenuItem exportDataItem = null;
 
-	private JMenuItem				newDataItem				= null;
+	private JMenuItem newDataItem = null;
 
-	private TransferActionListener	transferActionListener	= null;
+	private TransferActionListener transferActionListener = null;
 
-	private JMenuItem				ratExportMenuItem		= null;
+	private JMenuItem ratExportMenuItem = null;
 
-	private IntFrameChangeListener	intFrameChangeListener	= null;
+	private IntFrameChangeListener intFrameChangeListener = null;
 
-	private JMenuItem				closeMenuItem			= null;
+	private JMenuItem closeMenuItem = null;
 
-	private JMenu					windowMenu				= null;
+	private JMenu windowMenu = null;
 
-	private JMenuItem				maskMenuItem			= null;
+	private JMenuItem maskMenuItem = null;
 
-	private MaskDuts				maskDuts				= null;
+	private MaskDuts maskDuts = null;
 
-	private LimitsEditor			limitsEditor			= null;
+	private LimitsEditor limitsEditor = null;
 
-	private JMenuItem				openDataItem			= null;
+	private JMenuItem openDataItem = null;
 
-	private MyStatusBar				myStatusBar				= null;
+	private MyStatusBar myStatusBar = null;
 
 	/**
 	 * This is the default constructor
@@ -445,14 +469,20 @@ public class MainWindow extends JFrame {
 		if (this.aboutMenuItem == null) {
 			this.aboutMenuItem = new javax.swing.JMenuItem();
 			this.aboutMenuItem.setText("About");
-			this.aboutMenuItem.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/actions/info.png")));
-			this.aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JOptionPane.showMessageDialog(MainWindow.this, "JCombinations\nWritten by " + Info.authors + "\n"
-							+ Info.copyright + "\n" + Info.version);
-				}
-			});
+			this.aboutMenuItem
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/actions/info.png")));
+			this.aboutMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							JOptionPane.showMessageDialog(MainWindow.this,
+									"JCombinations\nWritten by " + Info.authors
+											+ "\n" + Info.copyright + "\n"
+											+ Info.version);
+						}
+					});
 		}
 		return this.aboutMenuItem;
 	}
@@ -467,14 +497,16 @@ public class MainWindow extends JFrame {
 			this.closeMenuItem = new JMenuItem();
 			this.closeMenuItem.setText("Close");
 			this.closeMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_C);
-			this.closeMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W,
-					java.awt.Event.CTRL_MASK, false));
+			this.closeMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_W,
+							java.awt.Event.CTRL_MASK, false));
 			this.closeMenuItem.setEnabled(false);
-			this.closeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					closeWindowAction();
-				}
-			});
+			this.closeMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							closeWindowAction();
+						}
+					});
 		}
 		return this.closeMenuItem;
 	}
@@ -488,10 +520,14 @@ public class MainWindow extends JFrame {
 		if (this.copyMenuItem == null) {
 			this.copyMenuItem = new javax.swing.JMenuItem();
 			this.copyMenuItem.setText("Copy");
-			this.copyMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C,
-					java.awt.Event.CTRL_MASK, true));
-			this.copyMenuItem.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/actions/editcopy.png")));
+			this.copyMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_C,
+							java.awt.Event.CTRL_MASK, true));
+			this.copyMenuItem
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/actions/editcopy.png")));
 			this.copyMenuItem.addActionListener(getTransferActionListener());
 		}
 		return this.copyMenuItem;
@@ -506,10 +542,14 @@ public class MainWindow extends JFrame {
 		if (this.cutMenuItem == null) {
 			this.cutMenuItem = new javax.swing.JMenuItem();
 			this.cutMenuItem.setText("Cut");
-			this.cutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
-					java.awt.Event.CTRL_MASK, true));
-			this.cutMenuItem.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/actions/editcut.png")));
+			this.cutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
+					java.awt.event.KeyEvent.VK_X, java.awt.Event.CTRL_MASK,
+					true));
+			this.cutMenuItem
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/actions/editcut.png")));
 			this.cutMenuItem.addActionListener(getTransferActionListener());
 		}
 		return this.cutMenuItem;
@@ -540,14 +580,18 @@ public class MainWindow extends JFrame {
 		if (this.exitMenuItem == null) {
 			this.exitMenuItem = new javax.swing.JMenuItem();
 			this.exitMenuItem.setText("Exit");
-			this.exitMenuItem.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/actions/exit.png")));
-			this.exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.exit(0);
-// throw new RuntimeException();
-				}
-			});
+			this.exitMenuItem
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/actions/exit.png")));
+			this.exitMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							System.exit(0);
+							// throw new RuntimeException();
+						}
+					});
 		}
 		return this.exitMenuItem;
 	}
@@ -561,14 +605,16 @@ public class MainWindow extends JFrame {
 		if (this.exportDataItem == null) {
 			this.exportDataItem = new JMenuItem();
 			this.exportDataItem.setText("Export data...");
-			this.exportDataItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E,
-					java.awt.Event.CTRL_MASK, false));
+			this.exportDataItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_E,
+							java.awt.Event.CTRL_MASK, false));
 			this.exportDataItem.setEnabled(false);
-			this.exportDataItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					exportDataAction();
-				}
-			});
+			this.exportDataItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							exportDataAction();
+						}
+					});
 		}
 		return this.exportDataItem;
 	}
@@ -620,13 +666,17 @@ public class MainWindow extends JFrame {
 	private JButton getImportDataButton() {
 		if (this.importDataButton == null) {
 			this.importDataButton = new JButton();
-			this.importDataButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/fileopen.png")));
-			this.importDataButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					importDataAction();
-				}
-			});
+			this.importDataButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/fileopen.png")));
+			this.importDataButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							importDataAction();
+						}
+					});
 		}
 		return this.importDataButton;
 	}
@@ -640,14 +690,16 @@ public class MainWindow extends JFrame {
 		if (this.importDataItem == null) {
 			this.importDataItem = new JMenuItem();
 			this.importDataItem.setText("Import data...");
-			this.importDataItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I,
-					java.awt.Event.CTRL_MASK, false));
+			this.importDataItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_I,
+							java.awt.Event.CTRL_MASK, false));
 			this.importDataItem.setEnabled(false);
-			this.importDataItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					importDataAction();
-				}
-			});
+			this.importDataItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							importDataAction();
+						}
+					});
 		}
 		return this.importDataItem;
 	}
@@ -672,8 +724,10 @@ public class MainWindow extends JFrame {
 			this.jContentPane = new javax.swing.JPanel();
 			this.jContentPane.setLayout(new java.awt.BorderLayout());
 			this.jContentPane.add(getJToolBar(), java.awt.BorderLayout.NORTH);
-			this.jContentPane.add(getJDesktopPane(), java.awt.BorderLayout.CENTER);
-			this.jContentPane.add(getMyStatusBar(), java.awt.BorderLayout.SOUTH);
+			this.jContentPane.add(getJDesktopPane(),
+					java.awt.BorderLayout.CENTER);
+			this.jContentPane
+					.add(getMyStatusBar(), java.awt.BorderLayout.SOUTH);
 		}
 		return this.jContentPane;
 	}
@@ -703,13 +757,15 @@ public class MainWindow extends JFrame {
 		if (this.limitsMenuItem == null) {
 			this.limitsMenuItem = new JMenuItem();
 			this.limitsMenuItem.setText("Limit Window...");
-			this.limitsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F,
-					java.awt.Event.CTRL_MASK, false));
-			this.limitsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					limitsWindowAction();
-				}
-			});
+			this.limitsMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_F,
+							java.awt.Event.CTRL_MASK, false));
+			this.limitsMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							limitsWindowAction();
+						}
+					});
 		}
 		return this.limitsMenuItem;
 	}
@@ -723,14 +779,16 @@ public class MainWindow extends JFrame {
 		if (this.LoadLimitsMenuItem == null) {
 			this.LoadLimitsMenuItem = new JMenuItem();
 			this.LoadLimitsMenuItem.setText("Load Limits...");
-			this.LoadLimitsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L,
-					java.awt.Event.CTRL_MASK, false));
+			this.LoadLimitsMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_L,
+							java.awt.Event.CTRL_MASK, false));
 			this.LoadLimitsMenuItem.setEnabled(false);
-			this.LoadLimitsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					loadLimitsAction();
-				}
-			});
+			this.LoadLimitsMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							loadLimitsAction();
+						}
+					});
 		}
 		return this.LoadLimitsMenuItem;
 	}
@@ -744,13 +802,15 @@ public class MainWindow extends JFrame {
 		if (this.maskMenuItem == null) {
 			this.maskMenuItem = new JMenuItem();
 			this.maskMenuItem.setText("Mask Window...");
-			this.maskMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M,
-					java.awt.Event.CTRL_MASK, false));
-			this.maskMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					maskWindowAction();
-				}
-			});
+			this.maskMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_M,
+							java.awt.Event.CTRL_MASK, false));
+			this.maskMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							maskWindowAction();
+						}
+					});
 		}
 		return this.maskMenuItem;
 	}
@@ -787,13 +847,15 @@ public class MainWindow extends JFrame {
 		if (this.newDataItem == null) {
 			this.newDataItem = new JMenuItem();
 			this.newDataItem.setText("New Data...");
-			this.newDataItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N,
-					java.awt.Event.CTRL_MASK, false));
-			this.newDataItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					newDataAction();
-				}
-			});
+			this.newDataItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
+					java.awt.event.KeyEvent.VK_N, java.awt.Event.CTRL_MASK,
+					false));
+			this.newDataItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							newDataAction();
+						}
+					});
 		}
 		return this.newDataItem;
 	}
@@ -806,14 +868,16 @@ public class MainWindow extends JFrame {
 	private JMenuItem getOpenDataItem() {
 		if (this.openDataItem == null) {
 			this.openDataItem = new JMenuItem();
-			this.openDataItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					openDataAction();
-				}
-			});
+			this.openDataItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							openDataAction();
+						}
+					});
 			this.openDataItem.setText("Open data...");
-			this.openDataItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O,
-					java.awt.Event.CTRL_MASK, false));
+			this.openDataItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_O,
+							java.awt.Event.CTRL_MASK, false));
 		}
 		return this.openDataItem;
 	}
@@ -826,13 +890,17 @@ public class MainWindow extends JFrame {
 	private JButton getOpenLimitsButton() {
 		if (this.openLimitsButton == null) {
 			this.openLimitsButton = new JButton();
-			this.openLimitsButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/text_block.png")));
-			this.openLimitsButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					limitsWindowAction();
-				}
-			});
+			this.openLimitsButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/text_block.png")));
+			this.openLimitsButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							limitsWindowAction();
+						}
+					});
 		}
 		return this.openLimitsButton;
 	}
@@ -845,13 +913,17 @@ public class MainWindow extends JFrame {
 	private JButton getOpenMaskButton() {
 		if (this.openMaskButton == null) {
 			this.openMaskButton = new JButton();
-			this.openMaskButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/view_detailed.png")));
-			this.openMaskButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					maskWindowAction();
-				}
-			});
+			this.openMaskButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/view_detailed.png")));
+			this.openMaskButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							maskWindowAction();
+						}
+					});
 		}
 		return this.openMaskButton;
 	}
@@ -864,13 +936,17 @@ public class MainWindow extends JFrame {
 	private JButton getOpenShmooButton() {
 		if (this.openShmooButton == null) {
 			this.openShmooButton = new JButton();
-			this.openShmooButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/view_sidetree.png")));
-			this.openShmooButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					newDataAction();
-				}
-			});
+			this.openShmooButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/view_sidetree.png")));
+			this.openShmooButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							newDataAction();
+						}
+					});
 		}
 		return this.openShmooButton;
 	}
@@ -884,10 +960,14 @@ public class MainWindow extends JFrame {
 		if (this.pasteMenuItem == null) {
 			this.pasteMenuItem = new javax.swing.JMenuItem();
 			this.pasteMenuItem.setText("Paste");
-			this.pasteMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V,
-					java.awt.Event.CTRL_MASK, true));
-			this.pasteMenuItem.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/actions/editpaste.png")));
+			this.pasteMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_V,
+							java.awt.Event.CTRL_MASK, true));
+			this.pasteMenuItem
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/actions/editpaste.png")));
 			this.pasteMenuItem.addActionListener(getTransferActionListener());
 		}
 		return this.pasteMenuItem;
@@ -902,14 +982,16 @@ public class MainWindow extends JFrame {
 		if (this.ratExportMenuItem == null) {
 			this.ratExportMenuItem = new JMenuItem();
 			this.ratExportMenuItem.setText("Export to RAT4...");
-			this.ratExportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R,
-					java.awt.Event.CTRL_MASK, false));
+			this.ratExportMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_R,
+							java.awt.Event.CTRL_MASK, false));
 			this.ratExportMenuItem.setEnabled(false);
-			this.ratExportMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					exportRATDataAction();
-				}
-			});
+			this.ratExportMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							exportRATDataAction();
+						}
+					});
 		}
 		return this.ratExportMenuItem;
 	}
@@ -923,14 +1005,16 @@ public class MainWindow extends JFrame {
 		if (this.SaveLimitsMenuItem == null) {
 			this.SaveLimitsMenuItem = new JMenuItem();
 			this.SaveLimitsMenuItem.setText("Save Limits...");
-			this.SaveLimitsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S,
-					java.awt.Event.CTRL_MASK, false));
+			this.SaveLimitsMenuItem.setAccelerator(javax.swing.KeyStroke
+					.getKeyStroke(java.awt.event.KeyEvent.VK_S,
+							java.awt.Event.CTRL_MASK, false));
 			this.SaveLimitsMenuItem.setEnabled(false);
-			this.SaveLimitsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					saveLimitsAction();
-				}
-			});
+			this.SaveLimitsMenuItem
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							saveLimitsAction();
+						}
+					});
 		}
 		return this.SaveLimitsMenuItem;
 	}
@@ -965,7 +1049,8 @@ public class MainWindow extends JFrame {
 	private LimitsEditor gLimitsEditor() {
 		if (this.limitsEditor == null) {
 			this.limitsEditor = new LimitsEditor();
-			this.limitsEditor.addInternalFrameListener(getIntFrameChangeListener());
+			this.limitsEditor
+					.addInternalFrameListener(getIntFrameChangeListener());
 			this.jDesktopPane.add(this.limitsEditor);
 		}
 		return this.limitsEditor;

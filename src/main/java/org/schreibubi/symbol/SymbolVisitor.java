@@ -38,12 +38,13 @@ public abstract class SymbolVisitor implements Visitor<Symbol> {
 	 */
 	public void visit(Symbol s) throws Exception {
 		// System.out.println("Over dispatch!");
-		if (s instanceof SymbolDouble)
+		if (s instanceof SymbolDouble) {
 			this.visit((SymbolDouble) s);
-		else if (s instanceof SymbolInteger)
+		} else if (s instanceof SymbolInteger) {
 			this.visit((SymbolInteger) s);
-		else if (s instanceof SymbolString)
+		} else if (s instanceof SymbolString) {
 			this.visit((SymbolString) s);
+		}
 	}
 
 	/**

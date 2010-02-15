@@ -33,7 +33,6 @@ import org.schreibubi.JCombinationsTools.chunk.Chunk;
 import org.schreibubi.JCombinationsTools.chunk.ChunkVisitorPrint;
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * BinaryDiff program
  * 
@@ -55,22 +54,25 @@ public class BinaryDiff {
 	 * @param afterLength
 	 *            TODO
 	 */
-	public static void exec(String name1, String name2, String diffout, int diffLength, int beforeLength,
-			int afterLength) {
+	public static void exec(String name1, String name2, String diffout,
+			int diffLength, int beforeLength, int afterLength) {
 
 		try {
 
 			File file1 = new File(name1);
 			File file2 = new File(name2);
 
-			if (!file1.exists())
+			if (!file1.exists()) {
 				throw new Exception(name1 + " does not exist!");
-			if (!file2.exists())
+			}
+			if (!file2.exists()) {
 				throw new Exception(name2 + " does not exist!");
+			}
 
 			long fileLength = file1.length();
-			if (fileLength != file2.length())
+			if (fileLength != file2.length()) {
 				throw new Exception("Files have different lengths!");
+			}
 			int len = (int) fileLength;
 			FileInputStream fileStream1 = new FileInputStream(file1);
 			FileInputStream fileStream2 = new FileInputStream(file2);
@@ -88,38 +90,44 @@ public class BinaryDiff {
 			int start = -1;
 			int i;
 
-			if (fileLength % diffLength != 0)
-				throw new Exception("File length is not a multiple of " + diffLength);
+			if (fileLength % diffLength != 0) {
+				throw new Exception("File length is not a multiple of "
+						+ diffLength);
+			}
 
 			for (i = 0; i < fileLength / diffLength; i++) {
 				boolean different = false;
 				for (int j = 0; j < diffLength; j++) {
 					int byte1 = fileOneContent[i * diffLength + j] & 0xFF;
 					int byte2 = fileTwoContent[i * diffLength + j] & 0xFF;
-					if (byte1 != byte2)
+					if (byte1 != byte2) {
 						different = true;
+					}
 				}
 				if (different) {
-					if (start == -1)
+					if (start == -1) {
 						start = i; // begin difference region
+					}
 				} else if (start > -1) { // end difference region
-					createChunk(diffLength, beforeLength, afterLength, fileLength, fileOneContent, fileTwoContent,
-							chunks, start, i);
+					createChunk(diffLength, beforeLength, afterLength,
+							fileLength, fileOneContent, fileTwoContent, chunks,
+							start, i);
 					start = -1;
 				}
 			}
 			if (start > -1) { // file is different until EOF!
-				createChunk(diffLength, beforeLength, afterLength, fileLength, fileOneContent, fileTwoContent, chunks,
-						start, i);
+				createChunk(diffLength, beforeLength, afterLength, fileLength,
+						fileOneContent, fileTwoContent, chunks, start, i);
 				start = -1;
 			}
 
 			// Write the diff to a file
 			PrintWriter pw;
-			if (diffout.equals(""))
+			if (diffout.equals("")) {
 				pw = new PrintWriter(System.out);
-			else
+			} else {
 				pw = new PrintWriter(new FileWriter(diffout));
+			}
 			pw.println("--- " + name1);
 			pw.println("+++ " + name2);
 			ChunkVisitorPrint chunkVisitorPrinter = new ChunkVisitorPrint(pw);
@@ -131,14 +139,16 @@ public class BinaryDiff {
 	}
 
 	/**
-	 * Compares two binary files of equal size for differences. Output is somwhow similar to gnu unified diff: <br>
+	 * Compares two binary files of equal size for differences. Output is
+	 * somwhow similar to gnu unified diff: <br>
 	 * --- old file <br>
 	 * +++ new file <br>
 	 * &#064; start pos, end pos <br>
-	 * followed by line pairs preceded by - and +. The line preceded by - list the values which are replaced by the
-	 * values in the + line.
+	 * followed by line pairs preceded by - and +. The line preceded by - list
+	 * the values which are replaced by the values in the + line.
 	 * <p>
-	 * One patch file can contain this whole block more than once, to patch different files in one go.
+	 * One patch file can contain this whole block more than once, to patch
+	 * different files in one go.
 	 * 
 	 * @param args
 	 *            two binary files to compare, plus output file for the diff
@@ -155,34 +165,45 @@ public class BinaryDiff {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.isRequired().withLongOpt("length").withDescription(
-					"how many bytes should be compared at once").hasArg().withArgName("length").create('l'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("outfile").withDescription("output file").hasArg()
+			options.addOption(OptionBuilder.isRequired().withLongOpt("length")
+					.withDescription(
+							"how many bytes should be compared at once")
+					.hasArg().withArgName("length").create('l'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt("outfile")
+					.withDescription("output file").hasArg()
 					.withArgName("file").create('o'));
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
-			options.addOption(OptionBuilder.withLongOpt("before").withDescription("prepend context number bytes")
-					.hasArg().withArgName("bytes").create('b'));
-			options.addOption(OptionBuilder.withLongOpt("after").withDescription("postpend context number bytes")
-					.hasArg().withArgName("bytes").create('a'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
+			options.addOption(OptionBuilder.withLongOpt("before")
+					.withDescription("prepend context number bytes").hasArg()
+					.withArgName("bytes").create('b'));
+			options.addOption(OptionBuilder.withLongOpt("after")
+					.withDescription("postpend context number bytes").hasArg()
+					.withArgName("bytes").create('a'));
 
 			CommandLine line = CLparser.parse(options, args);
 
-			if (line.hasOption("l"))
+			if (line.hasOption("l")) {
 				difflength = Integer.parseInt(line.getOptionValue("l"));
-			if (line.hasOption("o"))
+			}
+			if (line.hasOption("o")) {
 				outfile = line.getOptionValue("o");
-			if (line.hasOption("b"))
+			}
+			if (line.hasOption("b")) {
 				beforeLength = Integer.parseInt(line.getOptionValue("b"));
-			if (line.hasOption("a"))
+			}
+			if (line.hasOption("a")) {
 				afterLength = Integer.parseInt(line.getOptionValue("a"));
+			}
 			if (line.hasOption("v")) {
 				Info.printVersion("BinaryDiff");
 				Runtime.getRuntime().exit(0);
 			}
 			String[] leftargs = line.getArgs();
-			if (leftargs.length == 2)
-				exec(leftargs[0], leftargs[1], outfile, difflength, beforeLength, afterLength);
-			else {
+			if (leftargs.length == 2) {
+				exec(leftargs[0], leftargs[1], outfile, difflength,
+						beforeLength, afterLength);
+			} else {
 				Info.printVersion("BinaryDiff");
 				Runtime.getRuntime().exit(0);
 			}
@@ -204,20 +225,23 @@ public class BinaryDiff {
 	 * @param stop
 	 * @throws Exception
 	 */
-	private static void createChunk(int diffLength, int beforeLength, int afterLength, long fileLength,
-			byte[] fileOneContent, byte[] fileTwoContent, VArrayList<Chunk> chunks, int start, int stop)
+	private static void createChunk(int diffLength, int beforeLength,
+			int afterLength, long fileLength, byte[] fileOneContent,
+			byte[] fileTwoContent, VArrayList<Chunk> chunks, int start, int stop)
 			throws Exception {
 		VArrayList<Integer> diff1 = new VArrayList<Integer>();
 		VArrayList<Integer> diff2 = new VArrayList<Integer>();
 		int beforeLengthAdjusted = Math.min(start * diffLength, beforeLength);
-		int afterLengthAdjusted = Math.min((int) fileLength - stop * diffLength, afterLength);
-		for (int j = start * diffLength - beforeLengthAdjusted; j < stop * diffLength + afterLengthAdjusted; j++) {
+		int afterLengthAdjusted = Math.min(
+				(int) fileLength - stop * diffLength, afterLength);
+		for (int j = start * diffLength - beforeLengthAdjusted; j < stop
+				* diffLength + afterLengthAdjusted; j++) {
 			int byte1 = fileOneContent[j] & 0xFF;
 			int byte2 = fileTwoContent[j] & 0xFF;
 			diff1.add(byte1);
 			diff2.add(byte2);
 		}
-		chunks.add(new Chunk(start * diffLength, stop * diffLength - 1, beforeLengthAdjusted, afterLengthAdjusted,
-				diff1, diff2));
+		chunks.add(new Chunk(start * diffLength, stop * diffLength - 1,
+				beforeLengthAdjusted, afterLengthAdjusted, diff1, diff2));
 	}
 }

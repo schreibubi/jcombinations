@@ -20,7 +20,8 @@ import org.schreibubi.visitor.Host;
 import org.schreibubi.visitor.VArrayList;
 
 /**
- * Symbol class. The parent class for all symbols. A symbol has a name and supports the visitor pattern
+ * Symbol class. The parent class for all symbols. A symbol has a name and
+ * supports the visitor pattern
  * 
  * @author Jörg Werner
  */
@@ -51,14 +52,15 @@ public abstract class Symbol implements Host<Symbol>, Cloneable {
 	 * @return Symbol
 	 */
 	public static Symbol createSymbolFactory(int type) {
-		if (type == SymType.STRING.ordinal())
+		if (type == SymType.STRING.ordinal()) {
 			return new SymbolString("");
-		else if (type == SymType.DOUBLE.ordinal())
+		} else if (type == SymType.DOUBLE.ordinal()) {
 			return new SymbolDouble(0.0);
-		else if (type == SymType.INTEGER.ordinal())
+		} else if (type == SymType.INTEGER.ordinal()) {
 			return new SymbolInteger(0);
-		else
+		} else {
 			return null;
+		}
 	};
 
 	/**
@@ -72,9 +74,9 @@ public abstract class Symbol implements Host<Symbol>, Cloneable {
 		return SymType.valueOf(s);
 	}
 
-	private String			name;
+	private String name;
 
-	private final SymType	type;
+	private final SymType type;
 
 	Symbol(String name, SymType type) {
 		setName(name);
@@ -197,15 +199,19 @@ public abstract class Symbol implements Host<Symbol>, Cloneable {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof Symbol))
+		}
+		if (!(obj instanceof Symbol)) {
 			return false;
+		}
 		Symbol that = (Symbol) obj;
-		if (!this.name.equals(that.name))
+		if (!this.name.equals(that.name)) {
 			return false;
-		if (!this.type.equals(that.type))
+		}
+		if (!this.type.equals(that.type)) {
 			return false;
+		}
 		return true;
 	}
 

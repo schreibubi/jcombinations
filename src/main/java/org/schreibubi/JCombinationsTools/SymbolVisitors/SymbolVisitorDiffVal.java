@@ -30,20 +30,21 @@ import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 
 /**
- * SymbolVisitorDiffVal class. Implements a visitor which generates a list of patch chunks which are used for: -
- * generating the two different source files by using the template engine and run the compiler on them - for relating
- * the resulting binary diff patch chunks back to the variables. The class is implements a Visitor for an Array or Hash
- * which contains Symbols
+ * SymbolVisitorDiffVal class. Implements a visitor which generates a list of
+ * patch chunks which are used for: - generating the two different source files
+ * by using the template engine and run the compiler on them - for relating the
+ * resulting binary diff patch chunks back to the variables. The class is
+ * implements a Visitor for an Array or Hash which contains Symbols
  */
 public class SymbolVisitorDiffVal extends SymbolVisitor {
 
-	private VArrayList<Chunk>	allPossibleChunks	= null;
+	private VArrayList<Chunk> allPossibleChunks = null;
 
-	private VArrayList<Symbol>	removeSymbolList	= null;
+	private VArrayList<Symbol> removeSymbolList = null;
 
-	private VArrayList<Symbol>	replaceSymbolList	= null;
+	private VArrayList<Symbol> replaceSymbolList = null;
 
-	private Mangle				mangle				= null;
+	private Mangle mangle = null;
 
 	/**
 	 * Constructor
@@ -53,7 +54,8 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	 * @param replaceSymbolList
 	 * @param mangle
 	 */
-	public SymbolVisitorDiffVal(VArrayList<Chunk> allPossibleChunks, VArrayList<Symbol> removeSymbolList,
+	public SymbolVisitorDiffVal(VArrayList<Chunk> allPossibleChunks,
+			VArrayList<Symbol> removeSymbolList,
 			VArrayList<Symbol> replaceSymbolList, Mangle mangle) {
 		this.allPossibleChunks = allPossibleChunks;
 		this.removeSymbolList = removeSymbolList;
@@ -64,11 +66,14 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble
+	 * )
 	 */
 	@Override
 	public void visit(SymbolDouble s) throws Exception {
-		VArrayList<SymbolDouble> removeReplace = this.mangle.getNextPatchDoublePair(s);
+		VArrayList<SymbolDouble> removeReplace = this.mangle
+				.getNextPatchDoublePair(s);
 		SymbolDouble remove = removeReplace.get(0);
 		SymbolDouble replace = removeReplace.get(1);
 		remove.setName(s.getName());
@@ -78,18 +83,23 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 
 		SymbolDouble removeMangled = this.mangle.mangle(remove);
 		SymbolDouble replaceMangled = this.mangle.mangle(replace);
-		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled.getBinaryLength(), 0, 0, removeMangled
-				.getBinaryRepresentation(), replaceMangled.getBinaryRepresentation()));
+		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled
+				.getBinaryLength(), 0, 0, removeMangled
+				.getBinaryRepresentation(), replaceMangled
+				.getBinaryRepresentation()));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger
+	 * )
 	 */
 	@Override
 	public void visit(SymbolInteger s) throws Exception {
-		VArrayList<SymbolInteger> removeAdd = this.mangle.getNextPatchIntegerPair(s);
+		VArrayList<SymbolInteger> removeAdd = this.mangle
+				.getNextPatchIntegerPair(s);
 		SymbolInteger remove = removeAdd.get(0);
 		SymbolInteger replace = removeAdd.get(1);
 		remove.setName(s.getName());
@@ -99,18 +109,23 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 
 		SymbolInteger removeMangled = this.mangle.mangle(remove);
 		SymbolInteger replaceMangled = this.mangle.mangle(replace);
-		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled.getBinaryLength(), 0, 0, removeMangled
-				.getBinaryRepresentation(), replaceMangled.getBinaryRepresentation()));
+		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled
+				.getBinaryLength(), 0, 0, removeMangled
+				.getBinaryRepresentation(), replaceMangled
+				.getBinaryRepresentation()));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString
+	 * )
 	 */
 	@Override
 	public void visit(SymbolString s) throws Exception {
-		VArrayList<SymbolString> removeReplace = this.mangle.getNextPatchStringPair(s);
+		VArrayList<SymbolString> removeReplace = this.mangle
+				.getNextPatchStringPair(s);
 
 		SymbolString remove = removeReplace.get(0);
 		SymbolString replace = removeReplace.get(1);
@@ -120,14 +135,18 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 		this.replaceSymbolList.add(replace);
 		SymbolString removeMangled = this.mangle.mangle(remove);
 		SymbolString replaceMangled = this.mangle.mangle(replace);
-		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled.getBinaryLength(), 0, 0, removeMangled
-				.getBinaryRepresentation(), replaceMangled.getBinaryRepresentation()));
+		this.allPossibleChunks.add(new Chunk(s.getName(), removeMangled
+				.getBinaryLength(), 0, 0, removeMangled
+				.getBinaryRepresentation(), replaceMangled
+				.getBinaryRepresentation()));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList
+	 * )
 	 */
 	@Override
 	public void visit(VArrayList<Symbol> s) throws Exception {
@@ -139,7 +158,8 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Symbol> s) throws Exception {
 		// TODO Auto-generated method stub
@@ -149,7 +169,9 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap
+	 * )
 	 */
 	@Override
 	public void visit(VHashMap<Symbol> s) throws Exception {
@@ -161,7 +183,8 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VLinkedHashMap)
+	 * @seeorg.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.
+	 * VLinkedHashMap)
 	 */
 	@Override
 	public void visit(VLinkedHashMap<Symbol> s) throws Exception {
@@ -173,7 +196,9 @@ public class SymbolVisitorDiffVal extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap
+	 * )
 	 */
 	@Override
 	public void visit(VTreeMap<Symbol> s) throws Exception {

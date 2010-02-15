@@ -94,8 +94,8 @@ public class OptimizeTreeVisitor implements TreeVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Shmoo
-	 * )
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Shmoo )
 	 */
 	public void visit(Shmoo s) throws Exception {
 
@@ -105,7 +105,8 @@ public class OptimizeTreeVisitor implements TreeVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi.JCombinations.FileFormat.Data)
+	 * org.schreibubi.JCombinations.FileFormat.TreeVisitor#visit(org.schreibubi
+	 * .JCombinations.FileFormat.Data)
 	 */
 	public void visit(Ydata d) throws Exception {
 	}

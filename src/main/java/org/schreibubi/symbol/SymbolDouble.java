@@ -23,16 +23,15 @@ import java.util.Locale;
 import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
  * Class for storing doubles.
  */
 public class SymbolDouble extends Symbol {
-	private static String	STANDARD_FORMAT	= "###.###E0";
+	private static String STANDARD_FORMAT = "###.###E0";
 
-	private double			value;
+	private double value;
 
-	private Unit			unit			= null;
+	private Unit unit = null;
 
 	/**
 	 * Constructor
@@ -147,13 +146,16 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble add(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			this.value = this.value + o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -165,13 +167,16 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble and(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			this.value = (int) this.value & (int) o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -286,8 +291,9 @@ public class SymbolDouble extends Symbol {
 				this.unit.invert();
 			}
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -297,17 +303,22 @@ public class SymbolDouble extends Symbol {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
-		if (!(obj instanceof SymbolDouble))
+		}
+		if (!(obj instanceof SymbolDouble)) {
 			return false;
-		if (!super.equals(obj))
+		}
+		if (!super.equals(obj)) {
 			return false;
+		}
 		SymbolDouble that = (SymbolDouble) obj;
-		if (!(this.value == that.value))
+		if (!(this.value == that.value)) {
 			return false;
-		if (!this.unit.equals(that.unit))
+		}
+		if (!this.unit.equals(that.unit)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -326,12 +337,15 @@ public class SymbolDouble extends Symbol {
 	public boolean ge(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			return this.value >= o;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -481,12 +495,15 @@ public class SymbolDouble extends Symbol {
 	public boolean gt(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			return this.value > o;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -509,12 +526,15 @@ public class SymbolDouble extends Symbol {
 	public boolean le(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			return this.value <= o;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -532,12 +552,15 @@ public class SymbolDouble extends Symbol {
 	public boolean lt(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			return this.value < o;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	@Override
@@ -546,8 +569,9 @@ public class SymbolDouble extends Symbol {
 			double o = ((SymbolDouble) s).getValue();
 			this.value = Math.max(this.value, o);
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	@Override
@@ -556,8 +580,9 @@ public class SymbolDouble extends Symbol {
 			double o = ((SymbolDouble) s).getValue();
 			this.value = Math.min(this.value, o);
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -577,8 +602,9 @@ public class SymbolDouble extends Symbol {
 				this.unit = new Unit(os.getUnit());
 			}
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -601,13 +627,16 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble or(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			this.value = (int) this.value | (int) o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -645,8 +674,9 @@ public class SymbolDouble extends Symbol {
 			double o = ((SymbolDouble) s).getValue();
 			this.value = Math.pow(this.value, o);
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -722,13 +752,16 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble sub(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			this.value = this.value - o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	/*
@@ -782,13 +815,16 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble xor(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit())))
+			if ((os.getUnit() != null) && (getUnit() != null)
+					&& (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
+			}
 			double o = os.getValue();
 			this.value = (int) this.value ^ (int) o;
 			return this;
-		} else
+		} else {
 			throw new Exception("wrong variable type");
+		}
 	}
 
 	private void parseValueUnitString(String value) {
@@ -829,7 +865,9 @@ public class SymbolDouble extends Symbol {
 				default:
 					break;
 				}
-				setValue(multiplier * Double.parseDouble(rem.substring(0, rem.length() - 1)));
+				setValue(multiplier
+						* Double
+								.parseDouble(rem.substring(0, rem.length() - 1)));
 			}
 		}
 	}

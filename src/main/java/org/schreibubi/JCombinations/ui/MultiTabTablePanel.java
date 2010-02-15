@@ -30,7 +30,6 @@ import org.schreibubi.JCombinations.logic.DataModel;
 import org.schreibubi.JCombinations.logic.SelectionEvent;
 import org.schreibubi.JCombinations.logic.TableContent;
 
-
 /**
  * Panel which host multiple Tables as tabs
  * 
@@ -42,9 +41,9 @@ public class MultiTabTablePanel extends JTabbedPane {
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= -6951602937272000952L;
+	private static final long serialVersionUID = -6951602937272000952L;
 
-	DataModel					dm					= null;
+	DataModel dm = null;
 
 	/**
 	 * Constructor
@@ -95,14 +94,20 @@ public class MultiTabTablePanel extends JTabbedPane {
 			JTable table = new JTable(tables.get(i));
 			table.setDragEnabled(true);
 			table.setAutoCreateColumnsFromModel(false);
-			table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+			table
+					.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			table.setColumnSelectionAllowed(true);
 			table.setRowSelectionAllowed(true);
 			table.setCellSelectionEnabled(true);
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			JScrollPane scrollpane = new JScrollPane(table);
-			addTab(tables.get(i).getName(), new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/16x16/mimetypes/spreadsheet.png")), scrollpane);
+			addTab(
+					tables.get(i).getName(),
+					new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/16x16/mimetypes/spreadsheet.png")),
+					scrollpane);
 		}
 	}
 

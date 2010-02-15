@@ -26,21 +26,21 @@ import org.schreibubi.JCombinationsTools.util.Helper;
  */
 public class Command {
 
-	private String	shortname;
+	private String shortname;
 
-	private String	index;
+	private String index;
 
-	private String	client;
+	private String client;
 
-	private String	signal_name;
+	private String signal_name;
 
-	private String	location;
+	private String location;
 
-	private String	description;
+	private String description;
 
-	private String	code;
+	private String code;
 
-	private String	code_base;
+	private String code_base;
 
 	public String getClient() {
 		return client;
@@ -64,12 +64,13 @@ public class Command {
 	 * @return Returns the decoded code.
 	 */
 	public int getDecodedCode() {
-		if (this.code_base.equalsIgnoreCase("dec"))
+		if (this.code_base.equalsIgnoreCase("dec")) {
 			return Integer.parseInt(this.code);
-		else if (this.code_base.equalsIgnoreCase("hex"))
+		} else if (this.code_base.equalsIgnoreCase("hex")) {
 			return Integer.parseInt(this.code, 16);
-		else if (this.code_base.equalsIgnoreCase("bin"))
+		} else if (this.code_base.equalsIgnoreCase("bin")) {
 			return Integer.parseInt(this.code, 2);
+		}
 		return 0;
 	}
 

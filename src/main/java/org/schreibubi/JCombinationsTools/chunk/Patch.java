@@ -19,16 +19,16 @@ package org.schreibubi.JCombinationsTools.chunk;
 import org.schreibubi.visitor.VArrayList;
 
 /**
- * Patch class. Container class which stores the names of the reference and the file to be patched and the chunks which
- * have to be applied.
+ * Patch class. Container class which stores the names of the reference and the
+ * file to be patched and the chunks which have to be applied.
  * 
  * @author Jörg Werner
  */
 public class Patch {
 
-	private String				referenceName	= "", newName = "";
+	private String referenceName = "", newName = "";
 
-	private VArrayList<Chunk>	chunks;
+	private VArrayList<Chunk> chunks;
 
 	/**
 	 * Constructor

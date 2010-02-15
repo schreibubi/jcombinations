@@ -28,15 +28,16 @@ import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 
 /**
- * SymbolVisitorMax class. Implements a visitor for Symbols which extracts the biggest value (or longest string for
- * SymbolString) found for a certain symbol name. The biggest value is saved as a symbol in maxHash.
+ * SymbolVisitorMax class. Implements a visitor for Symbols which extracts the
+ * biggest value (or longest string for SymbolString) found for a certain symbol
+ * name. The biggest value is saved as a symbol in maxHash.
  */
 public class SymbolVisitorMax extends SymbolVisitor {
 
 	/**
 	 * maxHash contains the biggest value for each symbol found up to date
 	 */
-	private VHashMap<Symbol>	maxHash	= null;
+	private VHashMap<Symbol> maxHash = null;
 
 	/**
 	 * Constructor
@@ -49,7 +50,8 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	 * Constructor
 	 * 
 	 * @param maxHash
-	 *            is passed in by reference and contains the biggst value for each symbol found up-to-date
+	 *            is passed in by reference and contains the biggst value for
+	 *            each symbol found up-to-date
 	 */
 	public SymbolVisitorMax(VHashMap<Symbol> maxHash) {
 		super();
@@ -74,7 +76,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolDouble
+	 * )
 	 */
 	@Override
 	public void visit(SymbolDouble s) throws Exception {
@@ -87,8 +91,10 @@ public class SymbolVisitorMax extends SymbolVisitor {
 					this.maxHash.put(s.getName(), s);
 				}
 			} else {
-				throw new Exception("variable type is inconsistent for variable " + s.getName() + ": "
-						+ s.getTypeString() + "!=" + o.getTypeString());
+				throw new Exception(
+						"variable type is inconsistent for variable "
+								+ s.getName() + ": " + s.getTypeString() + "!="
+								+ o.getTypeString());
 			}
 		} else {
 			this.maxHash.put(s.getName(), s);
@@ -98,7 +104,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolInteger
+	 * )
 	 */
 	@Override
 	public void visit(SymbolInteger s) throws Exception {
@@ -111,8 +119,10 @@ public class SymbolVisitorMax extends SymbolVisitor {
 					this.maxHash.put(s.getName(), s);
 				}
 			} else {
-				throw new Exception("variable type is inconsistent for variable " + s.getName() + ": "
-						+ s.getTypeString() + "!=" + o.getTypeString());
+				throw new Exception(
+						"variable type is inconsistent for variable "
+								+ s.getName() + ": " + s.getTypeString() + "!="
+								+ o.getTypeString());
 			}
 		} else {
 			this.maxHash.put(s.getName(), s);
@@ -122,7 +132,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.symbol.SymbolString
+	 * )
 	 */
 	@Override
 	public void visit(SymbolString s) throws Exception {
@@ -135,8 +147,10 @@ public class SymbolVisitorMax extends SymbolVisitor {
 					this.maxHash.put(s.getName(), s);
 				}
 			} else {
-				throw new Exception("variable type is inconsistent for variable " + s.getName() + ": "
-						+ s.getTypeString() + "!=" + o.getTypeString());
+				throw new Exception(
+						"variable type is inconsistent for variable "
+								+ s.getName() + ": " + s.getTypeString() + "!="
+								+ o.getTypeString());
 			}
 		} else {
 			this.maxHash.put(s.getName(), s);
@@ -146,7 +160,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList
+	 * )
 	 */
 	@Override
 	public void visit(VArrayList<Symbol> s) throws Exception {
@@ -158,7 +174,8 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Symbol> s) throws Exception {
 		// TODO Auto-generated method stub
@@ -168,7 +185,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap
+	 * )
 	 */
 	@Override
 	public void visit(VHashMap<Symbol> s) throws Exception {
@@ -180,7 +199,8 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VLinkedHashMap)
+	 * @seeorg.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.
+	 * VLinkedHashMap)
 	 */
 	@Override
 	public void visit(VLinkedHashMap<Symbol> s) throws Exception {
@@ -192,7 +212,9 @@ public class SymbolVisitorMax extends SymbolVisitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap)
+	 * @see
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap
+	 * )
 	 */
 	@Override
 	public void visit(VTreeMap<Symbol> s) throws Exception {

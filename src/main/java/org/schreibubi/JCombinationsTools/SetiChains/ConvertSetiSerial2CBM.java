@@ -29,13 +29,15 @@ public class ConvertSetiSerial2CBM extends SetiSerial2Converter {
 		super(seti);
 	}
 
-	public VArrayList<Integer> getCBMContent(VArrayList<Integer> cbmChannels, SetiChainData setiChainData, int cbmLength)
-			throws Exception {
+	public VArrayList<Integer> getCBMContent(VArrayList<Integer> cbmChannels,
+			SetiChainData setiChainData, int cbmLength) throws Exception {
 		// cbmChannels command mask data constant_high constant_low
 
-		if (cbmLength * parallelWidth < setiChainData.getSize())
-			throw new Exception("CBM space too short for the used chain, " + cbmLength * parallelWidth + " available, "
+		if (cbmLength * parallelWidth < setiChainData.getSize()) {
+			throw new Exception("CBM space too short for the used chain, "
+					+ cbmLength * parallelWidth + " available, "
 					+ setiChainData.getSize() + " required!");
+		}
 
 		boolean[] resulting_data = new boolean[2 * cbmLength * 32];
 		// parallelize the serial stream
@@ -44,16 +46,17 @@ public class ConvertSetiSerial2CBM extends SetiSerial2Converter {
 			for (int j = 0; j < parallelWidth; j++) {
 				if (i * parallelWidth + j < setiChainData.getSize()) {
 					c = cbmChannels.get(j);
-					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = setiChainData.getCommandBit(i
-							* parallelWidth + j);
+					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = setiChainData
+							.getCommandBit(i * parallelWidth + j);
 					c = cbmChannels.get(j + parallelWidth);
-					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = !setiChainData.getDataMaskBit(i
-							* parallelWidth + j);
+					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = !setiChainData
+							.getDataMaskBit(i * parallelWidth + j);
 					c = cbmChannels.get(j + 2 * parallelWidth);
-					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = setiChainData.getDataBit(i
-							* parallelWidth + j);
+					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = setiChainData
+							.getDataBit(i * parallelWidth + j);
 				} else {
-					// cbm is longer than seti chain so we fill it up with default values
+					// cbm is longer than seti chain so we fill it up with
+					// default values
 					c = cbmChannels.get(j);
 					resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = false;
 					c = cbmChannels.get(j + parallelWidth);
@@ -67,23 +70,26 @@ public class ConvertSetiSerial2CBM extends SetiSerial2Converter {
 				resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = true;
 			}
 			for (int j = 0; j < fixedLowPins.size(); j++) {
-				c = cbmChannels.get(j + 3 * parallelWidth + fixedHighPins.size());
+				c = cbmChannels.get(j + 3 * parallelWidth
+						+ fixedHighPins.size());
 				resulting_data[cbmLength * 32 * (c / 18) + i * 32 + c % 18] = false;
 			}
 		}
 
-/*
- * for (int i = 0; i < 2 * cbmLength; i++) { for (int j = 0; j < 32; j++) { System.out.print(resulting_data[i * 32 + j] ?
- * "1" : "0"); } System.out.println(); }
- */
+		/*
+		 * for (int i = 0; i < 2 * cbmLength; i++) { for (int j = 0; j < 32;
+		 * j++) { System.out.print(resulting_data[i * 32 + j] ? "1" : "0"); }
+		 * System.out.println(); }
+		 */
 
 		VArrayList<Integer> cbmData = new VArrayList<Integer>();
 		for (int i = 0; i < 2 * cbmLength; i++) {
 			int accumulate = 0;
-			for (int j = 0; j < 32; j++)
+			for (int j = 0; j < 32; j++) {
 				if (resulting_data[i * 32 + j]) {
 					accumulate += 1 << j;
 				}
+			}
 			cbmData.add(accumulate);
 		}
 		return cbmData;

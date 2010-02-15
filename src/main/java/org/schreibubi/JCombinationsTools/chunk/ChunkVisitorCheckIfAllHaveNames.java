@@ -26,10 +26,9 @@ import org.schreibubi.visitor.VLinkedHashMap;
 import org.schreibubi.visitor.VTreeMap;
 import org.schreibubi.visitor.Visitor;
 
-
 /**
- * ChunkVisitorCheckIfAllHaveNames is a visitor for chunks which checks if all Chunks have a name set. If not it throws
- * an exception.
+ * ChunkVisitorCheckIfAllHaveNames is a visitor for chunks which checks if all
+ * Chunks have a name set. If not it throws an exception.
  */
 public class ChunkVisitorCheckIfAllHaveNames implements Visitor<Chunk> {
 
@@ -52,7 +51,8 @@ public class ChunkVisitorCheckIfAllHaveNames implements Visitor<Chunk> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.VArrayListMultimap)
+	 * @seeorg.schreibubi.visitor.Visitor#visit(org.schreibubi.visitor.
+	 * VArrayListMultimap)
 	 */
 	public void visit(VArrayListMultimap<Chunk> s) throws Exception {
 		// TODO Auto-generated method stub

@@ -21,7 +21,6 @@ import java.io.InputStream;
 
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * Interface for importing data
  * 

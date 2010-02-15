@@ -53,48 +53,47 @@ import org.schreibubi.JCombinations.logic.DataEventListener;
 import org.schreibubi.JCombinations.logic.DataEventListenerAdapter;
 import org.schreibubi.JCombinations.logic.DataModel;
 
-
 /**
  * @author Jörg Werner
  */
 public class LimitsEditor extends JInternalFrame {
 
-	private static final String	LIMIT_DIR			= "limitDir";
+	private static final String LIMIT_DIR = "limitDir";
 
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 3256719576615170100L;
+	private static final long serialVersionUID = 3256719576615170100L;
 
-	private javax.swing.JPanel	jContentPane		= null;
+	private javax.swing.JPanel jContentPane = null;
 
-	private JToolBar			jToolBar			= null;
+	private JToolBar jToolBar = null;
 
-	private JButton				ApplyButton			= null;
+	private JButton ApplyButton = null;
 
-	private JEditorPane			jEditorPane			= null;
+	private JEditorPane jEditorPane = null;
 
-	private JTextPane			jTextPane			= null;
+	private JTextPane jTextPane = null;
 
-	private JSplitPane			jSplitPane			= null;
+	private JSplitPane jSplitPane = null;
 
-	private JButton				ClearButton			= null;
+	private JButton ClearButton = null;
 
-	private JButton				UndoButton			= null;
+	private JButton UndoButton = null;
 
-	private JButton				RedoButton			= null;
+	private JButton RedoButton = null;
 
-	private JPanel				jPanel				= null;
+	private JPanel jPanel = null;
 
-	private DataModel			dm					= null;
+	private DataModel dm = null;
 
-	private JScrollPane			bottomScrollPane	= null;
+	private JScrollPane bottomScrollPane = null;
 
-	private JScrollPane			topScrollPane		= null;
+	private JScrollPane topScrollPane = null;
 
-	private DataEventListener	dataEventListener;
+	private DataEventListener dataEventListener;
 
-	protected UndoManager		undo				= null;
+	protected UndoManager undo = null;
 
 	/**
 	 * This is the default constructor
@@ -118,12 +117,14 @@ public class LimitsEditor extends JInternalFrame {
 	 */
 	public void loadLimits() {
 		final JFileChooser fc = new JFileChooser();
-		final Preferences prefs = Preferences.userNodeForPackage(LimitsEditor.class);
+		final Preferences prefs = Preferences
+				.userNodeForPackage(LimitsEditor.class);
 		String dirString = prefs.get(LimitsEditor.LIMIT_DIR, null);
-		if (dirString == null)
+		if (dirString == null) {
 			fc.setCurrentDirectory(null);
-		else
+		} else {
 			fc.setCurrentDirectory(new File(dirString));
+		}
 
 		StandardFileFilter filter = new StandardFileFilter("limits");
 		filter.setDescription("Limit-Files");
@@ -131,19 +132,23 @@ public class LimitsEditor extends JInternalFrame {
 		int returnVal = fc.showOpenDialog(this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			prefs.put(LimitsEditor.LIMIT_DIR, fc.getCurrentDirectory().getAbsolutePath());
+			prefs.put(LimitsEditor.LIMIT_DIR, fc.getCurrentDirectory()
+					.getAbsolutePath());
 			setTitle("Limits Editor: " + fc.getSelectedFile().toString());
 			try {
-				BufferedReader in = new BufferedReader(new FileReader(fc.getSelectedFile()));
+				BufferedReader in = new BufferedReader(new FileReader(fc
+						.getSelectedFile()));
 				String loadedText = "";
 				String s;
-				while ((s = in.readLine()) != null)
+				while ((s = in.readLine()) != null) {
 					loadedText = loadedText + s + "\n";
+				}
 				getJEditorPane().setText(loadedText);
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(this, "Error reading document", "I/O error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Error reading document",
+						"I/O error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -153,12 +158,14 @@ public class LimitsEditor extends JInternalFrame {
 	 */
 	public void saveLimits() {
 		final JFileChooser fc = new JFileChooser();
-		final Preferences prefs = Preferences.userNodeForPackage(LimitsEditor.class);
+		final Preferences prefs = Preferences
+				.userNodeForPackage(LimitsEditor.class);
 		String dirString = prefs.get(LimitsEditor.LIMIT_DIR, null);
-		if (dirString == null)
+		if (dirString == null) {
 			fc.setCurrentDirectory(null);
-		else
+		} else {
 			fc.setCurrentDirectory(new File(dirString));
+		}
 
 		StandardFileFilter filter = new StandardFileFilter("limits");
 		filter.setDescription("Limit-Files");
@@ -167,15 +174,18 @@ public class LimitsEditor extends JInternalFrame {
 		int returnVal = fc.showSaveDialog(this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			prefs.put(LimitsEditor.LIMIT_DIR, fc.getCurrentDirectory().getAbsolutePath());
+			prefs.put(LimitsEditor.LIMIT_DIR, fc.getCurrentDirectory()
+					.getAbsolutePath());
 			setTitle("Limits Editor: " + fc.getSelectedFile().toString());
 			try {
-				BufferedWriter out = new BufferedWriter(new FileWriter(fc.getSelectedFile()));
+				BufferedWriter out = new BufferedWriter(new FileWriter(fc
+						.getSelectedFile()));
 				out.write(getJEditorPane().getText());
 				out.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(this, "Error saving document", "I/O error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Error saving document",
+						"I/O error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -214,15 +224,21 @@ public class LimitsEditor extends JInternalFrame {
 		if (this.ApplyButton == null) {
 			this.ApplyButton = new JButton();
 			this.ApplyButton.setText("");
-			this.ApplyButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/button_ok.png")));
+			this.ApplyButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/button_ok.png")));
 			this.ApplyButton.setToolTipText("Apply");
-			this.ApplyButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					LimitsEditor.this.dm.setLimitsText(LimitsEditor.this.jEditorPane.getText());
-					LimitsEditor.this.dm.applyLimits();
-				}
-			});
+			this.ApplyButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							LimitsEditor.this.dm
+									.setLimitsText(LimitsEditor.this.jEditorPane
+											.getText());
+							LimitsEditor.this.dm.applyLimits();
+						}
+					});
 		}
 		return this.ApplyButton;
 	}
@@ -235,7 +251,8 @@ public class LimitsEditor extends JInternalFrame {
 	private JScrollPane getBottomScrollPane() {
 		if (this.bottomScrollPane == null) {
 			this.bottomScrollPane = new JScrollPane();
-			this.bottomScrollPane.setPreferredSize(new java.awt.Dimension(200, 50));
+			this.bottomScrollPane.setPreferredSize(new java.awt.Dimension(200,
+					50));
 			this.bottomScrollPane.setViewportView(getJTextPane());
 		}
 		return this.bottomScrollPane;
@@ -249,21 +266,25 @@ public class LimitsEditor extends JInternalFrame {
 	private JButton getClearButton() {
 		if (this.ClearButton == null) {
 			this.ClearButton = new JButton();
-			this.ClearButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/clear_left.png")));
+			this.ClearButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/clear_left.png")));
 			this.ClearButton.setText("");
 			this.ClearButton.setToolTipText("Clear messages");
-			this.ClearButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					LimitsEditor.this.jTextPane.setText("");
-				}
-			});
+			this.ClearButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							LimitsEditor.this.jTextPane.setText("");
+						}
+					});
 		}
 		return this.ClearButton;
 	}
 
 	private DataEventListener getDataEventListener() {
-		if (this.dataEventListener == null)
+		if (this.dataEventListener == null) {
 			this.dataEventListener = new DataEventListenerAdapter() {
 
 				/**
@@ -273,29 +294,36 @@ public class LimitsEditor extends JInternalFrame {
 				public void limitMessage(DataEvent e) {
 					// jTextPane.setText( jTextPane.getText() + e.getMessage()
 					// );
-					StyledDocument doc = LimitsEditor.this.jTextPane.getStyledDocument();
-					Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+					StyledDocument doc = LimitsEditor.this.jTextPane
+							.getStyledDocument();
+					Style def = StyleContext.getDefaultStyleContext().getStyle(
+							StyleContext.DEFAULT_STYLE);
 					Style regular = doc.addStyle("regular", def);
 
 					Style s = doc.addStyle("red", regular);
 					StyleConstants.setForeground(s, Color.RED);
 
 					try {
-						if (e.getError())
-							doc.insertString(doc.getLength(), e.getMessage(), doc.getStyle("red"));
-						else
-							doc.insertString(doc.getLength(), e.getMessage(), doc.getStyle("regular"));
+						if (e.getError()) {
+							doc.insertString(doc.getLength(), e.getMessage(),
+									doc.getStyle("red"));
+						} else {
+							doc.insertString(doc.getLength(), e.getMessage(),
+									doc.getStyle("regular"));
+						}
 					} catch (BadLocationException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					if (e.getPos() > -1) {
-						LimitsEditor.this.jEditorPane.setCaretPosition(e.getPos());
+						LimitsEditor.this.jEditorPane.setCaretPosition(e
+								.getPos());
 						LimitsEditor.this.jEditorPane.requestFocusInWindow();
 					}
 				}
 
 			};
+		}
 		return this.dataEventListener;
 	}
 
@@ -310,7 +338,8 @@ public class LimitsEditor extends JInternalFrame {
 			this.jContentPane.setLayout(new java.awt.BorderLayout());
 			this.jContentPane.setPreferredSize(null);
 			this.jContentPane.add(getJToolBar(), java.awt.BorderLayout.NORTH);
-			this.jContentPane.add(getJSplitPane(), java.awt.BorderLayout.CENTER);
+			this.jContentPane
+					.add(getJSplitPane(), java.awt.BorderLayout.CENTER);
 		}
 		return this.jContentPane;
 	}
@@ -326,15 +355,18 @@ public class LimitsEditor extends JInternalFrame {
 			this.undo = new UndoManager();
 			this.jEditorPane.setForeground(null);
 			this.jEditorPane.setPreferredSize(new java.awt.Dimension(200, 100));
-			this.jEditorPane.getDocument().addUndoableEditListener(new UndoableEditListener() {
-				public void undoableEditHappened(UndoableEditEvent e) {
-					LimitsEditor.this.undo.addEdit(e.getEdit());
-					getUndoButton().setEnabled(LimitsEditor.this.undo.canUndo());
-					getRedoButton().setEnabled(LimitsEditor.this.undo.canRedo());
-					// undoAction.updateUndoState();
-					// redoAction.updateRedoState();
-				}
-			});
+			this.jEditorPane.getDocument().addUndoableEditListener(
+					new UndoableEditListener() {
+						public void undoableEditHappened(UndoableEditEvent e) {
+							LimitsEditor.this.undo.addEdit(e.getEdit());
+							getUndoButton().setEnabled(
+									LimitsEditor.this.undo.canUndo());
+							getRedoButton().setEnabled(
+									LimitsEditor.this.undo.canRedo());
+							// undoAction.updateUndoState();
+							// redoAction.updateRedoState();
+						}
+					});
 		}
 		return this.jEditorPane;
 	}
@@ -375,7 +407,8 @@ public class LimitsEditor extends JInternalFrame {
 	private JSplitPane getJSplitPane() {
 		if (this.jSplitPane == null) {
 			this.jSplitPane = new JSplitPane();
-			this.jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+			this.jSplitPane
+					.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 			this.jSplitPane.setOneTouchExpandable(true);
 			this.jSplitPane.setDividerLocation(150);
 			this.jSplitPane.setTopComponent(getTopScrollPane());
@@ -423,18 +456,24 @@ public class LimitsEditor extends JInternalFrame {
 	private JButton getRedoButton() {
 		if (this.RedoButton == null) {
 			this.RedoButton = new JButton();
-			this.RedoButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/redo.png")));
+			this.RedoButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/redo.png")));
 			this.RedoButton.setText("");
 			this.RedoButton.setEnabled(false);
 			this.RedoButton.setToolTipText("Redo");
-			this.RedoButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					LimitsEditor.this.undo.redo();
-					getUndoButton().setEnabled(LimitsEditor.this.undo.canUndo());
-					getRedoButton().setEnabled(LimitsEditor.this.undo.canRedo());
-				}
-			});
+			this.RedoButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							LimitsEditor.this.undo.redo();
+							getUndoButton().setEnabled(
+									LimitsEditor.this.undo.canUndo());
+							getRedoButton().setEnabled(
+									LimitsEditor.this.undo.canRedo());
+						}
+					});
 		}
 		return this.RedoButton;
 	}
@@ -447,7 +486,8 @@ public class LimitsEditor extends JInternalFrame {
 	private JScrollPane getTopScrollPane() {
 		if (this.topScrollPane == null) {
 			this.topScrollPane = new JScrollPane();
-			this.topScrollPane.setPreferredSize(new java.awt.Dimension(200, 100));
+			this.topScrollPane
+					.setPreferredSize(new java.awt.Dimension(200, 100));
 			this.topScrollPane.setViewportView(getJEditorPane());
 		}
 		return this.topScrollPane;
@@ -461,18 +501,24 @@ public class LimitsEditor extends JInternalFrame {
 	private JButton getUndoButton() {
 		if (this.UndoButton == null) {
 			this.UndoButton = new JButton();
-			this.UndoButton.setIcon(new ImageIcon(getClass().getResource(
-					"/org/schreibubi/JCombinations/icons/22x22/actions/undo.png")));
+			this.UndoButton
+					.setIcon(new ImageIcon(
+							getClass()
+									.getResource(
+											"/org/schreibubi/JCombinations/icons/22x22/actions/undo.png")));
 			this.UndoButton.setText("");
 			this.UndoButton.setEnabled(false);
 			this.UndoButton.setToolTipText("Undo");
-			this.UndoButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					LimitsEditor.this.undo.undo();
-					getUndoButton().setEnabled(LimitsEditor.this.undo.canUndo());
-					getRedoButton().setEnabled(LimitsEditor.this.undo.canRedo());
-				}
-			});
+			this.UndoButton
+					.addActionListener(new java.awt.event.ActionListener() {
+						public void actionPerformed(java.awt.event.ActionEvent e) {
+							LimitsEditor.this.undo.undo();
+							getUndoButton().setEnabled(
+									LimitsEditor.this.undo.canUndo());
+							getRedoButton().setEnabled(
+									LimitsEditor.this.undo.canRedo());
+						}
+					});
 		}
 		return this.UndoButton;
 	}
@@ -489,7 +535,8 @@ public class LimitsEditor extends JInternalFrame {
 		this.setClosable(true);
 		this.setContentPane(getJContentPane());
 		this.setDataModel(null);
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+		this
+				.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 	}
 
 } // @jve:decl-index=0:visual-constraint="110,88"

@@ -23,7 +23,6 @@ import org.schreibubi.JCombinations.FileFormat.Xdata;
 import org.schreibubi.symbol.Symbol;
 import org.schreibubi.visitor.VHashMap;
 
-
 /**
  * Interface which all Limit classes need to implement
  * 
@@ -45,7 +44,8 @@ public interface LimitInterface {
 	 * @return Marker
 	 * @throws Exception
 	 */
-	public abstract Marker calcLimits(ArrayList<Xdata> xlabels, int xAbsValuesIndex, int xRelativeValuesIndex,
+	public abstract Marker calcLimits(ArrayList<Xdata> xlabels,
+			int xAbsValuesIndex, int xRelativeValuesIndex,
 			VHashMap<Symbol> constantVariables) throws Exception;
 
 	/**
@@ -61,7 +61,9 @@ public interface LimitInterface {
 	 * @return pass or fail
 	 * @throws Exception
 	 */
-	public abstract boolean judgeDataSeries(ArrayList<Xdata> xlabels, int xAbsValuesIndex, int xRelativeValuesIndex,
-			VHashMap<Symbol> constantVariables, ArrayList<Symbol> yv) throws Exception;
+	public abstract boolean judgeDataSeries(ArrayList<Xdata> xlabels,
+			int xAbsValuesIndex, int xRelativeValuesIndex,
+			VHashMap<Symbol> constantVariables, ArrayList<Symbol> yv)
+			throws Exception;
 
 }

@@ -21,22 +21,21 @@ import java.util.ArrayList;
 import org.schreibubi.symbol.Symbol;
 import org.schreibubi.visitor.VArrayList;
 
-
 /**
  * @author Jörg Werner
  * 
  */
 public class Xdata {
 
-	private String				name		= null;
+	private String name = null;
 
-	private String				description	= null;
+	private String description = null;
 
-	private String				unit		= null;
+	private String unit = null;
 
-	private VArrayList<Symbol>	labels		= new VArrayList<Symbol>();
+	private VArrayList<Symbol> labels = new VArrayList<Symbol>();
 
-	private VArrayList<Double>	xPositions	= new VArrayList<Double>();
+	private VArrayList<Double> xPositions = new VArrayList<Double>();
 
 	/**
 	 * Constructor
@@ -52,7 +51,8 @@ public class Xdata {
 	 * @param labels
 	 * @param positions
 	 */
-	public Xdata(String name, String description, String unit, VArrayList<Symbol> labels, VArrayList<Double> positions) {
+	public Xdata(String name, String description, String unit,
+			VArrayList<Symbol> labels, VArrayList<Double> positions) {
 		super();
 		setName(name);
 		setDescription(description);
@@ -72,8 +72,9 @@ public class Xdata {
 		setDescription(l.getDescription());
 		setUnit(l.getUnit());
 		VArrayList<Symbol> labels_copy = new VArrayList<Symbol>();
-		for (Symbol s : l.getLabels())
+		for (Symbol s : l.getLabels()) {
 			labels_copy.add(s);
+		}
 		setLabels(labels_copy);
 		setXPositions(l.getXPositions());
 	}

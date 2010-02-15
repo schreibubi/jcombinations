@@ -58,7 +58,6 @@ import org.schreibubi.visitor.VHashMap;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 
-
 /**
  * @author Jörg Werner
  */
@@ -73,15 +72,19 @@ public class GeneratePatchTemplate {
 	 * @param possibleCombinationsOut
 	 * @param seti
 	 */
-	public static void exec(String diffResultName, String possibleChunksName, String diffTemplateName,
-			String possibleCombinationsIn, String templateNameFilter, String possibleCombinationsOut, String setiXmlFile) {
+	public static void exec(String diffResultName, String possibleChunksName,
+			String diffTemplateName, String possibleCombinationsIn,
+			String templateNameFilter, String possibleCombinationsOut,
+			String setiXmlFile) {
 		try {
 			// parse and treewalk BinaryDiff result file
 			File diffResultFile = new File(diffResultName);
-			if (!diffResultFile.exists())
+			if (!diffResultFile.exists()) {
 				throw new Exception(diffResultName + " does not exist.");
+			}
 
-			PatchLexer binDiffLexer = new PatchLexer(new BufferedReader(new FileReader(diffResultFile)));
+			PatchLexer binDiffLexer = new PatchLexer(new BufferedReader(
+					new FileReader(diffResultFile)));
 			PatchParser binDiffParser = new PatchParser(binDiffLexer);
 			binDiffParser.patch();
 			PatchTreeWalker binDiffTreeWalker = new PatchTreeWalker();
@@ -90,19 +93,24 @@ public class GeneratePatchTemplate {
 
 			// parse and treewalk allPossibleChunks file
 			File possibleChunksFile = new File(possibleChunksName);
-			if (!possibleChunksFile.exists())
+			if (!possibleChunksFile.exists()) {
 				throw new Exception(possibleChunksName + " does not exist.");
+			}
 
-			PatchLexer possibleChunksLexer = new PatchLexer(new BufferedReader(new FileReader(possibleChunksFile)));
-			PatchParser possibleChunksParser = new PatchParser(possibleChunksLexer);
+			PatchLexer possibleChunksLexer = new PatchLexer(new BufferedReader(
+					new FileReader(possibleChunksFile)));
+			PatchParser possibleChunksParser = new PatchParser(
+					possibleChunksLexer);
 			possibleChunksParser.patch();
 			PatchTreeWalker possibleChunksTreeWalker = new PatchTreeWalker();
-			Patch patch2 = possibleChunksTreeWalker.patch(possibleChunksParser.getAST());
+			Patch patch2 = possibleChunksTreeWalker.patch(possibleChunksParser
+					.getAST());
 			VArrayList<Chunk> possibleChunksList = patch2.getChunks();
 
 			// relate between found chunks (in chunksList) and all possible
 			// chunks (in possibleChunksList)
-			ChunkVisitorRelate chunkVisitorRel = new ChunkVisitorRelate(possibleChunksList);
+			ChunkVisitorRelate chunkVisitorRel = new ChunkVisitorRelate(
+					possibleChunksList);
 			chunksList.accept(chunkVisitorRel);
 
 			// in the chunksList are now the names of the corresponding
@@ -114,15 +122,18 @@ public class GeneratePatchTemplate {
 			PrintWriter pw = new PrintWriter(new FileWriter(diffTemplateName));
 			pw.println("--- " + patch.getReferenceName());
 			pw.println("+++ $PATNAME_UNMANGLED$%LOWERCASE%.mpa");
-			ChunkVisitorDiffTemplate chunkVisitorDiffTemp = new ChunkVisitorDiffTemplate(pw);
+			ChunkVisitorDiffTemplate chunkVisitorDiffTemp = new ChunkVisitorDiffTemplate(
+					pw);
 			chunksList.accept(chunkVisitorDiffTemp);
 			pw.close();
 
 			File variablesFile = new File(possibleCombinationsIn);
-			if (!variablesFile.exists())
+			if (!variablesFile.exists()) {
 				throw new Exception(possibleCombinationsIn + " does not exist");
+			}
 
-			AssignLexer assignLexer = new AssignLexer(new BufferedReader(new FileReader(variablesFile)));
+			AssignLexer assignLexer = new AssignLexer(new BufferedReader(
+					new FileReader(variablesFile)));
 			AssignParser assignParser = new AssignParser(assignLexer);
 			assignParser.lines();
 
@@ -131,17 +142,20 @@ public class GeneratePatchTemplate {
 			symbolTableLines = assignTreeWalker.lines(assignParser.getAST());
 
 			Mangle mangle = null;
-			if (setiXmlFile.length() > 0)
+			if (setiXmlFile.length() > 0) {
 				throw new Exception("Seti Patching not supported any more");
-			else {
+			} else {
 				mangle = new MangleMRS(0x040F0000);
 			}
-			SymbolVisitorExtractAndMangle extractMangleVisitor = new SymbolVisitorExtractAndMangle(chunksList, mangle);
-			for (ListIterator<VHashMap<Symbol>> iter = symbolTableLines.listIterator(); iter.hasNext();) {
+			SymbolVisitorExtractAndMangle extractMangleVisitor = new SymbolVisitorExtractAndMangle(
+					chunksList, mangle);
+			for (ListIterator<VHashMap<Symbol>> iter = symbolTableLines
+					.listIterator(); iter.hasNext();) {
 				VHashMap<Symbol> symbolTableLine = iter.next();
 				Symbol templateSymbol = symbolTableLine.get("TEMPLATE");
 				if (templateSymbol != null) {
-					String template = templateSymbol.convertToString().getValue();
+					String template = templateSymbol.convertToString()
+							.getValue();
 					if (!template.equalsIgnoreCase(templateNameFilter)) {
 						iter.remove();
 					} else {
@@ -159,7 +173,8 @@ public class GeneratePatchTemplate {
 			// once with the same file as result...
 			// sort lines
 
-			class symbolTableLineComparator implements Comparator<VHashMap<Symbol>> {
+			class symbolTableLineComparator implements
+					Comparator<VHashMap<Symbol>> {
 				public int compare(VHashMap<Symbol> o1, VHashMap<Symbol> o2) {
 					StringWriter o1sw = new StringWriter();
 					StringWriter o2sw = new StringWriter();
@@ -181,7 +196,8 @@ public class GeneratePatchTemplate {
 			Collections.sort(symbolTableLines, stlc);
 			// remove duplicates
 			VHashMap<Symbol> previous = null;
-			for (ListIterator<VHashMap<Symbol>> iter = symbolTableLines.listIterator(); iter.hasNext();) {
+			for (ListIterator<VHashMap<Symbol>> iter = symbolTableLines
+					.listIterator(); iter.hasNext();) {
 				VHashMap<Symbol> symbolTableLine = iter.next();
 				if (previous != null) {
 					if (stlc.compare(previous, symbolTableLine) == 0) {
@@ -195,15 +211,18 @@ public class GeneratePatchTemplate {
 			}
 			pw = new PrintWriter(new FileWriter(possibleCombinationsOut));
 			SymbolVisitorPrint symbolVisitorPrint = new SymbolVisitorPrint(pw);
-			for (ListIterator<VHashMap<Symbol>> i = symbolTableLines.listIterator(); i.hasNext();) {
+			for (ListIterator<VHashMap<Symbol>> i = symbolTableLines
+					.listIterator(); i.hasNext();) {
 				i.next().accept(symbolVisitorPrint);
 			}
 			pw.close();
 
 		} catch (TokenStreamException e) {
-			System.out.println("generatePatchTemplate TokenStreamException: " + e);
+			System.out.println("generatePatchTemplate TokenStreamException: "
+					+ e);
 		} catch (RecognitionException e) {
-			System.out.println("generatePatchTemplate RecognitionException: " + e);
+			System.out.println("generatePatchTemplate RecognitionException: "
+					+ e);
 		} catch (JiBXException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -233,22 +252,38 @@ public class GeneratePatchTemplate {
 			CommandLineParser CLparser = new PosixParser();
 
 			// create the Options
-			options.addOption(OptionBuilder.isRequired().withLongOpt("diffResult").withDescription(
-					"[in] file containing the result of the binary diff").hasArg().withArgName("file").create('d'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("possibleChunks").withDescription(
-					"[in] file containing the possible chunks").hasArg().withArgName("file").create('p'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("possibleCombinationsIn").withDescription(
-					"[in] list of all possible combinations").hasArg().withArgName("file").create('i'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("filter").withDescription(
-					"filter only test which have this value in the TEMPLATE variable").hasArg().withArgName("file")
-					.create('f'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("possibleCombinationsOut").withDescription(
-					"[out] list of all possible combinations").hasArg().withArgName("file").create('o'));
-			options.addOption(OptionBuilder.isRequired().withLongOpt("diffTemplate").withDescription(
-					"[out] template for generating the patch chunks").hasArg().withArgName("file").create('t'));
-			options.addOption(OptionBuilder.withLongOpt("seti").withDescription("[in] enable seti-chain patching")
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"diffResult").withDescription(
+					"[in] file containing the result of the binary diff")
+					.hasArg().withArgName("file").create('d'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"possibleChunks").withDescription(
+					"[in] file containing the possible chunks").hasArg()
+					.withArgName("file").create('p'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"possibleCombinationsIn").withDescription(
+					"[in] list of all possible combinations").hasArg()
+					.withArgName("file").create('i'));
+			options
+					.addOption(OptionBuilder
+							.isRequired()
+							.withLongOpt("filter")
+							.withDescription(
+									"filter only test which have this value in the TEMPLATE variable")
+							.hasArg().withArgName("file").create('f'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"possibleCombinationsOut").withDescription(
+					"[out] list of all possible combinations").hasArg()
+					.withArgName("file").create('o'));
+			options.addOption(OptionBuilder.isRequired().withLongOpt(
+					"diffTemplate").withDescription(
+					"[out] template for generating the patch chunks").hasArg()
+					.withArgName("file").create('t'));
+			options.addOption(OptionBuilder.withLongOpt("seti")
+					.withDescription("[in] enable seti-chain patching")
 					.hasArg().withArgName("file").create('s'));
-			options.addOption(OptionBuilder.withLongOpt("version").withDescription("version").create('v'));
+			options.addOption(OptionBuilder.withLongOpt("version")
+					.withDescription("version").create('v'));
 
 			CommandLine line = CLparser.parse(options, args);
 
@@ -278,12 +313,14 @@ public class GeneratePatchTemplate {
 				seti = line.getOptionValue("s");
 			}
 
-			exec(diffResultFile, possibleChunksFile, diffTemplateFile, possibleCombinationsIn, templateNameFilter,
+			exec(diffResultFile, possibleChunksFile, diffTemplateFile,
+					possibleCombinationsIn, templateNameFilter,
 					possibleCombinationsOut, seti);
 
 		} catch (ParseException e) {
 			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp(Info.getVersionString("GeneratePatchTemplate"), options);
+			formatter.printHelp(Info.getVersionString("GeneratePatchTemplate"),
+					options);
 		} catch (Exception e) {
 			System.out.println("GeneratePatchTemplate error: " + e);
 			e.printStackTrace();

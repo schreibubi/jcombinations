@@ -20,17 +20,17 @@ import org.schreibubi.visitor.VArrayList;
 
 import antlr.collections.AST;
 
-
 /**
- * Container class, which stores for one Key set the differen possible alternatives
+ * Container class, which stores for one Key set the differen possible
+ * alternatives
  * 
  * @author Jörg Werner
  */
 public class AlternativesASTSet {
 
-	private VArrayList<String>			keys;
+	private VArrayList<String> keys;
 
-	private VArrayList<VArrayList<AST>>	valuesets;
+	private VArrayList<VArrayList<AST>> valuesets;
 
 	/**
 	 * Constructor
