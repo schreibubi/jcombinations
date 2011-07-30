@@ -134,7 +134,6 @@ public enum CoordinatorOptions implements SettingsInterface {
 	 * @see
 	 * org.schreibubi.JCombinationsTools.settings.SettingsInterface#required()
 	 */
-	@Override
 	public boolean required() {
 		return required;
 	}

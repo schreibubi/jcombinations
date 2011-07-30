@@ -82,14 +82,6 @@ public class VArrayListSymbolSerializer implements IMarshaller, IUnmarshaller,
 		this.m_name = name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.jibx.runtime.IMarshaller#isExtension(int)
-	 */
-	public boolean isExtension(int index) {
-		return false;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -198,5 +190,9 @@ public class VArrayListSymbolSerializer implements IMarshaller, IUnmarshaller,
 		}
 		ctx.parsePastEndTag(this.m_uri, this.m_name);
 		return list;
+	}
+
+	public boolean isExtension(String mapname) {
+		return false;
 	}
 }
