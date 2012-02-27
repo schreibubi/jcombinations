@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
+O * Copyright (C) 2009 Jörg Werner schreibubi@gmail.com
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,8 @@ import antlr.RecognitionException;
 import antlr.collections.AST;
 
 import com.jmatio.io.MatFileWriter;
+import com.tragicphantom.stdf.RecordVisitor;
+import com.tragicphantom.stdf.STDFReader;
 
 /**
  * Merge results from dclog-file with the data of the combinations files.
@@ -87,30 +89,24 @@ public class MergeResultsExperimental {
 			// level 2
 			SettingsSingleton.getInstance().parseArguments(args, 2);
 
-			if (SettingsSingleton.getInstance().getProperty("help").equals(
-					"true")) {
+			if (SettingsSingleton.getInstance().getProperty("help").equals("true")) {
 				SettingsSingleton.getInstance().displayHelp();
 				Runtime.getRuntime().exit(0);
 			}
 
-			if (SettingsSingleton.getInstance().getProperty("version").equals(
-					"true")) {
+			if (SettingsSingleton.getInstance().getProperty("version").equals("true")) {
 				Info.printVersion("MergeResults");
 				Runtime.getRuntime().exit(0);
 			}
 
 			// pre-tags
 			VArrayList<String> preTags = new VArrayList<String>();
-			String preTagsString = SettingsSingleton.getInstance().getProperty(
-					"pretags");
-			preTags = new VArrayList<String>(Arrays.asList(preTagsString
-					.split(",")));
+			String preTagsString = SettingsSingleton.getInstance().getProperty("pretags");
+			preTags = new VArrayList<String>(Arrays.asList(preTagsString.split(",")));
 			// post-tags
 			VArrayList<String> postTags = new VArrayList<String>();
-			String postTagsString = SettingsSingleton.getInstance()
-					.getProperty("posttags");
-			postTags = new VArrayList<String>(Arrays.asList(postTagsString
-					.split(",")));
+			String postTagsString = SettingsSingleton.getInstance().getProperty("posttags");
+			postTags = new VArrayList<String>(Arrays.asList(postTagsString.split(",")));
 
 			FileNameLookupSingleton.initialize(preTags, postTags);
 
@@ -122,8 +118,7 @@ public class MergeResultsExperimental {
 		}
 	}
 
-	private static boolean altContainsSymbol(VLinkedHashMap<Symbol> symbolList,
-			String symbol) throws Exception {
+	private static boolean altContainsSymbol(VLinkedHashMap<Symbol> symbolList, String symbol) throws Exception {
 		if (symbolList.get(symbol) != null) {
 			return true;
 		} else {
@@ -152,8 +147,7 @@ public class MergeResultsExperimental {
 		return child;
 	}
 
-	private static String generateAlternativeName(
-			VLinkedHashMap<Symbol> symbolList) throws Exception {
+	private static String generateAlternativeName(VLinkedHashMap<Symbol> symbolList) throws Exception {
 		Iterator<Symbol> i = symbolList.values().iterator();
 		Symbol s = i.next();
 		if (s != null) {
@@ -172,21 +166,17 @@ public class MergeResultsExperimental {
 	 * @throws RecognitionException
 	 */
 	private static VArrayList<VLinkedHashMap<Symbol>> generateAlternativeSymbols(
-			EvalGenCombinationsTreeWalker evalGenCombinationsWalker,
-			VArrayList<AlternativesASTSet> block,
-			VArrayList<Integer> combination) throws Exception,
-			RecognitionException {
+			EvalGenCombinationsTreeWalker evalGenCombinationsWalker, VArrayList<AlternativesASTSet> block,
+			VArrayList<Integer> combination) throws Exception, RecognitionException {
 		VArrayList<VLinkedHashMap<Symbol>> altSymbols = new VArrayList<VLinkedHashMap<Symbol>>();
 		// for this combination calculate the value of the symbol table
 		VHashMap<Symbol> symbolTable = new VHashMap<Symbol>();
 		evalGenCombinationsWalker.setSymbolTable(symbolTable);
 		for (int j = 0; j < block.size(); j++) {
 			VArrayList<String> setKeys = block.get(j).getKeys();
-			VArrayList<AST> setValues = block.get(j).getAlternative(
-					combination.get(j));
+			VArrayList<AST> setValues = block.get(j).getAlternative(combination.get(j));
 			if (setKeys.size() != setValues.size()) {
-				throw new Exception(
-						"Number of Keys is unequal to number of values");
+				throw new Exception("Number of Keys is unequal to number of values");
 			}
 			VLinkedHashMap<Symbol> altSymbol = new VLinkedHashMap<Symbol>();
 			for (int k = 0; k < setKeys.size(); k++) {
@@ -200,8 +190,7 @@ public class MergeResultsExperimental {
 		return altSymbols;
 	}
 
-	private static String generateName(VLinkedHashMap<Symbol> symbolList)
-			throws Exception {
+	private static String generateName(VLinkedHashMap<Symbol> symbolList) throws Exception {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 		SymbolVisitorPrint symbolVisitorPrint = new SymbolVisitorPrint(pw);
@@ -215,8 +204,7 @@ public class MergeResultsExperimental {
 		return sw.toString();
 	}
 
-	private static String getSymbolValueString(
-			VArrayList<VLinkedHashMap<Symbol>> symbolList, String symbol) {
+	private static String getSymbolValueString(VArrayList<VLinkedHashMap<Symbol>> symbolList, String symbol) {
 		for (VLinkedHashMap<Symbol> map : symbolList) {
 			Symbol sym = map.get(symbol);
 			if (sym != null) {
@@ -233,14 +221,12 @@ public class MergeResultsExperimental {
 	 * @return
 	 * @throws Exception
 	 */
-	private static VLinkedHashMap<VLinkedHashMap<Symbol>> getTestData(
-			String testNameVariable,
-			VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> data,
-			VArrayList<VLinkedHashMap<Symbol>> altSymbols) throws Exception {
+	private static VLinkedHashMap<VLinkedHashMap<Symbol>> getTestData(String testNameVariable,
+			VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> data, VArrayList<VLinkedHashMap<Symbol>> altSymbols)
+			throws Exception {
 		String testName = getSymbolValueString(altSymbols, testNameVariable);
 		if (testName == null) {
-			throw new Exception("Variable " + testNameVariable
-					+ " is undefinded!");
+			throw new Exception("Variable " + testNameVariable + " is undefinded!");
 		}
 		if (!data.containsKey(testName)) {
 			System.err.println("No results found for test " + testName);
@@ -258,26 +244,23 @@ public class MergeResultsExperimental {
 		// *****************************************************************************
 		// * Load the combinations file and parse it
 		// *****************************************************************************
-		String combinationsFileName = SettingsSingleton.getInstance()
-				.getProperty("combinations");
-		File dir = new File(combinationsFileName).getAbsoluteFile()
-				.getParentFile();
-		File combinationFile = FileNameLookupSingleton.getInstance().lookup(
-				dir, combinationsFileName);
+		String combinationsFileName = SettingsSingleton.getInstance().getProperty("combinations");
+		File dir = new File(combinationsFileName).getAbsoluteFile().getParentFile();
+		File combinationFile = FileNameLookupSingleton.getInstance().lookup(dir, combinationsFileName);
 		System.out.print("Loading " + combinationFile.getName() + "...");
+		// System.out.print("Loading " + combinationsFileName + "...");
 
-		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(
-				new BufferedReader(new FileReader(combinationFile)));
-		EvalGenCombinationsParser evalGenCombinationsParser = new EvalGenCombinationsParser(
-				evalGenCombinationsLexer);
+		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(new BufferedReader(
+				new FileReader(combinationsFileName)));
+		EvalGenCombinationsParser evalGenCombinationsParser = new EvalGenCombinationsParser(evalGenCombinationsLexer);
 		evalGenCombinationsParser.setIncludeDir(dir);
 		evalGenCombinationsParser.blocks();
 
 		VHashMap<String> optionsFromEvalGenWalker = new VHashMap<String>();
 		EvalGenCombinationsTreeWalker evalGenCombinationsWalker = new EvalGenCombinationsTreeWalker();
 		evalGenCombinationsWalker.setOptions(optionsFromEvalGenWalker);
-		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker
-				.blocks(evalGenCombinationsParser.getAST());
+		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker.blocks(evalGenCombinationsParser
+				.getAST());
 		System.out.println("done");
 
 		// *****************************************************************************
@@ -294,19 +277,16 @@ public class MergeResultsExperimental {
 			Runtime.getRuntime().exit(0);
 		}
 
-		String dutSelectionString = SettingsSingleton.getInstance()
-				.getProperty("dut");
+		String dutSelectionString = SettingsSingleton.getInstance().getProperty("dut");
 		VArrayList<Integer> duts = new VArrayList<Integer>();
 		String[] cS = dutSelectionString.split(",");
 		for (String s : cS) {
 			if (s.contains("-")) {
 				String[] dS = s.split("-");
 				if (dS.length < 2) {
-					throw new Exception(
-							"dut specification is wrong, should be e.g. 1-16");
+					throw new Exception("dut specification is wrong, should be e.g. 1-16");
 				}
-				for (int i = Integer.parseInt(dS[0]); i <= Integer
-						.parseInt(dS[1]); i++) {
+				for (int i = Integer.parseInt(dS[0]); i <= Integer.parseInt(dS[1]); i++) {
 					duts.add(i);
 				}
 			} else {
@@ -314,20 +294,15 @@ public class MergeResultsExperimental {
 			}
 		}
 
-		int dutFileOffset = Integer.parseInt(SettingsSingleton.getInstance()
-				.getProperty("dutFileOffset"));
-		int dutTouchdownOffset = Integer.parseInt(SettingsSingleton
-				.getInstance().getProperty("dutTouchdownOffset"));
+		int dutFileOffset = Integer.parseInt(SettingsSingleton.getInstance().getProperty("dutFileOffset"));
+		int dutTouchdownOffset = Integer.parseInt(SettingsSingleton.getInstance().getProperty("dutTouchdownOffset"));
 
 		// *****************************************************************************
 		// * Load the dclog file and parse it
 		// *****************************************************************************
-		String resultFilePrefix = SettingsSingleton.getInstance().getProperty(
-				"prefix");
-		String resultFilePostfix = SettingsSingleton.getInstance().getProperty(
-				"postfix");
-		String resultFileString = SettingsSingleton.getInstance().getProperty(
-				"dclog");
+		String resultFilePrefix = SettingsSingleton.getInstance().getProperty("prefix");
+		String resultFilePostfix = SettingsSingleton.getInstance().getProperty("postfix");
+		String resultFileString = SettingsSingleton.getInstance().getProperty("dclog");
 		ArrayList<String> resultFiles = new ArrayList<String>();
 		if (!resultFileString.equals("")) {
 			String[] dF = resultFileString.split(",");
@@ -337,78 +312,74 @@ public class MergeResultsExperimental {
 		} else {
 			int dotPos = combinationsFileName.lastIndexOf(".");
 			if (dotPos > -1) {
-				resultFiles.add(resultFilePrefix
-						+ combinationsFileName.substring(0, dotPos)
-						+ resultFilePostfix);
+				resultFiles.add(resultFilePrefix + combinationsFileName.substring(0, dotPos) + resultFilePostfix);
 			} else {
-				resultFiles.add(resultFilePrefix + combinationsFileName
-						+ resultFilePostfix);
+				resultFiles.add(resultFilePrefix + combinationsFileName + resultFilePostfix);
 			}
 		}
 
 		VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> data = new VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>();
 
-		IBindingFactory lotreportBindingFactory = BindingDirectory
-				.getFactory(DCResults.class);
-		IUnmarshallingContext lotreportUnmarshallingContext = lotreportBindingFactory
-				.createUnmarshallingContext();
+		IBindingFactory lotreportBindingFactory = BindingDirectory.getFactory(DCResults.class);
+		IUnmarshallingContext lotreportUnmarshallingContext = lotreportBindingFactory.createUnmarshallingContext();
 
 		DCResults obj = new DCResults();
 		obj.setActiveDuts(duts);
 		obj.setTouchdownDutOffset(dutTouchdownOffset);
 		int countOffset = 0;
+		
+		VerigyRecordVisitor myRecordVisitor = new VerigyRecordVisitor();
 		for (String file : resultFiles) {
 
-			BufferedReader dc = null;
-			File dclogFile = new File(file);
-			if (dclogFile.exists()) {
-				dc = new BufferedReader(new FileReader(dclogFile));
-			} else {
-				File gzLogFile = new File(file + ".gz");
-				if (gzLogFile.exists()) {
-					dc = new BufferedReader(
-							new InputStreamReader(new GZIPInputStream(
-									new FileInputStream(gzLogFile))));
+			if (!file.endsWith("stdf")) {
+				BufferedReader dc = null;
+				File dclogFile = new File(file);
+				if (dclogFile.exists()) {
+					dc = new BufferedReader(new FileReader(dclogFile));
 				} else {
-					File bzLogFile = new File(file + ".bz2");
-					if (bzLogFile.exists()) {
-						FileInputStream fIS = new FileInputStream(bzLogFile);
-						fIS.read(); // read dummy B
-						fIS.read(); // read dummy Z
-						dc = new BufferedReader(new InputStreamReader(
-								new CBZip2InputStream(fIS)));
+					File gzLogFile = new File(file + ".gz");
+					if (gzLogFile.exists()) {
+						dc = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+								new FileInputStream(gzLogFile))));
 					} else {
-						throw new Exception(file + " does not exist.");
+						File bzLogFile = new File(file + ".bz2");
+						if (bzLogFile.exists()) {
+							FileInputStream fIS = new FileInputStream(bzLogFile);
+							fIS.read(); // read dummy B
+							fIS.read(); // read dummy Z
+							dc = new BufferedReader(new InputStreamReader(new CBZip2InputStream(fIS)));
+						} else {
+							throw new Exception(file + " does not exist.");
+						}
 					}
 				}
-			}
-			System.out.print("Loading " + file + "...");
+				System.out.print("Loading " + file + "...");
 
-			obj.setFileDutOffset(countOffset);
-			lotreportUnmarshallingContext.setDocument(dc);
-			((IUnmarshallable) obj).unmarshal(lotreportUnmarshallingContext);
+				obj.setFileDutOffset(countOffset);
+				lotreportUnmarshallingContext.setDocument(dc);
+				((IUnmarshallable) obj).unmarshal(lotreportUnmarshallingContext);
+			} else {
+				STDFReader sr = new STDFReader(file);
+				sr.parse(myRecordVisitor);
+			}
 			System.out.println("done");
 			countOffset += dutFileOffset;
 		}
-		data = obj.getResults();
-
+		if (!resultFiles.get(0).endsWith("stdf")) {
+			data = obj.getResults();
+		} else {
+			data=myRecordVisitor.getResults();
+		}
 		// *****************************************************************************
 		// now generate the plots
 		// *****************************************************************************
-		String triggerTrimColumn = SettingsSingleton.getInstance().getProperty(
-				"trim");
-		String triggerMeasureColumn = SettingsSingleton.getInstance()
-				.getProperty("measure");
-		String trimColumnsString = SettingsSingleton.getInstance().getProperty(
-				"xvals");
-		String trimRelativeColumn = SettingsSingleton.getInstance()
-				.getProperty("relative");
-		String trimAbsColumn = SettingsSingleton.getInstance().getProperty(
-				"absolute");
-		String subtitleColumn = SettingsSingleton.getInstance().getProperty(
-				"subtitle");
-		String testNameVariable = SettingsSingleton.getInstance().getProperty(
-				"testname");
+		String triggerTrimColumn = SettingsSingleton.getInstance().getProperty("trim");
+		String triggerMeasureColumn = SettingsSingleton.getInstance().getProperty("measure");
+		String trimColumnsString = SettingsSingleton.getInstance().getProperty("xvals");
+		String trimRelativeColumn = SettingsSingleton.getInstance().getProperty("relative");
+		String trimAbsColumn = SettingsSingleton.getInstance().getProperty("absolute");
+		String subtitleColumn = SettingsSingleton.getInstance().getProperty("subtitle");
+		String testNameVariable = SettingsSingleton.getInstance().getProperty("testname");
 
 		String[] tC = trimColumnsString.split(",");
 		VArrayList<String> trimColumns = new VArrayList<String>();
@@ -430,8 +401,8 @@ public class MergeResultsExperimental {
 			c.reset();
 
 			VArrayList<Integer> combination = c.getNextCombination();
-			VArrayList<VLinkedHashMap<Symbol>> altSymbols = generateAlternativeSymbols(
-					evalGenCombinationsWalker, block, combination);
+			VArrayList<VLinkedHashMap<Symbol>> altSymbols = generateAlternativeSymbols(evalGenCombinationsWalker,
+					block, combination);
 
 			boolean allCombinationsDone = false;
 			do {
@@ -444,14 +415,12 @@ public class MergeResultsExperimental {
 					if (child == null) {
 						// child does not exist yet, so we need to create a new
 						// one
-						if (altContainsSymbol(altSymbols.get(blockIndex),
-								triggerMeasureColumn)) {
+						if (altContainsSymbol(altSymbols.get(blockIndex), triggerMeasureColumn)) {
 							break;
 						} else {
 							// add general alternative
 							boolean found = false;
-							for (String symName : altSymbols.get(blockIndex)
-									.keySet()) {
+							for (String symName : altSymbols.get(blockIndex).keySet()) {
 								if (trimColumns.contains(symName)) {
 									found = true;
 									break;
@@ -460,9 +429,7 @@ public class MergeResultsExperimental {
 							if (!found) {
 								Alternative alternative = new Alternative();
 								alternative.setName(name);
-								alternative
-										.setDescription(generateAlternativeName(altSymbols
-												.get(blockIndex)));
+								alternative.setDescription(generateAlternativeName(altSymbols.get(blockIndex)));
 								parent.addChild(alternative);
 								parent = alternative;
 							}
@@ -474,14 +441,10 @@ public class MergeResultsExperimental {
 					}
 				}
 				if (blockIndex < block.size()) {
-					String shmooTrim = getSymbolValueString(altSymbols,
-							triggerTrimColumn);
-					String shmooMeasuresString = getSymbolValueString(
-							altSymbols, triggerMeasureColumn);
-					List<String> shmooMeasures = Arrays
-							.asList(shmooMeasuresString.split("\\\\"));
-					String shmooSubtitle = getSymbolValueString(altSymbols,
-							subtitleColumn);
+					String shmooTrim = getSymbolValueString(altSymbols, triggerTrimColumn);
+					String shmooMeasuresString = getSymbolValueString(altSymbols, triggerMeasureColumn);
+					List<String> shmooMeasures = Arrays.asList(shmooMeasuresString.split("\\\\"));
+					String shmooSubtitle = getSymbolValueString(altSymbols, subtitleColumn);
 
 					VHashMap<Symbol> constants = new VHashMap<Symbol>();
 					for (int k = 0; k < blockIndex; k++) {
@@ -491,8 +454,7 @@ public class MergeResultsExperimental {
 					VArrayList<Shmoo> shmoos = new VArrayList<Shmoo>();
 					for (String shmooMeasure : shmooMeasures) {
 						Shmoo shmoo = new Shmoo();
-						shmoo.setName(shmooMeasure + "/" + shmooTrim + "/"
-								+ shmooSubtitle);
+						shmoo.setName(shmooMeasure + "/" + shmooTrim + "/" + shmooSubtitle);
 						shmoo.setDescription(shmooMeasure + "/" + shmooTrim);
 						shmoo.setSubtitle(shmooSubtitle);
 						shmoo.setTrim(shmooTrim);
@@ -538,20 +500,18 @@ public class MergeResultsExperimental {
 							xLabelsAcc.put(symName, xlabel);
 						}
 
-						VLinkedHashMap<VLinkedHashMap<Symbol>> dclogData = getTestData(
-								testNameVariable, data, altSymbols);
+						VLinkedHashMap<VLinkedHashMap<Symbol>> dclogData = getTestData(testNameVariable, data,
+								altSymbols);
 						if (dclogData != null) {
 							// add corresponding results from dclog_af.dat
 							for (VLinkedHashMap<Symbol> dD : dclogData.values()) {
 								for (int i = 0; i < shmooMeasures.size(); i++) {
-									VLinkedHashMap<VArrayList<Symbol>> yDA = yDataAcc
-											.get("K" + i);
+									VLinkedHashMap<VArrayList<Symbol>> yDA = yDataAcc.get("K" + i);
 									if (yDA == null) {
 										yDA = new VLinkedHashMap<VArrayList<Symbol>>();
 									}
 									VArrayList<Symbol> y = null;
-									if (yDA.containsKey(dD.get("S" + i)
-											.getName())) {
+									if (yDA.containsKey(dD.get("S" + i).getName())) {
 										y = yDA.get(dD.get("S" + i).getName());
 									} else {
 										y = new VArrayList<Symbol>();
@@ -564,23 +524,15 @@ public class MergeResultsExperimental {
 						}
 
 						if (c.hasNext()) {
-							VArrayList<Boolean> changedAlternatives = c
-									.getAlternativesWhichWillChange();
-							shmooFinished = changedAlternatives.subList(0,
-									blockIndex + 1).contains(true);
-							altSymbols = generateAlternativeSymbols(
-									evalGenCombinationsWalker, block, c
-											.getNextCombination());
-							String shmooTrimComp = getSymbolValueString(
-									altSymbols, triggerTrimColumn);
-							String shmooMeasuresStringComp = getSymbolValueString(
-									altSymbols, triggerMeasureColumn);
-							String shmooSubtitleComp = getSymbolValueString(
-									altSymbols, subtitleColumn);
-							if (!shmooTrim.equals(shmooTrimComp)
-									| !shmooSubtitle.equals(shmooSubtitleComp)
-									| !shmooMeasuresString
-											.equals(shmooMeasuresStringComp)) {
+							VArrayList<Boolean> changedAlternatives = c.getAlternativesWhichWillChange();
+							shmooFinished = changedAlternatives.subList(0, blockIndex + 1).contains(true);
+							altSymbols = generateAlternativeSymbols(evalGenCombinationsWalker, block,
+									c.getNextCombination());
+							String shmooTrimComp = getSymbolValueString(altSymbols, triggerTrimColumn);
+							String shmooMeasuresStringComp = getSymbolValueString(altSymbols, triggerMeasureColumn);
+							String shmooSubtitleComp = getSymbolValueString(altSymbols, subtitleColumn);
+							if (!shmooTrim.equals(shmooTrimComp) | !shmooSubtitle.equals(shmooSubtitleComp)
+									| !shmooMeasuresString.equals(shmooMeasuresStringComp)) {
 								shmooFinished = true;
 							}
 						} else {
@@ -598,15 +550,12 @@ public class MergeResultsExperimental {
 
 					for (String s : xLabelsAcc.keySet()) {
 						if (xLabelsAcc.get(s).get(0) instanceof SymbolString) {
-							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s),
-									xpos));
+							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
 						} else if (xLabelsAcc.get(s).get(0).getUnit() != null) {
-							xlabels.add(new Xdata(s, s, xLabelsAcc.get(s)
-									.get(0).getUnit().toString(), xLabelsAcc
+							xlabels.add(new Xdata(s, s, xLabelsAcc.get(s).get(0).getUnit().toString(), xLabelsAcc
 									.get(s), xpos));
 						} else {
-							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s),
-									xpos));
+							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
 						}
 					}
 
@@ -614,23 +563,18 @@ public class MergeResultsExperimental {
 						if (yDataAcc.get("K" + i) != null) {
 							Shmoo shmoo = shmoos.get(i);
 							shmoo.setXdata(xlabels);
-							VLinkedHashMap<VArrayList<Symbol>> yDA = yDataAcc
-									.get("K" + i);
+							VLinkedHashMap<VArrayList<Symbol>> yDA = yDataAcc.get("K" + i);
 							for (String s : yDA.keySet()) {
 								if (yDA.get(s).get(0).getUnit() == null) {
-									shmoo.addChild(new Ydata(shmoo, s, s, "",
-											yDA.get(s)));
+									shmoo.addChild(new Ydata(shmoo, s, s, "", yDA.get(s)));
 								} else {
-									shmoo.addChild(new Ydata(shmoo, s, s,
-											yDA.get(s).get(0).getUnit()
-													.toString(), yDA.get(s)));
+									shmoo.addChild(new Ydata(shmoo, s, s, yDA.get(s).get(0).getUnit().toString(), yDA
+											.get(s)));
 								}
 							}
 
 							parent.addChild(shmoo);
-							System.out.println("New Shmoo: "
-									+ shmoo.getMeasure() + "/"
-									+ shmoo.getTrim() + ", "
+							System.out.println("New Shmoo: " + shmoo.getMeasure() + "/" + shmoo.getTrim() + ", "
 									+ shmoo.getSubtitle());
 						}
 					}
@@ -649,8 +593,7 @@ public class MergeResultsExperimental {
 		// *****************************************************************************
 		// * Save the data in JCombinations format
 		// *****************************************************************************
-		String outputFileName = SettingsSingleton.getInstance().getProperty(
-				"output");
+		String outputFileName = SettingsSingleton.getInstance().getProperty("output");
 		if (outputFileName.equals("")) {
 			int dotPos = combinationsFileName.lastIndexOf(".");
 			if (dotPos > -1) {
@@ -663,8 +606,7 @@ public class MergeResultsExperimental {
 		OutputStream outStream = null;
 		if (SettingsSingleton.getInstance().getProperty("zip").equals("true")) {
 			System.out.print("Saving " + outputFileName + ".xml.zip...");
-			ZipOutputStream zipOutStream = new ZipOutputStream(
-					new FileOutputStream(outputFileName + ".xml.zip"));
+			ZipOutputStream zipOutStream = new ZipOutputStream(new FileOutputStream(outputFileName + ".xml.zip"));
 			zipOutStream.putNextEntry(new ZipEntry("default.xml"));
 			outStream = zipOutStream;
 		} else {
@@ -676,8 +618,7 @@ public class MergeResultsExperimental {
 		try {
 			AsdapBindingFactory = BindingDirectory.getFactory(Asdap.class);
 
-			IMarshallingContext mctx = AsdapBindingFactory
-					.createMarshallingContext();
+			IMarshallingContext mctx = AsdapBindingFactory.createMarshallingContext();
 			mctx.setIndent(4);
 			mctx.marshalDocument(globalParent, "UTF-8", null, outStream);
 
@@ -689,8 +630,7 @@ public class MergeResultsExperimental {
 		// *****************************************************************************
 		// * Save the data in Matlab format
 		// *****************************************************************************
-		if (SettingsSingleton.getInstance().getProperty("matlab")
-				.equals("true")) {
+		if (SettingsSingleton.getInstance().getProperty("matlab").equals("true")) {
 			System.out.print("Saving " + outputFileName + ".mat...");
 			MatlabWriteTreeVisitor mw = new MatlabWriteTreeVisitor();
 			globalParent.accept(mw);

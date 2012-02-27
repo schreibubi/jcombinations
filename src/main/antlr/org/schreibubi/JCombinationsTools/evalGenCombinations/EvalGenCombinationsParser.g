@@ -404,6 +404,6 @@ HEX_DIGIT
 protected
 UNIT
 	:
-		('n' | 'u' | 'm' | 'k' | 'M' )? ( 'V' | 'A' | 's' | "Hz" )
+		('n' | 'u' | 'm' | 'k' | 'M' )? ( 'V' | 'A' | 's' | "Hz" | "dB" )
 	;
   

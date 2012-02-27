@@ -146,8 +146,7 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble add(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -167,8 +166,7 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble and(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -337,8 +335,7 @@ public class SymbolDouble extends Symbol {
 	public boolean ge(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -495,8 +492,7 @@ public class SymbolDouble extends Symbol {
 	public boolean gt(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -526,8 +522,7 @@ public class SymbolDouble extends Symbol {
 	public boolean le(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -552,8 +547,7 @@ public class SymbolDouble extends Symbol {
 	public boolean lt(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -627,8 +621,7 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble or(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -752,8 +745,7 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble sub(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -815,8 +807,7 @@ public class SymbolDouble extends Symbol {
 	public SymbolDouble xor(Symbol s) throws Exception {
 		if (s instanceof SymbolDouble) {
 			SymbolDouble os = (SymbolDouble) s;
-			if ((os.getUnit() != null) && (getUnit() != null)
-					&& (!os.getUnit().compareTo(getUnit()))) {
+			if ((os.getUnit() != null) && (getUnit() != null) && (!os.getUnit().compareTo(getUnit()))) {
 				throw new Exception("Operation on numbers with different units");
 			}
 			double o = os.getValue();
@@ -836,6 +827,9 @@ public class SymbolDouble extends Symbol {
 			String rem = "";
 			if (value.endsWith("Hz")) {
 				setUnit(new Unit("Hz"));
+				rem = value.substring(0, value.length() - 2);
+			} else if (value.endsWith("dB")) {
+				setUnit(new Unit("dB"));
 				rem = value.substring(0, value.length() - 2);
 			} else {
 				setUnit(new Unit(Character.toString(last)));
@@ -865,9 +859,7 @@ public class SymbolDouble extends Symbol {
 				default:
 					break;
 				}
-				setValue(multiplier
-						* Double
-								.parseDouble(rem.substring(0, rem.length() - 1)));
+				setValue(multiplier * Double.parseDouble(rem.substring(0, rem.length() - 1)));
 			}
 		}
 	}

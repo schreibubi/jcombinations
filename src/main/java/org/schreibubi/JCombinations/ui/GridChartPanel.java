@@ -48,16 +48,10 @@ import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.apache.batik.svggen.SVGGraphics2DIOException;
-import org.schreibubi.JCombinations.logic.DataEventListenerAdapter;
-import org.schreibubi.JCombinations.logic.DataModel;
-import org.schreibubi.JCombinations.logic.ExtendedJFreeChart;
-import org.schreibubi.JCombinations.logic.SelectionEvent;
-import org.schreibubi.JCombinations.logic.TableContent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Footer;
 import org.jdesktop.swingx.event.MessageEvent;
 import org.jdesktop.swingx.event.MessageListener;
 import org.jdesktop.swingx.event.MessageSource;
@@ -66,21 +60,28 @@ import org.jdesktop.swingx.event.ProgressListener;
 import org.jdesktop.swingx.event.ProgressSource;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.schreibubi.JCombinations.logic.DataEventListenerAdapter;
+import org.schreibubi.JCombinations.logic.DataModel;
+import org.schreibubi.JCombinations.logic.ExtendedJFreeChart;
+import org.schreibubi.JCombinations.logic.SelectionEvent;
+import org.schreibubi.JCombinations.logic.TableContent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMImplementation;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.HeaderFooter;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.pdf.DefaultFontMapper;
-import com.lowagie.text.pdf.PdfContentByte;
-import com.lowagie.text.pdf.PdfDestination;
-import com.lowagie.text.pdf.PdfOutline;
-import com.lowagie.text.pdf.PdfTemplate;
-import com.lowagie.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Header;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.DefaultFontMapper;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfDestination;
+import com.itextpdf.text.pdf.PdfOutline;
+import com.itextpdf.text.pdf.PdfTemplate;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * @author Werner Jörg
@@ -174,7 +175,8 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource,
 	@SuppressWarnings("unchecked")
 	public static void generatePDF(File name, DataModel dm,
 			ArrayList<TreePath> selection, ProgressListener pl) {
-		com.lowagie.text.Document document = new Document(PageSize.A4.rotate(),
+		
+		com.itextpdf.text.Document document = new Document(PageSize.A4.rotate(),
 				50, 50, 50, 50);
 		try {
 			ArrayList<ExtendedJFreeChart> charts = dm.getCharts(selection);
@@ -188,13 +190,13 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource,
 				document.addCreator("JCombinations using iText");
 
 				// we define a header and a footer
-				HeaderFooter header = new HeaderFooter(new Phrase(
-						"JCombinations by Jörg Werner"), false);
-				HeaderFooter footer = new HeaderFooter(new Phrase("Page "),
-						new Phrase("."));
-				footer.setAlignment(Element.ALIGN_CENTER);
-				document.setHeader(header);
-				document.setFooter(footer);
+				Header header = new Header("", "JCombinations by Jörg Werner"); 
+//				Footer footer = new  
+//						new Footer("","Page "),
+//						new Phrase("."));
+//				footer.setAlignment(Element.ALIGN_CENTER);
+//				document.setHeader(header);
+//				document.setFooter(footer);
 
 				document.open();
 				DefaultFontMapper mapper = new DefaultFontMapper();
