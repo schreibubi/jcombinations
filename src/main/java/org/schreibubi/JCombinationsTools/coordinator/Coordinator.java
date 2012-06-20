@@ -97,8 +97,10 @@ public class Coordinator {
 
 			File dir = new File(combinationFileName).getAbsoluteFile()
 					.getParentFile();
+			String fname = new File(combinationFileName).getAbsoluteFile()
+					.getName();
 			File combinationFile = FileNameLookupSingleton.getInstance()
-					.lookup(dir, combinationFileName);
+					.lookup(dir, fname);
 			System.out.println("Processing: " + combinationFile.getName());
 
 			// Generate all possible combinations

@@ -61,7 +61,8 @@ public class VerigyRecordVisitor implements RecordVisitor {
 				if (d == null) {
 					d = new VLinkedHashMap<Symbol>();
 				}
-				d.put("S0", new SymbolDouble("DUT" + myFormatter.format(siteNum+touchdown), 20*Math.log10(testValue)-82.4, new Unit("dB")));
+//				d.put("S0", new SymbolDouble("DUT" + myFormatter.format(siteNum+touchdown), 20*Math.log10(testValue)-82.4, new Unit("dB")));
+				d.put("S0", new SymbolDouble("DUT" + myFormatter.format(siteNum+touchdown), testValue, new Unit("dB")));
 				t.put("DUT" + myFormatter.format(siteNum+touchdown), d);
 				results.put("" + testNum, t);
 			}

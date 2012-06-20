@@ -329,8 +329,8 @@ public class MainWindow extends JFrame {
 	public static void main(String[] args) {
 		PlasticLookAndFeel.setPlasticTheme(new ExperienceBlue());
 		try {
-			UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
-			// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			// UIManager.setLookAndFeel(new PlasticXPLookAndFeel());
+			 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
 
