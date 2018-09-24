@@ -33,6 +33,8 @@ import java.util.logging.Level;
  */
 public class MessageEvent extends EventObject {
 
+	private static final long serialVersionUID = -3669422454369810265L;
+	
 	private Object value;
 	private long when;
 	private Level level = Level.INFO;

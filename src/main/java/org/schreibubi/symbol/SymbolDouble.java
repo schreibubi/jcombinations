@@ -16,8 +16,6 @@
  */
 package org.schreibubi.symbol;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Locale;
 
 import org.schreibubi.visitor.VArrayList;

@@ -16,6 +16,8 @@ import org.schreibubi.visitor.VLinkedHashMap;
 public class ResVisitor {
 	static Pattern p = Pattern.compile(";");
 
+	int dutOffset=0;
+	
 	VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> results = new VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>>();
 
 	public VLinkedHashMap<VLinkedHashMap<VLinkedHashMap<Symbol>>> getResults() {
@@ -37,7 +39,7 @@ public class ResVisitor {
 				if (t == null) {
 					t = new VLinkedHashMap<VLinkedHashMap<Symbol>>();
 				}
-				VLinkedHashMap<Symbol> d = t.get("DUT" + myFormatter.format(1));
+				VLinkedHashMap<Symbol> d = t.get("DUT" + myFormatter.format(1+dutOffset));
 				if (d == null) {
 					d = new VLinkedHashMap<Symbol>();
 				}
@@ -45,15 +47,19 @@ public class ResVisitor {
 				for (int i = 0; i < values.length; i++) {
 					if (values[i].contains("NaN"))
 						values[i]=values[i].replace("NaN", "0.0"); // replace NaN with 0.0 but keep Unit!
-					d.put("S" + i, new SymbolDouble("DUT" + myFormatter.format(1), values[i]));
+					d.put("S" + i, new SymbolDouble("DUT" + myFormatter.format(1+dutOffset), values[i]));
 				}
-				t.put("DUT" + myFormatter.format(1), d);
+				t.put("DUT" + myFormatter.format(1+dutOffset), d);
 				results.put(tC[0], t);
 			}
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setFileDutOffset(int countOffset) {
+		dutOffset=countOffset;
 	}
 
 }

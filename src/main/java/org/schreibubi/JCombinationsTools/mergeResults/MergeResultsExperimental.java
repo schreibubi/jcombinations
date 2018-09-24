@@ -341,6 +341,7 @@ public class MergeResultsExperimental {
 				STDFReader sr = new STDFReader(file);
 				sr.parse(myRecordVisitor);
 			} else if (file.endsWith("res")) {
+				resVisitor.setFileDutOffset(countOffset);
 				resVisitor.parse(file);
 			} else {
 				BufferedReader dc = null;

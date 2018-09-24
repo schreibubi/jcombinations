@@ -25,6 +25,8 @@ package org.jdesktop.swingx.event;
  */
 public class ProgressEvent extends MessageEvent {
 
+	private static final long serialVersionUID = 8439889419837401238L;
+	
 	private int minimum;
 	private int maximum;
 	private int progress;
