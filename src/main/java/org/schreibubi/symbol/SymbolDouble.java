@@ -27,7 +27,7 @@ import org.schreibubi.visitor.Visitor;
  * Class for storing doubles.
  */
 public class SymbolDouble extends Symbol {
-	private static String STANDARD_FORMAT = "###.###E0";
+	private static String STANDARD_FORMAT = "%g";
 
 	private double value;
 
@@ -430,10 +430,7 @@ public class SymbolDouble extends Symbol {
 	 */
 	@Override
 	public String getValueString(String format) {
-		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
-		DecimalFormat myFormatter = (DecimalFormat) nf;
-		myFormatter.applyPattern(format);
-		return myFormatter.format(getValue());
+		return String.format(Locale.US, format, getValue());
 	}
 
 	/*
@@ -455,7 +452,9 @@ public class SymbolDouble extends Symbol {
 	public String getValueUnitString(String format) {
 		double multiplier = 1;
 		String order = null;
-		if (Math.abs(this.value) < 1.0e-6) {
+		if (this.value == 0.0) {
+			multiplier = 1;
+		} else if (Math.abs(this.value) < 1.0e-6) {
 			multiplier = 1.0e9;
 			order = "n";
 		} else if (Math.abs(this.value) < 1.0e-3) {
@@ -464,6 +463,9 @@ public class SymbolDouble extends Symbol {
 		} else if (Math.abs(this.value) < 1.0) {
 			multiplier = 1.0e3;
 			order = "m";
+		} else if (Math.abs(this.value) > 1.0e9) {
+			multiplier = 1.0e-9;
+			order = "G";
 		} else if (Math.abs(this.value) > 1.0e6) {
 			multiplier = 1.0e-6;
 			order = "M";
@@ -471,18 +473,15 @@ public class SymbolDouble extends Symbol {
 			multiplier = 1.0e-3;
 			order = "k";
 		}
-		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
-		DecimalFormat myFormatter = (DecimalFormat) nf;
-		myFormatter.applyPattern(format);
 		String res;
 		if ((getUnit() != null) && !getUnit().empty()) {
-			res = myFormatter.format(getValue() * multiplier);
+			res = String.format(Locale.US, format, getValue() * multiplier);
 			if (order != null) {
 				res = res + order;
 			}
 			res = res + getUnit().toString();
 		} else {
-			res = myFormatter.format(getValue());
+			res = String.format(Locale.US, format, getValue());
 		}
 
 		return res;
@@ -774,7 +773,7 @@ public class SymbolDouble extends Symbol {
 	 */
 	@Override
 	public String toString() {
-		return getName() + "=" + getValueUnitString("#0.0##");
+		return getName() + "=" + getValueUnitString();
 	}
 
 	/*
@@ -831,6 +830,9 @@ public class SymbolDouble extends Symbol {
 			} else if (value.endsWith("dB")) {
 				setUnit(new Unit("dB"));
 				rem = value.substring(0, value.length() - 2);
+			} else if (value.endsWith("dBm")) {
+				setUnit(new Unit("dBm"));
+				rem = value.substring(0, value.length() - 3);
 			} else {
 				setUnit(new Unit(Character.toString(last)));
 				rem = value.substring(0, value.length() - 1);
@@ -855,6 +857,9 @@ public class SymbolDouble extends Symbol {
 					break;
 				case 'M':
 					multiplier = 1.0E6;
+					break;
+				case 'G':
+					multiplier = 1.0E9;
 					break;
 				default:
 					break;

@@ -60,9 +60,9 @@ public class ArbitraryMarker extends Marker {
 	 */
 	public ArbitraryMarker(ArrayList<Double> domainVal,
 			ArrayList<Double> rangeLow, ArrayList<Double> rangeHigh) {
-		this(domainVal, rangeLow, rangeHigh, new Color(222, 222, 255, 240),
-				new BasicStroke(0.5f), new Color(222, 222, 255, 240),
-				new BasicStroke(0.5f), 0.5f);
+		this(domainVal, rangeLow, rangeHigh, new Color(222, 222, 255, 150),
+				new BasicStroke(0.5f), new Color(222, 222, 255, 150),
+				new BasicStroke(0.5f), 1.0f);
 	}
 
 	/**

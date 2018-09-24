@@ -51,7 +51,6 @@ import org.apache.batik.svggen.SVGGraphics2DIOException;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Footer;
 import org.jdesktop.swingx.event.MessageEvent;
 import org.jdesktop.swingx.event.MessageListener;
 import org.jdesktop.swingx.event.MessageSource;
@@ -69,14 +68,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMImplementation;
 
+import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Header;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfDestination;
 import com.itextpdf.text.pdf.PdfOutline;
@@ -151,8 +149,6 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource,
 
 	private static int DEFAULT_HEIGHT = 150;
 
-	private static int EXTRA_MARGIN = 30;
-
 	private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
 	/**
@@ -207,27 +203,29 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource,
 
 				pl.progressStarted(new ProgressEvent(GridChartPanel.class, 0,
 						charts.size()));
+				int graphCounter=0;
+				int graphsPerPage=2;
+
+				float pageHeight = PageSize.A4.getWidth();
+				// float pageWidth = PageSize.A4.getHeight();
+				float height = PageSize.A4.getWidth() / graphsPerPage;
+				float width = PageSize.A4.getHeight() / graphsPerPage;
+
 				for (int i = 0; i < charts.size(); i++) {
 					ExtendedJFreeChart chart = charts.get(i);
-					PdfTemplate tp = cb.createTemplate(document
-							.right(EXTRA_MARGIN)
-							- document.left(EXTRA_MARGIN), document
-							.top(EXTRA_MARGIN)
-							- document.bottom(EXTRA_MARGIN));
-					Graphics2D g2d = tp.createGraphics(document
-							.right(EXTRA_MARGIN)
-							- document.left(EXTRA_MARGIN), document
-							.top(EXTRA_MARGIN)
-							- document.bottom(EXTRA_MARGIN), mapper);
-					Rectangle2D r2d = new Rectangle2D.Double(0, 0, document
-							.right(EXTRA_MARGIN)
-							- document.left(EXTRA_MARGIN), document
-							.top(EXTRA_MARGIN)
-							- document.bottom(EXTRA_MARGIN));
+					PdfTemplate tp = cb.createTemplate(width, height);
+					Graphics2D g2d = new PdfGraphics2D(tp, width, height);
+					Rectangle2D r2d = new Rectangle2D.Double(0, 0, width, height);
+
 					chart.draw(g2d, r2d);
 					g2d.dispose();
-					cb.addTemplate(tp, document.left(EXTRA_MARGIN), document
-							.bottom(EXTRA_MARGIN));
+
+					float xOffset = (graphCounter % graphsPerPage) * width;
+					float yOffset = pageHeight - (((graphCounter / graphsPerPage) % graphsPerPage) + 1) * height;
+
+					cb.addTemplate(tp, xOffset, yOffset);
+					writer.releaseTemplate(tp);
+
 					PdfDestination destination = new PdfDestination(
 							PdfDestination.FIT);
 					TreePath treePath = chart.getTreePath();
@@ -247,7 +245,9 @@ public class GridChartPanel extends JPanel implements Printable, MessageSource,
 						}
 						po = cpo;
 					}
-					document.newPage();
+					graphCounter++;
+					if (graphCounter % (graphsPerPage * graphsPerPage) == 0)
+						document.newPage();
 					pl.progressIncremented(new ProgressEvent(
 							GridChartPanel.class, i));
 				}

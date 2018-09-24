@@ -65,6 +65,8 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	public void visit(SymbolDouble s) {
 		if (this.format.contentEquals("HEX")) {
 			this.pw.print(Integer.toHexString((int) s.getValue()));
+		} else if (this.format.contentEquals("NOUNIT")) {
+			this.pw.print(s.getValueString());
 		} else if (this.format != "") {
 			this.pw.print(s.getValueUnitString(this.format));
 		} else {
@@ -83,6 +85,8 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	public void visit(SymbolInteger s) {
 		if (this.format.contentEquals("HEX")) {
 			this.pw.print(Integer.toHexString(s.getValue()));
+		} else if (this.format.contentEquals("NOUNIT")) {
+			this.pw.print(s.getValueString());
 		} else if (this.format != "") {
 			this.pw.print(s.getValueUnitString(this.format));
 		} else {
@@ -114,8 +118,7 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList
-	 * )
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VArrayList )
 	 */
 	@Override
 	public void visit(VArrayList<Symbol> s) throws Exception {
@@ -143,8 +146,7 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap
-	 * )
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VHashMap )
 	 */
 	@Override
 	public void visit(VHashMap<Symbol> s) throws Exception {
@@ -178,8 +180,7 @@ public class SymbolVisitorFormat extends SymbolVisitor {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap
-	 * )
+	 * org.schreibubi.symbol.SymbolVisitor#visit(org.schreibubi.visitor.VTreeMap )
 	 */
 	@Override
 	public void visit(VTreeMap<Symbol> s) throws Exception {

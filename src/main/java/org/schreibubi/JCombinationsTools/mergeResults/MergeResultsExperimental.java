@@ -33,8 +33,12 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.tree.TreePath;
+
 import org.apache.commons.cli.ParseException;
 import org.apache.tools.bzip2.CBZip2InputStream;
+import org.jdesktop.swingx.event.ProgressEvent;
+import org.jdesktop.swingx.event.ProgressListener;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
 import org.jibx.runtime.IMarshallingContext;
@@ -48,6 +52,8 @@ import org.schreibubi.JCombinations.FileFormat.OurTreeNode;
 import org.schreibubi.JCombinations.FileFormat.Shmoo;
 import org.schreibubi.JCombinations.FileFormat.Xdata;
 import org.schreibubi.JCombinations.FileFormat.Ydata;
+import org.schreibubi.JCombinations.logic.DataModel;
+import org.schreibubi.JCombinations.ui.GridChartPanel;
 import org.schreibubi.JCombinationsTools.FileNameLookup.FileNameLookupSingleton;
 import org.schreibubi.JCombinationsTools.LotresultsFormat.DCResults;
 import org.schreibubi.JCombinationsTools.evalGenCombinations.AlternativesASTSet;
@@ -63,12 +69,11 @@ import org.schreibubi.visitor.VArrayList;
 import org.schreibubi.visitor.VHashMap;
 import org.schreibubi.visitor.VLinkedHashMap;
 
+import com.jmatio.io.MatFileWriter;
+import com.tragicphantom.stdf.STDFReader;
+
 import antlr.RecognitionException;
 import antlr.collections.AST;
-
-import com.jmatio.io.MatFileWriter;
-import com.tragicphantom.stdf.RecordVisitor;
-import com.tragicphantom.stdf.STDFReader;
 
 /**
  * Merge results from dclog-file with the data of the combinations files.
@@ -250,8 +255,8 @@ public class MergeResultsExperimental {
 		System.out.print("Loading " + combinationFile.getName() + "...");
 		// System.out.print("Loading " + combinationsFileName + "...");
 
-		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(new BufferedReader(
-				new FileReader(combinationsFileName)));
+		EvalGenCombinationsLexer evalGenCombinationsLexer = new EvalGenCombinationsLexer(
+				new BufferedReader(new FileReader(combinationsFileName)));
 		EvalGenCombinationsParser evalGenCombinationsParser = new EvalGenCombinationsParser(evalGenCombinationsLexer);
 		evalGenCombinationsParser.setIncludeDir(dir);
 		evalGenCombinationsParser.blocks();
@@ -259,8 +264,8 @@ public class MergeResultsExperimental {
 		VHashMap<String> optionsFromEvalGenWalker = new VHashMap<String>();
 		EvalGenCombinationsTreeWalker evalGenCombinationsWalker = new EvalGenCombinationsTreeWalker();
 		evalGenCombinationsWalker.setOptions(optionsFromEvalGenWalker);
-		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker.blocks(evalGenCombinationsParser
-				.getAST());
+		VArrayList<VArrayList<AlternativesASTSet>> blocks = evalGenCombinationsWalker
+				.blocks(evalGenCombinationsParser.getAST());
 		System.out.println("done");
 
 		// *****************************************************************************
@@ -327,11 +332,17 @@ public class MergeResultsExperimental {
 		obj.setActiveDuts(duts);
 		obj.setTouchdownDutOffset(dutTouchdownOffset);
 		int countOffset = 0;
-		
+
 		VerigyRecordVisitor myRecordVisitor = new VerigyRecordVisitor();
+		ResVisitor resVisitor = new ResVisitor();
 		for (String file : resultFiles) {
 
-			if (!file.endsWith("stdf")) {
+			if (file.endsWith("stdf")) {
+				STDFReader sr = new STDFReader(file);
+				sr.parse(myRecordVisitor);
+			} else if (file.endsWith("res")) {
+				resVisitor.parse(file);
+			} else {
 				BufferedReader dc = null;
 				File dclogFile = new File(file);
 				if (dclogFile.exists()) {
@@ -339,8 +350,8 @@ public class MergeResultsExperimental {
 				} else {
 					File gzLogFile = new File(file + ".gz");
 					if (gzLogFile.exists()) {
-						dc = new BufferedReader(new InputStreamReader(new GZIPInputStream(
-								new FileInputStream(gzLogFile))));
+						dc = new BufferedReader(
+								new InputStreamReader(new GZIPInputStream(new FileInputStream(gzLogFile))));
 					} else {
 						File bzLogFile = new File(file + ".bz2");
 						if (bzLogFile.exists()) {
@@ -358,17 +369,16 @@ public class MergeResultsExperimental {
 				obj.setFileDutOffset(countOffset);
 				lotreportUnmarshallingContext.setDocument(dc);
 				((IUnmarshallable) obj).unmarshal(lotreportUnmarshallingContext);
-			} else {
-				STDFReader sr = new STDFReader(file);
-				sr.parse(myRecordVisitor);
 			}
 			System.out.println("done");
 			countOffset += dutFileOffset;
 		}
-		if (!resultFiles.get(0).endsWith("stdf")) {
-			data = obj.getResults();
+		if (resultFiles.get(0).endsWith("stdf")) {
+			data = myRecordVisitor.getResults();
+		} else if (resultFiles.get(0).endsWith("res")) {
+			data = resVisitor.getResults();
 		} else {
-			data=myRecordVisitor.getResults();
+			data = obj.getResults();
 		}
 		// *****************************************************************************
 		// now generate the plots
@@ -401,8 +411,8 @@ public class MergeResultsExperimental {
 			c.reset();
 
 			VArrayList<Integer> combination = c.getNextCombination();
-			VArrayList<VLinkedHashMap<Symbol>> altSymbols = generateAlternativeSymbols(evalGenCombinationsWalker,
-					block, combination);
+			VArrayList<VLinkedHashMap<Symbol>> altSymbols = generateAlternativeSymbols(evalGenCombinationsWalker, block,
+					combination);
 
 			boolean allCombinationsDone = false;
 			do {
@@ -552,8 +562,8 @@ public class MergeResultsExperimental {
 						if (xLabelsAcc.get(s).get(0) instanceof SymbolString) {
 							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
 						} else if (xLabelsAcc.get(s).get(0).getUnit() != null) {
-							xlabels.add(new Xdata(s, s, xLabelsAcc.get(s).get(0).getUnit().toString(), xLabelsAcc
-									.get(s), xpos));
+							xlabels.add(new Xdata(s, s, xLabelsAcc.get(s).get(0).getUnit().toString(),
+									xLabelsAcc.get(s), xpos));
 						} else {
 							xlabels.add(new Xdata(s, s, "", xLabelsAcc.get(s), xpos));
 						}
@@ -568,8 +578,8 @@ public class MergeResultsExperimental {
 								if (yDA.get(s).get(0).getUnit() == null) {
 									shmoo.addChild(new Ydata(shmoo, s, s, "", yDA.get(s)));
 								} else {
-									shmoo.addChild(new Ydata(shmoo, s, s, yDA.get(s).get(0).getUnit().toString(), yDA
-											.get(s)));
+									shmoo.addChild(
+											new Ydata(shmoo, s, s, yDA.get(s).get(0).getUnit().toString(), yDA.get(s)));
 								}
 							}
 
@@ -639,5 +649,49 @@ public class MergeResultsExperimental {
 			new MatFileWriter(outputFileName + ".mat", mllist);
 			System.out.println("done");
 		}
+		
+		// *****************************************************************************
+		// * Save the data in PDF format
+		// *****************************************************************************
+		if (SettingsSingleton.getInstance().getProperty("pdf").equals("true")) {
+			DataModel dm = new DataModel();
+			dm.setRoot(globalParent);
+			if (!SettingsSingleton.getInstance().getProperty("limits").isEmpty()) {
+				System.out.print("Applying limits...");
+				String limitsText = "";
+				String limitsFile = SettingsSingleton.getInstance().getProperty("limits");
+				BufferedReader inReader = new BufferedReader(new FileReader(limitsFile));
+				String s;
+				while ((s = inReader.readLine()) != null) {
+					limitsText = limitsText + s + "\n";
+				}
+				inReader.close();
+				dm.setLimitsText(limitsText);
+				dm.applyLimits();
+				System.out.println("done");
+			}
+
+			System.out.print("Saving " + outputFileName + ".pdf...");
+			ProgressListener pl = new ProgressListener() {
+
+				public void progressEnded(ProgressEvent evt) {
+					System.out.println("done.");
+				}
+
+				public void progressIncremented(ProgressEvent evt) {
+					System.out.print("[ " + evt.getProgress() + " ]");
+				}
+
+				public void progressStarted(ProgressEvent evt) {
+				}
+			};
+			ArrayList<TreePath> selection = new ArrayList<TreePath>();
+			selection.add(dm.getRoot().getTreePath());
+
+			GridChartPanel
+					.generatePDF(new File(outputFileName+ ".pdf"), dm, selection, pl);
+			System.out.println("done");
+		}
+
 	}
 }

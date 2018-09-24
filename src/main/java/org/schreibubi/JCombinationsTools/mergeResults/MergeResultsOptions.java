@@ -52,8 +52,10 @@ public enum MergeResultsOptions implements SettingsInterface {
 			"output also in matlab file format", false, "", "b", "", false), TESTNAME(
 			"testname", "Name of Variable containing the name of the test",
 			true, "test name variable", "n", "TESTNAME", false), HELP("help",
-			"Help", false, "gives you help", "h", "false", false);
-
+			"Help", false, "gives you help", "h", "false", false), PDF("pdf",
+			"output also in pdf file format", false, "", "y", "", false),
+	        LIMITS("limits","[in] limit-file for pdf generation", true, "file", "l", "", false);
+	
 	String longArgName;
 	String explanation;
 	boolean hasArgs;
